@@ -1,0 +1,1280 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, target-densitydpi=device-dpi">
+    <title>BPMS － 我的任务</title>
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile.css" />
+    <link rel="stylesheet" type="text/css" href="css/color.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" type="text/css" href="css/jqm-demos.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure.css">
+    <link rel="stylesheet" type="text/css" href="css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/kc.fab.css">
+
+    <link rel="stylesheet" type="text/css" href="css/datatables.css">
+    <link rel="stylesheet" type="text/css" href="css/google-icon.css">
+    <link rel="stylesheet" type="text/css" href="css/site.css?v=20200924" />
+    <script src="libs/jquery.js?v=20210120"></script>
+    <script src="libs/jquery.form.js?v=1553850876753"></script>
+    <script src="libs/kc.fab.min.js?v=1553850876753"></script>
+    <script src="libs/knockout.jquery.mobile.js?v=1553850876753"></script>
+    <script src="libs/jquery.mobile.js?v=20200924"></script>
+    <script src="libs/bootstrap.js?v=1553850876753"></script>
+    <script src="libs/bootstrap-treeview.js?v=1553850876753"></script>
+    <script src="libs/knockout.js?v=1553850876753"></script>
+    <script src="libs/koExternalTemplateEngine_all.js?v=1553850876753"></script>
+    <script src="libs/ko.extension.js?v=1553850876753"></script>
+    <script src="libs/datatables.js?v=1553850876753"></script>
+    <script src="libs/moment/moment.js?v=1553850876753"></script>
+    <script src="libs/moment/locale/zh-cn.js?v=1553850876753"></script>
+    <script src="libs/bootstrap-datetimepicker.js?v=1553850876753"></script>
+    <script src="libs/shim.min.js?v=1553850876753"></script>
+    <script src="libs/xlsx.full.min.js?v=1553850876753"></script>
+    <script src="libs/oex/utils.js?v=1553850876753"></script>
+    <script src="libs/oex/jqm-checked.js?v=1553850876753"></script>
+    <script src="libs/oex/jqm-datetime.js?v=1553850876753"></script>
+    <script src="libs/oex/jqm-selected.js?v=1553850876753"></script>
+    <script src="libs/oex/jqm-number.js?v=1553850876753"></script>
+    <script src="libs/oex/jqm-money.js?v=1553850876753"></script>
+    <script src="libs/oex/jqm-tel.js?v=1553850876753"></script>
+    <script src="libs/oex/jqm-email.js?v=1553850876753"></script>
+    <script src="libs/oex/jqm-switch.js?v=1553850876753"></script>
+    <script src="libs/oex/jqm-psb.js?v=1553850876753"></script>
+    <script src="libs/oex/jqm-cny.js?v=1553850876753"></script>
+    <script src="libs/oex/jqm-auto.js?v=1553850876753"></script>
+    <script src="libs/oex/jqm-relation.js?v=1553850876753"></script>
+    <script src="libs/oex/jqm-tree.js?v=1553850876753"></script>
+    <script src="libs/oex/jqm-value.js?v=1553850876753"></script>
+    <script src="libs/oex/jqm-id.js?v=20200923"></script>
+    <script src="libs/oex/jqm-upload.js?v=1553850876753"></script>
+    <script src="libs/oex/jqm-ctr.js?v=1553850876753"></script>
+    <script src="libs/CLDRPluralRuleParser.js?v=1553850876753"></script>
+    <script src="libs/jquery.i18n/jquery.i18n.js?v=1553850876753"></script>
+    <script src="libs/jquery.i18n/jquery.i18n.messagestore.js?v=1553850876753"></script>
+    <script src="libs/jquery.i18n/jquery.i18n.fallbacks.js?v=1553850876753"></script>
+    <script src="libs/jquery.i18n/jquery.i18n.language.js?v=1553850876753"></script>
+    <script src="libs/jquery.i18n/jquery.i18n.parser.js?v=1553850876753"></script>
+    <script src="libs/jquery.i18n/jquery.i18n.emitter.js?v=1553850876753"></script>
+    <script src="libs/jquery.i18n/jquery.i18n.emitter.bidi.js?v=1553850876753"></script>
+    <script src="libs/jweixin-1.2.0.js?v=1553850876753"></script>
+    <script src="common/config.js?v=20200910"></script>
+    <script src="common/util.js?v=20200917"></script>
+    <script src="common/service.js?v=1553850876753"></script>
+    <script src="common/baseViewModel.js?v=1553850876753"></script>
+    <script src="taskDetail.js?v=1553850876753"></script>
+    <script src="taskDetailViewModel.js?v=20201216"></script>
+
+    <!--<script src="libs/jquery.sparkline.js?v=1553850876753"></script>-->
+    <link rel="shortcut icon" href="favicon.ico">
+    <style>
+        /* These apply across all breakpoints because they are outside of a media query */
+        /* Make the labels light gray all caps across the board */
+        /* White bg, large blue text for rank and title */
+        .movie-list tbody th {
+            font-size: 1.2em;
+            color: #77bbff;
+            margin-top: 0em;
+            text-align: center;
+        }
+
+        /*  Add a bit of extra left padding for the title */
+        .movie-list tbody td.title {
+            padding-left: .8em;
+        }
+
+        /* Add strokes */
+        .movie-list thead th {
+            border-bottom: 1px solid #d6d6d6;
+            /* non-RGBA fallback */
+            border-bottom: 1px solid rgba(0, 0, 0, .1);
+        }
+
+        .movie-list tbody th,
+        .movie-list tbody td {
+            border-bottom: 1px solid #e6e6e6;
+            /* non-RGBA fallback  */
+            border-bottom: 1px solid rgba(0, 0, 0, .05);
+        }
+
+        /*  Custom stacked styles for mobile sizes */
+        /*  Use a max-width media query so we don't have to undo these styles */
+        @media (max-width: 40em) {
+
+            /*  Negate the margin between sections */
+            .movie-list tbody th {
+                margin-top: 0;
+                text-align: left;
+            }
+
+            /*  White bg, large blue text for rank and title */
+            .movie-list tbody th,
+            .movie-list tbody td.title {
+                display: block;
+                font-size: 1.2em;
+                line-height: 110%;
+                margin-top: 0em;
+                padding: .5em .5em;
+                background-color: #fff;
+                color: #77bbff;
+                -moz-box-shadow: 0 1px 6px rgba(0, 0, 0, .1);
+                -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, .1);
+                box-shadow: 0 1px 6px rgba(0, 0, 0, .1);
+            }
+
+            /*  Hide labels for rank and title */
+            .movie-list tbody th .ui-table-cell-label,
+            .movie-list tbody td.title .ui-table-cell-label {
+                display: none;
+            }
+
+            /*  Position the title next to the rank, pad to the left */
+            .movie-list tbody td.title {
+                margin-top: -2.1em;
+                padding-left: 2.2em;
+                border-bottom: 1px solid rgba(0, 0, 0, .15);
+            }
+
+            /*  Make the data bold */
+            .movie-list th,
+            .movie-list td {
+                font-weight: bold;
+            }
+
+            /* Make the label elements a percentage width */
+            .movie-list td .ui-table-cell-label,
+            .movie-list th .ui-table-cell-label {
+                min-width: 20%;
+            }
+        }
+
+        /* Media query to show as a standard table at wider widths */
+        @media (min-width: 40em) {
+
+            /* Show the table header rows */
+            .movie-list td,
+            .movie-list th,
+            .movie-list tbody th,
+            .movie-list tbody td,
+            .movie-list thead td,
+            .movie-list thead th {
+                display: table-cell;
+                margin: 0;
+            }
+
+            /* Hide the labels in each cell */
+            .movie-list td .ui-table-cell-label,
+            .movie-list th .ui-table-cell-label {
+                display: none;
+            }
+        }
+
+        /* Hack to make IE9 and WP7.5 treat cells like block level elements */
+        /* Applied in a max-width media query up to the table layout breakpoint so we don't need to negate this */
+        @media (max-width: 40em) {
+
+            .movie-list td,
+            .movie-list th {
+                width: 100%;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                float: left;
+                clear: left;
+            }
+        }
+
+        @media screen and (min-width: 0px) {
+            .row {
+                margin-left: 0px;
+                margin-right: 0px;
+                margin-top: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        @media screen and (min-width: 667px) {
+            .row {
+                margin-left: 0px;
+                margin-right: 0px;
+                margin-top: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        @media screen and (min-width: 992px) {
+            .row {
+                margin-left: 80px;
+                margin-right: 80px;
+                margin-top: 16px;
+            }
+        }
+
+        @media screen and (min-width: 1200px) {
+            .row {
+                margin-left: 100px;
+                margin-right: 100px;
+                margin-top: 32px;
+            }
+        }
+
+        @media screen and (min-width: 1600px) {
+            .row {
+                margin-left: 200px;
+                margin-right: 200px;
+                margin-top: 32px;
+            }
+        }
+
+        /*
+                @media screen and (min-width: 0px) {
+                    .row {
+                        margin-left: 0px;
+                        margin-right: 0px;
+                        margin-top: 16px;
+                        margin-bottom: 16px;
+                    }
+                }
+
+                @media screen and (min-width: 667px) {
+                    .row {
+                        margin-left: 0px;
+                        margin-right: 0px;
+                        margin-top: 16px;
+                        margin-bottom: 16px;
+                    }
+                }
+
+                @media screen and (min-width: 992px) {
+                    .row {
+                        margin-left: 80px;
+                        margin-right: 0px;
+                        margin-top: 16px;
+                    }
+                }
+
+                @media screen and (min-width: 1200px) {
+                    .row {
+                        margin-left: 80px;
+                        margin-right: 80px;
+                        margin-top: 32px;
+                    }
+                }
+
+                @media screen and (min-width: 1600px) {
+                    .row {
+                        margin-left: 80px;
+                        margin-right: 80px;
+                        margin-top: 32px;
+                    }
+                }
+                */
+    </style>
+</head>
+
+<body>
+    <div data-role="page" id="main" data-theme="a" style="background-image: url(images/bg.jpg)">
+        <div data-role="content" style="padding: 2px 2px; margin-bottom:64px">
+            <div class="kc_fab_wrapper">
+
+            </div>
+            <div class="jqm-block-content hidden-lg hidden-sm hidden-md"
+                style="margin: 2px 2px; padding: 8px 8px;background-image: url(images/bg/bannerbgnew.jpg); background-size:cover; border-color:#E4E4E4; min-height: 0px;">
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <p align="left" style="margin-top: 0px; text-shadow: 0px 1px 3px rgba(128,128,128,1.00);">
+                            <font color="#FFFFFF" size="+1" style="font-weight:600"><span
+                                    data-i18n="my-todo">我的任务</span></font><br>
+                            <font color="#FFFFFF" size="-2">BPMS-TSK</font>
+                        </p>
+                    </div>
+                    <div class="ui-block-b">
+                        <p align="right" style="padding-right: 4px; margin-top: 0px;">
+                            <a href="#panelgrid">
+                                <font color="#FFFFFF" style="text-shadow: 0px 0px 3px rgba(128,128,128,1.00);">
+                                    <i class="fa fa-2x fa-bars"></i>
+                                </font>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <p align="center" style="margin-bottom: 20px; margin-top: -20px;">
+                    <i class="fas fa-inbox" style="color: #ffffff; opacity: 0.5; font-size: 42px"></i>
+                </p>
+            </div>
+            <div class="jqm-block-content hidden-xs"
+                style="margin: 2px 2px; padding: 8px 8px; background-image: url(images/bg/bannerbgl.jpg); background-size:cover; border-color:#E4E4E4; min-height: 0px;">
+                <div class="ui-grid-a" style="padding: 9px 9px">
+                    <div class="ui-block-a" style=" padding-right: 19px;">
+                        <div class="ui-grid-a"
+                            style="background-color:rgba(46,46,46,0.20); border-radius: 0.3em; padding: 9px 9px">
+                            <div class="ui-block-a">
+                                <p align="center"
+                                    style="text-shadow: 0px 1px 3px rgba(128,128,128,1.00); margin: 0px 0px">
+                                    <a rel="external" href="history_list.html">
+                                        <font size="+1" color="#FFFFFF"><i class="fal fa-calendar-check"></i></font><br>
+                                        <font size="-1" color="#FFFFFF"><span data-i18n="my-taskhistory">任务历史</span>
+                                        </font>
+                                    </a></p>
+                            </div>
+                            <div class="ui-block-b">
+                                <p align="center"
+                                    style="text-shadow: 0px 1px 3px rgba(128,128,128,1.00); margin: 0px 0px"><a
+                                        rel="external" href="instance_list.html">
+                                        <font size="+1" color="#FFFFFF"><i class="fal fa-history"></i></font><br>
+                                        <font size="-1" color="#FFFFFF"><span data-i18n="my-processhistory">流程历史</span>
+                                        </font>
+                                    </a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-block-b">
+                        <div class="ui-grid-a">
+                            <div class="ui-block-a">
+                                <p align="left"
+                                    style="margin-top: 0px; text-shadow: 0px 1px 3px rgba(128,128,128,1.00); padding-left: 4px;">
+                                    <font color="#FFFFFF" size="+1" style="font-weight:600">
+                                        <i class="fas fa-inbox" style="opacity: 0.5; margin-right: 6px;"></i><span
+                                            data-i18n="my-todo">我的任务</span>
+                                    </font><br>
+                                    <font color="#FFFFFF" size="-2">BPMS-TSK</font>
+                                </p>
+                            </div>
+                            <div class="ui-block-b">
+                                <p align="right" style="padding-right: 4px; margin-top: 0px;">
+                                    <a href="#panelgrid">
+                                        <font color="#FFFFFF" style="text-shadow: 0px 0px 3px rgba(128,128,128,1.00);">
+                                            <i class="fal fa-2x fa-bars"></i>
+                                        </font>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <ul class="nav nav-tabs" id="myTabs" role="tablist"
+                style="margin-left: 2px; margin-right: 2px; margin-top: 4px; border-bottom-width: 0px;">
+                <li style="min-width: 60px;" role="presentation" class="active">
+                    <a href="#home" data-bind="click:switchTab" id="home-tab" role="tab" data-toggle="tab"
+                        aria-controls="home" aria-expanded="true">
+                        <p align="center" style="margin: 0px 0px;"><i class="fal fa-2x fa-info"></i></p>
+                    </a>
+                </li>
+                <li data-bind="visible:attachmentFields.read().length|| attachmentFields.write().length"
+                    style="min-width: 80px;" role="presentation">
+                    <a href="#attachment" data-bind="click:switchTab" role="tab" id="attachment-tab" data-toggle="tab"
+                        aria-controls="attachment">
+                        <p align="center" style="margin: 0px 0px;"><i class="fal fa-2x fa-paperclip"></i>&nbsp;<span
+                                data-bind="text:attachmentFields.totalCount"></span></p>
+                    </a>
+                </li>
+                <li style="min-width: 60px;" role="presentation">
+                    <a href="#history" data-bind="click:switchTab" role="tab" id="history-tab" data-toggle="tab"
+                        aria-controls="history">
+                        <p align="center" style="margin: 0px 0px;"><i class="fal fa-2x fa-history"></i></p>
+                    </a>
+                </li>
+                <li style="min-width: 60px;" data-bind="visible:started" role="presentation">
+                    <a href="#action" data-bind="click:switchTab" role="tab" id="action-tab" data-toggle="tab"
+                        aria-controls="action">
+                        <p align="center" style="margin: 0px 0px;"><i class="fal fa-2x fa-play-circle"></i></p>
+                    </a>
+                </li>
+                <li style="min-width: 60px;" role="presentation">
+                    <a href="#integrate" data-bind="click:switchTab" role="tab" id="integrate-tab" data-toggle="tab"
+                        aria-controls="integrate">
+                        <p align="center" style="margin: 0px 0px;"><img src="images/robotcolor.svg" height="29px"
+                                style="padding-bottom:4px;"></p>
+                    </a>
+                </li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home" aria-labelledby="home-tab">
+                    <div class="ui-body ui-body-b ui-content"
+                        style="background-image: url(images/works-bg2.jpg); border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 400px; margin: 0 2px; padding: 6px 6px">
+                        <div class="row" style="margin-bottom:0px;">
+                            <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6" style="padding: 3px 3px; ">
+                                <p align="left"
+                                    style="padding: 0px 0px; font-weight:600; color:#333333; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)">
+                                    <font size="+2" data-bind="text:processInstanceBusinessKey()||'N/A'"></font>&nbsp;
+                                    <font size="+2" data-bind="visible:draft"><i class="fal fa-fw fa-cloud"
+                                            data-bind="visible:draft"></i></font>
+                                </p>
+
+                            </div>
+                            <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6" style="padding: 3px 3px; ">
+                                <p align="right" style="padding:3px 3px; margin-bottom:0px;">
+                                    <a href="javascript:void(0);" data-bind="click:startComments" data-rel="popup"
+                                        data-position-to="window" data-transition="pop"
+                                        style="margin-left:20px; color:#00838F;" data-toggle="tooltip"
+                                        data-placement="bottom" title="流程协同">
+                                        <i class="material-icons">chat</i>
+                                        <font size="-2" color="#bdbdbd" style="font-weight:300"
+                                            data-bind="text:commentInfo.comments().length"></font>
+                                    </a>
+                                    <a href="javascript:void(0);"
+                                        data-bind="css:{ 'ui-disabled':!started()}, click:function(){delayPop('Draft');}"
+                                        style="margin-left:16px; font-size: x-large; color:#00838F;"
+                                        data-toggle="tooltip" data-placement="bottom" title="保存或删除草稿"><i
+                                            class="material-icons md-24">save</i></a>
+                                    <a href="javascript:void(0);" data-bind="click:popRemind"
+                                        style="margin-left:16px; font-size: x-large; color:#00838F;"
+                                        data-toggle="tooltip" data-placement="bottom" title="设置提醒"><i
+                                            class="material-icons md-24">event</i></a>
+                                    <a href="javascript:void(0);" class="hidden-xs"
+                                        data-bind="click:function(){showMore({positionTo:'window'});}"
+                                        style="font-weight:200; color:#00838F; font-size: x-large; margin-left:16px;"
+                                        data-toggle="tooltip" data-placement="bottom" title="指派授权"><i
+                                            class="material-icons md-24">person_add</i></a></p>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:0px;">
+                            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12" style="padding: 3px 3px; ">
+
+                                <div class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"
+                                        role="button" aria-haspopup="true" aria-expanded="false">
+                                        <p align="left"
+                                            style="padding: 0px 0px; font-weight:400; color:#000000; margin-bottom:0px">
+                                            <font color="#757575"><span
+                                                    data-bind="text: (taskId() +': '+ name())"></span>
+                                                <span class="caret" style="color:#e91e63"></span></font>
+                                        </p>
+                                    </a>
+                                    <ul class="dropdown-menu" style="padding:0px 0px">
+                                        <li><a href="javascript:void(0);"
+                                                data-bind="click:function(){pop('info', { 'title': '',  'description': description()});}"
+                                                title="详情" style="padding: 8px 8px;"><i class="fas fa-fw fa-file"
+                                                    style="color: #03a9f4"></i>
+                                                <span data-i18n="instruction">说明</span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"
+                                        role="button" aria-haspopup="true" aria-expanded="false">
+                                        <p align="left" style="padding: 0px 0px; font-weight:400; color: #000000">
+                                            <font color="#757575"><span
+                                                    data-bind="text: processInstanceId()+': '+processName()+' '"></span>
+                                                <span class="caret" style="color:#e91e63"></span></font>
+                                        </p>
+                                    </a>
+                                    <ul class="dropdown-menu" style="padding:0px 0px">
+                                        <li><a href="javascript:void(0);"
+                                                data-bind="click:function(){pop('info', {'title': '',  'description': definitionDescription()});}"
+                                                title="详情" style="padding: 8px 8px;"><i class="fas fa-fw fa-file"
+                                                    style="color: #03a9f4"></i>
+                                                <span data-i18n="instruction">说明</span></a></li>
+                                        <li role="separator" class="divider" style="margin: 0px 0px"></li>
+                                        <li><a href="javascript:void(0);"
+                                                data-bind="click:function(){secureExecute('viewImage','flow');}"
+                                                data-rel="popup" data-position-to="window" data-transition="pop"
+                                                title="流程图" style="padding: 8px 8px;"><i
+                                                    class="fas fa-fw fa-code-branch" style="color: #03a9f4"></i> <span
+                                                    data-i18n="flowchart">流程图</span></a></li>
+                                        <li role="separator" class="divider" style="margin: 0px 0px"></li>
+                                        <li><a href="javascript:void(0);"
+                                                data-bind="click:function(){secureExecute('viewImage','status');}"
+                                                data-rel="popup" data-position-to="window" data-transition="pop"
+                                                title="状态图" style="padding: 8px 8px;"><i class="fas fa-fw fa-history"
+                                                    style="color: #03a9f4"></i> <span
+                                                    data-i18n="my-processhistory">流程历史</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:0px;">
+                            <p style=" margin-top:0px; margin-bottom:0px;">
+                                <!-- <a href="#" data-toggle="tooltip" data-placement="bottom" title="任务到期时间" style="color:#333333; font-weight:300"><i class="fa fa-fw fa-calendar-times-o"></i><b> 2018-4-4</b> 16:00</a> <font color="#BDBDBD">|</font> <a href="#" data-toggle="tooltip" data-placement="bottom" title="剩余时间" style="color:#333333; font-weight:300"><i class="fa fa-fw fa-bell-slash-o"></i><b>1D</b> 20H</a> <font color="#BDBDBD">|</font> <a href="#" data-toggle="tooltip" data-placement="bottom" title="创建人" style="color:#333333; font-weight:300"><i class="fa fa-fw fa-user"></i>邵剑秋</a> <font color="#BDBDBD">|</font> <a href="#" data-toggle="tooltip" data-placement="bottom" title="代理指派" style="color:#333333; font-weight:300"><i class="fa fa-fw fa-user-secret"></i>王晓新</a>
+                        -->
+                                <span data-bind="visible: dueDate">
+                                    <i class="fal fa-fw fa-calendar-check"></i>&nbsp;<span><b
+                                            data-bind="text: BPMS.Services.Utils.formatDateTime(dueDate(), 't3')"></b>&nbsp;<span
+                                            data-bind="text: BPMS.Services.Utils.formatDateTime(dueDate(), 't4')"></span></span>
+                                </span>
+                                <span data-bind="visible: dueDate">
+                                    <font color="#BDBDBD">|</font>
+                                    <font data-bind="visible:!BPMS.Services.Utils.isDue(dueDate())"><i
+                                            class="fal fa-fw fa-bell-slash-o"></i></font>
+                                    <font data-bind="visible:BPMS.Services.Utils.isDue(dueDate())" color="#f44336"><i
+                                            class="fal fa-fw fa-bell"></i></font>
+                                    <b><span
+                                            data-bind="text: BPMS.Services.Utils.getDuration(dueDate()).days"></span>D</b>&nbsp;
+                                    <span data-bind="text: BPMS.Services.Utils.getDuration(dueDate()).hours"></span>H
+                                </span>
+                                <span data-bind="visible:instanceStartUserName">
+                                    <font color="#BDBDBD">|</font>
+                                    <i class="fal fa-fw fa-user"></i>&nbsp;<span
+                                        data-bind="text:instanceStartUserName"></span>
+                                </span>
+                                <span data-bind="visible:ownerName">
+                                    <font color="#BDBDBD">|</font>
+                                    <i class="fal fa-fw fa-user-secret"></i>&nbsp;<span
+                                        data-bind="text:ownerName"></span>
+                                </span>
+                            </p>
+
+
+                            <p style="margin-top:0px;">
+                                <!-- <a href="#" data-toggle="tooltip" data-placement="bottom" title="优先级" style="color:#333333; font-weight:300"><i class="fa fa-fw fa-flash"></i> 40</a> <font color="#BDBDBD">|</font> <a href="#" data-toggle="tooltip" data-placement="bottom" title="风险等级" style="color:#333333; font-weight:300"><i class="fa fa-fw fa-exclamation-circle"></i><b> H</b></a>
+                        -->
+                                <a href="javascript:void(0);" data-toggle="tooltip" data-placement="bottom" title="优先级"
+                                    style="color:#333333; font-weight:300">
+                                    <i class="fal fa-fw fa-hourglass-half"></i>&nbsp;<span
+                                        data-bind="text: BPMS.Services.Utils.getTaskProperty(priority())"></span>
+                                </a>
+                                <font color="#BDBDBD">|</font>&nbsp;<a href="javascript:void(0);" data-toggle="tooltip"
+                                    data-placement="bottom" title="风险等级" style="color:#333333; font-weight:300">
+                                    <i class="fal fa-fw fa-engine-warning"></i>&nbsp;<b
+                                        data-bind="text:BPMS.Services.Utils.getTaskProperty(priority(),'risk')"></b>
+                                </a>
+
+                            </p>
+                        </div>
+
+                        <!-- <div class="row" style="margin-top:0px;">
+                        <legend data-bind="visible:ownerName" style="margin-bottom: 3px;">
+                            <font size="-1" color="#0097a7"><i class="fa fa-fw fa-user"></i> <b> 授权人</b></font>
+                        </legend>
+                        <div data-bind="visible:ownerName" class="col-lg-6 col-sm-6 col-xs-12 col-md-6" 
+                        style="margin-bottom: 4px; padding: 0px 0px;"><font size="-1" data-bind="text:ownerName"></font></div>
+                    </div> -->
+
+                        <!-- ko  jqmTemplate:{foreach:fields,name:'properties'} -->
+                        <!-- /ko -->
+                        <!-- ko basicTables:tables -->
+                        <!-- /ko -->
+
+                        <!-- ko with: table.read -->
+                        <!-- ko if: $data -->
+                        <!-- ko previewTable: $data -->
+                        <!-- /ko -->
+                        <!-- /ko -->
+                        <!-- /ko -->
+
+
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="attachment" aria-labelledby="attachment-tab">
+                    <div class="ui-body ui-body-b ui-content"
+                        style="background-image: url(images/works-bg.jpg); border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 400px; margin: 0 2px; padding: 6px 6px">
+                        <!-- ko if: attachmentFields.read().length -->
+                        <div>
+                            <div class="row">
+                                <h4 style="font-weight:400; font-size:small; color: #0097a7"><i
+                                        class="fal fa-fw fa-file-download"></i><b><span
+                                            data-i18n="my-attachments">附件清单</span></b></h4>
+                            </div>
+                            <!-- ko  attachmentGrop: attachmentFields.read -->
+                            <!-- /ko -->
+
+                        </div>
+
+
+                        <!-- /ko -->
+
+
+                        <form method="post" id="upload" name="upload"
+                            data-bind="visible: attachmentFields.write().length, attr:{action: uploadUrl}"
+                            enctype="multipart/form-data">
+
+                            <div class="row">
+                                <legend style="padding-left:3px;">
+                                    <font size="-1" color="#0097a7"><i class="fal fa-fw fa-file"></i><b> 添加附件</b></font>
+                                </legend>
+                                <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" style="padding:3px 3px;">
+                                    <input type="file" data-bind="enable: started,event: { change: selectFile }"
+                                        data-clear-btn="true" name="fileUploaded" id="fileUploaded" data-inline="true"
+                                        data-theme="b" style="font-weight:600; height: 39px;  font-size:medium;">
+                                </div>
+                                <input type="hidden" name="user" data-bind="value:userId">
+                                <input type="hidden" name="id" data-bind="value:processDefinitionId">
+                            </div>
+                            <div class="ui-nodisc-icon ui-alt-icon">
+                                <!-- Classes added to the wrapper -->
+                                <p align="center"><a href="javascript:void(0);"
+                                        data-bind="click:function(){secureExecute('addAttachment')},css: { 'ui-disabled': !canAddAttachment()}"
+                                        class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext ui-btn-inline"
+                                        style="margin-right: 0px;"></a></p>
+                            </div>
+                            <div class="row">
+
+                                <!-- ko if: attachmentFields.write().length -->
+                                <ul data-role="listview" data-theme="b" data-inset="true"
+                                    data-bind="jqmTemplate: { name: 'attachmentWrite', foreach: attachmentFields.write()[0].items }, jqmRefreshList: attachmentFields.write()[0].items"
+                                    style="margin-top:0px; padding: 3px 3px" class="ui-nodisc-icon ui-alt-icon">
+                                </ul>
+
+                                <!-- /ko -->
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="history" aria-labelledby="history-tab">
+                    <div class="ui-body ui-body-b ui-content"
+                        style="background-image: url(images/works-bg.jpg); border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 400px; margin: 0 2px; padding: 6px 6px">
+                        <div class="row">
+                            <h4 style="font-weight:400; font-size: small; color: #0097a7"><i
+                                    class="fal fa-fw fa-clock"></i> <b><span
+                                        data-i18n="my-processhistory">流程历史</span></b></h4>
+                        </div>
+                        <div class="row">
+                            <ul data-role="listview" data-inset="true"
+                                data-bind="jqmTemplate: { name: 'singleFlow', foreach: $root.flows }, jqmRefreshList: $root.flows"
+                                data-iconpos="left" style="margin-top:0px;">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="action" aria-labelledBy="action-tab">
+                    <div class="ui-body ui-body-b ui-content"
+                        style="background-image: url(images/works-bg.jpg); border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 400px; margin: 0 2px; padding: 6px 6px">
+                        <!-- ko foreach: forms -->
+
+                        <div class="row">
+                            <legend style="padding-left: 3px;">
+                                <font size="-1" color="#000000" data-bind="text:''"></font>
+                            </legend>
+
+                            <!-- ko basicForm: $data -->
+                            <!-- /ko -->
+                        </div>
+                        <!-- /ko -->
+
+                        <!-- ko with: table.write -->
+                        <!-- ko if: $data -->
+                        <div class="row">
+                            <legend style="padding-left:3px;">
+                                <font size="-1" color="#0097a7"><i class="fal fa-fw fa-list"></i><b> <span
+                                            data-i18n="details">明细</span></b></font>
+                            </legend>
+                            <!-- ko if: $data.steps().length===0 || $data.editIndex()>=0-->
+                            <!-- ko basicForm: $data.headers -->
+                            <!-- /ko -->
+                            <!-- /ko -->
+                        </div>
+
+                        <div class="ui-nodisc-icon ui-alt-icon">
+                            <p align="center" style="font-size: large" data-bind="if:$data.steps().length === 0">
+                                <a href="javascript:void(0);" data-bind="visible: !(editIndex()>=0)  ,click:saveRow"
+                                    style="margin-left: 24px;"><i class="far fa-fw fa-plus-circle"></i></a>
+                                <a href="javascript:void(0);" data-bind="visible:editIndex()>=0 ,click:saveRow"
+                                    style="margin-left: 24px;"><i class="far fa-fw fa-save"></i></a>
+                                <a href="javascript:void(0);" data-bind="click:resetRow" style="margin-left: 24px;"><i
+                                        class="far fa-fw fa-redo"></i></a>
+                                <a href="javascript:void(0);" data-bind="click:toggleUploadTableFlag"
+                                    style="margin-left: 24px;"><i class="far fa-fw fa-upload"></i></a>
+                            </p>
+                            <p align="center" style="font-size: large" data-bind="if:$data.steps().length > 0">
+                                <a href="javascript:void(0);"
+                                    data-bind="visible:editIndex()<0,click:function(){$data.addExtraRow($root.table.temp());}"
+                                    style="margin-left: 24px;"><i class="far fa-fw fa-magic"></i></a>
+                                <a href="javascript:void(0);" data-bind="visible:editIndex()>=0,click:saveRow"
+                                    style="margin-left: 24px;"><i class="far fa-fw fa-save"></i></a>
+                                <a href="javascript:void(0);" data-bind="visible:editIndex()>=0,click:resetExtraForm"
+                                    style="margin-left: 24px;"><i class="far fa-fw fa-redo"></i></a>
+                                <a href="javascript:void(0);" data-bind="click:toggleUploadTableFlag"
+                                    style="margin-left: 24px;"><i class="far fa-fw fa-upload"></i></a>
+                            </p>
+                        </div>
+                        <div class="row" data-bind="visible:$data.uploadTableFlag">
+                            <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" style="padding:3px 3px;">
+                                <input type="file" data-bind="event: { change: $data.uploadTable.bind($data) }"
+                                    data-clear-btn="false" name="tableUpload" id="tableUpload" data-inline="true"
+                                    data-theme="b" style="font-weight:600; height: 39px;  font-size:medium;">
+                            </div>
+                        </div>
+                        <div class="row" data-bind="basicTable:  $data">
+                        </div>
+                        <!-- /ko -->
+                        <!-- /ko -->
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="integrate" aria-labelledBy="integrate-tab">
+                    <div class="ui-body ui-body-b ui-content"
+                        style="background-image: url(images/works-bg2.jpg); border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 400px; margin: 0 2px; padding: 6px 6px">
+                        <div data-bind="visible:false" class="row" style="margin-bottom:0px;">
+                            <legend style="margin-bottom: 4px;">
+                                <font size="-1" color="#009688" style="font-weight:600"><img
+                                        src="images/robotgreen.svg" style="margin-bottom:4px"
+                                        height="16px">&nbsp;BPMS Bot</font>
+                            </legend>
+                        </div>
+
+                        <!--template:{foreach:$root.bot.orders,name:'orderItem'} -->
+                        <!-- -->
+                        <div class="row">
+                            <legend style="margin-bottom: 6px;">
+                                <font size="-1" color="#BDBDBD" style="font-weight:600"><i
+                                        class="fal fa-fw fa-chart-area"></i> 报表</font>
+                            </legend>
+                            <!-- ko  jqmTemplate:{foreach:$root.bot.reports,name:'reportItem'} -->
+                            <!-- /ko -->
+                        </div>
+
+                        <div data-bind="visible:false" class="row">
+                            <legend style="margin-bottom: 6px;">
+                                <font size="-1" color="#BDBDBD" style="font-weight:600"><i
+                                        class="fal fa-fw fa-print"></i> 打印</font>
+                            </legend>
+                            <ul data-role="listview"
+                                data-bind="jqmTemplate: { name: 'attachmentRead', foreach: bot.files }, jqmRefreshList: bot.files"
+                                data-theme="b" data-inset="true" style="min-width:320px; border:none; margin-top:10px">
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div data-role="panel" id="panelgrid" data-position-fixed="true" data-position="right" data-display="overlay"
+            data-theme="a">
+            <div class="jqm-block-content"
+                style="margin: -14px -14px; margin-bottom: 14px; padding: 9px 9px; padding-top: 30px; background-color: #455a64; border:none; min-height: 0px; border-radius: 0em;">
+                <p align="center" style="margin-bottom:10px;"> <i class="material-icons md-56 md-light">face</i> </p>
+                <div class="ui-grid-a" style="text-shadow: 0 0 0; color:#FFFFFF">
+                    <div class="ui-block-a">
+                        <p align="left" style="padding-left:8px;">
+                            <font size="+1" data-bind="text:user.name"></font> <br>
+                            <font color="#BDBDBD"> <span data-bind="text:user.Roles"></span> <br>
+                                <span data-bind="text:user.sub"></span> </font>
+                        </p>
+                    </div>
+                    <div class="ui-block-b">
+                        <p align="right" style="margin-top: 8px; padding-right:3px;"> <a href="javascript:void(0);"
+                                data-bind="click:logout"> <i class="fal fa-2x fa-sign-out"></i> </a> </p>
+                    </div>
+                </div>
+            </div>
+            <ul data-role="listview" data-theme="b" class="ui-nodisc-icon ui-alt-icon">
+                <li data-role="collapsible" data-iconpos="right" data-inset="false"
+                    style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) "
+                    data-collapsed-icon="bars" data-expanded-icon="carat-u">
+                    <h2 style="padding:0px 0px; margin:0px 0px;"><span data-i18n="my-bpms">我的BPMS</span></h2>
+                    <ul data-role="listview" data-theme="a"
+                        style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+                        <li><a rel="external" href="index.html"
+                                style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i
+                                    class="fas fa-fw fa-home" style="margin-right: 8px; color: #03a9f4"></i><span
+                                    data-i18n="my-home">工作台</span></a></li>
+                        <li><a rel="external" href="assign.html"
+                                style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i
+                                    class="fas fa-fw fa-users-cog" style="margin-right: 8px; color: #03a9f4"></i><span
+                                    data-i18n="my-authorize">授权管理</span></a></li>
+                        <li><a rel="external" href="#"
+                                style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i
+                                    class="fas fa-fw fa-chart-area" style="margin-right: 8px; color: #03a9f4"></i><span
+                                    data-i18n="my-report">报表</span></a></li>
+                    </ul>
+                </li>
+                <li data-role="collapsible" data-iconpos="right" data-inset="false"
+                    style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) "
+                    data-collapsed-icon="bars" data-expanded-icon="carat-u">
+                    <h2 style="padding:0px 0px; margin:0px 0px;"><span data-i18n="my-tasks">我的任务</span></h2>
+                    <ul data-role="listview" data-theme="a"
+                        style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+                        <li><a rel="external" href="task_list.html"
+                                style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i
+                                    class="fas fa-fw fa-tasks" style="margin-right: 8px; color: #03a9f4"></i><span
+                                    data-i18n="my-todo">待处理任务</span></a></li>
+                        <li><a rel="external" href="history_list.html"
+                                style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i
+                                    class="fas fa-fw fa-history" style="margin-right: 8px; color: #03a9f4"></i><span
+                                    data-i18n="my-taskhistory">任务历史</span></a></li>
+                    </ul>
+                </li>
+                <li data-role="collapsible" data-iconpos="right" data-inset="false"
+                    style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) "
+                    data-collapsed-icon="bars" data-expanded-icon="carat-u">
+                    <h2 style="padding:0px 0px; margin:0px 0px;"><span data-i18n="my-processes">我的流程</span></h2>
+                    <ul data-role="listview" data-theme="a"
+                        style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+                        <li><a rel="external" href="process_list.html"
+                                style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i
+                                    class="fas fa-fw fa-layer-plus" style="margin-right: 8px; color: #03a9f4"></i><span
+                                    data-i18n="create-process">启动流程</span></a></li>
+                        <li><a rel="external" href="instance_list.html"
+                                style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i
+                                    class="fas fa-fw fa-history" style="margin-right: 8px; color: #03a9f4"></i><span
+                                    data-i18n="my-processhistory">流程历史</span></a></li>
+                    </ul>
+                </li>
+
+                <!--
+              <li data-role="collapsible" data-iconpos="right" data-inset="false"
+                  style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) " data-collapsed-icon="bars"
+                  data-expanded-icon="carat-u">
+                  <h2 style="padding:0px 0px; margin:0px 0px;">设置</h2>
+                  <ul data-role="listview" data-theme="a"
+                      style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+                      <li><a rel="external" href="../settings/indexDesign.html"
+                             style="font-weight:200; background-color:transparent"><img
+                              src="images/Glyphish/icons/19-gear@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                              style="top: 11px;">首页设置</a></li>
+  
+                  </ul>
+              </li>
+              -->
+            </ul>
+            <p align="center" style="margin-top: 30px;"> <img src="images/bpmslogoxs.png" height="18px"> </p>
+        </div>
+
+        <div data-role="footer" data-fullscreen="true" data-position="fixed" style=" border-bottom-width: 0px;">
+            <div data-role="navbar">
+                <ul>
+                    <li>
+                        <a href="javascript:void(0);"
+                            data-bind="css: { 'ui-disabled':assignee() === userId ||delegationState() === 'pending' },click:function(){secureExecute('start')}"
+                            data-position-to="window" class="ui-btn-b" style="font-weight:300">
+                            <i class="far fa-2x fa-check-square" style="margin-bottom: 8px"></i><br>
+                            <span data-i18n="tsk-claim">接受任务</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);"
+                            data-bind="css: { 'ui-disabled':!started()},click:function(){secureExecute('submit')}"
+                            class="ui-btn-b" style="font-weight:300">
+                            <i class="far fa-2x fa-play-circle" style="margin-bottom: 8px"></i><br>
+                            <span data-i18n="tsk-submit">提交</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"
+                            data-bind="click:function(){window.location.href ='task_list.html';}" class="ui-btn-b"
+                            style="font-weight:300">
+                            <i class="far fa-2x fa-list" style="margin-bottom: 8px"></i><br>
+                            <span data-i18n="tsk-lists">任务选择</span>
+                        </a>
+                    </li>
+                    <!-- <li>
+                    <a href="javascript:void(0)"
+                        data-bind="css: { 'ui-disabled':assignee()!==userId || delegationState()!=='pending' }"
+                        class="ui-btn-b" style="font-weight:300">
+                        <i class="fa fa-2x fa-hand-o-up"></i><br>
+                        接受指派
+                    </a>
+                </li> -->
+                    <li><a href="javascript:void(0)" data-bind="click:function(){showMore({positionTo:'#moreMenu'});}"
+                            class="ui-btn-b" id="moreMenu" style="font-weight:300"><i class="far fa-2x fa-ellipsis-h"
+                                style="margin-bottom: 8px"></i><br>
+                            <span data-i18n="more">更多</span></a></li>
+                </ul>
+            </div>
+            <div data-role="popup" id="popMore" data-history="false" data-theme="b" data-overlay-theme="a"
+                style="border-width: 0px">
+                <ul data-role="listview" class="ui-nodisc-icon ui-alt-icon" data-inset="true"
+                    style="min-width:200px; border-radius: 0em;">
+                    <li data-role="list-divider"
+                        style="border-width: 0px;  background-color: #03a9f4; border-radius: 0em;"><i
+                            class="fal fa-ellipsis-h"></i></li>
+                    <li data-icon="user"
+                        data-bind="css: { 'ui-disabled': owner() && owner()!==assignee() || assignee() !== userId }, click:showAssign">
+                        <a href="javascript:void(0)"><span data-i18n="tsk-delegate">指派</span></a></li>
+                    <li data-icon="check"><a href="javascript:void(0)"
+                            data-bind="css: { 'ui-disabled':assignee()!==userId || delegationState()!=='pending' },click:accept"><span
+                                data-i18n="tsk-delegate-acc">接受指派</span></a></li>
+                    <li data-icon="back"><a href="javascript:void(0)"
+                            data-bind="css: { 'ui-disabled':assignee()!==userId || delegationState()!=='pending' },click:reject"><span
+                                data-i18n="tsk-delegate-refuse">指派退回</span></a></li>
+                </ul>
+            </div>
+            <div data-role="popup" id="popAssign" data-dismissible="false" data-theme="b" data-overlay-theme="a"
+                class="ui-corner-all"
+                style="min-width:300px; max-width:300px; background-image:url(images/tweets-bg.jpg)"><a href="#"
+                    data-rel="back"
+                    class="ui-btn ui-nodisc-icon ui-alt-icon ui-corner-all ui-shadow ui-btn-b ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+                <div data-role="content" style="padding: 4px 4px;">
+                    <p align="center" style="margin:8px 8px; margin-bottom:16px; margin-top:16px;">
+                        <font color="#EC407A"><i class="fal fa-3x fa-user-secret"></i></font>
+                    </p>
+                    <form class="ui-filterable" style="margin:8px 8px" autocomplete="off" onsubmit="return false;">
+                        <input data-type="search" id="txtSearchPeople" data-bind="value:keyword" placeholder="授权用户查询..."
+                            style="font-weight:300; height:39px; font-size:medium;">
+                    </form>
+                    <ul data-role="listview" data-inset="true" data-filter="false" data-filter-reveal="false"
+                        data-bind="jqmTemplate: { name: 'personItem', foreach: people }, jqmRefreshList: people"
+                        style="margin:8px 8px">
+                    </ul>
+                    <div class="ui-grid-a" style="margin:4px 4px">
+                        <div class="ui-block-a"><a href="javascript:void(0);" data-bind="click:doAssign"
+                                class="ui-btn ui-btn-icon-left ui-icon-check ui-corner-all ui-btn-b"
+                                style="background-color: #00838f; color:#fff; margin: 4px 4px; font-weight:300"
+                                data-i18n="ok">确认</a></div>
+                        <div class="ui-block-b"><a href="javascript:void(0);" data-rel="back"
+                                class="ui-btn ui-btn-icon-left ui-icon-delete ui-corner-all ui-btn-b"
+                                style="background-color: #9e9e9e; color:#fff; margin: 4px 4px; font-weight:300"
+                                data-i18n="cancel">取消</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- /navbar -->
+            <div data-role="popup" id="popRemind" data-dismissible="false" data-theme="a" data-overlay-theme="a"
+                style="min-width:300px; max-width:300px; border:none">
+                <ul data-role="listview" data-inset="true" style="border:none">
+                    <li data-role="list-divider"
+                        style="border:none; border-bottom-left-radius:0; border-bottom-right-radius:0; padding:14px 14px; background-color:#00acc1; font-weight:300 ">
+                        <i class="fas fa-fw fa-calendar-plus"></i> <span data-i18n="calendar">设置提醒</span></li>
+                    <form style="margin:16px 16px;" onsubmit="return false;">
+                        <input id="remindTitle" type="text" data-bind="value: $root.remind.title" data-theme="b"
+                            placeholder="提醒标题..." style="font-weight:300; height:39px; font-size:medium;">
+                        <input id="remindDate" type="text" data-bind="datetime: $root.remind.date" data-theme="b"
+                            placeholder="提醒日期..." control-type="t5"
+                            style="font-weight:300; height:39px; font-size:medium;">
+                        <textarea id="remindMemo" data-theme="b" data-bind="value: $root.remind.memo"
+                            placeholder="备注信息..." style="font-weight:300; font-size:medium;"></textarea>
+                    </form>
+
+                    <div class="ui-grid-a" style="margin:12px 12px; padding-bottom:12px;">
+                        <div class="ui-block-a">
+                            <a href="javascript:void(0)"
+                                data-bind="click:doRemind,css: { 'ui-disabled': false && !( $root.remind.title()&& $root.remind.date()&& $root.remind.memo())}"
+                                class="ui-btn ui-btn-icon-left ui-icon-check ui-corner-all ui-btn-b"
+                                style="background-color: #00bcd4; color:#fff; margin: 4px 4px; font-weight:300"><span
+                                    data-i18n="ok">确认</span></a>
+                        </div>
+                        <div class="ui-block-b">
+                            <a href="#" data-rel="back"
+                                class="ui-btn ui-btn-icon-left ui-icon-delete ui-corner-all ui-btn-b"
+                                style="background-color: #9e9e9e; color:#fff; margin: 4px 4px; font-weight:300"><span
+                                    data-i18n="cancel">取消</span></a>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+            <div data-role="popup" id="popDraft" data-theme="b" data-overlay-theme="a" style="border:none">
+                <ul data-role="listview" class="ui-alt-icon ui-nodisc-icon" data-inset="true"
+                    style=" min-width:230px; border:none">
+                    <li data-role="list-divider"
+                        style="border-width: 0px;  background-color: #424242; border-radius: 0em;"><i
+                            class="fal fa-ellipsis-h"></i></li>
+                    <li data-icon="cloud"><a href="javascript:void(0)" data-bind="click:saveDraft"><span
+                                data-i18n="save-draft">保存草稿</span></a></li>
+                    <li data-icon="delete"><a href="javascript:void(0)"
+                            data-bind="css: { 'ui-disabled': !draft()} ,click:deleteDraft"><span
+                                data-i18n="del-draft">删除草稿</span></a></li>
+                </ul>
+            </div>
+            <div data-role="popup" id="popComments" data-dismissible="false" data-theme="a" data-overlay-theme="a"
+                style="min-width:380px; max-width:480px;border:none"> <a href="#" data-rel="back"
+                    class="ui-btn ui-alt-icon ui-nodisc-icon ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+                <ul data-role="listview" data-inset="true" style="border:none; min-height:240px;">
+                    <li data-role="list-divider"
+                        style="border:none; border-bottom-left-radius:0; border-bottom-right-radius:0; padding:14px 14px; background-color:#00838f; font-weight:300 ">
+                        <i class="fas fa-fw fa-comments-alt"></i> <span data-i18n="chat">协同</span></li>
+                    <form style="margin:16px 16px;" data-bind="" autocomplete="off" onsubmit="return false;">
+                        <input type="text" data-theme="b" placeholder="@ 协同人员..." controlType="psbi" id="to"
+                            data-bind="psb:commentInfo.to" style="font-weight:300; height:39px; font-size:medium;">
+                        <ul data-role="listview" data-inset="true" data-filter="false" data-filter-reveal="false">
+                        </ul>
+                        <!-- 
+              <ul style="display:none;" data-role="listview" class="ui-nodisc-icon ui-alt-icon ui-listview ui-listview-inset ui-corner-all ui-shadow" 
+               data-inset="true"></ul> -->
+
+                        <textarea data-theme="b" placeholder="协同信息..." style="font-weight:300; font-size:medium;"
+                            data-bind="value:commentInfo.message"></textarea>
+                    </form>
+                    <a href="javascript:void(0);" data-bind="click:doComment"
+                        class="ui-btn ui-btn-icon-left ui-icon-check ui-corner-all ui-btn-b"
+                        style="background-color: #00838f; color:#fff; margin: 14px 14px; font-weight:300"><span
+                            data-i18n="send">发送</span></a>
+                </ul>
+                <ul data-role="listview" class="ui-alt-icon ui-nodisc-icon"
+                    data-bind="jqmTemplate: { name: 'comment', foreach: commentInfo.comments }, jqmRefreshList:  commentInfo.comments "
+                    style=" max-height:360px; overflow:scroll; overflow-style:auto">
+                </ul>
+            </div>
+            <div data-role="popup" id="popFlow" data-dismissible="false" data-theme="b" data-overlay-theme="a"
+                class="ui-corner-all"
+                style="min-width:300px; max-width:300px; background-image:url(images/tweets-bg.jpg)">
+                <div data-role="content" style="padding: 4px 4px;">
+                    <p align="center" style="margin:8px 8px;">
+                        <font color="#607D8B"><i class="fal fa-2x fa-comments"></i></font>
+                    </p>
+                    <hr style="border-color: #607D8B; margin-bottom: 0px; margin-top:11px;">
+                    <p align="left" style="padding: 0px 3px; margin-bottom: 16px;"><span
+                            data-bind="text:flow.id"></span>:&nbsp;<span data-bind="text:flow.name"></span>
+                        <br>
+                        <span data-bind="text:flow.date()+ ' '+flow.time()"></span>
+                        <br data-bind="visible:!!flow.assignee()">
+                        <span data-bind="visible:!!flow.assignee()">执行人: <b data-bind="text:flow.assignee"></b></span>
+                        <br data-bind="visible:!!flow.coreAction()[0]">
+                        <span data-bind="visible:!!flow.coreAction()[0]"><span
+                                data-bind="text:flow.coreAction()[0]"></span>: <b
+                                data-bind="text:flow.coreAction()[1]"></b></span>
+                        <br data-bind="visible:!!flow.coreValue()[0]">
+                        <span data-bind="visible:!!flow.coreValue()[0]"><span
+                                data-bind="text:flow.coreValue()[0]"></span>: <b
+                                data-bind="text:flow.coreValue()[1]"></b></span>
+                    </p>
+
+                    <p align="left" data-bind="visible:!!flow.coreComments()[0]"
+                        style="padding: 0px 3px; margin-bottom: 32px;">
+                        <span data-bind="text:flow.coreComments()[0]"></span>:
+                        <br>
+                        <span data-bind="text:flow.coreComments()[1]"></span>
+                    </p>
+
+                    <p style="padding: 0px 0px;"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b"
+                            style="background-color: #424242; color:#fff; text-shadow: 0 1px 0 #111; margin: 0px 0px"><span
+                                data-i18n="ok">确认</span></a>
+                    </p>
+                </div>
+            </div>
+
+            <div data-role="popup" id="popSuccess" class=" ui-corner-all" data-dismissible="false" data-theme="b"
+                data-overlay-theme="a" style="min-width:320px; max-width: 480px; background-color: #ffffff">
+                <div data-role="content" style="padding: 4px 4px;">
+                    <p align="center" style="margin:8px 8px;">
+                        <font color="#03a9f4"><i class="fas fa-2x fa-check-circle"></i></font>
+                    </p>
+                    <hr style="border-color: #eeeeee; margin-bottom: 0px; margin-top:11px;">
+                    <p align="left" style="padding: 0px 5px; margin-bottom: 0px;"> <b data-bind="text:popTitle"></b></p>
+                    <p align="left" style="padding: 0px 5px; margin-bottom: 32px;">
+                        <font color="#757575" size="-1" data-bind="text:popDescription"></font>
+                    </p>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a">
+                            <p style="padding: 0px 0px; margin: 3px 3px"> <a rel="external"
+                                    data-bind="attr:{href:'task_list.html?processInstanceId='+ processInstanceId()}"
+                                    class="ui-btn ui-btn-b  ui-corner-all"
+                                    style="background-color: #eceff1; font-weight: 300; color:#0288d1;"><i
+                                        class="far fa-fw fa-external-link-alt" style="margin-right: 4px;"></i><span
+                                        data-i18n="related-tasks">关联任务</span></a> </p>
+                        </div>
+                        <div class="ui-block-b">
+                            <p style="padding: 0px 0px; margin: 3px 3px;"><a rel="external" href="task_list.html"
+                                    class="ui-btn ui-corner-all ui-btn-b"
+                                    style="background-color:#0288d1; font-weight: 300; color:#ffffff;">
+                                    <i class="far fa-fw fa-check" style="margin-right: 4px;"></i><span
+                                        data-i18n="confirm">确定</span></a>
+                            </p>
+                        </div>
+                    </div>
+                    <p align="left" style="padding: 0px 5px; margin-top: 0px;">
+                        <font color="#90a4ae" size="-2"><i class="fal fa-fw fa-info-circle"></i>&nbsp;<span
+                                data-i18n="msg-go-to-related-tasks">此流程可能包含关联任务需要您关注并执行，点击关联任务按钮前往。</span></font>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" id="extraEdit" data-theme="a" style="background-color: #eceff1; bottom: 0px;">
+        <!-- ko if:  table.write() -->
+        <div data-role="content" style="padding:2px 2px; padding-bottom: 80px; background-color: #eceff1">
+            <!-- ko with: table.temp -->
+            <!-- ko if: $data -->
+            <div class="row" data-bind="visible: $data.rows().length, basicTable:  $data">
+            </div>
+            <!-- /ko -->
+            <!-- /ko -->
+            <p align="center" style="margin-top: 12px; font-size: large"><i class="fal fa-fw fa-edit"></i>&nbsp;<span
+                    data-bind="text:table.write().item.name"></span></p>
+            <!-- ko stepGroup:  table.write().steps -->
+            <!-- /ko -->
+        </div>
+        <!-- /ko -->
+        <!-- ko if:  table.write() -->
+        <div data-role="footer" data-fullscreen="true" data-position="fixed" style=" border-bottom-width: 0px;">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="javascript:void(0);"
+                            data-bind="click:function(){table.write().saveExtraRow();},css: { 'ui-disabled':!(table.write()&&table.write().canSaveExtra && table.write().canSaveExtra())}"
+                            class="ui-btn-b" style="font-weight:600; color: #03a9f4"><i class="far fa-2x fa-plus"></i>
+                            <br>
+                            <p style="margin-top: 6px; margin-bottom: 3px;"><span data-i18n="add">提交</span></p>
+                        </a>
+                    </li>
+                    <li><a href="javascript:void(0);" data-bind="click:function(){table.write().resetExtraForm();}"
+                            class="ui-btn-b" style="font-weight:600; color: #607d8b"><i
+                                class="far fa-2x fa-redo-alt"></i> <br>
+                            <p style="margin-top: 6px; margin-bottom: 3px;"><span data-i18n="redo">重置</span></p>
+                        </a>
+                    </li>
+
+                    <li><a href="javascript:void(0);" data-bind="click:function(){ $.mobile.changePage('#');}"
+                            class="ui-btn-b" style="font-weight:600; color: #607d8b"><i class="far fa-2x fa-times"></i>
+                            <br>
+                            <p style="margin-top: 6px; margin-bottom: 3px;"><span data-i18n="back">返回</span></p>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- /navbar -->
+        </div>
+        <!-- /ko -->
+    </div>
+
+    <script type="text/html" id="singleFlow">
+    <li data-bind="attr:{'data-icon': ($index()==0?'carat-d':'eye')}">
+        <a href="javascript:void(0);"
+           class="ui-btn ui-btn-icon-right"
+           data-bind="css:{'ui-icon-carat-d':$index()==0,'ui-icon-eye':$index()!=0},click: function(){$root.selectFlow($data)}">
+            <font color="#00bcd4"><i class="fal fa-play-circle"></i></font> <span data-bind="text:name"></span>
+
+            <p style="margin-bottom:0px; color:#9E9E9E">
+                <span data-bind="visible:assignee;"><i class="fal  fa-fw fa-user"></i>&nbsp;<span
+                        data-bind="text: (assignee || '')"></span></span>&nbsp;&nbsp;&nbsp;
+                <span data-bind="visible:endTime;">
+               <i class="fa fa-clock-o"></i>&nbsp;<b data-bind="text: BPMS.Services.Utils.formatDateTime(endTime, 't5')"></b>
+               </span>
+            </p>
+            <p style="margin-bottom:0px; color:#9E9E9E" data-bind="visible:owner;">
+                <span data-bind="visible:owner;"><i class="fal fa-fw fa-user-secret"></i>&nbsp;<span data-bind="text: (owner || '')"></span></span>&nbsp;&nbsp;&nbsp;
+              </p>
+            <span class="ui-li-count"
+                  data-bind="visible:$root.getAction($data,$index),text:$root.getAction($data,$index)"></span></a></li>
+</script>
+    <script type="text/html" id="listTemplate">
+    <div class="col-lg-3 col-sm-6 col-xs-12 col-md-4" style="padding:3px 3px;"
+         data-bind="dynamicUIControl: $data">
+        <label><font color="#969696"></font></label>
+    </div>
+</script>
+
+    <script type="text/html" id="attachmentWrite">
+    <li data-icon="delete">
+        <a href="javascript:void(0);" data-bind="click:$root.removeAttachment">
+            <i class="fal fa-file-code"></i><span data-bind="text:('&nbsp;'+name)"></span>
+            <p style="margin-bottom:0px;"><font color="gray" data-bind="text:size"></font></p>
+        </a>
+    </li>
+</script>
+
+    <script type="text/html" id="properties">
+    <div class="row" style="margin-top: 0">
+        <legend data-bind="style:{display: $index()==0?'block':'none'}" style="margin-bottom: 3px;">
+            <font size="-1" color="#0097a7"><i class="fal fa-fw fa-info-circle"></i><b> <span data-i18n="basic-info">基本信息</span></b></font>
+        </legend>
+        <!-- ko  jqmTemplate:{foreach:$data,name:'property'} -->
+        <!-- /ko -->
+    </div>
+</script>
+
+    <script type="text/html" id="property">
+    <div class="col-lg-4 col-sm-6 col-xs-12 col-md-6"
+         style="margin-bottom: 4px; padding: 0px 0px; font-size:medium">
+        <font size="-1" color="#9e9e9e" data-bind="text:name+':'"></font>
+        <!-- ko if: $data.controlType !== 't9i' -->        
+            <font size="-1"><span data-bind="html:BPMS.Services.Utils.formatSingleProperty($data)"></span></font>
+        <!-- /ko -->
+        <!-- ko if: $data.controlType === 't9i' -->
+            <ul data-role="listview" data-inset="true" style="margin-top:0px;" data-bind="jqmTemplate: { name: 'attachmentRead', foreach: value }, jqmRefreshList:  value">
+            </ul>
+        <!-- /ko -->
+    </div>
+</script>
+
+    <script type="text/html" id="personItem">
+    <!-- <li data-icon="check"><a href="javascript:void(0);">Acura</a></li> -->
+
+    <li data-icon="check" data-bind="click:$root.selectPerson"><a href="javascript:void(0)"><span data-bind="text:name"></span><span class="ui-li-count ui-body-inherit" data-bind="text:sn"></span></a></li>
+</script>
+
+    <script type="text/html" id="reportItem">
+    <iframe data-bind="attr:{src: value}" style="margin-top:5px;"
+    frameborder="0"
+    width="100%"
+    height="300"
+    allowtransparency></iframe>    
+</script>
+    <script type="text/html" id="comment">
+    <li data-bind="attr:{'data-icon':to?'eye':'comment'}">
+        <a href="javascript:void(0);">     
+        <h2 style="font-weight:600"><span data-bind="text:fromName"></span></h2>
+        <p style="color:#BDBDBD; font-weight:600" data-bind="visible:false"><span data-bind="text:taskId"></span>: <span data-bind="text:taskName"></span></p>
+        <p data-toggle="tooltip" placement="auto" title="" data-bind="text:message,attr: {title:message}"></p>
+        <p class="ui-li-aside" style="color:#bdbdbd" data-bind="visible:toName">
+                <font color="#e91e63">@ <b data-bind="text:toName"></b>&nbsp;</font>
+            <span data-bind="text:BPMS.Services.Utils.formatDateTime(stamp, 't3')"></span>&nbsp;<strong data-bind="text:BPMS.Services.Utils.formatDateTime(stamp, 't4')"></strong>
+        </p>
+        <p class="ui-li-aside" data-bind="visible:!toName"><span data-bind="text:BPMS.Services.Utils.formatDateTime(stamp, 't3')"></span>&nbsp;<strong data-bind="text:BPMS.Services.Utils.formatDateTime(stamp, 't4')"></strong></p>
+        </a>
+    </li>
+</script>
+    <script type="text/html" id="orderProperty">
+    <div class="col-lg-4 col-sm-6 col-xs-12 col-md-6"
+         style="margin-bottom: 4px; padding: 0px 0px; font-size:medium">
+        <font size="-1" color="#9e9e9e" data-bind="text:name+':'"></font>
+        <font size="-1"><span data-bind="text:value"></span></font>
+    </div>
+</script>
+    <script type="text/html" id="orderItem">
+    <div class="row">
+        <div class="col-lg-6 col-sm-6 col-xs-8 col-md-6" style="padding:0px 0px;">
+            <p align="left" style="font-size:larger; color:#333333; margin-top:4px; font-weight:600"><i class="fal fa-fw fa-file-text"></i>&nbsp;<span data-bind="text:name"></span>&nbsp;<font  color="#333333" style="font-weight:100"><span data-bind="text:id"></span>&nbsp;|&nbsp;<b data-bind="text: category"></b></font></p>
+        </div>
+    </div>
+    <div class="row">
+        <legend style="margin-bottom: 3px;"><font size="-1" color="#BDBDBD" style="font-weight:600"><i class="fal fa-fw fa-info"></i>&nbsp;<span data-i18n="basic-info">基本信息</span></font></legend>
+        <div class="row" style="margin:6px 16px">
+            <!-- ko jqmTemplate:{foreach:$data.fields,name:'orderProperty'} -->
+            <!-- /ko -->
+      </div>
+    </div>
+    <div class="row">
+        <legend style="margin-bottom: 3px;"><font size="-1" color="#BDBDBD" style="font-weight:600"><i class="fal fa-fw fa-table"></i>&nbsp;<span data-i18n="detail-info">明细信息</span></font></legend>
+    </div>
+   
+    <!-- ko  datatable: table -->
+    <!-- /ko -->
+</script>
+
+    <script>
+        $(document).ready(function () {
+            var links = [
+                {
+                    "bgcolor": "#03A9F4",
+                    "icon": "+"
+                },
+                {
+                    "url": "http://plus.google.com",
+                    "bgcolor": "#DB4A39",
+                    "color": "#fffff",
+                    "icon": "<i class='fa fa-bars'></i>",
+                    "target": "_blank"
+                },
+                {
+                    "url": "http://www.facebook.com",
+                    "bgcolor": "#00ACEE",
+                    "color": "#fffff",
+                    "icon": "<i class='fa fa-inbox'></i>",
+                    "target": "_blank"
+                },
+                {
+                    "url": "http://www.facebook.com",
+                    "bgcolor": "#3B5998",
+                    "color": "#fffff",
+                    "icon": "<i class='fa fa-history'></i>",
+                    "target": "_blank"
+                },
+                {
+                    "url": "http://www.jqueryscript.net",
+                    "bgcolor": "#263238",
+                    "color": "white",
+                    "icon": "<i class='fa fa-home'></i>"
+                }
+            ];
+            $('.kc_fab_wrapper').kc_fab(links);
+            // setTimeout(function () {
+            //     console.log($('.kc_fab_wrapper').find(".ui-btn").length);
+            //     $('.kc_fab_wrapper').find(".ui-btn").removeClass("ui-btn").removeClass("ui-shadow").removeClass("ui-corner-all");
+            // }, 1000);
+
+        })
+    </script>
+</body>
+
+</html>

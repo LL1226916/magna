@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, target-densitydpi=device-dpi">
+<title>注册</title>
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.css"/>
+<link rel="stylesheet" type="text/css" href="css/color.css"/>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+<link rel="stylesheet" type="text/css" href="css/jqm-demos.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.css">
+<link rel="stylesheet" type="text/css" href="css/all.min.css">
+<link rel="stylesheet" type="text/css" href="css/google-icon.css">
+<link rel="stylesheet" type="text/css" href="css/site.css"/>
+<script src="libs/jquery.js?v=20210120"></script>
+<script src="libs/jquery.mobile.js?v=1598853811990"></script>
+<script src="libs/jquery.rateyo.min.js?v=1598853811990"></script>
+<script src="libs/knockout.jquery.mobile.js?v=1598853811990"></script>
+<script src="libs/bootstrap.js?v=1598853811990"></script>
+<script src="libs/knockout.js?v=1598853811990"></script>
+<script src="libs/knockout.mapping.js?v=1598853811990"></script>
+<script src="libs/koExternalTemplateEngine_all.js?v=1598853811990"></script>
+<script src="libs/ko.extension.js?v=1598853811990"></script>
+<script src="libs/moment/moment.js?v=1598853811990"></script>
+<script src="libs/moment/locale/zh-cn.js?v=1598853811990"></script>
+<script src="libs/bootstrap-datetimepicker.js?v=1598853811990"></script>
+
+<script src="libs/oex/utils.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-checked.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-datetime.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-selected.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-number.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-money.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-tel.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-email.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-switch.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-auto.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-id.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-join.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-auto-multi.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-upload.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-ctr.js?v=1598853811990"></script>
+
+<script src="common/config.js?v=1598853811990"></script>
+<script src="common/util.js?v=1598853811990"></script>
+<script src="common/service.js?v=1598853811990"></script>
+<script src="common/baseViewModel.js?v=1598853811990"></script>
+
+<script src="register.js?v=1598853811990"></script>
+<script src="registerViewModel.js?v=1598853811990"></script>
+<link rel="shortcut icon" href="favicon.ico">
+<style>
+  #checkbox-terms{
+    margin-top: -4px;
+  }
+@media screen and (min-width:0px) {
+.row {
+	margin-left: 16px;
+	margin-right: 16px;
+	margin-top: 48px;
+}
+}
+
+@media screen and (min-width:667px) {
+.row {
+	margin-left: 16px;
+	margin-right: 16px;
+	margin-top: 48px;
+}
+}
+
+@media screen and (max-width:992px) and (min-width:300px) {
+.bgs {
+	background-size: cover;
+}
+}
+
+/* @media screen and (min-width:993px) {
+.bgs {
+}
+} */
+
+@media screen and (min-width:992px) {
+.row {
+	margin-left: 32px;
+	margin-right: 32px;
+	margin-top: 32px;
+}
+}
+
+@media screen and (min-width:1200px) {
+.row {
+	margin-left: 80px;
+	margin-right: 80px;
+	margin-top: 32px;
+}
+}
+
+@media screen and (min-width:1600px) {
+.row {
+	margin-left: 156px;
+	margin-right: 156px;
+	margin-top: 32px;
+}
+}
+</style>
+</head>
+<body>
+<div data-role="page" id="logonView" class="bgs" data-theme="b" style="background-color:#fafafa;">
+  <div data-role="content" style="padding: 2px 2px;">
+    <div class="row" align="center">
+      <div class="jqm-block-content" style="margin: 2px 2px; margin-top: 0px; padding: 8px 8px; background: none; border: none; min-height: 0px; max-width: 320px;">
+        <p align="center" style="margin-bottom: 16px;"><img src="images/cube.svg" height="48px"></p>
+        <p align="center" style="font-size: 24px; font-weight: 300; color: #37474f; margin-top: 12px"><font style="font-weight: 800">Z</font><sup>3</sup> 智能制造流程协作</p>
+        <p align="center" style="padding: 8px 8px; padding-bottom:0px; margin-top: 32px">
+        <input type="tel" control-type="t10" data-bind="tel:user.phone" data-theme="b" data-clear-btn="true" name="phone" id="phone"  placeholder="注册用手机号" style=" font-size: larger; " >
+			
+      <a href="javascript:void(0);" data-bind="click:send,css: { 'ui-disabled':!user.phone() || user.isSent() }" class="ui-btn ui-corner-all ui-btn-b" style="background-color:#e91e63; font-weight:400; border-radius: 3px; font-size:larger; color:#fff; text-shadow: none">
+        <i class="fas fa-fw fa-shield-check"></i>获取验证码<span data-bind="visible:user.codeTime,text:' ('+user.codeTime()+')'"></span></sp></a>
+			
+			<input type="number" control-type="t6" data-bind="number:user.code" data-theme="b" data-clear-btn="true" name="regcode" id="regcode"  placeholder="注册码" style=" font-size: larger; " >
+			
+		  </p>
+		  <hr style="margin-top: 32px">
+		  <p align="center" style="padding: 8px 8px; padding-bottom:0px; margin-top: 0px">
+			
+			
+			<input type="text" data-theme="b" data-clear-btn="true"  control-type="t1" data-bind="value:user.firstName"  name="firstName" id="firstName"  placeholder="姓" style=" font-size: larger; " >
+			<input type="text" data-theme="b" data-clear-btn="true" control-type="t1" data-bind="value:user.lastName"  name="lastName" id="lastName"  placeholder="名" style=" font-size: larger; " >
+          <input  control-type="t8" data-bind="value:user.password"  type="password" data-theme="b" data-clear-btn="true" name="password" id="password"  placeholder="设置密码" style="font-size:larger; ">
+          <input  control-type="t8" data-bind="value:user.password2"  type="password" data-theme="b" data-clear-btn="true" name="password2" id="password2"  placeholder="再次确认密码" style="font-size:larger; ">
+        </p>
+        <p align="left" style="padding: 8px 8px; padding-bottom:0px;"> 在注册成为我们平台的用户前，请先仔细阅读<a href="#" style="font-weight: 400">用户条款及隐私协议</a>
+        <form onsubmit="return false;" data-bind="checked:user.isAgree">
+          <input type="checkbox" name="checkbox-terms" id="checkbox-terms" data-mini="false">
+          <label for="checkbox-terms" style="margin: 3px 3px; border: none">我已阅读并同意上述协议条款</label>
+        </form>
+        </p>
+        <p align="center" style="padding: 8px 8px; padding-bottom:0px;">
+          <a href="javascript:void(0);" data-bind="click:register, css: { 'ui-disabled':!canRegister() } "  class="ui-btn ui-corner-all ui-btn-b" style="background-color:#03a9f4; font-weight:400; border-radius: 3px; font-size:larger; color:#fff; text-shadow: none"><i class="fal fa-fw fa-check-double"></i> 注册</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- /content -->
+  
+  <div data-role="footer" data-bind="visible:false" data-position="fixed" data-fullscreen="true" style="border-bottom-width: 0px; border-top-width: 0px;  opacity:1">
+    <div data-role="navbar"  >
+      <ul>
+        <li><a href="#" class="ui-btn-b" style="font-weight:300; border-width: 0px; background-color: #fafafa;  color:#333333;">
+          <p align="left" style="margin: 0px 0px; margin-top:8px;"><font size="-1" color="#607d8b" style="font-weight:bold">Z</font><font size="-1" color="#90a4ae" style="font-weight: 300">3</font></p>
+          <p align="left" style="margin-bottom: 0px; margin-top: 5px;"> <font size="-3" color="#b0bec5">V1.0 Internal Testing</font></p>
+          </a></li>
+        <li><a href="#" class="ui-btn-b" style="font-weight:300; border-width: 0px; background-color: #fafafa;  color:#333333;">
+          <p align="right" style="margin-bottom:0px; margin-top: 6px; text-shadow: 0px 0px 3px rgba(192,192,192,0.6); color:#607d8b"><img src="images/cube.svg" height="32px" alt="Welcome to suppliez"></p>
+          </a> </li>
+      </ul>
+    </div>
+    <!-- /navbar --> 
+    
+  </div>
+  
+  <div data-role="popup" id="popupError" data-dismissible="false" data-theme="b" data-overlay-theme="a"
+  class="ui-corner-all"
+  style="min-width:300px; max-width:300px; background-image:url(images/tweets-bg.jpg)">
+ <div data-role="content" style="padding: 4px 4px;">
+     <p align="center" style="margin:8px 8px;"><font color="#C62828"><i class="fa fa-2x fa-close"></i></font></p>
+     <hr style="border-color: #C62828; margin-bottom: 0px; margin-top:11px;">
+     <p align="left" style="padding: 0px 3px; margin-bottom: 3px;">
+         <b data-bind="text:error.title"></b></p>
+
+     <p align="left" style="padding: 0px 3px; margin-bottom: 0px;">
+         <font color="#9e9e9e" size="-2" data-bind="text:error.message"></font></p>
+
+     <p style="padding: 0px 0px;"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b"
+                                     style="background-color: #424242; color:#fff; text-shadow: 0 1px 0 #111; margin: 0px 0px">确认</a>
+     </p>
+ </div>
+</div>
+
+<div data-role="popup" id="popupSuccess" data-dismissible="false" data-theme="b" data-overlay-theme="a"
+class="ui-corner-all"
+style="min-width:300px; max-width:300px; background-image:url(images/tweets-bg.jpg)">
+<div data-role="content" style="padding: 4px 4px;">
+   <p align="center" style="margin:8px 8px;"><font color="#4CAF50"><i class="fa fa-2x fa-check-square-o"></i></font></p>
+   <hr style="border-color: #4CAF50; margin-bottom: 0px; margin-top:11px;">
+   <p align="left" style="padding: 0px 3px; margin-bottom: 3px;">
+       <b data-bind="text:success.title"></b></p>
+
+   <p align="left" style="padding: 0px 3px; margin-bottom: 0px;">
+       <font color="#9e9e9e" size="-2" data-bind="text:success.message"></font></p>
+
+   <p style="padding: 0px 0px;"><a href="javascript:void(0);" data-bind="click:function(){location.href='login.html';}" class="ui-btn  ui-corner-all ui-btn-b"
+                                   style="background-color: #424242; color:#fff; text-shadow: 0 1px 0 #111; margin: 0px 0px">确认</a>
+   </p>
+</div>
+</div>
+
+</div>
+<!-- /page --> 
+<!-- 
+<script src="lib/bootstrap.min.js?v=1577686192270"></script> 
+<script src="js/vidbg.min.js?v=1577686192270"></script> -->
+</body>
+</html>

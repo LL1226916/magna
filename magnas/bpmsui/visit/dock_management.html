@@ -1,0 +1,368 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, target-densitydpi=device-dpi">
+<title>visit-ez</title>
+<link rel="stylesheet" type="text/css" href="themes/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" type="text/css" href="themes/color.min.css" />
+<link rel="stylesheet" type="text/css" href="themes/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="themes/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="themes/jqm-demos.css">
+<link rel="stylesheet" type="text/css" href="themes/bootstrap-datetimepicker.css">
+<link rel="stylesheet" type="text/css" href="themes/jquery.mobile.icons.min.css">
+<link rel="stylesheet" type="text/css" href="themes/jquery.mobile.structure-1.4.5.min.css">
+<link rel="stylesheet" type="text/css" href="themes/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="themes/googleicon.css">
+<link rel="stylesheet" type="text/css" href="themes/site.css" />
+<link rel="shortcut icon" href="favicon.ico">
+<script src="scripts/libs/jquery.js"></script>
+<script src="scripts/libs/jquery.mobile-1.4.5.js"></script>
+<script src="scripts/libs/bootstrap.min.js"></script>
+<script src="scripts/libs/knockout.js"></script>
+<script src="scripts/libs/knockout.mapping.js"></script>
+<script src="scripts/libs/koExternalTemplateEngine.js"></script>
+<script src="scripts/libs/ko.extension.js"></script>
+<script src="scripts/libs/oex.utils.js"></script>
+<script src="scripts/libs/moment/moment.js"></script>
+<script src="scripts/libs/moment/locale/zh-cn.js"></script>
+<script src="scripts/libs/bootstrap-datetimepicker.js"></script>
+<script src="scripts/libs/oex/utils.js"></script>
+<script src="scripts/libs/oex/jqm-checked.js"></script>
+<script src="scripts/libs/oex/jqm-datetime.js"></script>
+<script src="scripts/libs/oex/jqm-selected.js"></script>
+<script src="scripts/libs/oex/jqm-number.js"></script>
+<script src="scripts/libs/oex/jqm-money.js"></script>
+<script src="scripts/libs/oex/jqm-tel.js"></script>
+<script src="scripts/libs/oex/jqm-email.js"></script>
+<script src="scripts/libs/oex/jqm-switch.js"></script>
+<script src="scripts/libs/oex/jqm-auto.js"></script>
+<script src="scripts/libs/oex/jqm-id.js"></script>
+<script src="scripts/libs/oex/jqm-upload2.js"></script>
+<script src="scripts/libs/oex/jqm-ctr3.js"></script>
+<script src="scripts/app/util.js"></script>
+<script src="scripts/app/service.js"></script>
+<script src="scripts/app/config.js"></script>
+<script src="scripts/app/baseViewModel.js"></script>
+<script src="scripts/app/dockManagement.js"></script>
+<link rel="shortcut icon" href="favicon.ico">
+<meta http-equiv="refresh" content="120"> 
+<style>
+@media screen and (min-width:0px) {
+.row {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+}
+}
+
+@media screen and (min-width:667px) {
+.row {
+	margin-left: 16px;
+	margin-right: 16px;
+	margin-top: 32px;
+}
+}
+
+@media screen and (min-width:992px) {
+.row {
+	margin-left: 32px;
+	margin-right: 32px;
+	margin-top: 32px;
+}
+.pagination-container {
+	padding-left: 2px;
+}
+}
+ @media screen and (min-width:1200px) {
+.row {
+	margin-left: 156px;
+	margin-right: 156px;
+	margin-top: 32px;
+}
+.pagination-container {
+	padding-left: 2px;
+}
+}
+ @media screen and (min-width:1600px) {
+.row {
+ margin-left: 300px;
+ margin-right: 300px;
+ margin-top: 32px;
+}
+}
+ @media screen and (min-width:1900px) {
+.row {
+ margin-left: 340px;
+ margin-right: 340px;
+ margin-top: 32px;
+}
+}
+</style>
+</head>
+<body>
+<div data-role="page" id="appshome" data-theme="c" style="background-image: url(images/tweets-bg.jpg); background-attachment:fixed; bottom:0px; text-shadow: 0 0 0;" >
+  <div data-role="header" data-theme="b" style="background-color:#009688; background-image:url(images/bg/bannerbg3.jpg); background-size:cover; box-shadow:0 2px 5px 0 rgba(0, 0, 0, 0.24); border-bottom-width:0px; border-top-width:0px">
+    <div class="ui-grid-a">
+      <div class="ui-block-a">
+        <h3 style="margin-left: 10px; margin-top:8px; margin-bottom:8px; font-weight:700; "><font style="color:#ffffff; font-weight:300; margin-left:3px; text-overflow:ellipsis">visit-<b>ez</b></font></h3>
+      </div>
+      <div class="ui-block-b">
+        <!-- <h3 style="margin-left: 10px; margin-right: 10px; margin-top: 8px; margin-bottom:8px; text-shadow: 0 0px; color:rgba(15,15,15,1.00); text-align:right">
+          <img src="images/mobilexlogow.png" height="26px" style="margin-top:-3px;">
+        </h3> -->
+        <div  style="margin-left: 10px; margin-right: 10px; margin-top: 8px; margin-bottom:8px; text-shadow: 0 0px; color:rgba(15,15,15,1.00); text-align:right">
+            <a href="#panelgrid"><font color="#FFFFFF" style="text-shadow: 0px 0px 3px rgba(128,128,128,1.00);"><i class="fa fa-2x fa-bars"></i></font></a>
+        </div>
+      </div>
+     
+    </div>
+    <!-- /grid-a --> 
+    
+  </div>
+  <div data-role="main" style="padding: 2px 2px;">
+    <ul class="nav nav-tabs" id="myTabs" role="tablist" style="margin-left: 3px; margin-right: 3px; margin-top: 3px; border-bottom-width: 0px;">
+      <li style="min-width: 90px;" role="presentation" class="active" ><a data-bind="click:switchTab" href="#main" role="tab" id="main-tab" data-toggle="tab" aria-controls="main" style="padding-bottom:4px">
+        <p align="center" style="margin: 0px 0px; color:#00796b"><i class="material-icons md-36">subscriptions</i></p>
+        </a></li>
+      <li style="min-width: 90px;" role="presentation" ><a data-bind="click:switchTab" href="#history" role="tab" id="history-tab" data-toggle="tab" aria-controls="history" style="padding-bottom:4px">
+        <p align="center" style="margin: 0px 0px; color:#dadada"><i class="material-icons md-36">history</i></p>
+        </a></li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+      <div role="tabpanel" class="tab-pane active " id="main" aria-labelledBy="main-tab">
+        <div class="ui-body ui-body-b ui-content" style=" background-image: url(images/tweets-bg.jpg); border-width:0px; border-top-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; margin: 0px 2px; padding: 0px 0px; padding-bottom:6px;  min-height:300px; margin-bottom:120px;">
+          
+          <div class="row">
+            <form class="ui-filterable" data-bind="visible:records().length>0" style=" padding-left:3px; padding-right:3px;">
+              <input id="main-input" data-type="search" placeholder="筛选记录..." style="opacity:0.4">
+            </form>
+            <ul data-role="listview" class="ui-alt-icon ui-nodisc-icon"  data-inset="true" data-filter="true" data-bind="jqmTemplate: { name: 'record', foreach: records }, jqmRefreshList: records"
+            data-input="#main-input" style="margin: 3px 3px; margin-bottom: 128px; box-shadow:1px 1px 5px 0 rgba(0, 0, 0, 0.24);">
+         
+              <!-- <li class="dropdown"><a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <h3 style="margin-bottom:0px; margin-top: 0px; padding-bottom: 4px; color: #263238; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)">被访人: <b>张三 (部门名称)&nbsp;&nbsp;</b><font color="#bdbdbd">|&nbsp;&nbsp;</font>电话: <b>13917181111</b> </h3>
+                <p style="margin:0px 0px; margin-top:4px; color: #607d8b; "><i class="fa fa-fw fa-user-secret"></i> 访客: <b>李四 (单位名称)&nbsp;&nbsp;</b><font color="#BDBDBD">|&nbsp;&nbsp;</font>人数: <b>3</b></p>
+                <p style="margin:0px 0px; color: #607d8b; "><i class="fa fa-fw fa-truck"></i> 车牌: <b>沪A12345</b><font color="#bdbdbd">&nbsp;&nbsp;|&nbsp;&nbsp;</font>携带及带出物品: <b>ABC/123</b></p>
+                <p style="margin:0px 0px; color: #607d8b; "><i class="fa fa-fw fa-calendar"></i> 入厂: <b>14:20 2018-9-9 </b><font color="#bdbdbd">&nbsp;&nbsp;|&nbsp;&nbsp;</font>出厂: <b>14:20 2018-9-9</b></p>
+                <p class="ui-li-aside hidden-xs" style="margin-top:0px; color:#78909c; ">拜访事由 14:10 2018-9-9</p>
+                <span class="ui-li-count" style=" background-color: #009688; color: #ffffff; text-shadow: none"><strong style="font-weight:600;">已入厂</strong></span> </a>
+                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1" style="padding: 0px 0px; border-radius:0px; ">
+                  <li><a href="#" style="padding-top: 6px; padding-bottom: 6px; padding-left:12px; font-weight:400;"><font color="#4caf50" size="+1"><i class="fa fa-fw fa-sign-in"></i></font><font size="+1"> 进场</font></a></li>
+                  <li role="separator" class="divider" style="margin: 0px 0px; background-color:#80cbc4"></li>
+                  <li><a href="#" style="padding-top: 6px; padding-bottom: 6px; padding-left:12px; font-weight:400;"><font size="+1" color="#b71c1c"><i class="fa fa-fw fa-sign-out"></i> </font><font size="+1"> 出厂</font></a></li>
+                </ul>
+              </li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="history" aria-labelledBy="history-tab">
+        <div class="ui-body ui-body-b ui-content" style=" background-image: url(images/tweets-bg.jpg); border-width:0px; border-top-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; margin: 0px 2px; padding: 0px 0px; padding-bottom:6px;  min-height:300px; margin-bottom:120px;">
+          
+			<div class="row">
+			
+<!-- 				
+				<div class="col-lg-6 col-sm-6 col-xs-12 col-md-6" style="padding:3px 3px">
+        <form>
+          <p align="left">开始日期</p>
+          <input type="date" name="licno-1" id="licno-1"  placeholder="输入车牌号..." value="" style="padding-top:10px; padding-bottom:10px">
+        </form>
+      </div>
+
+				<div class="col-lg-6 col-sm-6 col-xs-12 col-md-6" style="padding:3px 3px">
+        <form>
+          <p align="left">结束日期</p>
+          <input type="date" name="licno-3" id="licno-3"  placeholder="输入车牌号..." value="" style="padding-top:10px; padding-bottom:10px">
+        </form>
+      </div> -->
+
+		
+      <div class="col-lg-6 col-sm-6 col-xs-12 col-md-6" style="padding:3px 3px"  data-bind="basicField:$root.startDate">
+        </div>
+  	
+        <div class="col-lg-6 col-sm-6 col-xs-12 col-md-6" style="padding:3px 3px"  data-bind="basicField:$root.endDate">
+          </div>
+     
+
+				<div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" style="padding:3px 3px">
+				
+				<p align="center" style="color: #00796b; margin-top: 24px;"><a href="javascript:void(0);" data-bind="click:search"><i class="fa fa-2x fa-search"></i></a></p>
+			</div>
+			</div>
+			
+			
+			<div class="row">
+            <form class="ui-filterable" data-bind="visible:historyRecords().length>0" style=" padding-left:3px; padding-right:3px;">
+              <input id="history-input" data-type="search" placeholder="筛选记录..." style="opacity:0.4">
+            </form>
+            <ul data-role="listview" class="ui-alt-icon ui-nodisc-icon"  data-inset="true" data-filter="true" data-input="#history-input"  data-bind="jqmTemplate: { name: 'historyRecord', foreach: historyRecords }, jqmRefreshList: historyRecords"
+            style="margin: 3px 3px; margin-bottom: 128px; box-shadow:1px 1px 5px 0 rgba(0, 0, 0, 0.24);">
+              <!-- <li><a  href="#" >
+                <h3 style="margin-bottom:0px; margin-top: 0px; padding-bottom: 4px; color: #263238; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)">被访人: <b>张三 (部门名称)&nbsp;&nbsp;</b><font color="#bdbdbd">|&nbsp;&nbsp;</font>电话: <b>13917181111</b> </h3>
+                <p style="margin:0px 0px; margin-top:4px; color: #607d8b; "><i class="fa fa-fw fa-user-secret"></i> 访客: <b>李四 (单位名称)&nbsp;&nbsp;</b><font color="#BDBDBD">|&nbsp;&nbsp;</font>人数: <b>3</b></p>
+                <p style="margin:0px 0px; color: #607d8b; "><i class="fa fa-fw fa-truck"></i> 车牌: <b>沪A12345</b><font color="#bdbdbd">&nbsp;&nbsp;|&nbsp;&nbsp;</font>携带及带出物品: <b>ABC/123</b></p>
+                <p style="margin:0px 0px; color: #607d8b; "><i class="fa fa-fw fa-calendar"></i> 入厂: <b>14:20 2018-9-9</b><font color="#bdbdbd">&nbsp;&nbsp;|&nbsp;&nbsp;</font>出厂: <b>14:20 2018-9-9</b></p>
+                <p class="ui-li-aside hidden-xs" style="margin-top:0px; color:#78909c; ">拜访事由 14:10 2018-9-9</p>
+                <span class="ui-li-count" style=" background-color: #009688; color: #ffffff; text-shadow: none"><strong style="font-weight:600;">已入厂</strong></span> </a>
+              </li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /content --> 
+  <div data-role="panel" id="panelgrid" data-position-fixed="true" data-position="right" data-display="overlay"
+     data-theme="a">
+    <div class="jqm-block-content"
+         style="margin: -14px -14px; margin-bottom: 14px; padding: 9px 9px; padding-top: 30px; background-color: #006064; border:none; min-height: 0px; border-radius: 0em;">
+        <p align="center" style="margin-bottom:10px;"><i class="material-icons md-56 md-light">face</i></p>
+
+        <div class="ui-grid-a" style="text-shadow: 0 0 0; color:#FFFFFF">
+            <div class="ui-block-a">
+                <p align="left" style="padding-left:8px;"><font size="+1" data-bind="text:user.name"></font><br>
+                    <font color="#BDBDBD"><span data-bind="text:user.Roles"></span><br>
+                        <span data-bind="text:user.sub"></span>
+                    </font>
+                </p>
+            </div>
+            <div class="ui-block-b">
+                <p align="right" style="margin-top: 8px;"><a href="javascript:void(0);" data-bind="click:logout"><i
+                        class="fa fa-2x fa-sign-out"></i></a></p>
+            </div>
+        </div>
+    </div>
+     
+</div>
+  <!-- /footer -->
+  <div data-role="footer" data-position="fixed" data-fullscreen="true" style="border-bottom-width: 0px; opacity:1">
+    <div data-role="navbar" >
+      <ul>
+        <li>
+          <a href="javascript:void(0);" data-bind="click:search" class="ui-btn-b" style="font-weight:300;  color:#333333;">
+          <p align="center" style="margin-bottom:4px; text-shadow: 0px 0px 3px rgba(192,192,192,0.6);; color:#333333"><i class="material-icons md-light" style="color:#009688">refresh</i></p>
+          <p align="center" style="margin: 0px 0px; margin-top:3px;">刷新</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- /navbar -->
+    <div data-role="popup" id="popaction" data-theme="b"  style="border-width: 0px; box-shadow: 1px 1px 100px rgba(74,74,74,0.9);">
+      <ul data-role="listview" class="ui-nodisc-icon ui-alt-icon" data-inset="true" style="min-width:200px; border-radius: 0em; box-shadow:none">
+        <li data-role="list-divider" style="border-width: 0px;  background-color: #00796b; border-radius: 0em;"><i class="fa fa-ellipsis-h"></i></li>
+        <li data-icon="recycle"><a href="#" data-rel="back">刷新</a></li>
+        <li data-icon="refresh"><a href="#" data-rel="back">重置</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- /footer -->
+  <!-- Obj success (order level) Popup --> 
+  <div data-role="popup" id="popupError"  data-theme="b" data-overlay-theme="a" class="ui-corner-all" style="min-width:300px; max-width:300px; background-image: url(images/content-bg.jpg)">
+    <div class="row" style="margin:0px 0px; padding:0px 0px">
+      <div class="col-lg-9 col-sm-9 col-xs-9 col-md-9" style="padding:0px 0px">
+        <p align="left" style=" margin:6px 6px; font-weight:300"> <strong><font size="+1" color="#e91e63" data-bind="text:popupInfo.title,visible:popupInfo.title"></font> </strong><br>
+          <font color="#9E9E9E" data-bind="text:popupInfo.subTitle,visible:popupInfo.subTitle"></font></p>
+      </div>
+      <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3" style="padding:0px 0px">
+        <p align="right" style=" margin:6px 6px"><font color="#e91e63"><i class="fa fa-3x fa-ban"></i></font></p>
+      </div>
+    </div>
+    <legend style="margin-bottom:0px;"></legend>
+    <p align="left" style="margin:6px 6px; margin-bottom:3px; margin-top:8px; font-weight:200"><font size="+1" data-bind="text:popupInfo.message,visible:popupInfo.message"></font></p>
+    <p data-bind="visible:popupInfo.code" style="margin:6px 6px; margin-top:3px; margin-bottom:32px; font-weight:200"><font size="-1">code: <b data-bind="text:popupInfo.code"></b></font></p>
+    <p style="padding: 2px 2px; margin:2px 2px"><a href="#" data-rel="back" class="ui-btn ui-corner-all " style="margin:0px 0px; background-color:#e91e63; font-weight:300; min-width:120px; color:#ffffff; text-shadow: 0 1px 0 #111;"><i class="fa fa-fw fa-check"></i> 确定</a></p>
+  </div>
+  <div data-role="popup" id="popupSuccess" data-theme="b" data-overlay-theme="a" class="ui-corner-all" style="min-width:300px; max-width:300px; background-image: url(images/content-bg.jpg)">
+    <div class="row" style="margin:0px 0px; padding:0px 0px">
+      <div class="col-lg-9 col-sm-9 col-xs-9 col-md-9" style="padding:0px 0px">
+        <p align="left" style=" margin:6px 6px; font-weight:300"> <strong><font size="+1" color="#009688" data-bind="text:popupInfo.title,visible:popupInfo.title"></font> </strong><br>
+          <font color="#9E9E9E" data-bind="text:popupInfo.subTitle,visible:popupInfo.subTitle"></font></p>
+      </div>
+      <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3" style="padding:0px 0px">
+        <p align="right" style=" margin:6px 6px"><font color="#009688"><i class="fa fa-3x fa-check-circle-o"></i></font></p>
+      </div>
+    </div>
+    <legend style="margin-bottom:0px;"></legend>
+    <p align="left" style="margin:6px 6px; margin-bottom:3px; margin-top:8px; font-weight:200"><font size="+1" data-bind="text:popupInfo.message,visible:popupInfo.message"></font></p>
+    <p data-bind="visible:popupInfo.code"  style="margin:6px 6px; margin-top:3px; margin-bottom:32px; font-weight:200"><font size="-1">code: <b data-bind="text:popupInfo.code"></b></font></p>
+    <p style="padding: 2px 2px; margin:2px 2px"><a href="javascript:void(0);" data-bind="click:confirmSuccess" data-rel="back" class="ui-btn ui-corner-all " style="margin:0px 0px; background-color:#009688; font-weight:300; min-width:120px; color:#ffffff; text-shadow: 0 1px 0 #111;"><i class="fa fa-fw fa-check"></i> 确定</a></p>
+  </div>
+  
+  
+  <div data-role="popup" id="confirmBeforeAction" data-theme="b" data-overlay-theme="a" class="ui-corner-all" style="min-width:300px; max-width:300px; background-image: url(images/content-bg.jpg)">
+    <div class="row" style="margin:0px 0px; padding:0px 0px">
+        <p align="center" style="margin:8px 8px;"><font color="#607D8B"><i class="fa fa-2x fa-info-circle"></i></font></p>
+    </div>
+    <legend style="margin-bottom:0px;"></legend>
+    <p align="left" style="margin:6px 6px; margin-bottom:3px; margin-top:8px; font-weight:200"><font size="+1" data-bind="text:popupInfo.message,visible:popupInfo.message"></font></p>
+	<div class="ui-grid-a">
+		<div class="ui-block-a"><a href="javascript:void(0);" data-bind="click:function(){$root.action($root.popupInfo.data(),$root.popupInfo.action())}" class="ui-btn ui-corner-all ui-shadow  ui-btn-b ui-btn-icon-left ui-icon-check"  style="background-color: #4caf50; color:#fff; text-shadow: 0 1px 0 #616161; margin-left:2px">确认</a></div>
+		<div class="ui-block-b"><a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow  ui-btn-b ui-btn-icon-left ui-icon-delete"  style="margin-right:2px;">取消</a></div>
+	</div>
+  </div>
+  
+  
+	
+</div>
+<!-- /page --> 
+
+<script type="text/html" id="record">
+    <li class="dropdown" data-bind="css: { 'ui-disabled': !$root.canAction($data.visitState)&&false}">
+        <!-- ko if: $root.canAction($data.visitState) -->
+      <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+	    <img data-bind="attr: {src: PICTURE}" height="100%" style="margin:8px 8px">
+        <h3 style="margin-bottom:0px; margin-top: 0px; padding-bottom: 4px; color: #263238; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)">被访人: <b><span data-bind="text:intervieweeName"></span>&nbsp;<span data-bind="visible:intervieweeDpt">(<span data-bind="text:intervieweeDpt"></span>)</span>&nbsp;&nbsp;</b><font color="#bdbdbd">|&nbsp;&nbsp;</font>电话: <b data-bind="text:intervieweeTel"></b></h3>
+        <p style="margin:0px 0px; margin-top:4px; color: #607d8b; "><i class="fa fa-fw fa-user-secret"></i> 访客: <b><span data-bind="text:interviewerName"></span>&nbsp;<span data-bind="visible:interviewerCorp">(<span data-bind="text:interviewerCorp"></span>)</span>&nbsp;&nbsp;</b><font color="#BDBDBD">|&nbsp;&nbsp;</font>人数: <b data-bind="text:interviewerNums"></b></p>
+        <p style="margin:0px 0px; color: #607d8b; "><i class="fa fa-fw fa-truck"></i> 车牌: <b data-bind="text:carId"></b><font color="#bdbdbd">&nbsp;&nbsp;|&nbsp;&nbsp;</font>携带及带出物品: <b><span data-bind="text:accompanyingArticle"></span> / <span data-bind="text:texarticlesBroughtOut"></span></b></p>
+        <p style="margin:0px 0px; color: #607d8b; "><i class="fa fa-fw fa-calendar"></i> 入厂: <b data-bind="text:$root.formatDateTime(intoTime)"></b></p>
+        <p class="ui-li-aside hidden-xs" style="margin-top:0px; color:#78909c; "><span data-bind="text:BUSINESS_KEY_"></span>&nbsp;<span data-bind="text:$root.formatDateTime(applyTime)"></span></p>
+        <span class="ui-li-count" data-bind="style:{backgroundColor:$root.getStateColor(visitState)}" style="color: #ffffff; text-shadow: none;"><strong style="font-weight:600;" data-bind="text:visitState"></strong></span>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1" style="padding: 0px 0px; border-radius:0px;">
+        <li data-bind="visible:$root.canAction($data.visitState,'in')"><a href="javascript:void(0);" data-bind="click:function(){$root.action($data,'in')}" style="padding-top: 6px; padding-bottom: 6px; padding-left:12px; font-weight:400;"><font color="#4caf50" size="+1"><i class="fa fa-fw fa-sign-in"></i></font><font size="+1">&nbsp;进厂</font></a></li>
+       
+        <li data-bind="visible:false" role="separator" class="divider" style="margin: 0px 0px; background-color:#80cbc4"></li>
+        <li data-bind="visible:$root.canAction($data.visitState,'forbidOut')"><a href="javascript:void(0);" data-bind="click:function(){$root.action($data,'forbidOut')}" style="padding-top: 6px; padding-bottom: 6px; padding-left:12px; font-weight:400;"><font size="+1" color="#b71c1c"><i class="fa fa-fw fa-sign-out"></i> </font><font size="+1">&nbsp;拒绝后出厂</font></a></li>
+    
+        <li data-bind="visible:false" role="separator" class="divider" style="margin: 0px 0px; background-color:#80cbc4"></li>
+        <li data-bind="visible:$root.canAction($data.visitState,'normalOut')"><a href="javascript:void(0);" data-bind="click:function(){$root.action($data,'normalOut')}" style="padding-top: 6px; padding-bottom: 6px; padding-left:12px; font-weight:400;"><font size="+1" color="##17a2b8"><i class="fa fa-fw fa-sign-out"></i> </font><font size="+1">&nbsp;进厂后出厂</font></a></li>
+     
+	 
+	 
+	    <li data-bind="visible:false" role="separator" class="divider" style="margin: 0px 0px; background-color:#80cbc4"></li>
+        <li data-bind="visible:$root.canAction($data.visitState,'dock_approval')">
+			<a href="javascript:void(0);" data-bind="click:function(){$root.confirmBeforeAction($data,'dock_agree')}" style="padding-top: 6px; padding-bottom: 6px; padding-left:12px; font-weight:400;"><font size="+1" color="#17a2b8"><i class="fa fa-fw fa-sign-out"></i> </font><font size="+1">&nbsp;同意进厂（门卫代理审批）</font></a>
+			<a href="javascript:void(0);" data-bind="click:function(){$root.confirmBeforeAction($data,'dock_forbit')}" style="padding-top: 6px; padding-bottom: 6px; padding-left:12px; font-weight:400;"><font size="+1" color="#b71c1c"><i class="fa fa-fw fa-sign-out"></i> </font><font size="+1">&nbsp;拒绝进厂（门卫代理审批）</font></a>
+		</li>
+	 </ul>
+       <!-- /ko -->
+         <!-- ko if: !$root.canAction($data.visitState) -->
+         <a href="javascript:void(0);">
+		  <img data-bind="attr: {src: PICTURE}" height="100%" style="margin:8px 8px">
+          <h3 style="margin-bottom:0px; margin-top: 0px; padding-bottom: 4px; color: #263238; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)">被访人: <b><span data-bind="text:intervieweeName"></span>&nbsp;<span data-bind="visible:intervieweeDpt">(<span data-bind="text:intervieweeDpt"></span>)</span>&nbsp;&nbsp;</b><font color="#bdbdbd">|&nbsp;&nbsp;</font>电话: <b data-bind="text:intervieweeTel"></b></h3>
+          <p style="margin:0px 0px; margin-top:4px; color: #607d8b; "><i class="fa fa-fw fa-user-secret"></i> 访客: <b><span data-bind="text:interviewerName"></span>&nbsp;<span data-bind="visible:interviewerCorp">(<span data-bind="text:interviewerCorp"></span>)</span>&nbsp;&nbsp;</b><font color="#BDBDBD">|&nbsp;&nbsp;</font>人数: <b data-bind="text:interviewerNums"></b></p>
+          <p style="margin:0px 0px; color: #607d8b; "><i class="fa fa-fw fa-truck"></i> 车牌: <b data-bind="text:carId"></b><font color="#bdbdbd">&nbsp;&nbsp;|&nbsp;&nbsp;</font>携带及带出物品: <b><span data-bind="text:accompanyingArticle"></span> / <span data-bind="text:texarticlesBroughtOut"></span></b></p>
+          <p style="margin:0px 0px; color: #607d8b; "><i class="fa fa-fw fa-calendar"></i> 入厂: <b data-bind="text:$root.formatDateTime(intoTime)"></b></p>
+          <p class="ui-li-aside hidden-xs" style="margin-top:0px; color:#78909c; "><span data-bind="text:BUSINESS_KEY_"></span>&nbsp;<span data-bind="text:$root.formatDateTime(applyTime)"></span></p>
+          <span class="ui-li-count" data-bind="style:{backgroundColor:$root.getStateColor(visitState)}" style="color: #ffffff; text-shadow: none;"><strong style="font-weight:600;" data-bind="text:visitState"></strong></span>
+        </a>
+         <!-- /ko -->
+    </li>
+</script>
+
+<script type="text/html" id="historyRecord">
+  <li class="dropdown">
+    <a class="dropdown-toggle" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	  <img data-bind="attr: {src: PICTURE}" height="100%" style="margin:8px 8px">
+      <h3 style="margin-bottom:0px; margin-top: 0px; padding-bottom: 4px; color: #263238; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)">被访人: <b><span data-bind="text:intervieweeName"></span>&nbsp;<span data-bind="visible:intervieweeDpt">(<span data-bind="text:intervieweeDpt"></span>)</span>&nbsp;&nbsp;</b><font color="#bdbdbd">|&nbsp;&nbsp;</font>电话: <b data-bind="text:intervieweeTel"></b></h3>
+      <p style="margin:0px 0px; margin-top:4px; color: #607d8b; "><i class="fa fa-fw fa-user-secret"></i> 访客: <b><span data-bind="text:interviewerName"></span>&nbsp;<span data-bind="visible:interviewerCorp">(<span data-bind="text:interviewerCorp"></span>)</span>&nbsp;&nbsp;</b><font color="#BDBDBD">|&nbsp;&nbsp;</font>人数: <b data-bind="text:interviewerNums"></b></p>
+      <p style="margin:0px 0px; color: #607d8b; "><i class="fa fa-fw fa-truck"></i> 车牌: <b data-bind="text:carId"></b><font color="#bdbdbd">&nbsp;&nbsp;|&nbsp;&nbsp;</font>携带及带出物品: <b><span data-bind="text:accompanyingArticle"></span> / <span data-bind="text:texarticlesBroughtOut"></span></b></p>
+      <p style="margin:0px 0px; color: #607d8b; "><i class="fa fa-fw fa-calendar"></i> 入厂: <b data-bind="text:$root.formatDateTime(intoTime)"></b><font color="#bdbdbd">&nbsp;&nbsp;|&nbsp;&nbsp;</font>出厂: <b data-bind="text:$root.formatDateTime(leaveTime)"></b></p>
+      <p class="ui-li-aside hidden-xs" style="margin-top:0px; color:#78909c; "><span data-bind="text:BUSINESS_KEY_"></span>&nbsp;<span data-bind="text:$root.formatDateTime(applyTime)"></span></p>
+      <span class="ui-li-count"  data-bind="style:{backgroundColor:$root.getStateColor(visitState)}"  style="color: #ffffff; text-shadow: none"><strong style="font-weight:600;" data-bind="text:visitState"></strong></span>
+    </a>
+  </li>
+</script>
+</body>
+</html>

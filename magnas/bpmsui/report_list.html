@@ -1,0 +1,649 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, target-densitydpi=device-dpi">
+<title>Z3 | Report</title>
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.css"/>
+<link rel="stylesheet" type="text/css" href="css/color.css"/>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker.css">
+<link rel="stylesheet" type="text/css" href="css/jqm-demos.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure.css">
+<link rel="stylesheet" type="text/css" href="css/datatables.css">
+<link rel="stylesheet" type="text/css" href="css/kc.fab.css">
+<link rel="stylesheet" type="text/css" href="css/all.min.css">
+<link rel="stylesheet" type="text/css" href="css/google-icon.css">
+<link rel="stylesheet" type="text/css" href="css/site.css"/>
+<script src="libs/jquery.js?v=20210120"></script>
+<script src="libs/jquery.form.js?v=1598853811990"></script>
+<script src="libs/jquery.mobile.js?v=1598853811990"></script>
+<script src="libs/bootstrap.js?v=1598853811990"></script>
+<script src="libs/bootstrap-treeview.js?v=1598853811990"></script>
+<script src="libs/datatables.js?v=1598853811990"></script>
+<script src="libs/Chart.bundle.js?v=1598853811990"></script>
+<script src="libs/moment/moment.js?v=1598853811990"></script>
+<script src="libs/moment/locale/zh-cn.js?v=1598853811990"></script>
+<script src="libs/bootstrap-datetimepicker.js?v=1598853811990"></script>
+<script src="libs/knockout.js?v=1598853811990"></script>
+<script src="libs/knockout.mapping.js?v=1598853811990"></script>
+<script src="libs/koExternalTemplateEngine_all.js?v=1598853811990"></script>
+<script src="libs/ko.extension.js?v=1598853811990"></script>
+<script src="libs/shim.min.js?v=1598853811990"></script>
+<script src="libs/xlsx.full.min.js?v=1598853811990"></script>
+<script src="libs/oex/utils.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-checked.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-datetime.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-selected.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-number.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-money.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-tel.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-email.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-psb.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-cny.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-auto.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-relation.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-id.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-join.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-auto-multi.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-upload.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-switch.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-tree.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-value.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-ctr.js?v=1598853811990"></script>
+<script src="libs/CLDRPluralRuleParser.js?v=1598853811990"></script>
+<script src="libs/jquery.i18n/jquery.i18n.js?v=1598853811990"></script>
+<script src="libs/jquery.i18n/jquery.i18n.messagestore.js?v=1598853811990"></script>
+<script src="libs/jquery.i18n/jquery.i18n.fallbacks.js?v=1598853811990"></script>
+<script src="libs/jquery.i18n/jquery.i18n.language.js?v=1598853811990"></script>
+<script src="libs/jquery.i18n/jquery.i18n.parser.js?v=1598853811990"></script>
+<script src="libs/jquery.i18n/jquery.i18n.emitter.js?v=1598853811990"></script>
+<script src="libs/jquery.i18n/jquery.i18n.emitter.bidi.js?v=1598853811990"></script>
+<script src="libs/kc.fab.js?v=1598853811990"></script>
+<script src="libs/jweixin-1.2.0.js?v=1598853811990"></script>
+<script src="common/config.js?v=1598853811990"></script>
+<script src="common/util.js?v=1598853811990"></script>
+<script src="common/service.js?v=1598853811990"></script>
+<script src="common/baseViewModel.js?v=1598853811990"></script>
+<script src="reportList.js?v=1598853811990"></script>
+<script src="reportListViewModel.js?v=1598853811990"></script>
+<link rel="shortcut icon" href="favicon.ico">
+<style>
+@media screen and (min-width:0px) {
+.row {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 16px;
+	margin-bottom: 16px;
+}
+}
+
+@media screen and (min-width:667px) {
+.row {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 16px;
+	margin-bottom: 16px;
+}
+}
+
+@media screen and (min-width:992px) {
+.row {
+	margin-left: 80px;
+	margin-right: 0px;
+	margin-top: 16px;
+}
+}
+
+ @media screen and (min-width:1200px) {
+.row {
+	margin-left: 80px;
+	margin-right: 80px;
+	margin-top: 32px;
+}
+ }
+ @media screen and (min-width:1600px) {
+.row {
+ margin-left: 80px;
+ margin-right: 80px;
+ margin-top: 32px;
+}
+}
+/* 
+.dataTables_wrapper .row{
+  margin: 0;
+} */
+</style>
+<!-- <script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script> -->
+</head>
+<body>
+<div data-role="page" class="ui-responsive-panel" id="main" data-theme="a" style="background-image: url(images/bg.jpg)">
+  <div data-role="header" data-theme="b"  style="background-color:#FFFFFF; box-shadow: 0 2px 5px 0 hsla(0,0%,39%,.3)">
+    <div class="ui-grid-b">
+      <div class="ui-block-a">
+        <h3 style="margin-left: 10px; margin-right: 10px; margin-top: 10px; opacity: 0.5; font-weight: 200; margin-bottom:8px; text-shadow: 0 0px; color:#03a9f4; text-align:left"><a href="#panelgrid" style="color: #03a9f4"><i class="fal fa-chart-pie-alt"></i></a> <font style="opacity: 0.5">报表中心</font></h3>
+      </div>
+      <div class="ui-block-b">
+        <h3 style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom:8px; text-shadow: 0 0px; color:#03a9f4; font-weight: 100; text-align:center"><a href="#popupde" data-rel="popup" data-position-to="window" data-transition="fade" style="color:#009688; font-weight:100; margin-right: 8px"> <img src="images/cube.svg" height="24px" style="margin-top:-3px;"></a> <font style="font-size: 18px"><b>Z<sup> 3</sup></b> 智能制造协同平台</font></h3>
+      </div>
+      <div class="ui-block-c">
+        <h3 style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom:8px; text-shadow: 0 0px; color:#bdbdbd; text-align:right"><a href="#panelgrid" style="color: #2196f3"><i class="fal fa-bars"></i></a></h3>
+      </div>
+    </div>
+    <!-- /grid-a --> 
+    
+  </div>
+  <div data-role="content" style="padding: 2px 2px; margin-top: 3px;">
+    <div class="col-sm-12 col-xs-12 col-md-4 col-lg-3" style="padding: 0px 0px; ">
+      <div class="ui-body ui-body-b ui-content" style=" border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 600px; max-height:854px; margin: 0 2px; padding: 2px 2px; overflow: auto; overflow-style:auto; ">
+        <div class="ui-grid-a">
+          <div class="ui-block-a">
+            <p align="center" style="margin: 14px 14px;"><a href="javascript:void();" data-bind="click:createReport" style="color: #e91e63;font-weight: 300;"><i class="fas fa-fw fa-plus-circle"></i> 新建报表</a></p>
+          </div>
+          <div class="ui-block-b">
+            <p align="center" style="margin: 14px 14px;"><a href="#popSearchReport" data-rel="popup"  data-position-to="window" style="color: #90a4ae;font-weight: 300;"><i class="fas fa-fw fa-search"></i> 查询报表</a></p>
+          </div>
+        </div>
+        <div data-role="popup" id="popCreateReport" data-dismissible="false" data-transition="fade" data-theme="a" data-overlay-theme="a" style="min-width:300px; max-width:300px; border:none">
+          <ul data-role="listview" data-inset="true" style="border:none">
+            <li data-role="list-divider" style=" text-align: center; border-bottom-left-radius:0; border-bottom-right-radius:0; padding:14px 14px; background-color:#0277bd; font-weight:300; border: none "><i class="fas fa-fw fa-plus-circle"></i> 创建报表</li>
+            <form onsubmit="return false;" style="margin:16px 16px;">
+              <input id="createName" data-bind="value:creatingName" type="text" data-theme="b" placeholder="输入报表名称..." style="font-weight:300; height:38px; font-size:medium;">
+            </form>
+            <div class="ui-grid-a" style="margin:12px 12px; padding-bottom:12px;">
+              <div class="ui-block-a"><a href="javascript:void(0);" data-bind="click:doCreateReport" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#03a9f4; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-check-double" style="margin-right: 12px"></i>创建</a> </div>
+              <div class="ui-block-b"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#333333; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-times" style="margin-right: 12px"></i>取消</a> </div>
+            </div>
+          </ul>
+        </div>
+        <div data-role="popup" id="popSearchReport" data-dismissible="false" data-transition="fade" data-theme="a" data-overlay-theme="a" style="min-width:300px; max-width:300px; border:none">
+          <ul data-role="listview" data-inset="true" style="border:none">
+            <li data-role="list-divider" style=" text-align: center; border-bottom-left-radius:0; border-bottom-right-radius:0; padding:14px 14px; background-color:#0277bd; font-weight:300; border: none "><i class="fa fa-fw fa-search"></i> 查找报表</li>
+            <form onsubmit="return false;" style="margin:16px 16px;">
+              <input type="text" data-theme="b" data-bind="value:criteria.name" placeholder="输入报表名称..." style="font-weight:300; height:38px; font-size:medium;">
+            </form>
+            <div class="ui-grid-a" style="margin:12px 12px; padding-bottom:12px;">
+              <div class="ui-block-a">
+<!--                 
+                 <i class="fas fa-fw fa-check-double" style="margin-right: 12px"></i> -->
+                <a href="javacript:void(0);" data-bind="click:doSearch" class="ui-btn ui-btn-icon-left ui-icon-check ui-corner-all ui-btn-b" style="background-color: #00bcd4; color:#fff; margin: 4px 4px; font-weight:300">搜索</a>
+           
+              </div>
+              <div class="ui-block-b"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#333333; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-times" style="margin-right: 12px"></i>取消</a> </div>
+            </div>
+          </ul>
+        </div>
+        <ul data-role="listview" class="ui-alt-icon ui-nodisc-icon"  
+        data-bind="jqmTemplate: { name: 'reportItem', foreach: report.items }, jqmRefreshList: report.items"
+        data-split-icon="plus" data-split-theme="a" data-theme="b" data-filter="true" data-inset="true" data-input="#rich-autocomplete-input2" style="margin: 2px 2px;">
+         
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-12 col-xs-12 col-md-8 col-lg-9" style="padding: 0px 0px; ">
+      <div data-bind="visible:editingReport.id" class="ui-body ui-body-b ui-content" style="border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 600px; margin: 0 2px; padding: 2px 2px;">
+        <div class="row" style="margin:0px 0px; padding:3px 3px">
+          <div class="col-sm-6 col-xs-12 col-md-6 col-lg-6" style="padding: 3px 3px; ">
+            <p align="left" style="padding: 0px 0px; font-weight:300; margin-bottom: 3px; font-size: 28px; color:#333333"><i class="fal fa-fw fa-cube"></i>&nbsp;<span data-bind="text:editingReport.name"></span></p>
+            <p style=" font-weight:300; color: #b0bec5; font-size: 12px">
+              <i class="fal fa-fw fa-sync-alt"></i>&nbsp;<span data-bind="text: BPMS.Services.Utils.formatDateTime(editingReport.createdAt(),'t3')"></span>&nbsp;<span data-bind="text: BPMS.Services.Utils.formatDateTime(editingReport.createdAt(),'t4')"></span>&nbsp;|&nbsp;<i class="fal fa-fw fa-user-alt"></i>&nbsp;
+              <span data-bind="text:editingReport.createdName()"></span>
+            </p>
+          </div>
+          <div class="col-sm-6 col-xs-12 col-md-6 col-lg-6" style="padding: 3px 3px; ">
+            <p align="right" style="padding:3px 3px; margin-bottom:0px;">
+              <a href="javascript:void(0);" data-bind="click:saveReport" style="font-weight:300; color: #e91e63; margin-left:16px;" ><i class="fas fa-fw fa-save"></i> 保存</a>
+              <a href="javascript:void(0);" data-bind="click:refresh"  style="font-weight:300; color: #e91e63; margin-left:18px;"><i class="fas fa-fw fa-sync"></i> 刷新</a>
+              <a href="#popAssign" data-rel="popup" data-position-to="window" style="font-weight:300; color: #e91e63; margin-left:18px;"><i class="fas fa-fw fa-user-friends"></i> 分配</a>
+              <a href="javascript:void(0);" id="moreMenu" data-bind="click:showMore"  style="font-weight:300; color: #e91e63; margin-left:18px; margin-right: 24px"><i class="fas fa-fw fa-ellipsis-v"></i> 更多</a>
+            </p>
+          </div>
+          <div data-role="popup" id="popMore" data-theme="b" style="border: none">
+            <ul data-role="listview" data-inset="true" class="ui-alt-icon ui-nodisc-icon" style="min-width:160px; border: none">
+              <li><a href="javascript:void(0);"  style="font-weight: 300"><i class="fas fa-fw fa-download" style="margin-right: 16px; color: #e91e63"></i>导出</a></li>
+              <li><a href="javascript:void(0);" data-bind="click:deleteReport" style="font-weight: 300"><i class="fas fa-fw fa-trash" style="margin-right: 16px; color: #e91e63"></i>删除</a></li>
+            </ul>
+          </div>
+          <div data-role="popup" id="popAssign" data-dismissible="false" data-transition="fade" data-theme="a" data-overlay-theme="a" style="min-width:300px; max-width:300px; border:none">
+            <ul data-role="listview" data-inset="true" style="border:none">
+              <li data-role="list-divider" style=" text-align: center; border-bottom-left-radius:0; border-bottom-right-radius:0; padding:14px 14px; background-color:#0277bd; font-weight:300; border: none "><i class="fas fa-fw fa-user-friends"></i> 分配报表权限</li>
+              <form class="ui-filterable" style="margin:16px 16px;">
+                <input id="autocomplete-input" data-type="search" data-theme="b" placeholder="查询用户..." style="font-weight:300; height:38px; font-size:medium;">
+              </form >
+              <ul data-role="listview" data-theme="b" class="ui-alt-icon ui-nodisc-icon" data-filter="true" data-filter-reveal="true" data-input="#autocomplete-input" data-inset="true" style="margin: 16px 16px">
+                <li data-icon="check"><a href="#">Apple</a></li>
+                <li><a href="#">Banana</a></li>
+                <li><a href="#">Cherry</a></li>
+                <li><a href="#">Cranberry</a></li>
+                <li><a href="#">Grape</a></li>
+                <li><a href="#">Orange</a></li>
+              </ul>
+              <div class="ui-grid-a" style="margin:12px 12px; padding-bottom:12px;">
+                <div class="ui-block-a"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#03a9f4; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-check-double" style="margin-right: 12px"></i>分配</a> </div>
+                <div class="ui-block-b"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#333333; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-times" style="margin-right: 12px"></i>取消</a> </div>
+              </div>
+            </ul>
+          </div>
+        </div>
+        <div class="row" style="margin: 3px 6px;">
+          <div class="col-sm-6 col-xs-6 col-md-3 col-lg-4" style="padding: 3px 3px; ">
+            <legend style="font-size: 14px; color: #607d8b; margin-bottom: 0px;">数据源&nbsp;<a href="javascript:void(0);" id="sourceMenu" data-bind="click:getSource"  style="margin-left: 4px; color: #4caf50"><i class="fas fa-fw fa-plus-circle"></i></a></legend>
+          </div>
+          <div class="col-sm-6 col-xs-6 col-md-3 col-lg-4" style="padding: 3px 3px; ">
+            <legend style="font-size: 14px; color: #607d8b; margin-bottom: 0px;">连接键&nbsp;<a href="javascript:void(0);" id="joinMenu" style="margin-left: 4px; color: #4caf50"><i data-bind="visible:false" class="fas fa-fw fa-plus-circle"></i></a></legend>
+          </div>
+          <div class="col-sm-6 col-xs-6 col-md-3 col-lg-4" style="padding: 3px 3px;">
+            <legend style="font-size: 14px; color: #607d8b; margin-bottom: 0px;">可视化</legend>
+          </div>
+        </div>
+		  
+		  <div data-role="popup" id="popSource" data-dismissible="false" data-transition="fade" data-theme="a" data-overlay-theme="a" style="min-width:300px; max-width:300px; border:none">
+            <ul data-role="listview" data-inset="true" style="border:none">
+              <li data-role="list-divider" style=" text-align: center; border-bottom-left-radius:0; border-bottom-right-radius:0; padding:14px 14px; background-color:#0277bd; font-weight:300; border: none "><i class="fas fa-fw fa-database" style="margin-right: 9px"></i>选择数据源</li>
+              <form onsubmit="return false;" class="ui-filterable" style="margin:16px 16px;">
+                <input id="autocomplete-source" data-type="search" data-theme="b" placeholder="查询数据源..." style="font-weight:300; height:38px; font-size:medium;">
+              </form >
+              <ul data-role="listview" data-theme="b" class="ui-alt-icon ui-nodisc-icon" 
+              data-bind="jqmTemplate: { name: 'availableSourceItem', foreach: sources }, jqmRefreshList: sources" 
+              data-filter="true" data-filter-reveal="true" data-input="#autocomplete-source" data-inset="true" style="margin: 16px 16px">
+           
+              </ul>
+              <div class="ui-grid-a" style="margin:12px 12px; padding-bottom:12px;">
+                <div class="ui-block-a"><a href="javascript:void(0);" data-bind="click:addSource" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#03a9f4; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-check-double" style="margin-right: 12px"></i>确定</a> </div>
+                <div class="ui-block-b"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#333333; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-times" style="margin-right: 12px"></i>取消</a> </div>
+              </div>
+            </ul>
+          </div>
+		  
+		  
+        <div class="row" style="margin: 3px 3px">
+          <div class="col-sm-6 col-xs-6 col-md-3 col-lg-4" style="padding: 3px 3px; ">
+            <!-- ko  jqmTemplate:{foreach:editingReport.dataSource,name:'sourceItem'} -->
+            <!-- /ko -->
+          </div>
+          <div class="col-sm-6 col-xs-6 col-md-3 col-lg-4" style="padding: 3px 3px; ">
+            <!-- ko  jqmTemplate:{foreach:editingReport.join,name:'joinItem'} -->
+            <!-- /ko -->
+          </div>
+          <div class="col-sm-6 col-xs-6 col-md-3 col-lg-4" style="padding: 3px 3px; ">
+            <a href="#popShowType" data-rel="popup" style="margin-right: 8px; font-weight: 600; font-size: 14px; ">
+              <i class="fas fa-fw" data-bind="css: getChart(editingReport.showType()).icon" style="margin-right: 6px;"></i>
+              <span data-bind="text:getChart(editingReport.showType()).name"></span>&nbsp;<i class="fas fa-fw fa-chevron-down" style="color:#b0bec5 "></i>
+            </a>
+          </div>
+			
+			
+			    <div data-role="popup" id="popEditJoin" data-dismissible="false" data-transition="fade" data-theme="a" data-overlay-theme="a" style="min-width:300px; max-width:300px; border:none">
+            <ul data-role="listview" data-inset="true" style="border:none">
+              <li data-role="list-divider" style=" text-align: center; border-bottom-left-radius:0; border-bottom-right-radius:0; padding:14px 14px; background-color:#0277bd; font-weight:300; border: none "><i class="fas fa-fw fa-list-alt" style="margin-right: 9px"></i>选择数据字段</li>
+              <form onsubmit="return false;" class="ui-filterable" style="margin:16px 16px;">
+                <input id="autocomplete-join" data-type="search" data-theme="b" 
+             
+                placeholder="查询数据字段..." style="font-weight:300; height:38px; font-size:medium;">
+              </form >
+              <ul data-role="listview" data-theme="b" class="ui-alt-icon ui-nodisc-icon" 
+              data-bind="jqmTemplate: { name: 'availableJoinItem', foreach: joins }, jqmRefreshList: joins" 
+              data-filter="true" data-filter-reveal="true" data-input="#autocomplete-join" data-inset="true" style="margin: 16px 16px">
+               
+              </ul>
+              <div class="ui-grid-a" style="margin:12px 12px; padding-bottom:12px;">
+                <div class="ui-block-a"><a href="javascript:void(0);" data-bind="click:addJoin" class="ui-btn ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#03a9f4; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-check-double" style="margin-right: 12px"></i>确定</a> </div>
+                <div class="ui-block-b"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#333333; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-times" style="margin-right: 12px"></i>取消</a> </div>
+              </div>
+            </ul>
+          </div>
+			
+        <div data-role="popup" id="popGroup" data-dismissible="false" data-transition="fade" data-theme="b" data-overlay-theme="b" style="min-width:300px; max-width:300px; border:none">
+          <ul data-role="listview" data-inset="true" style="border:none">
+          <li data-role="list-divider" style=" text-align: center; border-bottom-left-radius:0; border-bottom-right-radius:0; padding:14px 14px; background-color:#0277bd; font-weight:300; border: none "><i class="fas fa-fw fa-list-alt" style="margin-right: 9px"></i>选择分组数据字段</li>
+          <form onsubmit="return false;" style="margin:16px 16px;">
+            <label for="groupCollection" style="color: #78909c; font-size: small">分组的表<font color="#d32f2f"><i class="fa fa-fw fa-asterisk"></i></font></label>
+            <select name="groupCollection" id="groupCollection"  controlType="sbft"  data-bind="selected:group.collectionId"
+            data-native-menu="false" 
+            data-overlay-theme="a"
+            data-theme="b" 
+            tabindex="-1">
+            <!-- ko foreach: group.collections -->
+            <option data-bind="value:id,text:name"></option>
+            <!-- /ko -->
+            </select>
+            <label for="groupField" style="color: #78909c; font-size: small">分组的字段<font color="#d32f2f"><i class="fa fa-fw fa-asterisk"></i></font></label>
+            <select name="groupField" id="groupField"  controlType="sbft"  data-bind="selected:group.fieldId"
+            data-native-menu="false" 
+            data-overlay-theme="a"
+            data-theme="b" 
+            tabindex="-1">
+            <!-- ko foreach: group.fields -->
+            <option data-bind="value:id,text:name"></option>
+            <!-- /ko -->
+            </select>
+          </form>
+          <div class="ui-grid-a" style="margin:12px 12px; padding-bottom:12px;">
+          <div class="ui-block-a"><a href="javascript:void(0);" data-bind="click:addGroup" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#03a9f4; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-check-double" style="margin-right: 12px"></i>确定</a> </div>
+          <div class="ui-block-b"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#333333; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-times" style="margin-right: 12px"></i>取消</a> </div>
+          </div>
+          </ul>
+        </div>
+
+        
+        <div data-role="popup" id="popAggregation" data-dismissible="false" data-transition="fade" data-theme="b" data-overlay-theme="b" style="min-width:300px; max-width:300px; border:none">
+          <ul data-role="listview" data-inset="true" style="border:none">
+          <li data-role="list-divider" style=" text-align: center; border-bottom-left-radius:0; border-bottom-right-radius:0; padding:14px 14px; background-color:#0277bd; font-weight:300; border: none "><i class="fas fa-fw fa-list-alt" style="margin-right: 9px"></i>选择查看数据字段</li>
+          <form onsubmit="return false;" style="margin:16px 16px;">
+           
+            <!--
+
+                data-native-menu="false" 
+            data-overlay-theme="a"
+            data-theme="b" 
+            tabindex="-1"
+            -->
+            <label for="aggregationCollection" style="color: #78909c; font-size: small">查看的表<font color="#d32f2f"><i class="fa fa-fw fa-asterisk"></i></font></label>
+            <select name="aggregationCollection" id="groupCollection"  controlType="sbft"  data-bind="selected:aggregation.collectionId">
+            <!-- ko foreach: aggregation.collections -->
+            <option data-bind="value:id,text:name"></option>
+            <!-- /ko -->
+            </select>
+            <label for="aggregationField" style="color: #78909c; font-size: small">查看的字段<font color="#d32f2f"><i class="fa fa-fw fa-asterisk"></i></font></label>
+            <select name="aggregationField" id="aggregationField"  controlType="sbft"  data-bind="selected:aggregation.fieldId">
+            <!-- ko foreach: aggregation.fields -->
+            <option data-bind="value:id,text:name"></option>
+            <!-- /ko -->
+            </select>
+            <label for="aggregationType" style="color: #78909c; font-size: small">查看类型<font color="#d32f2f"><i class="fa fa-fw fa-asterisk"></i></font></label>
+            <select name="aggregationType" id="aggregationType"  controlType="sbft"  data-bind="selected:aggregation.aggregationType">
+     
+               <!-- ko foreach: aggregation.options -->
+               <option data-bind="value:id,text:name"></option>
+               <!-- /ko -->
+            </select>
+          </form>
+
+          <div class="ui-grid-a" style="margin:12px 12px; padding-bottom:12px;">
+          <div class="ui-block-a"><a href="javascript:void(0);" data-bind="click:addAggregation" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#03a9f4; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-check-double" style="margin-right: 12px"></i>确定</a> </div>
+          <div class="ui-block-b"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#333333; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-times" style="margin-right: 12px"></i>取消</a> </div>
+          </div>
+          </ul>
+        </div>
+
+          
+        <div data-role="popup" id="popCondition" data-dismissible="false" data-transition="fade" data-theme="b" data-overlay-theme="b" style="min-width:300px; max-width:300px; border:none">
+          <ul data-role="listview" data-inset="true" style="border:none">
+          <li data-role="list-divider" style=" text-align: center; border-bottom-left-radius:0; border-bottom-right-radius:0; padding:14px 14px; background-color:#0277bd; font-weight:300; border: none "><i class="fas fa-fw fa-list-alt" style="margin-right: 9px"></i>选择添加条件的字段</li>
+          <form onsubmit="return false;" style="margin:16px 16px;">
+           
+            <!--
+
+                data-native-menu="false" 
+            data-overlay-theme="a"
+            data-theme="b" 
+            tabindex="-1"
+            -->
+            <label for="conditionCollection" style="color: #78909c; font-size: small">条件的表<font color="#d32f2f"><i class="fa fa-fw fa-asterisk"></i></font></label>
+            <select name="conditionCollection" id="groupCollection"  controlType="sbft"  data-bind="selected:condition.collectionId">
+            <!-- ko foreach: condition.collections -->
+            <option data-bind="value:id,text:name"></option>
+            <!-- /ko -->
+            </select>
+            <label for="conditionField" style="color: #78909c; font-size: small">条件的字段<font color="#d32f2f"><i class="fa fa-fw fa-asterisk"></i></font></label>
+            <select name="conditionField" id="conditionField"  controlType="sbft"  data-bind="selected:condition.fieldId">
+            <!-- ko foreach: condition.fields -->
+            <option data-bind="value:id,text:name"></option>
+            <!-- /ko -->
+            </select>
+            <label for="conditionType" style="color: #78909c; font-size: small">条件类型<font color="#d32f2f"><i class="fa fa-fw fa-asterisk"></i></font></label>
+            <select name="conditionType" id="conditionType"  controlType="sbft"  data-bind="selected:condition.conditionType">
+               <!-- ko foreach: condition.options -->
+               <option data-bind="value:id,text:name"></option>
+               <!-- /ko -->
+            </select>
+            <label for="conditionValue" style="color: #78909c; font-size: small">条件值<font color="#d32f2f"><i class="fa fa-fw fa-asterisk"></i></font></label>
+            <input id="conditionValue" controlType="t1" data-bind="value:condition.value" type="text" data-theme="b" placeholder="条件值..." style="font-weight:300; height:38px; font-size:medium;">
+          </form>
+
+          <div class="ui-grid-a" style="margin:12px 12px; padding-bottom:12px;">
+          <div class="ui-block-a"><a href="javascript:void(0);" data-bind="click:addCondition" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#03a9f4; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-check-double" style="margin-right: 12px"></i>确定</a> </div>
+          <div class="ui-block-b"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#333333; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-times" style="margin-right: 12px"></i>取消</a> </div>
+          </div>
+          </ul>
+        </div>
+          
+			  <div data-role="popup" id="popShowType" data-overlay-theme="a" data-theme="b" style="border: none">
+            <ul data-role="listview" data-inset="true" 
+            data-bind="jqmTemplate: { name: 'showTypeItem', foreach: chartTypes }, jqmRefreshList: chartTypes"
+            class="ui-alt-icon ui-nodisc-icon" style="min-width:160px; border: none">
+            </ul>
+          </div>
+        </div>
+        <div class="row" style="margin: 3px 6px; margin-top: 32px">
+          <div class="col-sm-6 col-xs-6 col-md-3 col-lg-4" style="padding: 3px 3px; ">
+            <legend style="font-size: 14px; color: #607d8b; margin-bottom: 0px;">分组条件 <a href="javascript:void(0);" id="groupMenu"
+              data-bind="click:getGroup,css: { 'ui-disabled':editingReport.dataSource().length===0}" style="margin-left: 4px; color: #4caf50"><i class="fas fa-fw fa-plus-circle"></i></a></legend>
+          </div>
+          <div class="col-sm-6 col-xs-6 col-md-3 col-lg-4" style="padding: 3px 3px; ">
+            <legend style="font-size: 14px; color: #607d8b; margin-bottom: 0px;">查看 <a href="javascript:void(0);" id="aggregationMenu" 
+              data-bind="click:getAggregation,css: { 'ui-disabled':editingReport.dataSource().length===0}" style="margin-left: 4px; color: #4caf50"><i class="fas fa-fw fa-plus-circle"></i></a></legend>
+          </div>
+          <div class="col-sm-6 col-xs-6 col-md-3 col-lg-4" style="padding: 3px 3px; ">
+            <legend style="font-size: 14px; color: #607d8b; margin-bottom: 0px;">筛选条件 <a href="javascript:void(0);" id="conditionMenu" 
+              data-bind="click:getCondition,css: { 'ui-disabled':editingReport.dataSource().length===0}" style="margin-left: 4px; color: #4caf50"><i class="fas fa-fw fa-plus-circle"></i></a></legend>
+          </div>
+        </div>
+        <div class="row" style="margin: 3px 3px">
+          <div class="col-sm-6 col-xs-6 col-md-3 col-lg-4" style="padding: 3px 3px; ">
+            <!-- ko  jqmTemplate:{foreach:editingReport.group,name:'groupItem'} -->
+            <!-- /ko -->
+          </div>
+          <div class="col-sm-6 col-xs-6 col-md-3 col-lg-4" style="padding: 3px 3px; ">
+           
+            <!-- ko  jqmTemplate:{foreach:editingReport.aggregation,name:'aggregationItem'} -->
+            <!-- /ko -->
+          </div>
+          <div class="col-sm-6 col-xs-6 col-md-3 col-lg-4" style="padding: 3px 3px;">
+            <!-- ko  jqmTemplate:{foreach:editingReport.condition,name:'conditionItem'} -->
+            <!-- /ko -->
+            <!-- <a href="#" style="margin-left: 3px; font-size: 14px; font-weight: 600">Order <i class="fal fa-fw fa-not-equal" style="color: #e91e63"></i> <span style="font-weight: 600; color: #333333">123</span></a>
+            <a href="#" style="color: #b0bec5"><i class="fas fa-fw fa-times"></i></a>
+            <a href="#" style="margin-left: 3px; font-size: 14px; font-weight: 600">Order <i class="fal fa-fw fa-arrows-h" style="color: #e91e63"></i> <span style="font-weight: 600; color: #333333">123</span>,<span style="font-weight: 600; color: #333333">566</span></a>
+            <a href="#" style="color: #b0bec5"><i class="fas fa-fw fa-times"></i></a>
+             -->
+          </div>
+        </div>
+        <div class="row" style="margin: 3px 3px; margin-top: 32px;">
+          <p align="center">
+            <a href="javascript:void(0);" data-bind="click:saveReport"  class="ui-btn ui-btn-inline ui-corner-all" style="background-color: #4caf50; color: #FFFFFF; font-weight: 300; margin-top: 24px; margin-bottom: 28px"><i class="fas fa-fw fa-save" style="margin-right: 9px"></i>保存报表</a>
+            <a href="javascript:void(0);" data-bind="click:previewReport"  class="ui-btn ui-btn-inline ui-corner-all" style="background-color: #e91e63; color: #FFFFFF; font-weight: 300; margin-top: 24px; margin-bottom: 28px"><i class="fas fa-fw fa-play" style="margin-right: 9px"></i>生成报表</a>
+          </p>
+          <!-- <iframe src="https://mttmb.magna.cn/public/question/c0c3c753-60bf-4628-a1ee-713011b96685" 
+          frameborder="0" width="100%" height="600" allowtransparency></iframe> -->
+
+          <!-- ko if: editingReport.showType() === 'table' -->
+          <!-- ko  datatable: preview.table -->
+          <!-- /ko -->
+          <!-- /ko -->
+          <div data-bind="visible:editingReport.showType() !== 'table' " class="row">
+            <div class="col-12">
+                <canvas id="previewChart" height="80"></canvas>
+            </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+	
+	<div data-role="panel" id="panelgrid" data-position-fixed="true" data-position="right" data-display="overlay" data-theme="a">
+      <div class="jqm-block-content" style="margin: -14px -14px; margin-bottom: 14px; padding: 9px 9px; padding-top: 30px; background-color: #455a64; border:none; min-height: 0px; border-radius: 0em;">
+        <p align="center" style="margin-bottom:10px;"> <i class="material-icons md-56 md-light">face</i> </p>
+        <div class="ui-grid-a" style="text-shadow: 0 0 0; color:#FFFFFF">
+          <div class="ui-block-a">
+            <p align="left" style="padding-left:8px;"> <font size="+1" data-bind="text:user.name"></font> <br>
+              <font color="#BDBDBD"> <span data-bind="text:user.Roles"></span> <br>
+              <span data-bind="text:user.sub"></span> </font> </p>
+          </div>
+          <div class="ui-block-b">
+            <p align="right" style="margin-top: 8px; padding-right:3px;"> <a href="javascript:void(0);" data-bind="click:logout"> <i class="fal fa-2x fa-sign-out"></i> </a> </p>
+          </div>
+        </div>
+      </div>
+      <ul data-role="listview" data-theme="b" class="ui-nodisc-icon ui-alt-icon">
+          <li data-role="collapsible" data-iconpos="right" data-inset="false"
+                    style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) " data-collapsed-icon="bars"
+                    data-expanded-icon="carat-u">
+            <h2 style="padding:0px 0px; margin:0px 0px;"><span data-i18n="my-bpms">我的BPMS</span></h2>
+            <ul data-role="listview" data-theme="a"
+                        style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+              <li><a rel="external" href="index.html"
+                               style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i class="fas fa-fw fa-home" style="margin-right: 8px; color: #03a9f4"></i><span data-i18n="my-home">工作台</span></a></li>
+              <li><a rel="external"   href="assign.html"
+                               style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i class="fas fa-fw fa-users-cog" style="margin-right: 8px; color: #03a9f4"></i><span data-i18n="my-authorize">授权管理</span></a></li>
+              <li><a rel="external" href="#"
+                               style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i class="fas fa-fw fa-chart-area" style="margin-right: 8px; color: #03a9f4"></i><span data-i18n="my-report">报表</span></a></li>
+            </ul>
+          </li>
+          <li data-role="collapsible" data-iconpos="right" data-inset="false"
+                    style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) " data-collapsed-icon="bars"
+                    data-expanded-icon="carat-u">
+            <h2 style="padding:0px 0px; margin:0px 0px;"><span data-i18n="my-tasks">我的任务</span></h2>
+            <ul data-role="listview" data-theme="a"
+                        style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+              <li><a rel="external" href="task_list.html"
+                               style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i class="fas fa-fw fa-tasks" style="margin-right: 8px; color: #03a9f4"></i><span data-i18n="my-todo">待处理任务</span></a></li>
+              <li><a rel="external" href="history_list.html"
+                               style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i class="fas fa-fw fa-history" style="margin-right: 8px; color: #03a9f4"></i><span data-i18n="my-taskhistory">任务历史</span></a></li>
+            </ul>
+          </li>
+          <li data-role="collapsible" data-iconpos="right" data-inset="false"
+                    style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) " data-collapsed-icon="bars"
+                    data-expanded-icon="carat-u">
+            <h2 style="padding:0px 0px; margin:0px 0px;"><span data-i18n="my-processes">我的流程</span></h2>
+            <ul data-role="listview" data-theme="a"
+                        style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+              <li><a rel="external" href="process_list.html"
+                               style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i class="fas fa-fw fa-layer-plus" style="margin-right: 8px; color: #03a9f4"></i><span data-i18n="create-process">启动流程</span></a></li>
+              <li><a rel="external"   href="instance_list.html"
+                               style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i class="fas fa-fw fa-history" style="margin-right: 8px; color: #03a9f4"></i><span data-i18n="my-processhistory">流程历史</span></a></li>
+            </ul>
+          </li>
+          
+          <!--
+                <li data-role="collapsible" data-iconpos="right" data-inset="false"
+                    style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) " data-collapsed-icon="bars"
+                    data-expanded-icon="carat-u">
+                    <h2 style="padding:0px 0px; margin:0px 0px;">设置</h2>
+                    <ul data-role="listview" data-theme="a"
+                        style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+                        <li><a rel="external" href="../settings/indexDesign.html"
+                               style="font-weight:200; background-color:transparent"><img
+                                src="images/Glyphish/icons/19-gear@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                                style="top: 11px;">首页设置</a></li>
+    
+                    </ul>
+                </li>
+                -->
+        </ul>
+      <p align="center" style="margin-top: 30px;"> <img src="images/bpmslogoxs.png" height="18px"> </p>
+    </div>
+  
+  <p align="center" style=" margin-bottom:3em">&nbsp;</p>
+  <br>
+  <div data-role="footer"  data-fullscreen="true" data-position="fixed" style=" border-bottom-width: 0px; opacity: 1">
+    <div data-role="navbar" >
+      <ul>
+        <li data-bind="css: { 'ui-disabled':!report.hasPrev()}">
+          <a href="javascript:void(0);" data-bind="click:getPrev" class="ui-btn-b" style="font-weight:300"><i class="fal fa-2x fa-chevron-left" style="margin-bottom: 8px"></i><br>
+          上一页</a>
+        </li>
+        <li data-bind="css: { 'ui-disabled':!report.hasNext()}">
+          <a href="javascript:void(0);" data-bind="click:getNext" class="ui-btn-b" style="font-weight:300"><i class="fal fa-2x fa-chevron-right" style="margin-bottom: 8px"></i><br>
+          下一页</a>
+        </li>
+        <li>
+          <a rel="external" href="index.html"  class="ui-btn-b" style="font-weight:300"><i class="fal fa-2x fa-home-heart" style="margin-bottom: 8px"></i><br>
+          主页</a>
+        </li>
+        <li>
+          <a href="#popaction" data-rel="popup"  data-transition="fade" class="ui-btn-b" style="font-weight:300"><i class="fal fa-2x fa-question" style="margin-bottom: 8px"></i><br>
+          帮助</a>
+        </li>
+      </ul>
+    </div>
+    <!-- /navbar -->
+    <div data-role="popup" id="popaction" data-theme="b" data-overlay-theme="a" style="border-width: 0px">
+      <ul data-role="listview" class="ui-nodisc-icon ui-alt-icon" data-inset="true" style="min-width:230px; border-radius: 0em; ">
+        <li data-role="list-divider" style="border-width: 0px;  background-color: #424242; border-radius: 0em; text-shadow: 0 0 0;"><i class="fal fa-ellipsis-h"></i></li>
+        <li data-icon="forbidden"><a href="#">无</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- /footer --> 
+</div>
+
+<script type="text/html" id="reportItem">
+<li>
+    <a href="javascript:void(0);" data-bind="click:function(){$root.selectReport(id);}">
+    <h2 data-bind="text:name"></h2>
+    <!-- <p style="color: #757575">F101</p> -->
+    <p data-bind="visible:createdAt" style="margin-top:0px; margin-bottom:0px; font-weight:200; color:#9E9E9E">
+        <span>
+            <strong data-bind="text: BPMS.Services.Utils.formatDateTime(createdAt,'t3')"></strong>
+          &nbsp;<span data-bind="text: BPMS.Services.Utils.formatDateTime(createdAt,'t4')"></span>
+        </span>&nbsp;
+        <i class="fal fa-fw fa-user"></i>&nbsp;<span data-bind="text:createdName"></span> 
+    </p>
+    <span class="ui-li-count"><i class="fas fa-fw" data-bind="css: $root.getChart(showType).icon" style="color: #03a9f4"></i></span>
+  </a>
+</li>
+</script>
+<script type="text/html" id="showTypeItem">
+<li><a href="javascript:void(0);" data-bind="click:$root.selectShowType.bind($root)"
+  style="font-weight: 300"><i class="fal fa-fw"  data-bind="css:icon" style="margin-right: 16px; color: #03a9f4"></i><span data-bind="text:name"></span></a>
+</li>
+</script>      
+
+<script type="text/html" id="availableSourceItem">
+  <li ><a href="javascript:void(0);" data-bind="text:name,click:$root.selectSource.bind($root),css: { 'ui-icon-check':$root.sourceId() === $data.collection,'ui-icon-carat-r':$root.sourceId() !== $data.collection}"></a></li>
+</script>    
+
+<script type="text/html" id="availableJoinItem">
+  <li ><a href="javascript:void(0);" data-bind="text:name,click:$root.selectJoin.bind($root),css: { 'ui-icon-check':$root.joinId() === $data.id,'ui-icon-carat-r':$root.joinId() !== $data.id}"></a></li>
+</script>    
+
+<script type="text/html" id="sourceItem">
+  <a href="javascript:void(0);" style="margin-left: 3px; font-size: 14px; font-weight: 600;text-decoration:underline"><span data-bind="text:name"></span>(<span  data-bind="text:id"></span>)</a><a href="javascript:void(0);" data-bind="click:$root.removeSource.bind($root)" style="color: #b0bec5"><i class="fas fa-fw fa-times"></i></a>
+</script>      
+<script type="text/html" id="groupItem">
+  
+  <a href="javascript:void(0);" style="margin-left: 3px; font-size: 14px; font-weight: 600;text-decoration:underline"><span data-bind="text:fieldName"></span>(<span  data-bind="text:collectionId+'.'+fieldId"></span>)</a><a href="javascript:void(0);" data-bind="click:$root.removeGroup.bind($root)" style="color: #b0bec5"><i class="fas fa-fw fa-times"></i></a>
+</script>      
+
+<script type="text/html" id="aggregationItem">
+  <a href="javascript:void(0);" style="margin-left: 3px; font-size: 14px; font-weight: 600; text-decoration:underline">
+    <font color="#333333"><b><span data-bind="text:$root.formatAggregationType(aggregationType)"></span><span>的</span></b></font><span data-bind="text:fieldName"></span>
+  </a>
+<a href="javascript:void(0);" data-bind="click:$root.removeAggregation.bind($root)" style="color: #b0bec5"><i class="fas fa-fw fa-times"></i></a>
+</script>      
+
+<script type="text/html" id="joinItem">
+  <a data-bind="visible:id,click:$root.getJoin.bind($root)" href="javascript:void(0);" style="margin-left: 9px; font-size: 14px; font-weight: 600;text-decoration:underline">
+    <span data-bind="text:name"></span>
+    (<span  data-bind="text:id"></span>)
+  </a>
+  <a data-bind="visible:!id,click:$root.getJoin.bind($root)" href="javascript:void(0);" style="color:#b0bec5;margin-left: 9px; font-size: 14px; font-weight: 600;">设置</a>
+  <a href="javascript:void(0);" data-bind="click:$root.getJoin.bind($root)" style="color: #b0bec5"> <i class="fas fa-fw fa-pencil"></i></a>  
+</script>      
+
+<script type="text/html" id="conditionItem">
+  <a href="javascript:void(0);" style="margin-left: 3px; font-size: 14px; font-weight: 600"><span data-bind="text:fieldName"></span><i class="fal fa-fw" data-bind="css:$root.formatConditionType(conditionType)" style="color: #e91e63"></i><span style="font-weight: 600; color: #333333" data-bind="text:value"></span></a>
+  <a href="javascript:void(0);" data-bind="click:$root.removeCondition.bind($root)" style="color: #b0bec5"><i class="fas fa-fw fa-times"></i></a>
+</script>      
+
+</body>
+</html>

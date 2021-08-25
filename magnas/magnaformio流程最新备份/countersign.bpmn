@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="countersign" name="加签审阅" isExecutable="true" activiti:candidateStarterUsers="svc.mtt">
+    <startEvent id="startevent1" name="Start" activiti:initiator="initiator">
+    	
+    </startEvent>
+    <userTask id="UT01" name="${sourcetaskname}" activiti:assignee="${delegateduserid}" activiti:formKey="${sourcetaskformid}">
+    	<extensionElements>
+          <activiti:taskListener event="complete" class="org.activiti.engine.impl.bpmn.listener.ScriptTaskListener">
+            <activiti:field name="language">
+              <activiti:string><![CDATA[groovy]]></activiti:string>
+            </activiti:field>
+            <activiti:field name="script">
+              <activiti:string><![CDATA[import groovy.json.JsonSlurper;
+        import groovy.json.JsonOutput;
+        def user = identityService.createUserQuery().userId(task.getAssignee()).singleResult(); 
+          def username = user.getLastName() + " " + user.getFirstName();        
+              //设置审批历史
+              def approvehi = [:];
+              approvehi.assigneeName = username;
+              approvehi.taskName = task.getName();
+              approvehi.approveTime = new Date().format("YYYY-MM-dd HH:mm:ss");
+              approvehi.approveMemo = task.getExecution().getVariableLocal("coreaction") + task.getExecution().getVariableLocal("corecomments");
+
+
+              def public_allApproveHi = new JsonSlurper().parseText(task.getExecution().getVariable("public_allApproveHi"));
+              public_allApproveHi << approvehi;
+              task.getExecution().setVariable("public_allApproveHi",JsonOutput.toJson(public_allApproveHi));
+        ]]></activiti:string>
+            </activiti:field>
+          </activiti:taskListener>
+        </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="UT01"></sequenceFlow>
+    <scriptTask id="scripttask1" name="Script Task" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>
+      <![CDATA[
+        import groovy.json.JsonSlurper;
+        import groovy.json.JsonOutput;    
+        import com.eorionsolution.bpms.extension.rest.RestAPI;
+        import java.time.Instant; 
+
+        def mainPid = execution.getVariable("sourcepid")
+        def public_allApproveHi = JsonOutput.toJson(execution.getVariable("public_allApproveHi"));
+        //def mainPublic_allApproveHi = runtimeService.createProcessInstanceQuery().processInstanceId(mainPid).getVariable("public_allApproveHi").singleResult();
+        def headerMap = new java.util.HashMap<String,String>();
+        //认证
+          headerMap.put("Authorization","Basic c3ZjLm10dDpQcnQyMDEzIQ=="); 
+          headerMap.put("Content-Type","application/json"); 
+          //获取主流程的public_allApproveHi
+          Map<String, Object> rest = new java.util.HashMap<String,Object>();
+          rest.put("_http_method","GET");
+        rest.put("_http_headers",headerMap);
+        rest.put("_http_body","");  
+        rest.put("_http_url", 'https://mttbpms.magna.cn/bpms-rest/service/runtime/process-instances/'+mainPid+'/variables/public_allApproveHi');
+        def results = RestAPI.execute(rest);
+        def body3 = results._http_response_body;
+        execution.setVariable("oldPublic_allApproveHi",body3);
+        
+        def listAllApproveHi =new JsonSlurper().parseText(body3);
+        def public_list="";
+        listAllApproveHi.each{
+          elem -> 
+          if(elem.key == 'value'){
+            public_list = elem.value
+          }
+        }
+        execution.setVariable("public_list",public_list);
+        def newPublic_allApproveHi = [];
+        def public_lists =new JsonSlurper().parseText(public_list)
+        public_lists.each{
+          elem2 ->
+          newPublic_allApproveHi << elem2
+        }
+        def public_allApproveHi2 = new JsonSlurper().parseText(execution.getVariable("public_allApproveHi"));
+        public_allApproveHi2.each{
+          elem3 ->
+          newPublic_allApproveHi << elem3
+        }
+        execution.setVariable("newPublic_allApproveHi",JsonOutput.toJson(newPublic_allApproveHi.unique()));
+        
+        def body = '{"name":"public_allApproveHi","type":"string","value":'+ JsonOutput.toJson(execution.getVariable("newPublic_allApproveHi")) +',"scope":null}'
+        execution.setVariable("body1",body)
+        Map<String, Object> restParam = new java.util.HashMap<String,Object>();
+                          
+              restParam.put("_http_method","PUT");
+              restParam.put("_http_headers",headerMap);
+              restParam.put("_http_body",body); 
+              //def param=java.net.URLEncoder.encode('[{"type":"category","target":["variable",["template-tag","name"]],"value":"'+elem.channel2+'"}]', "UTF-8");
+              restParam.put("_http_url", 'https://mttbpms.magna.cn/bpms-rest/service/runtime/process-instances/'+mainPid+'/variables/public_allApproveHi');
+              def result = RestAPI.execute(restParam);
+              def body2 = result._http_response_body;
+              execution.setVariable("newPublic_allApproveHi2",body2);
+        
+          ]]>
+					</script>
+    </scriptTask>
+    <sequenceFlow id="flow2" sourceRef="UT01" targetRef="scripttask1"></sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow3" sourceRef="scripttask1" targetRef="endevent1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_task_subtask">
+    <bpmndi:BPMNPlane bpmnElement="task_subtask" id="BPMNPlane_task_subtask">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="200.0" y="140.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="UT01" id="BPMNShape_UT01">
+        <omgdc:Bounds height="55.0" width="105.0" x="280.0" y="130.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="430.0" y="130.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="580.0" y="140.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="235.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="280.0" y="157.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="385.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="430.0" y="157.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="535.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="580.0" y="157.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

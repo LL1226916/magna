@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KANPOD WorkStation</title>
+<meta name="description" content="Page Title">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
+<!-- Call App Mode on ios devices -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!-- Remove Tap Highlight on Windows Phone IE -->
+<meta name="msapplication-tap-highlight" content="no">
+<!-- base css -->
+<link rel="stylesheet" media="screen, print" href="css/vendors.bundle.css">
+<link rel="stylesheet" media="screen, print" href="css/app.bundle.css">
+<!--<link rel="stylesheet" media="screen, print" href="css/themes/cust-theme-3.css">-->
+<link rel="stylesheet" media="screen, print" href="css/fa-brands.css">
+<link rel="stylesheet" media="screen, print" href="css/fa-regular.css">
+<link rel="stylesheet" media="screen, print" href="css/fa-duotone.css">
+<link rel="stylesheet" media="screen, print" href="css/fa-solid.css">
+<link rel="stylesheet" media="screen, print" href="css/datagrid/datatables/datatables.bundle.css">
+
+</head>
+<body >
+
+<!-- BEGIN Page Wrapper -->
+<div class="page-wrapper">
+  <div class="page-inner"> 
+    <!-- BEGIN Left Aside --> 
+    
+    <!-- END Left Aside -->
+    <div class="page-content-wrapper"> 
+      <!-- BEGIN Page Header -->
+<!--       <header class="page-header bg-dark shadow-sm header-function-fixed ml-0 mr-0 pl-4 pr-4" role="banner"> 
+      
+        <div><img src="img/kanpodworkstationwhite.svg" alt="logo" height="30px"><span class="fw-900 fs-xl text-white"><span class="text-info"> | </span>当班调模维修记录</span></div>
+        <div class="ml-auto d-flex">
+          <div> <a href="#" class="header-icon fw-900 waves-effect waves-themed mr-4"><img src="img/1280px-Magna_logo.svg.png" height="28px" class="mb-2"></a></div>
+          <div> <a href="#" class="header-icon" data-toggle="modal" data-target=".account-modal"> <i class="far fa-fw fa-bars text-white"></i></a> 
+         
+            
+          </div>
+          
+
+          
+        </div>
+      </header> -->
+      <!-- END Page Header --> 
+      <!-- BEGIN Page Content --> 
+      <!-- the #js-page-content id is needed for some plugins to initialize -->
+      <main id="js-page-contentmain" role="main" class="page-content p-0 bg-gray-900"> 
+        
+        <!-- left slider --> 
+        
+        <!-- end left slider --> 
+        <!-- inbox container -->
+        <div class="row  d-flex flex-grow-1 p-0 "> 
+          <!--<div class="col-4 col-md-4 col-lg-3 col-xl-3 border-0 bg-gray-800 shadow-sm">
+            <div class="mb-auto mt-5 pl-5 pr-4 fs-xs"> <span class="fw-900 fs-xs text-dark" style="font-size:1rem; margin-bottom: 1em;">计划完成率</span> <span class="fw-400 d-block mt-3 text-dark" style="font-size: 1.3em;"><i class="fal fa-fw fa-quote-left mr-2 text-info"></i>当前产量=生产看板数据明细里的“合格品”。<br><i class="fal fa-fw fa-quote-left mr-2 text-info"></i>标准产能=生产看板数据明细里的“间隔时间”/标准节拍（单件）。<br><i class="fal fa-fw fa-quote-left mr-2 text-info"></i>计划完成率=实际完成量/标准产能*100%，区分L/R。</span> </div>
+            <div class="mt-3 pl-5 pr-4 pt-2">  
+              
+			  <div class="list-group shadow-sm shadow-hover-2 mt-6"> 
+				  <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h3 class="mb-1 mt-1 fw-900">员工技能<span class="badge  fw-900 position-absolute pos-top pos-right mt-3 mr-2"><i class="fal fa-2x fa-fw fa-id-badge text-info"></i></span></h3>
+                </div>
+                <p class="mb-0 text-muted">员工技能看板说明</p>
+                 </a>
+				  <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h3 class="mb-1 mt-1 fw-900">4M变化点<span class="badge  fw-900 position-absolute pos-top pos-right mt-3 mr-2"><i class="fal fa-2x fa-fw fa-directions text-info"></i></span></h3>
+                </div>
+                <p class="mb-0 text-muted">4M变化点说明</p>
+                 </a>
+				  <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h3 class="mb-1 mt-1 fw-900">当班调模维修记录<span class="badge  fw-900 position-absolute pos-top pos-right mt-3 mr-2"><i class="fal fa-2x fa-fw fa-screwdriver text-info"></i></span></h3>
+                </div>
+                <p class="mb-0 text-muted">说明</p>
+                 </a>
+				  
+				  
+				  <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h3 class="mb-1 mt-1 fw-900">计划完成率<span class="badge  fw-900 position-absolute pos-top pos-right mt-3 mr-2"><i class="fal fa-2x fa-fw fa-percentage text-info"></i></span></h3>
+                </div>
+                <p class="mb-0 text-muted">当前产能与标准产能的差异</p>
+                 </a> 
+				<a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h3 class="mb-1 mt-1 fw-900">合格率<span class="badge  fw-900 position-absolute pos-top pos-right mt-3 mr-2"><i class="fal fa-2x fa-fw fa-percentage text-info"></i></span></h3>
+                </div>
+                <p class="mb-0 text-muted">说明</p>
+                 </a>
+				<a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h3 class="mb-1 mt-1 fw-900">客户投诉<span class="badge  fw-900 position-absolute pos-top pos-right mt-3 mr-2"><i class="fal fa-2x fa-fw fa-angry text-info"></i></span></h3>
+                </div>
+                <p class="mb-0 text-muted">4M变化点说明</p>
+                 </a>
+				  
+				  <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h3 class="mb-1 mt-1 fw-900">OEE<span class="badge  fw-900 position-absolute pos-top pos-right mt-3 mr-2"><i class="fal fa-2x fa-fw fa-chart-line text-info"></i></span></h3>
+                </div>
+                <p class="mb-0 text-muted">说明</p>
+                 </a>
+				  
+				  <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h3 class="mb-1 mt-1 fw-900">防错清单<span class="badge  fw-900 position-absolute pos-top pos-right mt-3 mr-2"><i class="fal fa-2x fa-fw fa-file-check text-info"></i></span></h3>
+                </div>
+                <p class="mb-0 text-muted">说明</p>
+                 </a>
+				  
+				  <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h3 class="mb-1 mt-1 fw-900">偏差单<span class="badge  fw-900 position-absolute pos-top pos-right mt-3 mr-2"><i class="fal fa-2x fa-fw fa-code-branch text-info"></i></span></h3>
+                </div>
+                <p class="mb-0 text-muted">说明</p>
+                 </a>
+				
+				</div></div>
+          </div>-->
+          <div class="col-12 col-md-12 col-lg-12 col-xl-12 p-0 ">
+            <div class="row " style="margin: 0px 0px" id="js-page-content"> 
+              <!--<div class="col-6" style="padding: 36px 24px; color: #000000">
+    <div style="font-size: 2rem"><span>LeftLin1：</span><span>M01</span></div>
+	  <div style="font-size: 2rem"><span>LeftLin2：</span><span>M01</span></div>
+	  <div style="margin-top: 48px">chart here</div>
+	  <div style="font-size: 4rem;"><i class="far fa-fw fa-smile"></i></div>
+	  
+  </div>
+   
+   <div class="col-6" style="padding: 36px 24px; color: #000000">
+    <div style="font-size: 2rem"><span>RightLin1：</span><span>M01</span></div>
+	  <div style="font-size: 2rem"><span>RightLin2：</span><span>M01</span></div>
+	   <div style="margin-top: 48px">chart here</div>
+	   <div style="font-size: 4rem;"><i class="fas fa-fw fa-frown"></i></div>
+  </div>--> 
+              
+              <!--<main id="js-page-content" role="main" class="page-content"> 
+
+  </main>	  --> 
+              
+            </div>
+          </div>
+        </div>
+        
+        <!-- Your main content goes below here: --> 
+        
+      </main>
+      <!-- this overlay is activated only when mobile menu is triggered -->
+      <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
+      <!-- END Page Content --> 
+      <!-- BEGIN Page Footer --> 
+      
+      <!-- END Page Footer --> 
+      <!-- BEGIN Shortcuts --> 
+      
+      <!-- END Shortcuts --> 
+      <!-- BEGIN Color profile --> 
+      <!-- this area is hidden and will not be seen on screens or screen readers --> 
+      <!-- we use this only for CSS color refernce for JS stuff -->
+      <p id="js-color-profile" class="d-none"> <span class="color-primary-50"></span> <span class="color-primary-100"></span> <span class="color-primary-200"></span> <span class="color-primary-300"></span> <span class="color-primary-400"></span> <span class="color-primary-500"></span> <span class="color-primary-600"></span> <span class="color-primary-700"></span> <span class="color-primary-800"></span> <span class="color-primary-900"></span> <span class="color-info-50"></span> <span class="color-info-100"></span> <span class="color-info-200"></span> <span class="color-info-300"></span> <span class="color-info-400"></span> <span class="color-info-500"></span> <span class="color-info-600"></span> <span class="color-info-700"></span> <span class="color-info-800"></span> <span class="color-info-900"></span> <span class="color-danger-50"></span> <span class="color-danger-100"></span> <span class="color-danger-200"></span> <span class="color-danger-300"></span> <span class="color-danger-400"></span> <span class="color-danger-500"></span> <span class="color-danger-600"></span> <span class="color-danger-700"></span> <span class="color-danger-800"></span> <span class="color-danger-900"></span> <span class="color-warning-50"></span> <span class="color-warning-100"></span> <span class="color-warning-200"></span> <span class="color-warning-300"></span> <span class="color-warning-400"></span> <span class="color-warning-500"></span> <span class="color-warning-600"></span> <span class="color-warning-700"></span> <span class="color-warning-800"></span> <span class="color-warning-900"></span> <span class="color-success-50"></span> <span class="color-success-100"></span> <span class="color-success-200"></span> <span class="color-success-300"></span> <span class="color-success-400"></span> <span class="color-success-500"></span> <span class="color-success-600"></span> <span class="color-success-700"></span> <span class="color-success-800"></span> <span class="color-success-900"></span> <span class="color-fusion-50"></span> <span class="color-fusion-100"></span> <span class="color-fusion-200"></span> <span class="color-fusion-300"></span> <span class="color-fusion-400"></span> <span class="color-fusion-500"></span> <span class="color-fusion-600"></span> <span class="color-fusion-700"></span> <span class="color-fusion-800"></span> <span class="color-fusion-900"></span> </p>
+      <!-- END Color profile --> 
+      
+      <!-- Modal Left Small -->
+      <!--<div class="modal fade account-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-right modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title h4">我的账户</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true"><i class="fal fa-times"></i></span> </button>
+            </div>
+            <div class="modal-body"> <span class="d-block fs-md fw-900"><i class="far fa-fw fa-id-badge mr-2 text-info"></i>Blade Shao <span class="text-secondary fw-400">1000000</span></span> <span class="d-block fs-md fw-800"><i class="far fa-fw fa-map-marker-alt mr-2 text-info"></i>WS001</span> <span class="d-block fs-md fw-800 mt-6"><i class="far fa-fw fa-comment-alt-lines mr-2 text-danger"></i>消息</span>
+              <div class="card mt-2">
+                <div class="card-body p-3 shadow">
+                  <h5>综合效率 <small class="mt-0 mb-3 text-muted">OEE</small> <span class="badge badge-primary fw-n position-absolute pos-top pos-right mt-3 mr-3">A</span> </h5>
+                  <div class="row fs-b fw-300">
+                    <div class="col text-left"> Progress </div>
+                    <div class="col text-right"> 90% </div>
+                  </div>
+                  <div class="progress progress-xs d-flex mb-2 mt-1"> <span class="progress-bar bg-primary-500 progress-bar-striped" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></span> </div>
+                  <div class="fw-300 mb-0">
+                    <div class="row">
+                      <div class="col"> Budget </div>
+                      <div class="col text-right"> $1,325,987.30 </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer" >
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <button type="button" class="btn btn-dark" data-dismiss="modal"><i class="far fa-fw fa-sign-out mr-2"></i>登出</button>
+            </div>
+          </div>
+        </div>
+      </div>-->
+    </div>
+  </div>
+</div>
+<!-- END Page Wrapper --> 
+<!-- BEGIN Quick Menu --> 
+<!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss --> 
+
+<!-- END Quick Menu --> 
+<!-- BEGIN Messenger --> 
+
+<!-- END Messenger --> 
+<!-- BEGIN Page Settings --> 
+
+<!-- END Page Settings --> 
+<!-- base vendor bundle: 
+			 DOC: if you remove pace.js from core please note on Internet Explorer some CSS animations may execute before a page is fully loaded, resulting 'jump' animations 
+						+ pace.js (recommended)
+						+ jquery.js (core)
+						+ jquery-ui-cust.js (core)
+						+ popper.js (core)
+						+ bootstrap.js (core)
+						+ slimscroll.js (extension)
+						+ app.navigation.js (core)
+						+ ba-throttle-debounce.js (core)
+						+ waves.js (extension)
+						+ smartpanels.js (extension)
+						+ src/../jquery-snippets.js (core) --> 
+<script src="js/vendors.bundle.js"></script> 
+<script src="js/app.bundle.js"></script> 
+<script src="js/dependency/moment/moment.js"></script> 
+<script src="js/statistics/peity/peity.bundle.js"></script> 
+<script src="js/statistics/sparkline/sparkline.bundle.js"></script> 
+<script src="js/handlebars-v4.7.3.js"></script> 
+<script src="js/moment.js"></script> 
+<script type="text/javascript" src="js/echarts.min.js"></script> 
+<script type="text/javascript">
+            // push settings with "false" save to local
+            initApp.pushSettings("nav-function-minify layout-composed", false);
+
+        </script> 
+<script id="template" type="text/x-handlebars-template">
+<div class="col-12 mt-3 p-0 pl-6 pr-6">
+<div style="font-size: 1.5rem; color: #ffffff"><span class="text-danger">设备: </span><span class="fw-900">{{data.deviceName}}</span></div>
+</div>
+<div class="col-12 mt-0 p-0 pl-6 pr-6">
+<div id="_left" style="margin-top: 10px; height: 240px" class="col-12 p-0"></div> 
+</div>
+
+
+<div class="col-12 pl-6 pr-6 pt-3" style="max-height: 360px; overflow: auto" >
+    
+		 <table class="table text-white table-bordered">
+                        <thead>
+                          <tr class="bg-gray-600">
+						  <th style="font-size: 1.4em">零件号</th>
+						  <th style="font-size: 1.4em">故障内容</th>
+                            <th style="font-size: 1.4em;">报修时间</th>
+                            <th style="font-size: 1.4em">完成时间</th>
+                             <th style="font-size: 1.4em">累计用时（分钟）</th>
+                             <th style="font-size: 1.4em">维修人员</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+						{{#each details}}
+                          <tr class="bg-gray-800">
+						  <td style="font-size: 1.4em">{{partNo}}</td>
+							<td style="font-size: 1.4em">{{repairContent}}</td>
+                            <td style="font-size: 1.4em">{{startTime}}</td>
+                            <td style="font-size: 1.4em">{{endTime}}</td>
+							<td style="font-size: 1.4em; font-weight:900">{{allTime}}</td>
+              <td style="font-size: 1.4em; font-weight:900"></td>
+                          </tr>
+						{{/each}}
+                        </tbody>
+		</table>
+</div>
+    
+  
+  
+   
+</script> 
+<script type="text/javascript">
+	
+
+	//设置时间
+	var current_datetime = new Date();
+	var formatted_date = moment(new Date().getTime()).format("YYYY-MM-DD HH:mm:ss");
+	$('#refreshTime').text(formatted_date)
+
+	//获取sn参数
+	function getQueryVariable(variable)
+	{
+		   var query = window.location.search.substring(1);
+		   var vars = query.split("&");
+		   for (var i=0;i<vars.length;i++) {
+				   var pair = vars[i].split("=");
+				   if(pair[0] == variable){return pair[1];}
+		   }
+		   return(false);
+	}
+
+	var sn = (getQueryVariable("sn") === false ? "178646d7f2f69dac" : getQueryVariable("sn"));	
+	
+	//从metabase获取数据并展示
+	//var metabaseUrl = "https://mttmb.magna.cn/public/question/704f370d-992d-4f79-a467-1a1e0999a002.json";//维修调模记录
+	var metabaseUrl = "https://mttmb.magna.cn/public/question/704f370d-992d-4f79-a467-1a1e0999a002.json";//维修调模记录
+
+	var getDataSettings = {
+	  "url": metabaseUrl + "?parameters=[{\"type\":\"category\",\"target\":[\"variable\",[\"template-tag\",\"sn\"]],\"value\":\"" + sn + "\"}]",
+	  "method": "GET"
+	}
+
+	$.ajax(getDataSettings).done(function (response) {
+		if(response[0]){
+			var renderData = {"data" : response[0], "details": JSON.parse(response[0].details)}
+
+			var template = document.getElementById('template').innerHTML;
+			
+			var rendered = Handlebars.compile(template);
+			document.getElementById('js-page-content').innerHTML = rendered(renderData);
+
+		
+			//左侧柱状图更新
+			$( '#_left' ).ready(function() {
+					var details = JSON.parse(response[0].details);
+					var xAxisData = [];
+					var seriesdata = [];
+					for(i in details){
+						xAxisData.push(details[i].repairContent + "\n" + details[i].partNo);
+						seriesdata.push(details[i].allTime);
+					}
+					var myChartL = echarts.init(document.getElementById("_left"), 'dark');
+					optionL = {
+						title: {
+							text: '累计用时',
+							top: "top",
+							left: "center",
+							textStyle: {
+								fontSize: 16
+							}
+						   
+						},
+						xAxis: {
+													
+							type: 'category',
+							data: xAxisData,
+							axisLabel: {
+								fontSize: 12
+							}
+							
+						},
+						yAxis: {
+							type: 'value'
+							//max: 900+900/4
+
+						},
+						series: [{
+							data: seriesdata,
+							type: 'bar',
+							barMaxWidth:"100",
+							color:'#d84315',
+							showBackground: true,
+							backgroundStyle: {
+								color: 'rgba(0, 0, 0, 0)'
+							},
+							label: {
+								show: true,
+								position: 'top',
+								fontSize: 18
+							}	
+						}]
+					};
+					if (optionL && typeof optionL === "object") {
+						myChartL.setOption(optionL, true);
+					}	
+				
+			});					
+		}
+
+		
+		
+	});
+
+
+
+ 
+</script> 
+
+<!--This page contains the basic JS and CSS files to get started on your project. If you need aditional addon's or plugins please see scripts located at the bottom of each page in order to find out which JS/CSS files to add.-->
+</body>
+</html>

@@ -1,0 +1,1043 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title data-i18n="task-title">BPMS - 我的任务</title>
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.css" />
+<link rel="stylesheet" type="text/css" href="css/color.css" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+<link rel="stylesheet" type="text/css" href="css/jqm-demos.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure.css">
+<link rel="stylesheet" type="text/css" href="css/all.min.css">
+<link rel="stylesheet" type="text/css" href="css/site.css" />
+<script src="libs/jquery.js?v=20210120"></script>
+<script src="libs/jquery.form.js?v=1582080760706"></script>
+<script src="libs/knockout.jquery.mobile.js?v=1582080760706"></script>
+<script src="libs/jquery.mobile.js?v=1582080760706"></script>
+<script src="libs/bootstrap.js?v=1582080760706"></script>
+<script src="libs/bootstrap-treeview.js?v=1582080760706"></script>
+<script src="libs/knockout.js?v=1582080760706"></script>
+<script src="libs/koExternalTemplateEngine_all.js?v=1582080760706"></script>
+<script src="libs/ko.extension.js?v=1582080760706"></script>
+<script src="libs/moment/moment.js?v=1582080760706"></script>
+<script src="libs/moment/locale/zh-cn.js?v=1582080760706"></script>
+<script src="libs/bootstrap-datetimepicker.js?v=1582080760706"></script>
+<script src="libs/shim.min.js?v=1582080760706"></script>
+<script src="libs/xlsx.full.min.js?v=1582080760706"></script>
+<script src="libs/oex/utils.js?v=1582080760706"></script>
+<script src="libs/oex/jqm-checked.js?v=1582080760706"></script>
+<script src="libs/oex/jqm-datetime.js?v=1582080760706"></script>
+<script src="libs/oex/jqm-selected.js?v=1582080760706"></script>
+<script src="libs/oex/jqm-number.js?v=1582080760706"></script>
+<script src="libs/oex/jqm-money.js?v=1582080760706"></script>
+<script src="libs/oex/jqm-tel.js?v=1582080760706"></script>
+<script src="libs/oex/jqm-email.js?v=1582080760706"></script>
+<script src="libs/oex/jqm-switch.js?v=1582080760706"></script>
+<script src="libs/oex/jqm-psb.js?v=1582080760706"></script>
+<script src="libs/oex/jqm-cny.js?v=1582080760706"></script>
+<script src="libs/oex/jqm-auto.js?v=1582080760706"></script>
+<script src="libs/oex/jqm-relation.js?v=1582080760706"></script>
+<script src="libs/oex/jqm-tree.js?v=1582080760706"></script>
+<script src="libs/oex/jqm-value.js?v=1582080760706"></script>
+<script src="libs/oex/jqm-id.js?v=1582080760706"></script>
+<script src="libs/oex/jqm-join.js?v=1582080760706"></script>
+<script src="libs/oex/jqm-upload.js?v=1582080760706"></script>
+<script src="libs/oex/jqm-ctr.js?v=1582080760706"></script>
+<script src="libs/CLDRPluralRuleParser.js?v=1582080760706"></script>
+<script src="libs/jquery.i18n/jquery.i18n.js?v=1582080760706"></script>
+<script src="libs/jquery.i18n/jquery.i18n.messagestore.js?v=1582080760706"></script>
+<script src="libs/jquery.i18n/jquery.i18n.fallbacks.js?v=1582080760706"></script>
+<script src="libs/jquery.i18n/jquery.i18n.language.js?v=1582080760706"></script>
+<script src="libs/jquery.i18n/jquery.i18n.parser.js?v=1582080760706"></script>
+<script src="libs/jquery.i18n/jquery.i18n.emitter.js?v=1582080760706"></script>
+<script src="libs/jquery.i18n/jquery.i18n.emitter.bidi.js?v=1582080760706"></script>
+<script src="common/config.js?v=1582080760706"></script>
+<script src="common/util.js?v=1582080760706"></script>
+<script src="common/service.js?v=1582080760706"></script>
+<script src="common/baseViewModel.js?v=1582080760706"></script>
+<link href="common/fcs/packages/core/main.css" rel="stylesheet" />
+<link href="common/fcs/packages/daygrid/main.css" rel="stylesheet" />
+<link href="common/fcs/packages/timegrid/main.css" rel="stylesheet" />
+<link href="common/fcs/packages-premium/timeline/main.css" rel="stylesheet" />
+<link href="common/fcs/packages-premium/resource-timeline/main.css" rel="stylesheet" />
+<script src="common/fcs/packages/core/main.js"></script>
+<script src="common/fcs/packages/interaction/main.js"></script>
+<script src="common/fcs/packages/daygrid/main.js"></script>
+<script src="common/fcs/packages/timegrid/main.js"></script>
+<script src="common/fcs/packages/core/locales-all.min.js"></script>	
+<script src="common/fcs/packages-premium/timeline/main.js"></script>
+<script src="common/fcs/packages-premium/resource-common/main.js"></script>
+<script src="common/fcs/packages-premium/resource-timeline/main.js"></script>
+<script src="task.js?v=1582080760706"></script>
+<script src="taskListViewModel.js?v=1582080760706"></script>
+<script src="taskDetailViewModel.js?v=1582080760706"></script>
+<script src="rescalViewModel.js?v=1582080760706"></script>
+<!--<script src="libs/jquery.sparkline.js?v=1582080760706"></script>-->
+<link rel="shortcut icon" href="favicon.ico" />
+<script src="libs/handlebars-v4.7.3.js"></script>
+<script src="libs/moment-with-locales.min.js"></script>
+<script>
+  String.prototype.toHex = function() {
+    var hash = 0;
+    if (this.length === 0) return hash;
+    for (var i = 0; i < this.length; i++) {
+      hash = this.charCodeAt(i) + ((hash << 5) - hash);
+      hash = hash & hash;
+    }
+    var color = '#';
+    for (var i = 0; i < 3; i++) {
+      var value = (hash >> (i * 8)) & 255;
+      color += ('00' + value.toString(16)).substr(-2);
+    }
+    return color;
+  };
+
+  function padZero(str, len) {
+    len = len || 2;
+    var zeros = new Array(len).join('0');
+    return (zeros + str).slice(-len);
+  }
+
+  function invertColor(hex, bw) {
+    if (hex.indexOf('#') === 0) {
+      hex = hex.slice(1);
+    }
+    // convert 3-digit hex to 6-digits.
+    if (hex.length === 3) {
+      hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+    }
+    if (hex.length !== 6) {
+      throw new Error('Invalid HEX color.');
+    }
+    var r = parseInt(hex.slice(0, 2), 16),
+            g = parseInt(hex.slice(2, 4), 16),
+            b = parseInt(hex.slice(4, 6), 16);
+    if (bw) {
+      // http://stackoverflow.com/a/3943023/112731
+      return (r * 0.299 + g * 0.587 + b * 0.114) > 186
+              ? '#000000'
+              : '#FFFFFF';
+    }
+    // invert color components
+    r = (255 - r).toString(16);
+    g = (255 - g).toString(16);
+    b = (255 - b).toString(16);
+    // pad each with zeros and return
+    return "#" + padZero(r) + padZero(g) + padZero(b);
+  }
+
+	
+  function singleEvent(id) {
+    $.get("https://mttmb.magna.cn/public/question/b2cf6bc3-2667-48a9-aa3f-57288e044364.json?parameters=[{\"type\":\"category\",\"target\":[\"variable\",[\"template-tag\",\"codes\"]],\"value\":\"" + id +"\"}]",
+      function (data, status) {
+        const length = data.length;
+        const resources = new Array();
+        const events = new Array();
+
+        for (var i = 0; i < length; i++) {
+          const obj = new Object();
+          obj.id = data[i].id;
+          obj.title = data[i].title;
+          obj.occupancy = Math.round(Math.random() * 40 + 10);
+          resources.push(obj);
+          if (data[i].start) {
+            const obj2 = new Object();
+            obj2.id = i;
+            obj2.resourceId = data[i].id;
+            obj2.start = data[i].start;
+            obj2.end = data[i].end;
+            obj2.title = data[i].title + data[i].resourceTitle;
+            obj2.color = obj2.title.toHex();
+            obj2.textColor = invertColor(obj2.color, true);
+            events.push(obj2);
+          }
+        }
+
+        const calendarEl = document.getElementById('calendar');
+        calendarEl.innerHTML = "";
+        const initialLocaleCode = 'zh-cn';
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+          schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
+          plugins: ['interaction', 'dayGrid', 'timeGrid', 'resourceTimeline'],
+          locale: initialLocaleCode,
+          height: 'auto',
+          now: moment().format('YYYY-MM-DD'),
+          editable: true,
+          aspectRatio: 1.8,
+          scrollTime: '00:00',
+          header: {
+            left: 'today prev,next',
+            center: 'title',
+            right: 'resourceTimelineDay,resourceTimelineThreeDays,timeGridWeek,dayGridMonth'
+          },
+          defaultView: 'resourceTimelineDay',
+          views: {
+            resourceTimelineThreeDays: {
+              type: 'resourceTimeline',
+              duration: {days: 3},
+              buttonText: '3 days'
+            }
+          },
+          resourceAreaWidth: '30%',
+          resourceColumns: [
+            {
+              labelText: '资源',
+              field: 'title'
+            },
+            {
+              labelText: '利用率',
+              field: 'occupancy'
+            }
+          ],
+          resources: resources,
+          events: events
+        });
+        calendar.destroy();
+        calendar.render();
+      }
+    );
+  }	
+  document.addEventListener('DOMContentLoaded', function() {
+    $.get("https://mttmb.magna.cn/public/question/b2cf6bc3-2667-48a9-aa3f-57288e044364.json",
+      function (data, status) {
+        const length = data.length;
+        console.log(length);
+        const resources = new Array();
+        const events = new Array();
+
+        for (var i = 0; i < length; i++) {
+          const obj = new Object();
+          obj.id = data[i].id;
+          obj.title = data[i].title;
+          obj.occupancy = Math.round(Math.random() * 40 + 10);
+          resources.push(obj);
+          if (data[i].start) {
+            const obj2 = new Object();
+            obj2.id = i;
+            obj2.resourceId = data[i].id;
+            obj2.start = data[i].start;
+            obj2.end = data[i].end;
+            obj2.title = data[i].title + data[i].resourceTitle;
+            obj2.backgroundColor = obj2.title.toHex();
+            obj2.borderColor = obj2.backgroundColor;
+            obj2.textColor = invertColor(obj2.backgroundColor, true);
+            events.push(obj2);
+          }
+        }
+
+        console.log(JSON.stringify(resources));
+        console.log(JSON.stringify(events));
+
+        const calendarEl = document.getElementById('calendar');
+        const initialLocaleCode = 'zh-cn';
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+          schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
+          plugins: ['interaction', 'dayGrid', 'timeGrid', 'resourceTimeline'],
+          locale: initialLocaleCode,
+          height: 'auto',
+          now: moment().format('YYYY-MM-DD'),
+          editable: true,
+          aspectRatio: 1.8,
+          scrollTime: '00:00',
+          header: {
+            left: 'today prev,next',
+            center: 'title',
+            right: 'resourceTimelineDay,resourceTimelineThreeDays,timeGridWeek,dayGridMonth'
+          },
+          defaultView: 'resourceTimelineDay',
+          views: {
+            resourceTimelineThreeDays: {
+              type: 'resourceTimeline',
+              duration: {days: 3},
+              buttonText: '3 days'
+            }
+          },
+          resourceAreaWidth: '30%',
+          resourceColumns: [
+            {
+              labelText: '资源',
+              field: 'title'
+            },
+            {
+              labelText: '利用率',
+              field: 'occupancy'
+            }
+          ],
+          resources: resources,
+          events: events
+        });
+
+        calendar.render();
+
+        const renderData = {"data" : data};
+        const template = document.getElementById('template').innerHTML;
+        const rendered = Handlebars.compile(template);
+        //console.log(rendered(renderData));
+        document.getElementById('itemList').innerHTML = rendered(renderData);
+        $("#itemList").listview().listview('refresh');
+      }
+    );
+
+  });
+
+</script>
+<style>
+.movie-list tbody th {
+    font-size: 1.2em;
+    color: #77bbff;
+    margin-top: 0em;
+    text-align: center;
+}
+/*  Add a bit of extra left padding for the title */
+.movie-list tbody td.title {
+    padding-left: .8em;
+}
+/* Add strokes */
+.movie-list thead th {
+    border-bottom: 1px solid #d6d6d6; /* non-RGBA fallback */
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    font-size: 0.8em;
+}
+.movie-list tbody th, .movie-list tbody td {
+    border-bottom: 1px solid #e6e6e6; /* non-RGBA fallback  */
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+    font-size: 0.8em;
+}
+
+/*  Custom stacked styles for mobile sizes */
+        /*  Use a max-width media query so we don't have to undo these styles */
+@media (max-width: 40em) {
+/*  Negate the margin between sections */
+.movie-list tbody th {
+    margin-top: 0;
+    text-align: left;
+}
+/*  White bg, large blue text for rank and title */
+.movie-list tbody th, .movie-list tbody td.title {
+    display: block;
+    font-size: 1.2em;
+    line-height: 110%;
+    margin-top: 0em;
+    padding: .5em .5em;
+    background-color: #fff;
+    color: #77bbff;
+    -moz-box-shadow: 0 1px 6px rgba(0, 0, 0, .1);
+    -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, .1);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, .1);
+}
+/*  Hide labels for rank and title */
+.movie-list tbody th .ui-table-cell-label, .movie-list tbody td.title .ui-table-cell-label {
+    display: none;
+}
+/*  Position the title next to the rank, pad to the left */
+.movie-list tbody td.title {
+    margin-top: -2.1em;
+    padding-left: 2.2em;
+    border-bottom: 1px solid rgba(0, 0, 0, .15);
+}
+/*  Make the data bold */
+.movie-list th, .movie-list td {
+    font-weight: bold;
+}
+/* Make the label elements a percentage width */
+.movie-list td .ui-table-cell-label, .movie-list th .ui-table-cell-label {
+    min-width: 20%;
+}
+}
+
+/* Media query to show as a standard table at wider widths */
+       
+		 
+@media ( min-width: 40em ) {
+.basicTabWrap {
+    overflow-y: scroll;
+    max-height: 250px;
+}
+/* Show the table header rows */
+.movie-list td, .movie-list th, .movie-list tbody th, .movie-list tbody td, .movie-list thead td, .movie-list thead th {
+    display: table-cell;
+    margin: 0;
+}
+/* Hide the labels in each cell */
+.movie-list td .ui-table-cell-label, .movie-list th .ui-table-cell-label {
+    display: none;
+}
+}
+
+/* Hack to make IE9 and WP7.5 treat cells like block level elements */
+        /* Applied in a max-width media query up to the table layout breakpoint so we don't need to negate this */
+@media ( max-width: 40em ) {
+.movie-list td, .movie-list th {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+    clear: left;
+}
+}
+
+@media screen and (min-width:0px) {
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+}
+
+@media screen and (min-width:667px) {
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+}
+
+@media screen and (min-width:992px) {
+.row {
+    margin-left: 80px;
+    margin-right: 0px;
+    margin-top: 16px;
+}
+}
+
+@media screen and (min-width:1200px) {
+.row {
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 32px;
+}
+}
+
+@media screen and (min-width:1600px) {
+.row {
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 32px;
+}
+}
+</style>
+<style>
+.fc-time {
+    text-shadow: none; 
+    font-weight: 300;
+}
+.fc-title {
+    text-shadow: none;  
+    font-weight: 400;
+}
+</style>
+</head>
+<body>
+<script id="template" type="text/x-handlebars-template">
+  {{#data}}
+    <li class="ui-nodisc-icon ui-alt-icon">
+      <a href="javascript:singleEvent('{{id}}')"  style="padding:3px 12px; background-color:#f9f9f9; border-width:0px; border-bottom-width:1px;  border-color:#eceff1">
+        <p style="color:#000000; font-weight:600; margin-bottom:2px; font-size:0.9em; margin-left:2px" >{{title}}</p>
+        <p style="color:#000000; font-weight:300; padding-right:24px; margin-left:2px; margin-top:4px; margin-bottom:0px">{{id}}</p>
+        <p style="font-weight:300"> <font color="#90a4ae"> <i class="fad fa-fw fa-arrow-up"></i>&nbsp;<span>{{start}}</span> </font> <br>
+          <font color="#90a4ae"> <i class="fad fa-fw fa-arrow-down"></i>&nbsp;<span >{{end}}</span> </font> </p>
+      </a>
+    </li>
+  {{/data}}
+</script>
+<div data-role="page" id="main" data-theme="a" style="background-color:#f7f7f7">
+  <div data-role="header" data-position="fixed" style="margin: 0px 0px; border-bottom-width: 1px; border-color: #cfd8dc; padding: 8px 8px; padding-bottom: 6px; background-color: #f7f7f7;  min-height: 0px;">
+    <div class="ui-grid-a" style="padding: 3px 3px; ">
+      <div class="ui-block-a" style="font-size: 1.3em"><a href="#panelgrid"><img src="images/menu.svg" style="height: 14px; margin-bottom: 5px; text-decoration: none; margin-left: 6px; margin-right: 12px; opacity: 0.5"><img src="images/logo.svg" style="height: 26px; margin-bottom: 5px; text-decoration: none; margin-right: 0px"></a><a href="#" style="text-shadow: none; font-weight: 800; color: #263238; "><i class="fal fa-fw fa-caret-right" style="color:#b0bec5; margin-right: 3px"></i><span data-i18n="res-calendar">资源日历</span></a></div>
+      <div class="ui-block-b" style="text-align: right; text-shadow: none; font-size: 1.3em"><a href="#popSearch" data-rel="popup" style="color: #455a64; margin-right: 24px; text-decoration: none"><i class="far fa-fw fa-search-plus"></i></a><a href="#popFilter" data-rel="popup"  style="color: #455a64; margin-right: 24px; text-decoration: none"><i class="far fa-fw fa-folder-tree"></i><i class="fal fa-fw fa-angle-down" style="opacity: 0.5"></i></a><span style="color: #f5f5f5; font-weight: 300">|</span><a href="#panelAccount" style="font-weight: 300; margin-left: 24px; margin-right: 6px; text-decoration: none; text-shadow: none; color:#455a64"><i class="far fa-fw fa-user-circle" style="margin-right:6px"></i><span style="font-weight: 300; opacity: 0.5" data-bind="text:user.name"></span></a></div>
+    </div>
+    <div data-role="popup" id="popFilter" data-theme="b" data-overlay-theme="a" style="border-width: 0px; border-radius: 0.32em">
+      <ul data-role="listview" class="ui-nodisc-icon ui-alt-icon" data-inset="true"
+                style="min-width:230px; border-radius: 0.32em; border-width: 0px">
+        <li><a href="javascript:void(0);" data-rel="back" data-bind="click:function(){secureExecute('selectCategory','fin')}"><i class="far fa-fw fa-truck" style="margin-right: 12px; color: #78909c"></i><span data-i18n="SRM">无</span></a></li>
+        <li><a href="javascript:void(0);" data-rel="back" data-bind="click:function(){secureExecute('selectCategory','frm')}"><i class="far fa-fw fa-cog" style="margin-right: 12px; color: #78909c"></i><span data-i18n="MES">无</span></a></li>
+        <li><a href="javascript:void(0);" data-rel="back" data-bind="click:function(){secureExecute('selectCategory','pur')}"><i class="far fa-fw fa-presentation" style="margin-right: 12px; color: #78909c"></i><span data-i18n="Meeting">无</span></a></li>
+        <li><a href="javascript:void(0)" onclick="location.reload()"  data-rel="back"><i class="far fa-fw fa-redo-alt" style="margin-right: 12px"></i><span data-i18n="ALL">无</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div data-role="content" style="padding: 0px 0px; margin-bottom:0px; background-color: #ffffff">
+    <div data-role="popup" id="popSuccess" class=" ui-corner-all"  data-dismissible="false" data-theme="b" data-overlay-theme="a"  style="min-width:320px; max-width: 480px; background-color: #ffffff">
+      <div data-role="content" style="padding: 4px 4px;">
+        <p align="center" style="margin:8px 8px;"><font color="#03a9f4"><i class="fas fa-2x fa-check-circle"></i></font></p>
+        <hr style="border-color: #eeeeee; margin-bottom: 0px; margin-top:11px;">
+        <p align="left" style="padding: 0px 5px; margin-bottom: 0px;"> <b data-bind="text:detail.popTitle"></b></p>
+        <p align="left" style="padding: 0px 5px; margin-bottom: 32px;"> <font color="#757575" size="-1" data-bind="text:detail.popDescription"></font></p>
+        <div class="ui-grid-a">
+          <div class="ui-block-a">
+            <p style="padding: 0px 0px; margin: 3px 3px"> <a rel="external" data-bind="attr:{href:'task_list.html?processInstanceId='+ detail.processInstanceId()}"  class="ui-btn ui-btn-b  ui-corner-all" style="background-color: #eceff1; font-weight: 300; color:#0288d1;"><i class="far fa-fw fa-external-link-alt" style="margin-right: 4px;"></i><span data-i18n="related-tasks">关联任务</span></a> </p>
+          </div>
+          <div class="ui-block-b">
+            <p style="padding: 0px 0px; margin: 3px 3px;"><a rel="external" href="task.html"  class="ui-btn ui-corner-all ui-btn-b" style="background-color:#0288d1; font-weight: 300; color:#ffffff;"> <i class="far fa-fw fa-check" style="margin-right: 4px;"></i><span data-i18n="confirm">确定</span></a> </p>
+          </div>
+        </div>
+        <p align="left" style="padding: 0px 5px; margin-top: 0px;"> <font color="#90a4ae" size="-2"><i class="fal fa-fw fa-info-circle"></i>&nbsp;<span data-i18n="msg-go-to-related-tasks">此流程可能包含关联任务需要您关注并执行，点击关联任务按钮前往。</span></font></p>
+      </div>
+    </div>
+    <div data-role="popup" id="popSearch" data-dismissible="false" data-theme="b" data-overlay-theme="a"
+      class="ui-corner-all"
+      style="min-width:320px; max-width:400px; background-color: #f7f7f7">
+      <div data-role="content" style="padding: 4px 4px;">
+        <p align="center" style="margin:8px 8px; margin-top: 20px;"><font color="#000000"><i
+                 class="far fa-2x fa-search-plus"></i></font></p>
+        <p align="center" style="padding: 8px 8px; padding-bottom:0px;">
+          <input type="text" data-bind="value:processInstanceId" data-theme="b" data-clear-btn="true" name="processInstanceId"
+                    id="processInstanceId" data-i18n="[placeholder]process-instance-id"  placeholder="流程实例编号">
+          <input type="text" data-bind="value:nameLike" data-theme="b" data-clear-btn="true" name="taskName"
+                    id="taskName" data-i18n="[placeholder]tsk-name"  placeholder="任务名称">
+          <input type="text" data-bind="value:processDefinitionNameLike" data-theme="b" data-clear-btn="true"
+                    name="processName" id="processName" data-i18n="[placeholder]task-process-name" placeholder="任务对应流程名称">
+          <input type="text" data-bind="value:processInstanceBusinessKeyLike" data-theme="b" data-clear-btn="true"
+                    name="processInstanceBusinessKey" id="processInstanceBusinessKey" data-i18n="[placeholder]process-business-key" placeholder="流程主题名称">
+        </p>
+        <p align="right" style="padding: 8px 0px; padding-bottom:0px;"> <a href="#" class="ui-btn ui-corner-all ui-mini ui-btn-b ui-btn-inline"
+                     data-bind="click:advancedSearch"
+                     style="background-color:#0086ff; color:#fff; margin-right: 0px"><i class="fad fa-fw fa-check" style="margin-right: 9px"></i> <span data-i18n="my-search">查询</span> </a> <a href="#" style="margin-right: 8px" data-rel="close" class="ui-btn ui-corner-all ui-mini ui-btn-b ui-btn-inline"
+                     data-bind="click:advancedSearch"
+                     ><i class="far fa-fw fa-times" style="margin-right: 9px"></i> <span data-i18n="cancel">cancel</span> </a> </p>
+      </div>
+    </div>
+    <div data-role="popup" id="popupFilter" data-theme="b" data-overlay-theme="a" style="border-width: 0px;">
+      <div class="jqm-block-content" style="margin: 2px 2px; padding: 8px 8px; border: none;  min-height: 0px;">
+        <div class="ui-grid-a">
+          <div class="ui-block-a">
+            <p align="left" style="margin-top: 0px"><i class="fad fa-fw fa-filter" style="opacity: 0.3"></i></p>
+          </div>
+          <div class="ui-block-b">
+            <p align="right" style="margin-top: 0px"><a href="javascript:void(0);" data-bind="click:clearAdvancedSearch"><i class="fad fa-fw fa-redo-alt" style="margin-right: 9px"></i><span data-i18n="redo"></span></a></p>
+          </div>
+        </div>
+        <div class="row" style="margin: 0px 0px; padding: 0px 0px; margin-top: 8px;">
+          <div class="col-sm-6 col-xs-6 col-md-6col-lg-6" style="padding: 3px 3px; ">
+            <p align="left" style="color: #607d8b; font-weight: 300; text-shadow: none; margin-top: 0px;"><font size="-2">Instance ID<br>
+              <span style="font-weight: 600" data-bind="text:processInstanceId"></span>&nbsp;</font></p>
+          </div>
+          <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6" style="padding: 3px 3px;">
+            <p align="left" style="color: #607d8b; font-weight: 300; text-shadow: none; margin-top: 0px;"><font size="-2">Task Name<br>
+              <span style="font-weight: 600" data-bind="visible:nameLike,text:'*'+nameLike()+'*'"></span>&nbsp;</font></p>
+          </div>
+          <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6" style="padding: 3px 3px; ">
+            <p align="left" style="color: #607d8b;font-weight: 300;  text-shadow: none; margin-top: 0px;"><font size="-2">Process Name<br>
+              <span style="font-weight: 600" data-bind="visible:processDefinitionNameLike,text:'*'+processDefinitionNameLike()+'*'"></span>&nbsp;</font></p>
+          </div>
+          <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6" style="padding: 3px 3px;">
+            <p align="left" style="color: #607d8b; font-weight: 300; text-shadow: none; margin-top: 0px;"><font size="-2">Bk<br>
+              <span style="font-weight: 600" data-bind="visible:processInstanceBusinessKeyLike,text:'*'+processInstanceBusinessKeyLike()+'*'"></span>&nbsp;</font></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <ul class="nav nav-tabs" id="myTabs" role="tablist" style="margin-left: 2px; margin-right: 2px; margin-top: 4px; border-bottom-width: 0px;">
+        <li data-bind="visible:people2().length>0" style="min-width: 80px;" role="presentation" class="hidden-xs">
+          <a class="dropdown-toggle" href="javascript:void(0)" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <p align="center" style="margin: 0px 0px;">
+              <i class="fal fa-2x fa-users"></i>
+              <span data-bind="text:people2().length>1?(people2().length-1):0"></span>
+              <span class="caret"></span>
+            </p>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" data-bind="jqmTemplate: { name: 'personItem2', foreach: people2 }"
+            style="padding: 0px 0px">
+          </ul>
+        </li>
+        <li style="min-width: 80px;" role="presentation"  class="active">
+          <a href="#common" data-bind="click:switchTab" role="tab" id="unfinished-tab"  title="未完成的 Unfinished Tasks" data-toggle="tab" aria-controls="warning" aria-expanded="true">
+            <p align="center" style="margin: 0px 0px;">
+              <i class="fal fa-2x fa-exclamation-triangle"></i>&nbsp;
+              <span data-bind="text:unfinishedCount"></span>
+            </p>
+          </a>
+        </li>
+        <li style="min-width: 80px;" role="presentation">
+          <a href="#common" data-bind="click:switchTab" role="tab" id="delay-tab"  title="延迟的 Overdue Tasks" data-toggle="tab" aria-controls="overdue">
+            <p align="center" style="margin: 0px 0px;">
+              <i class="fal fa-2x fa-clock"></i>&nbsp;
+              <span data-bind="text:delayCount"></span>
+            </p>
+          </a>
+        </li>
+        <li style="min-width: 80px;" role="presentation">
+          <a href="#common" data-bind="click:switchTab" id="all-tab" title="组任务 Group Tasks" role="tab" data-toggle="tab" aria-controls="home">
+            <p align="center" style="margin: 0px 0px;">
+              <i class="fal fa-2x fa-tasks"></i>&nbsp;
+              <span data-bind="text:allCount"></span>
+            </p>
+          </a>
+        </li>
+        <li style="min-width: 80px;" role="presentation">
+          <a href="#common" data-bind="click:switchTab" role="tab" id="assigned-tab"  title="指派的 Delegate" data-toggle="tab" aria-controls="warning">
+            <p align="center" style="margin: 0px 0px;">
+              <i class="fal fa-2x fa-user-secret"></i>&nbsp;
+              <span data-bind="text:assignedCount"></span>
+            </p>
+          </a>
+        </li>
+      </ul> -->
+    
+    <div id="myTabContent" class="tab-content">
+      <div role="tabpanel" class="tab-pane in active" id="common" aria-labelledBy="unfinished-tab">
+        <div class="ui-body ui-body-b ui-content" style="background-color: #fcfcfc; border-width: 0px; border-top-width: 0px; border-bottom-width: 1px; border-color: #cfd8dc; border-bottom-right-radius: 0em; border-bottom-left-radius:0em; min-height: 24px; margin: 0 0px; padding: 9px 18px; text-align: left; overflow: visible ">
+          <div class="ui-grid-a">
+            <div class="ui-block-a"> <a href="#" style="font-weight: 300; margin-right: 36px; font-size:1em; color: #000000;"> <i class="far fa-fw fa-sync-alt" style="margin-right: 6px; color: #0086ff"></i><span data-i18n="res-refresh">资源刷新</span> </a> </div>
+            <div class="ui-block-b" style="text-align: right"><a href="#" style="font-weight: 300; margin-right: 24px; font-size:1em; color: #000000;"> <i class="far fa-fw fa-mouse-pointer" style="margin-right: 6px; color: #0086ff"></i><span data-i18n="date-selector">日期选择</span> </a> <a href="#" style="font-weight: 300; margin-right: 0px; font-size:1em; color: #000000;"> <i class="far fa-fw fa-redo" style="margin-right: 6px; color: #0086ff"></i><span data-i18n="redo">redo</span> </a></div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12" style="padding: 0px 0px; min-height: 400px">
+          <div class="col-sm-12 col-xs-12 col-md-4 col-lg-3" style="padding: 0px 0px;">
+            <div class="ui-body ui-body-c ui-content main-content" style="background-color:#f9f9f9; border-width:0px; border-left-width: 0px; border-bottom-right-radius: 0em; border-bottom-left-radius:0em; border-color:#cfd8dc;  min-height: 300px;  margin: 0 0px; padding: 2px 2px; overflow: auto; overflow-style:auto;  ">
+              <ul id="itemList" data-role="listview" data-theme="b" data-filter="true" data-inset="true" data-input="#rich-autocomplete-input-common" style="margin: 0px 0px;">
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-12 col-xs-12 col-md-8 col-lg-9" style="padding: 12px 12px;">
+            <div id="calendar"></div>
+            <!-- <iframe name="myiframe" id="myrame" src="common/fcs/examples/timeline-columns2.html" frameborder="0" align="center" width="100%" height="900px" scrolling="no"> </iframe>--> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-role="panel" id="panelgrid" data-position-fixed="true" data-position="left" data-display="push" data-theme="a">
+    <div class="jqm-block-content" style="margin-left: -14px; margin-right: -14px; margin-top: -23px; margin-bottom: 14px; padding: 0px 9px; padding-top: 32px; background-image: url(images/bg/bgc2.jpg); background-size: cover; height: 170px; border:none; min-height: 0px; border-radius: 0em;">
+      <p align="center" style="font-size: 1.2em; margin-bottom: 0px; font-weight: 600"><img src="images/logobw.svg" style="height: 56px"><br>
+        <span style="color: #ffffff">businez</span></p>
+      <p align="center" style="margin-top: 30px; font-weight: 300; opacity: 0.5; color: #ffffff; text-shadow: none; font-size: 0.5em">eorion bpms | <b>Ver 3.5</b></p>
+    </div>
+    <div class="ui-grid-a" style=" margin:0px 0px; padding:16px 0px; margin-top: 32px">
+      <div class="ui-block-a" style=" margin:0px 0px; padding:0px 0px">
+        <p align="center"><a rel="external" href="index.html"><i class="fad fa-fw fa-planet-moon" style="color: #0086ff; font-size: 1.5em"></i> <span style="display: block; color: #607d8b; margin-top: 6px; font-size: 0.7em; font-weight: 400" data-i18n="my-bpms">我的BPMS</span></a></p>
+      </div>
+      <div class="ui-block-b" style=" margin:0px 0px; padding:0px 0px">
+        <p align="center"><a rel="external" target="_blank" href="https://mttmb.magna.cn" ><i class="fad fa-fw fa-chart-area" style="color: #0086ff; font-size: 1.5em"></i> <span style="display: block; color: #607d8b; margin-top: 6px; font-size: 0.7em; font-weight: 400" data-i18n="my-report">Report</span></a></p>
+      </div>
+    </div>
+    <div class="ui-grid-a" style=" margin:0px 0px; padding:12px 0px;">
+      <div class="ui-block-a" style=" margin:0px 0px; padding:0px 0px">
+        <p align="center"><a rel="external" href="task_list.html"><i class="fad fa-fw fa-inbox-in" style="color: #0086ff; font-size: 1.5em"></i> <span style="display: block; color: #607d8b; margin-top: 6px; font-size: 0.7em; font-weight: 400" data-i18n="my-todo">todo</span></a></p>
+      </div>
+      <div class="ui-block-b" style=" margin:0px 0px; padding:0px 0px">
+        <p align="center"><a rel="external" href="history_list.html"><i class="fad fa-fw fa-history" style="color: #0086ff; font-size: 1.5em"></i> <span style="display: block; color: #607d8b; margin-top: 6px; font-size: 0.7em; font-weight: 400" data-i18n="my-taskhistory">task histroy</span></a></p>
+      </div>
+    </div>
+    <div class="ui-grid-a" style=" margin:0px 0px; padding:12px 0px;">
+      <div class="ui-block-a" style=" margin:0px 0px; padding:0px 0px">
+        <p align="center"><a rel="external" href="process_list.html"><i class="fad fa-fw fa-layer-plus" style="color: #0086ff; font-size: 1.5em"></i> <span style="display: block; color: #607d8b; margin-top: 6px; font-size: 0.7em; font-weight: 400" data-i18n="create-process">createprocess</span></a></p>
+      </div>
+      <div class="ui-block-b" style=" margin:0px 0px; padding:0px 0px">
+        <p align="center"><a rel="external"   href="instance_list.html"><i class="fad fa-fw fa-hourglass-end" style="color: #0086ff; font-size: 1.5em"></i> <span style="display: block; color: #607d8b; margin-top: 6px; font-size: 0.7em; font-weight: 400" data-i18n="my-processhistory">myinstance</span></a></p>
+      </div>
+    </div>
+  </div>
+  <div data-role="panel" id="panelComment"  data-position="right" data-display="overlay" data-theme="a" style="background-color: #ffffff">
+    <div class="jqm-block-content" style="margin: -14px -14px; margin-bottom: 14px; padding: 6px 6px; padding-top: 30px; background-color: #ffffff; border:none; min-height: 0px; border-radius: 0em;">
+      <p align="center" style="margin-bottom:30px; color: #03a9f4"> <i class="fad fa-2x fa-comments-alt"></i> </p>
+      <ul data-role="listview" class="ui-alt-icon ui-nodisc-icon" data-bind="jqmTemplate: { name: 'comment', foreach: detail.commentInfo.comments }, jqmRefreshList:  detail.commentInfo.comments "
+            style=" margin-top: 9px; max-height:340px; overflow:scroll; overflow-style:auto">
+      </ul>
+      <ul data-role="listview" data-inset="true" style="border:none;">
+        <form  style="margin:3px 3px;" data-bind="" autocomplete="off" onsubmit="return false;">
+          <input type="text" data-theme="b" data-i18n="[placeholder]collaborator" placeholder="@ 协同人员..." controlType="psbi"
+                id="to" data-bind="psb:detail.commentInfo.to"
+                style="font-weight:300; height:39px; font-size:medium;">
+          <ul data-role="listview" data-inset="true" data-filter="false" data-filter-reveal="false">
+          </ul>
+          <!-- 
+              <ul style="display:none;" data-role="listview" class="ui-nodisc-icon ui-alt-icon ui-listview ui-listview-inset ui-corner-all ui-shadow" 
+               data-inset="true"></ul> -->
+          
+          <textarea data-theme="b" data-i18n="[placeholder]collaborative-information" placeholder="协同信息..." 
+                style="font-weight:300; font-size:medium;" data-bind="value:detail.commentInfo.message"></textarea>
+        </form>
+        <a href="javascript:void(0);" data-bind="click:detail.doComment.bind($root.detail)"
+              class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #0288d1; color:#fff; margin: 2px 2px; font-weight:300"><i class="fad fa-fw fa-paper-plane" style="margin-right: 9px"></i><span data-i18n="send">发送</span></a>
+      </ul>
+    </div>
+  </div>
+  <div data-role="panel" id="panelAccount" data-position-fixed="true" data-position="right" data-display="push" data-theme="a">
+    <div class="jqm-block-content" style="margin: -14px -14px; margin-bottom: 14px; padding: 9px 9px; padding-top: 30px; background-color: #f9f9f9; border:none; min-height: 0px; border-radius: 0em;">
+      <p align="center" style="margin-bottom:10px; color: #0086ff"> <i class="far fa-4x fa-fw fa-user-circle"></i> </p>
+      <p align="center" style="color: #000000; font-size: 1.3em; margin-bottom: 0px"> <span data-bind="text:user.name"></span></p>
+      <p align="center" style="margin-top: 2px; color: #90a4ae; font-size: 0.8em"> <span data-bind="text:user.email"></span></p>
+      <hr>
+      <p style="word-break: break-all; word-wrap: break-word; padding: 3px 9px; color: #546e7a"><i class="fad fa-fw fa-users" style="margin-right: 12px; color: #0086ff "></i><span data-bind="text:user.Roles"></span></p>
+      <p style="word-break: break-all; word-wrap: break-word; padding: 3px 9px; color: #546e7a"><i class="fad fa-fw fa-id-card-alt" style="margin-right: 12px; color: #0086ff "></i><span data-bind="text:user.sub"></span></p>
+      <hr>
+      <p align="center" style="margin-top: 24px; font-size: 1.2em;"> <a href="javascript:void(0);" data-bind="click:logout" style="color: #000000; font-weight: 300"> <i class="fad fa-sign-out" style="color: #0086ff; margin-right: 9px"></i><span data-i18n="signout">Logout</span></a> </p>
+    </div>
+  </div>
+  <!--<div data-role="footer" data-fullscreen="true" data-position="fixed" style=" border-bottom-width: 0px; opacity: 1">
+    <div data-role="navbar">
+      <ul>
+        <li data-bind="css: { 'ui-disabled': !($root[$root.type()].hasPrev()) }"><a
+              href="javascript:void(0)" data-rel="popup"
+              data-bind="click: function(){secureExecute('getPrev')}"
+              class="ui-btn-b" style="font-weight:300"><i
+              class="fad fa-2x fa-chevron-left" style="margin-bottom: 8px;"></i><br>
+          <span data-i18n="prev-page">上一页</span></a></li>
+        <li data-bind="css: { 'ui-disabled': !($root[$root.type()].hasNext()) }"><a href="javascript:void(0)"
+                                                                                  data-bind="click: function(){secureExecute('getNext')}"
+                                                                                  data-rel="popup"
+                                                                                  class="ui-btn-b"
+                                                                                  style="font-weight:300"><i
+              class="fad fa-2x fa-chevron-right" style="margin-bottom: 8px;"></i><br>
+          <span data-i18n="next-page">下一页</span></a></li>
+        <li><a href="javascript:void(0)" data-bind="click: function(){secureExecute('refresh')}" data-rel="popup"
+             class="ui-btn-b"
+             style="font-weight:300"><i
+             class="fad fa-2x fa-sync-alt" style="margin-bottom: 8px;"></i><br>
+          <span data-i18n="refresh">刷新</span></a></li>
+      </ul>
+    </div>
+  
+
+  </div>--> 
+  <!-- /footer -->
+  <div data-role="popup" id="popMore"  data-position-to="#moreMenu" data-theme="b" data-overlay-theme="a" style="border-width: 0px">
+    <ul data-role="listview" class="ui-nodisc-icon ui-alt-icon" data-inset="true" style="min-width:200px; border-radius: 0em;">
+      <li data-role="list-divider" style="border-width: 0px;  background-color: #424242; border-radius: 0em;"> <i class="fal fa-ellipsis-h"></i> </li>
+      <li data-icon="search"> <a href="javascript:void(0)" data-bind="click:function(){triggerDelay('Search');}"><span data-i18n="my-search">查询</span></a> </li>
+    </ul>
+  </div>
+  <div data-role="popup" id="popFlow" data-dismissible="false" data-theme="b" data-overlay-theme="a"
+      class="ui-corner-all"
+      style="min-width:300px; max-width:300px; background-color: #f7f7f7">
+    <div data-role="content" style="padding: 4px 4px;">
+      <p align="center" style="margin:16px 8px;"><font color="#37474f"><i
+                 class="fad fa-2x fa-eye"></i></font> </p>
+      <p align="left" style="padding: 0px 3px; margin-bottom: 16px;"><span data-bind="text:detail.flow.id"></span>:&nbsp;<span
+                 data-bind="text:detail.flow.name"></span> <br>
+        <span data-bind="text:detail.flow.date()+ ' '+detail.flow.time()"></span> <br data-bind="visible:!!detail.flow.assignee()">
+        <span data-bind="visible:!!detail.flow.assignee()">执行人: <b data-bind="text:detail.flow.assignee"></b></span> <br data-bind="visible:!!detail.flow.coreAction()[0]">
+        <span data-bind="visible:!!detail.flow.coreAction()[0]"><span data-bind="text:detail.flow.coreAction()[0]"></span>: <b
+                     data-bind="text:detail.flow.coreAction()[1]"></b></span> <br data-bind="visible:!!detail.flow.coreValue()[0]">
+        <span data-bind="visible:!!detail.flow.coreValue()[0]"><span data-bind="text:detail.flow.coreValue()[0]"></span>: <b
+                     data-bind="text:detail.flow.coreValue()[1]"></b></span> </p>
+      <p align="left" data-bind="visible:!!detail.flow.coreComments()[0]"
+            style="padding: 0px 3px; margin-bottom: 32px;"> <span data-bind="text:detail.flow.coreComments()[0]"></span>: <br>
+        <span data-bind="text:detail.flow.coreComments()[1]"></span> </p>
+      <p style="padding: 0px 0px;"><a href="#" data-rel="back" class="ui-btn ui-btn-b ui-corner-all "
+                                         style="margin: 2px 2px;"><i class="fad fa-fw fa-check" style="margin-right: 16px; color: #0086ff"></i><span data-i18n="close">close</span></a> </p>
+    </div>
+  </div>
+  <div data-role="popup" id="popSubTable" data-overlay-theme="b" data-theme="b" style="max-height: 600px; min-width: 480px; padding: 16px 16px; padding-bottom: 8px;"> 
+    <!-- ko if:  detail.exampleTable() --> 
+    <!-- ko  basicTable: detail.exampleTable() --> 
+    <!-- /ko --> 
+    <!-- /ko -->
+    <p align="center" style="margin-top: 16px"><a href="#" data-rel="back" class="ui-btn ui-btn-inline ui-corner-all" style="margin: 0px 0px"><i class="far fa-fw fa-backspace" style="margin-right: 8px"></i>返回</a></p>
+  </div>
+</div>
+<div data-role="page" id="subTableEdit" data-theme="a" style="background-color: #f7f7f7; bottom: 0px;"> 
+  <!-- ko if:  detail.subTable.headers().length>0 -->
+  <div data-role="content" style="padding:2px 2px; padding-bottom: 80px; background-color: #f7f7f7">
+    <p align="center" style="margin-top: 12px; font-size: large"><i class="fad fa-fw fa-edit"></i>&nbsp;<span data-bind="text:'编辑'+detail.subTable.name()+'明细'"></span></p>
+    <div class="ui-body ui-body-b ui-content"
+        style="background-color: #f7f7f7; border-width:0px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 400px; margin: 0 2px; padding: 6px 6px">
+      <div class="row">
+        <legend style="padding-left:3px;"> <font size="-1" color="#b0bec5"><b><span data-i18n="details">明细</span></b></font> </legend>
+        <!-- ko basicForm: detail.subTable.headers --> 
+        <!-- /ko --> 
+      </div>
+      <div class="ui-nodisc-icon ui-alt-icon">
+        <p align="center" style="font-size: large" data-bind="if:detail.subTable.steps().length === 0"> <a href="javascript:void(0);" style="margin-left: 0px;" data-bind="visible: !(detail.subTable.editIndex()>=0),click:detail.subTable.saveRow.bind(detail.subTable)"><i class="far fa-fw fa-plus-square"></i></a> <a href="javascript:void(0);" style="margin-left: 24px;" data-bind="visible: detail.subTable.editIndex()>=0,click:detail.subTable.saveRow.bind(detail.subTable)"><i class="far fa-fw fa-save"></i></a> <a href="javascript:void(0);" style="margin-left: 24px;" data-bind="click:detail.subTable.resetRow.bind(detail.subTable)"><i class="far  fa-fw fa-redo"></i></a> <a href="javascript:void(0);" data-bind="click:function(){detail.subTable.toggleUploadTableFlag();}"  style="margin-left: 24px;"><i class="far fa-fw fa-file-upload"></i></a> </p>
+        <p align="center" style="font-size: large" data-bind="if:detail.subTable.steps().length > 0"> <a href="javascript:void(0);" data-bind="visible:detail.subTable.editIndex()<0, click:function(){detail.subTable.addExtraRow(detail.exampleTable());}" style="margin-left: 24px;"><i class="far fa-fw fa-magic"></i></a> <a href="javascript:void(0);" style="margin-left: 24px;" data-bind="visible: detail.subTable.editIndex()>=0,click:detail.subTable.saveRow.bind(detail.subTable)"><i class="far fa-fw fa-save"></i></a> <a href="javascript:void(0);" style="margin-left: 24px;" data-bind="visible: detail.subTable.editIndex()>=0,click:detail.subTable.resetExtraForm.bind(detail.subTable)"><i class="far  fa-fw fa-redo"></i></a> <a href="javascript:void(0);" data-bind="click:function(){detail.subTable.toggleUploadTableFlag();}" style="margin-left: 24px;"><i class="far fa-fw fa-file-upload"></i></a> </p>
+      </div>
+      <div class="row" data-bind="visible:detail.subTable.uploadTableFlag">
+        <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" style="padding:3px 3px;">
+          <input type="file" data-bind="event: { change: detail.subTable.uploadTable.bind(detail.subTable) }" data-clear-btn="false"
+                           name="tableUpload" id="tableUpload" data-inline="true" data-theme="b"
+                           style="font-weight:600; height: 39px;  font-size:medium;">
+        </div>
+      </div>
+      <div class="row" data-bind="basicTable: detail.subTable"> </div>
+    </div>
+  </div>
+  <!-- /ko --> 
+  <!-- ko if:   detail.subTable.headers().length>0 -->
+  <div data-role="footer"  data-fullscreen="true" data-position="fixed" style=" border-bottom-width: 0px;">
+    <div data-role="navbar" >
+      <ul>
+        <li><a href="javascript:void(0);" data-bind="click:detail.subTable.saveSubTable.bind(detail.subTable)" class="ui-btn-b" style="font-weight:400; color: #000000"><i class="far fa-2x fa-save"></i> <br>
+          <p style="margin-top: 6px; margin-bottom: 3px;"><span data-i18n="save">保存</span></p>
+          </a> </li>
+        <li><a href="javascript:void(0);" data-bind="click:function(){detail.subTable.resetRow();}"   class="ui-btn-b" style="font-weight:400; color: #000000"><i class="far fa-2x fa-redo-alt"></i> <br>
+          <p style="margin-top: 6px; margin-bottom: 3px;"><span data-i18n="redo">重置</span></p>
+          </a> </li>
+        <li><a href="javascript:void(0);"  data-bind="click:function(){ $.mobile.changePage('#tableEdit');}"  class="ui-btn-b" style="font-weight:400; color: #000000"><i class="far fa-2x fa-backspace"></i> <br>
+          <p style="margin-top: 6px; margin-bottom: 3px;"><span data-i18n="back">返回</span></p>
+          </a> </li>
+      </ul>
+    </div>
+  </div>
+  <!-- /ko --> 
+</div>
+<div data-role="page" id="tableEdit" data-theme="a" style="background-color: #f7f7f7; bottom: 0px;">
+  <div data-role="content" style="padding:2px 2px; padding-bottom: 80px; background-color: #f7f7f7">
+    <p align="center" style="margin-top: 12px; font-size: large"><i class="fad fa-fw fa-edit"></i>&nbsp;<span data-bind="text:'编辑'+( detail.table.write().item && detail.table.write().item.name||'')+'明细'"></span></p>
+    <div class="ui-body ui-body-b ui-content"
+        style="background-color: #f7f7f7; border-width:0px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 400px; margin: 0 2px; padding: 6px 6px"> 
+      
+      <!-- ko foreach:  detail.table.write -->
+      <div class="row"  data-bind="visible: $index()===$root.detail.tableIndex()">
+        <legend style="padding-left:3px;"> <font size="-1" color="#b0bec5"><b><span data-i18n="details">明细</span></b></font> </legend>
+        
+        <!-- ko basicForm: $data.headers --> 
+        <!-- /ko --> 
+      </div>
+      
+      <!-- /ko --> 
+    </div>
+  </div>
+  <div data-role="footer"  data-fullscreen="true" data-position="fixed" style=" border-bottom-width: 0px;">
+    <div data-role="navbar" >
+      <ul>
+        <li><a href="javascript:void(0);" data-bind="visible:true,click: function(){detail.table.write()[detail.tableIndex()].saveRow();}" class="ui-btn-b" style="font-weight:400; color: #000000"><i class="far fa-2x fa-save"></i> <br>
+          <p style="margin-top: 6px; margin-bottom: 3px;"><span data-i18n="save">save</span></p>
+          </a> </li>
+        <li><a href="javascript:void(0);" data-bind="click:function(){ detail.table.write()[detail.tableIndex()].resetRow();}"   class="ui-btn-b" style="font-weight:400; color: #000000"><i class="far fa-2x fa-redo-alt"></i> <br>
+          <p style="margin-top: 6px; margin-bottom: 3px;"><span data-i18n="redo">Redo</span></p>
+          </a> </li>
+        <li><a href="javascript:void(0);"  data-bind="click:function(){  detail.table.write()[detail.tableIndex()].resetRow();$.mobile.changePage('#');}"  class="ui-btn-b" style="font-weight:400; color: #000000"><i class="far fa-2x fa-backspace"></i> <br>
+          <p style="margin-top: 6px; margin-bottom: 3px;"><span data-i18n="back">Back</span></p>
+          </a> </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<script type="text/html" id="item">
+  <li class="ui-nodisc-icon ui-alt-icon">
+      <a href="javascript:void(0)" data-bind="click:$root.selectItem.bind($root)" style="padding:3px 12px; background-color:#f9f9f9; border-width:0px; border-bottom-width:1px;  border-color:#eceff1">
+          <p style="color:#000000; font-weight:600; margin-bottom:8px; font-size:0.9em; margin-left:2px" data-bind="text:businessKey,visible:businessKey"></p>
+          <p style="color:#bdbdbd; margin-bottom:8px; font-size:0.9em; margin-left:2px" data-bind="visible:!businessKey" ><span data-i18n="tsk-nosub">无主题</span></p>
+          <p style="color:#000000; font-weight:300; padding-right:24px; margin-left:2px; margin-top:4px; margin-bottom:0px" data-bind="text: id+': '+ name"></p>
+          <p style="font-weight:300">
+              <font color="#90a4ae">
+                  <i class="fal fa-fw fa-plus-square" data-bind="visible: instanceStartTime"></i>&nbsp;<span
+                      data-bind="text: BPMS.Services.Utils.formatDateTime(instanceStartTime, 't3')"></span>
+                  <span data-bind="text: '&nbsp;' + BPMS.Services.Utils.formatDateTime(instanceStartTime, 't4')"></span>&nbsp;&nbsp;&nbsp;<i
+                      class="fal fa-fw fa-user-circle" data-bind="visible: startUserName"></i>
+                  <span data-bind="visible: startUserName,text: '&nbsp;' + (startUserName || '') + '&nbsp;'"></span>
+              </font>
+              <br>
+              <font color="#90a4ae">
+                  <i class="fal fa-fw fa-alarm-clock" data-bind="visible: dueDate"></i>&nbsp;<span
+                      data-bind="text: BPMS.Services.Utils.formatDateTime(dueDate, 't3')"></span>
+                  <span data-bind="text: '&nbsp;' + BPMS.Services.Utils.formatDateTime(dueDate, 't4')"></span>&nbsp;&nbsp;&nbsp;<i class="fal fa-fw fa-users-medical" style="color:#90a4ae" data-bind="visible: ownerName&&$root.type()!=='assigned' ||  assigneeName&&$root.type()==='assigned'"></i>
+                  <span style="color:#90a4ae" data-bind="text: '&nbsp;' + (ownerName || '') + '&nbsp;', visible:  ownerName&&$root.type()!=='assigned'"></span>
+                  <span style="color:#90a4ae" data-bind="text: '&nbsp;' + (assigneeName || '') + '&nbsp;', visible: assigneeName&&$root.type()==='assigned'"></span>
+              </font>
+          </p>
+          <span data-bind="visible:draft" class="ui-li-aside" style="top:13px; font-size:0.75em; margin-right:40px"><font color="#78909c"><i class="fad fa-fw fa-cloud-upload"></i></font></span><span class="ui-li-aside" style="top:13px; font-size:0.75em; font-weight:400; color:#78909c" data-bind="text: BPMS.Services.Utils.getTaskProperty(priority)"></span>
+            <span class="ui-li-aside" style="top:13px; color:#78909c; font-size:0.75em; margin-right:16px"><i class="fad fa-fw fa-align-right"></i></span>
+      </a>
+  </li>
+</script> 
+<script type="text/html" id="delegatePersonItem">
+  <li data-icon="check" data-bind="click:$root.detail.selectPerson"><a href="javascript:void(0)"><span data-bind="text:name"></span><span class="ui-li-count ui-body-inherit" data-bind="text:sn"></span></a></li>
+</script> 
+<script type="text/html" id="personItem">
+  <li data-role="list-divider" data-bind="visible:!delegator.sn"
+      style="border-width:1px; border-bottom-width:0px; border-color: #424242; padding-left:16px; background-color: #424242; border-radius: 0em; text-shadow: 0 0 0">
+      <i class="fal fa-ellipsis-h"></i>
+  </li>
+  <li data-icon="star" data-bind="visible:delegator.sn==$root.user.userId"><a href="javascript:void(0);"
+                                                                              data-rel="back"
+                                                                              data-bind="text:delegator.name,click:$root.selectPerson"></a>
+  </li>
+  <li data-bind="visible:delegator.sn!==''&&delegator.sn!==$root.user.userId">
+      <a href="javascript:void(0);" data-bind="click:function(){$root.secureExecute('selectPerson',$data);}"
+         data-rel="back" style="font-weight:200; padding: 6px 16px;">
+          <h4 data-bind="text:delegator.name"></h4>
+          <snan data-bind="text:delegator.sn,visible:false"></snan>
+          <p><font color="#9E9E9E" data-bind="text:role||''"></font></p>
+              <span class="ui-li-count"
+                    style="background-color:#0097a7; border-width:0px; color:#FFFFFF; text-shadow: 0 0 0; box-shadow: 0px 1px 3px rgba(128,128,128,1.00);"
+                    data-bind="visible:false,text:delegator.sn"></span>
+      </a>
+  </li>
+</script> 
+<script type="text/html" id="singleFlow">
+  <li data-theme="b" class="ui-nodisc-icon ui-alt-icon" data-bind="attr:{'data-icon': ($index()==0?'carat-d':'eye')}">
+      <a href="javascript:void(0);" style="background-color:#fcfcfc; border-width:0px; border-left-width:3px; border-bottom-width:1px;"
+         class="ui-btn ui-btn-icon-right"
+         data-bind="css:{'ui-icon-carat-d':$index()==0,'ui-icon-eye':$index()!=0},click: function(){$root.detail.selectFlow($data)}">
+          <p style="color:#000000; font-weight:800"><i class="fas fa-fw fa-play" style="color:#90a4ae"></i></font> <span data-bind="text:name"></span>
+
+          <p style="margin-bottom:0px; color:#607d8b; font-weight:300">
+              <span data-bind="visible:assignee;"><i class="fal fa-fw fa-user-circle"></i>&nbsp;<span
+                      data-bind="text: (assignee || '')"></span></span>&nbsp;&nbsp;&nbsp;
+              <span data-bind="visible:endTime;">
+             <i class="fal fa-fw fa-clock"></i>&nbsp;<span data-bind="text: BPMS.Services.Utils.formatDateTime(endTime, 't5')"></span>
+             </span>
+          </p>
+          <p style="margin-bottom:0px; color:#607d8b; font-weight:300" data-bind="visible:owner;">
+            <span data-bind="visible:owner;"><i class="fal fa-fw fa-users-medical"></i>&nbsp;<span data-bind="text: (owner || '')"></span></span>&nbsp;&nbsp;&nbsp;
+          </p>
+          <span class="ui-li-count" style="font-weight:300; background-color:#ffffff"
+                data-bind="visible:$root.detail.getAction($data,$index),text:$root.detail.getAction($data,$index)"></span></a>
+  </li>
+
+  <!-- <li data-icon="eye">
+      <a href="#pophistory" data-rel="popup" data-position-to="window" data-transition="pop">
+        <font color="#00bcd4">
+          <i class="fal fa-play-circle"></i>
+        </font> Task Name
+        <p style="margin-bottom:0px; color:#9E9E9E">陈骏&nbsp;
+          <b>2015-5-22 13:11PM</b>
+        </p>
+        <span class="ui-li-count">创建</span>
+      </a>
+    </li> -->
+</script> 
+<script type="text/html" id="personItem2">
+  <li>
+      <a href="javascript:void(0)" data-bind="click:function(){$root.secureExecute('selectPerson',$data);}" style="padding-top: 6px; padding-bottom: 6px;">
+          <font><b data-bind="text:delegator.name"></b>
+              <span data-bind="visible:false" class="badge"
+                    style="border-radius:2px; margin-left: 10px; background-color:#E91E63">4</span></font>
+          <br>
+          <font size="-1" data-bind="text:role||''" color="#9E9E9E"></font>
+      </a>
+  </li>
+  <li data-bind="visible:$index()!==$root.people2().length-1" role="separator" class="divider"
+      style="margin: 0px 0px"></li>
+</script> 
+<script type="text/html" id="property">
+  <div class="col-lg-4 col-sm-4 col-xs-12 col-md-4"
+       style="margin-bottom: 0px; padding: 3px 0px; padding-right:12px; font-size:1em">
+      <font size="-2" color="#607d8b" style="font-weight:300" data-bind="text:name+':'"></font>
+      <!-- ko if: $data.controlType !== 't9i' -->        
+          <font size="-2" style="color:#000000; font-weight:500"><span data-bind="html:BPMS.Services.Utils.formatSingleProperty($data,$root.detail)"></span></font>
+      <!-- /ko -->
+     <!-- ko if: $data.controlType === 't9i'-->
+     <a href="javascript:void(0);" data-bind="click:function(){$root.pop('attachments',{attachments:$data.value});}">
+        <i class="fad fa-fw fa-paperclip"></i><font size="-2" style="color:#000000"><span data-bind="text:(ko.unwrap($data.value)||[]).length"></span></font>
+     </a>
+      <!-- /ko -->
+  </div>
+  <!-- <div class="col-lg-4 col-sm-4 col-xs-12 col-md-4" 
+  style="margin-bottom: 4px; padding: 0px 0px;">
+      <font color="#607d8b" size="-1">form:</font> value </div> -->
+</script> 
+<script type="text/html" id="properties">
+  <div class="row" style="margin:0px 0px; padding:6px 6px;">
+      <legend data-bind="style:{display: $index()==0?'block':'none'}" style="margin-bottom: 3px;">
+          <font size="-1" color="#b0bec5" style="font-weight:600"><b><span data-i18n="basic-info">基本信息</span></b></font>
+      </legend>
+      <!-- ko  jqmTemplate:{foreach:$data,name:'property'} -->
+      <!-- /ko -->
+  </div>
+</script> 
+<script type="text/html" id="collapsibleTable">
+  <div class="row" style="margin:0px 0px; padding:6px 6px;">
+    <legend style="margin-bottom: 3px;">
+    <font size="-1" color="#b0bec5" style="font-weight:600"><i class="fad fa-fw fa-table"></i>&nbsp;<b data-bind="text:item.name"></b></font>
+    </legend>
+    <div data-role="collapsible" data-mini="true" data-collapsed="true" data-collapsed-icon="carat-d" data-theme="b"
+    data-expanded-icon="carat-u" style="margin-top:18px; border-radius:0px" data-iconpos="right">
+    <h4 ><i class="fad fa-sigma"></i>&nbsp;<span style="font-weight:300" data-bind="text:$data.rows().length"></span></h4>
+    <!-- ko  basicTable: $data -->
+    <!-- /ko -->
+    </div>
+  </div>
+</script> 
+<script type="text/html" id="previewTable">
+  <div class="row" style="margin:0px 0px; padding:6px 6px;">
+    <legend style="margin-bottom: 3px;">
+    <font size="-1" color="#b0bec5" style="font-weight:600"><b data-bind="text:item.name"></b></font>
+    </legend>
+    <div data-role="collapsible" data-mini="true" data-collapsed="true" data-collapsed-icon="carat-d" data-theme="b"
+    data-expanded-icon="carat-u" style="margin-top:18px; border-radius:0px" data-iconpos="right">
+    <h4><i class="fad fa-sigma"></i>&nbsp;<span style="font-weight:300" data-bind="text:$data.rows().length"></span></h4>
+    <!-- ko  basicTable: $data -->
+    <!-- /ko -->
+    </div>
+  </div>
+</script> 
+<script type="text/html" id="attachmentList">
+  <div class="row" style="margin:0px 0px; padding:6px 6px;">
+  <ul data-role="listview" data-theme="b"
+  	data-bind="jqmTemplate: { name: 'attachmentRead', foreach: items }, jqmRefreshList: items"
+  	data-inset="true" style="margin-top:0px;">
+  </ul>
+</div>
+</script> 
+<script type="text/html" id="comment">
+  <li data-theme="b" data-bind="attr:{'data-icon':to?'eye':'comment'}">
+      <a href="javascript:void(0);" style="padding: 6px 6px">     
+      <p style="font-weight:600; margin-top:16px; margin-bottom:3px"><span data-bind="text:fromName"></span></p>
+      <p style="color:#607d8b; margin-top:0px; font-weight:600" data-bind="visible:false"><span data-bind="text:taskId"></span>: <span data-bind="text:taskName"></span></p>
+      <p style="color:#607d8b; margin-top:0px; word-break:normal; white-space:pre-wrap; padding-right:24px"  title="" data-bind="text:message,attr: {title:message}"></p>
+     
+   <p  style="margin-top:0px; margin-bottom:0px" data-bind="visible:toName"><span data-bind="text:BPMS.Services.Utils.formatDateTime(stamp, 't3')"></span>&nbsp;<strong data-bind="text:BPMS.Services.Utils.formatDateTime(stamp, 't4')"></strong></p>
+   
+    <p  style="color:#607d8b" data-bind="visible:toName">
+              <span style="color:#e91e63"><i class="fad fa-at"></i> <b data-bind="text:toName"></b></span>
+        
+      </p>
+  
+      <p  style="margin-top:0px; margin-bottom:0px" data-bind="visible:!toName"><span data-bind="text:BPMS.Services.Utils.formatDateTime(stamp, 't3')"></span>&nbsp;<strong data-bind="text:BPMS.Services.Utils.formatDateTime(stamp, 't4')"></strong></p>
+      </a>
+  </li>
+</script> 
+<!-- <script type="text/html" id="comment">
+  <li data-bind="attr:{'data-icon':to?'eye':'comment'}">
+      <a href="javascript:void(0);">     
+      <h2 style="font-weight:600"><span data-bind="text:fromName"></span></h2>
+      <p style="color:#BDBDBD; font-weight:600" data-bind="visible:false"><span data-bind="text:taskId"></span>: <span data-bind="text:taskName"></span></p>
+      <p data-toggle="tooltip" placement="auto" title="" data-bind="text:message,attr: {title:message}"></p>
+      <p class="ui-li-aside" style="color:#bdbdbd" data-bind="visible:toName">
+              <font color="#e91e63">@ <b data-bind="text:toName"></b>&nbsp;</font>
+          <span data-bind="text:BPMS.Services.Utils.formatDateTime(stamp, 't3')"></span>&nbsp;<strong data-bind="text:BPMS.Services.Utils.formatDateTime(stamp, 't4')"></strong>
+      </p>
+      <p class="ui-li-aside" data-bind="visible:!toName"><span data-bind="text:BPMS.Services.Utils.formatDateTime(stamp, 't3')"></span>&nbsp;<strong data-bind="text:BPMS.Services.Utils.formatDateTime(stamp, 't4')"></strong></p>
+      </a>
+  </li>
+</script>  --> 
+<script type="text/html" id="attachmentRead">
+  <li class="ui-nodisc-icon ui-alt-icon" data-bind="click:function(){$root.detail.secureExecute('download',$data)}" data-icon="arrow-d"><a href="javascript:void(0);"><p style="font-weight:800"><font color="#03a9f4"><i 
+  class="far fa-fw fa-file-export"></i></font>&nbsp;<span data-bind="text:name"></span></p>
+  <p style="margin-bottom:0px;"><font color="gray" data-bind="text:size"></font></p>
+  </a></li>
+  </script>
+</body>
+</html>
+<script type="text/html" id="tableWithMenu">
+
+<div class="row" style="margin:0;padding:0;">
+  <legend style="padding-left:3px;"><font size="-1" color="#b0bec5"><b><span data-bind="text:$data.name"></span></b></font> </legend>
+</div>
+<div class="ui-nodisc-icon ui-alt-icon">
+  <p align="center" data-bind="if:$data.steps().length === 0"> <a href="javascript:void(0);" data-bind="visible: !(editIndex()>=0)  ,click:function(){$.mobile.changePage('#tableEdit');}"
+          style="margin-left: 0px; color: #000000"><i class="far fa-fw fa-plus-square"  style="margin-right:6px"></i><span style="font-weight: 300" data-i18n="add">Add</span></a> 
+    <!-- <a href="javascript:void(0);" data-bind="visible:editIndex()>=0 ,click:saveRow"
+          style="margin-left: 24px;"><i class="far fa-fw fa-save" style="margin-right:6px"></i><span style="font-size: small" data-i18n="save">Save</span></a> --> 
+    <!-- <a href="javascript:void(0);" data-bind="click:resetRow"
+          style="margin-left: 24px;"><i class="far fa-fw fa-redo" style="margin-right:6px"></i><span style="font-size: small" data-i18n="redo">Redo</span></a> --> 
+    <a href="javascript:void(0);"  data-bind="click:toggleUploadTableFlag" 
+          style="margin-left: 24px; color: #000000"><i class="far fa-fw fa-file-upload" style="margin-right:6px"></i><span style="font-weight: 300" data-i18n="bulk-add">Bulk add</span></a> </p>
+  <p align="center" style="font-size: large" data-bind="if:$data.steps().length > 0"> 
+    <!--<a href="javascript:void(0);" data-bind="visible:editIndex()<0,click:function(){$data.addExtraRow($root.table.temp());}" style="margin-left: 24px;"><i class="far fa-fw fa-magic"></i></a>--> 
+    <a href="javascript:void(0);" data-bind="visible:editIndex()>=0,click:saveRow"
+          style="margin-left: 24px; color: #000000"><i class="far fa-fw fa-save" style="margin-right:6px"></i><span style="font-weight: 300" data-i18n="save">Save</span></a> <a href="javascript:void(0);" data-bind="visible:editIndex()>=0,click:resetExtraForm"
+          style="margin-left: 24px; color: #000000"><i class="far fa-fw fa-redo" style="margin-right:6px"></i><span style="font-weight: 300" data-i18n="redo">Redo</span></a> 
+    <!--<a href="javascript:void(0);"  data-bind="click:toggleUploadTableFlag"
+      style="margin-left: 24px;"><i class="far fa-fw fa-upload"></i></a>--> 
+  </p>
+</div>
+<div class="row" data-bind="visible:$data.uploadTableFlag">
+  <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" style="padding:3px 3px;">
+    <input type="file" data-bind="event: { change: $data.uploadTable.bind($data) }" data-clear-btn="false"
+              name="tableUpload" id="tableUpload" data-inline="true" data-theme="b"
+              style="font-weight:600; height: 39px;  font-size:medium;">
+  </div>
+</div>
+<div class="row" style="margin:0;padding:0;" data-bind="attr:{'tableName':$data.tableName},basicTable:  $data"> </div>
+</script>

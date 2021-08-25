@@ -1,0 +1,404 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, target-densitydpi=device-dpi">
+    <title>BPMS - 报表分析</title>
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile.css"/>
+    <link rel="stylesheet" type="text/css" href="css/color.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="css/google-icon.css">
+    <link rel="stylesheet" type="text/css" href="css/site.css"/>
+    <script src="libs/jquery.js?v=20210120"></script>
+    <script src="libs/jquery.mobile.js?v=1561951604711"></script>
+    <script src="libs/bootstrap.js?v=1561951604711"></script>
+    <script src="libs/knockout.js?v=1561951604711"></script>
+    <script src="libs/koExternalTemplateEngine_all.js?v=1561951604711"></script>
+    <script src="libs/ko.extension.js?v=1561951604711"></script>
+    <script src="libs/moment/moment.js?v=1561951604711"></script>
+    <script src="common/config.js?v=1561951604711"></script>
+    <script src="common/util.js?v=1561951604711"></script>
+    <script src="common/service.js?v=1561951604711"></script>
+    <script src="common/baseViewModel.js?v=1561951604711"></script>
+    <script src="reportDetail.js?v=1561951604711"></script>
+    <script src="reportDetailViewModel.js?v=1561951604711"></script>
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <style>
+        @media screen and (min-width: 0px) {
+            .row {
+                margin-left: 0px;
+                margin-right: 0px;
+                margin-top: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        @media screen and (min-width: 667px) {
+            .row {
+                margin-left: 0px;
+                margin-right: 0px;
+                margin-top: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        @media screen and (min-width: 992px) {
+            .row {
+                margin-left: 80px;
+                margin-right: 0px;
+                margin-top: 16px;
+            }
+        }
+
+        @media screen and (min-width: 1200px) {
+            .row {
+                margin-left: 80px;
+                margin-right: 80px;
+                margin-top: 32px;
+            }
+        }
+
+        @media screen and (min-width: 1600px) {
+            .row {
+                margin-left: 80px;
+                margin-right: 80px;
+                margin-top: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div data-role="page" id="main" data-theme="a" style="background-image: url(images/bg.jpg)">
+    <div data-role="content" style="padding: 3px 3px;">
+        <div class="jqm-block-content hidden-lg hidden-sm hidden-md"
+             style="margin: 2px 2px; padding: 8px 8px;background-image: url(images/bg/low-poly-sphere.jpg); background-size:cover; border-color:#E4E4E4; min-height: 0px;">
+            <div class="ui-grid-a">
+                <div class="ui-block-a">
+                    <p align="left" style="margin-top: 0px; text-shadow: 0px 1px 3px rgba(128,128,128,1.00);"><font
+                            color="#FFFFFF" size="+1" style="font-weight:600"><i class="fa fa-pie-chart"></i>
+                        报表分析</font><br>
+                        <font color="#FFFFFF" size="-1">BPMS</font></p>
+                </div>
+                <div class="ui-block-b">
+                    <p align="right" style="padding-right: 4px; margin-top: 0px;"><a href="#panelgrid"><font
+                            color="#FFFFFF" style="text-shadow: 0px 0px 3px rgba(128,128,128,1.00);"><i
+                            class="fa fa-2x fa-bars"></i></font></a></p>
+                </div>
+            </div>
+            <p align="center" style="margin-bottom: 20px; margin-top: -20px;"><img src="images/dlogosm2.png"  height="42px"></p>
+        </div>
+        <div class="jqm-block-content hidden-xs"
+             style="margin: 2px 2px; padding: 8px 8px; background-image: url(images/bg/7da9e3d820ad1be2156a1c4b43773493.jpg); background-size:contain; background-attachment:fixed; border-color:#E4E4E4; min-height: 0px;">
+            <div class="ui-grid-a" style="padding: 9px 9px">
+                <div class="ui-block-a" style=" padding-right: 19px;">
+                    <div class="ui-grid-c"
+                         style="background-color:rgba(46,46,46,0.20); border-radius: 0.3em; padding: 9px 9px">
+                        <div class="ui-block-a">
+                            <p align="center" style="text-shadow: 0px 1px 3px rgba(128,128,128,1.00); margin: 0px 0px">
+                                <a href="#"><font size="+1" color="#FFFFFF"><i class="fa fa-dollar"></i></font><br>
+                                    <font size="-1" color="#FFFFFF">财务类</font></a></p>
+                        </div>
+                        <div class="ui-block-b">
+                            <p align="center" style="text-shadow: 0px 1px 3px rgba(128,128,128,1.00); margin: 0px 0px">
+                                <a href="#"><font size="+1" color="#FFFFFF"><i class="fa fa-cog"></i></font><br>
+                                    <font size="-1" color="#FFFFFF">运营类</font></a></p>
+                        </div>
+                        <div class="ui-block-c">
+                            <p align="center" style="text-shadow: 0px 1px 3px rgba(128,128,128,1.00); margin: 0px 0px">
+                                <a href="#"><font size="+1" color="#FFFFFF"><i class="fa fa-users"></i></font><br>
+                                    <font size="-1" color="#FFFFFF">人事类</font></a></p>
+                        </div>
+                        <div class="ui-block-d">
+                            <p align="center" style="text-shadow: 0px 1px 3px rgba(128,128,128,1.00); margin: 0px 0px">
+                                <a href="#"><font size="+1" color="#FFFFFF"><i class="fa fa-search"></i></font><br>
+                                    <font size="-1" color="#FFFFFF">高级搜索</font></a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-block-b">
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a">
+                            <p align="left"
+                               style="margin-top: 0px; text-shadow: 0px 1px 3px rgba(128,128,128,1.00); padding-left: 4px;">
+                                <font color="#FFFFFF" size="+1" style="font-weight:600"><i class="fa fa-pie-chart"></i>
+                                    报表分析</font><br>
+                                <font color="#FFFFFF" size="-1">BPMS</font></p>
+                        </div>
+                        <div class="ui-block-b">
+                            <p align="right" style="padding-right: 4px; margin-top: 0px;"><a href="#panelgrid"><font
+                                    color="#FFFFFF" style="text-shadow: 0px 0px 3px rgba(128,128,128,1.00);"><i
+                                    class="fa fa-2x fa-bars"></i></font></a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="nav nav-tabs" id="myTabs" role="tablist"
+            style="margin-left: 2px; margin-right: 2px; margin-top: 4px; border-bottom-width: 0px;">
+            <li style="min-width: 80px;" role="presentation"><a class="dropdown-toggle" href="#" role="button"
+                                                                data-toggle="dropdown" aria-haspopup="true"
+                                                                aria-expanded="false">
+                <p align="center" style="margin: 0px 0px;"><i class="fa fa-2x fa-filter"></i><span class="caret"></span>
+                </p>
+            </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">分类1</a></li>
+                    <li><a href="#">分类2</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">分类3</a></li>
+                    <li><a href="#">分类4</a></li>
+                </ul>
+            </li>
+            <li style="min-width: 80px;" role="presentation" class="active"><a href="#home" id="home-tab" role="tab"
+                                                                               data-toggle="tab" aria-controls="home"
+                                                                               aria-expanded="true">
+                <p align="center" style="margin: 0px 0px;"><i class="fa fa-2x fa-pie-chart"></i></p>
+            </a></li>
+            <li style="min-width: 80px;" role="presentation"><a href="#cog" role="tab" id="cog-tab" data-toggle="tab"
+                                                                aria-controls="cog">
+                <p align="center" style="margin: 0px 0px;"><i class="fa fa-2x fa-cog"></i></p>
+            </a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledBy="home-tab">
+                <div class="ui-body ui-body-b ui-content"
+                     style="background-image: url(images/works-bg2.jpg); border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 400px; margin: 0 2px; padding: 6px 6px">
+                    <div class="row">
+                        <p align="left" style="padding: 0px 0px;"><font size="+1"><b>FA-012 项目费用报销</b>&nbsp;<a
+                                href="#popupInfo" data-rel="popup" data-position-to="window" data-transition="pop"
+                                title="详情"><i class="fa fa-info-circle"></i></a></font></p>
+
+                        <div data-role="popup" id="popupInfo" data-dismissible="false" data-theme="b"
+                             data-overlay-theme="a" class="ui-corner-all"
+                             style="min-width:300px; max-width:300px; background-image:url(images/tweets-bg.jpg)">
+                            <div data-role="content" style="padding: 4px 4px;">
+                                <p align="center" style="margin:8px 8px;"><font color="#607D8B"><i
+                                        class="fa fa-2x fa-info-circle"></i></font></p>
+                                <hr style="border-color: #607D8B; margin-bottom: 0px; margin-top:11px;">
+                                <p align="left" style="padding: 0px 3px; margin-bottom: 32px;">Success messages give
+                                    feedback to the user that an action has been executed. The user needs to acknowledge
+                                    the message.</p>
+
+                                <p style="padding: 0px 0px;"><a href="#" data-rel="back"
+                                                                class="ui-btn  ui-corner-all ui-btn-b"
+                                                                style="background-color: #424242; color:#fff; text-shadow: 0 1px 0 #111; margin: 0px 0px">确认</a>
+                                </p>
+                            </div>
+                        </div>
+                        <legend><font size="-1" color="gray">关键数值</font></legend>
+                        <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6"
+                             style="margin-bottom: 4px; padding: 0px 0px; font-size:medium"><font
+                                color="gray">Key:</font> <b>Value</b></div>
+                        <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6"
+                             style="margin-bottom: 4px; padding: 0px 0px; font-size:medium"><font
+                                color="gray">Key:</font> <b>Value</b></div>
+                        <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6"
+                             style="margin-bottom: 4px; padding: 0px 0px; font-size:medium"><font
+                                color="gray">Key:</font> <b>Value</b></div>
+                        <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6"
+                             style="margin-bottom: 4px; padding: 0px 0px; font-size:medium"><font
+                                color="gray">Key:</font> <b>Value</b></div>
+                    </div>
+                    <div class="row">
+                        <legend><font size="-1" color="gray">图标信息</font></legend>
+                        <canvas id="canvas"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="cog" aria-labelledBy="cog-tab">
+                <div class="ui-body ui-body-b ui-content"
+                     style="background-image: url(images/works-bg2.jpg); border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 400px; margin: 0 2px; padding: 6px 6px">
+                    <div class="row">
+                        <legend><font size="-1" color="gray">&nbsp;参数设置</font></legend>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6 col-xs-12 col-md-4" style="padding:3px 3px;">
+                            <label for="select-native-3"><font color="#969696">费用类型</font></label>
+                            <select name="select-native-3" id="select-native-3" data-theme="b"
+                                    style="box-shadow: 0 0 0; height:38px;">
+                                <option value="1">交通</option>
+                                <option value="2">住宿</option>
+                                <option value="3">餐饮</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 col-xs-12 col-md-4" style="padding:3px 3px;">
+                            <label><font color="#969696">日期</font></label>
+                            <input type="date" data-clear-btn="true" name="amount" data-inline="true" data-theme="b"
+                                   style="font-weight:600; height: 39px; font-size:medium;">
+                        </div>
+                        <div class="col-lg-3 col-sm-6 col-xs-12 col-md-4" style="padding:3px 3px;">
+                            <label><font color="#969696">日期</font></label>
+                            <input type="date" data-clear-btn="true" name="amount" data-inline="true" data-theme="b"
+                                   style="font-weight:600; height: 39px; font-size:medium;">
+                        </div>
+                        <div class="col-lg-3 col-sm-6 col-xs-12 col-md-4" style="padding:3px 3px;">
+                            <label><font color="#969696">日期</font></label>
+                            <input type="date" data-clear-btn="true" name="amount" data-inline="true" data-theme="b"
+                                   style="font-weight:600; height: 39px; font-size:medium;">
+                        </div>
+                        <div class="col-lg-3 col-sm-6 col-xs-12 col-md-4" style="padding:3px 3px;">
+                            <label><font color="#969696">金额</font></label>
+                            <input type="number" data-clear-btn="true" name="amount" data-inline="true" data-theme="b"
+                                   style="font-weight:600; height: 39px; font-size:medium;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-role="panel" id="panelgrid" data-position-fixed="true" data-position="right" data-display="overlay"
+         data-theme="a">
+        <div class="jqm-block-content"
+             style="margin: -14px -14px; margin-bottom: 14px; padding: 9px 9px; padding-top: 30px; background-color: #006064; border:none; min-height: 0px; border-radius: 0em;">
+            <p align="center" style="margin-bottom:10px;"><i class="material-icons md-56 md-light">face</i></p>
+
+            <div class="ui-grid-a" style="text-shadow: 0 0 0; color:#FFFFFF">
+                <div class="ui-block-a">
+                    <p align="left" style="padding-left:8px;"><font size="+1" data-bind="text:user.name"></font><br>
+                        <font color="#BDBDBD"><span  data-bind="text:user.Roles"></span><br>
+                            <span data-bind="text:user.sub"></span>
+                        </font>
+                    </p>
+                </div>
+                <div class="ui-block-b">
+                    <p align="right" style="margin-top: 8px;"><a href="javascript:void(0);" data-bind="click:logout"><i class="fa fa-2x fa-sign-out"></i></a></p>
+                </div>
+            </div>
+        </div>
+         <ul data-role="listview" data-theme="b" class="ui-nodisc-icon ui-alt-icon">
+        <li data-role="collapsible" data-iconpos="right" data-inset="false"
+            style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) " data-collapsed-icon="bars"
+            data-expanded-icon="carat-u">
+            <h2 style="padding:0px 0px; margin:0px 0px;">我的BPMS</h2>
+            <ul data-role="listview" data-theme="a" style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+                <li><a rel="external" href="index.html" style="font-weight:200; background-color:transparent"><img
+                        src="images/Glyphish/icons/81-dashboard@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                        style="top: 11px;">工作台</a></li>
+                <li><a rel="external" href="assign.html" style="font-weight:200; background-color:transparent"><img
+                        src="images/Glyphish/icons/112-group@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                        style="top: 11px;">授权管理</a></li>
+                <li><a rel="external" href="report_list.html" style="font-weight:200; background-color:transparent"><img
+                        src="images/Glyphish/icons/16-line-chart@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                        style="top: 11px;">报表</a></li>
+            </ul>
+        </li>
+        <li data-role="collapsible" data-iconpos="right" data-inset="false"
+            style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) " data-collapsed-icon="bars"
+            data-expanded-icon="carat-u">
+            <h2 style="padding:0px 0px; margin:0px 0px;">我的任务</h2>
+            <ul data-role="listview" data-theme="a" style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+                <li><a rel="external" href="task_list.html" style="font-weight:200; background-color:transparent"><img
+                        src="images/Glyphish/icons/09-chat-2@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                        style="top: 11px;">待处理任务</a></li>
+                <li><a rel="external" href="history_list.html" style="font-weight:200; background-color:transparent"><img
+                        src="images/Glyphish/icons/11-clock@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                        style="top: 11px;">任务历史</a></li>
+            </ul>
+        </li>
+        <li data-role="collapsible" data-iconpos="right" data-inset="false"
+            style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) " data-collapsed-icon="bars"
+            data-expanded-icon="carat-u">
+            <h2 style="padding:0px 0px; margin:0px 0px;">我的流程</h2>
+            <ul data-role="listview" data-theme="a" style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+                <li><a rel="external" href="process_list.html" style="font-weight:200; background-color:transparent"><img
+                        src="images/Glyphish/icons/10-medical@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                        style="top: 11px;">启动流程</a></li>
+                <li><a rel="external" href="instance_list.html" style="font-weight:200; background-color:transparent"><img
+                        src="images/Glyphish/icons/15-tags@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                        style="top: 11px;">流程历史</a></li>
+            </ul>
+        </li>
+    </ul>
+        <p align="center" style="margin-top: 30px;"><img src="images/bpmslogoxs.png" height="18px"></p>
+    </div>
+    <p style="margin-top: 8em; margin-bottom: 8em;"><br>
+    </p>
+
+    <div data-role="footer" data-fullscreen="true" data-position="fixed" style=" border-bottom-width: 0px;">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#popcheck" data-rel="popup" data-position-to="window" class="ui-btn-b"
+                       style="font-weight:300"><i class="fa fa-2x fa-spinner"></i><br>
+                    生成</a></li>
+                <li><a href="#" data-rel="popup" class="ui-btn-b" style="font-weight:300"><i
+                        class="fa fa-2x fa-refresh"></i><br>
+                    刷新</a></li>
+                <li><a href="#popaction" data-rel="popup" class="ui-btn-b" style="font-weight:300"><i
+                        class="fa fa-2x fa-ellipsis-h"></i><br>
+                    更多</a></li>
+            </ul>
+        </div>
+        <!-- /navbar -->
+        <div data-role="popup" id="popcheck" data-dismissible="false" data-theme="b" data-overlay-theme="a"
+             class="ui-corner-all" style="min-width:300px; max-width:300px; background-image:url(images/tweets-bg.jpg)">
+            <div data-role="content" style="padding: 4px 4px;">
+                <p align="center" style="margin:8px 8px;"><font color="#4CAF50"><i
+                        class="fa fa-2x fa-check-square-o"></i></font></p>
+                <hr style="border-color: #4CAF50; margin-bottom: 0px; margin-top:11px;">
+                <p align="left" style="padding: 0px 3px; margin-bottom: 32px;"><strong>PID112333</strong><br>
+                    Success messages give feedback to the user that an action has been executed. The user needs to
+                    acknowledge the message.</p>
+
+                <p style="padding: 0px 0px;"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b"
+                                                style="background-color: #424242; color:#fff; text-shadow: 0 1px 0 #111; margin: 0px 0px">确认</a>
+                </p>
+            </div>
+        </div>
+        <div data-role="popup" id="popaction" data-theme="b" data-overlay-theme="a" style="border-width: 0px">
+            <ul data-role="listview" class="ui-nodisc-icon ui-alt-icon" data-inset="true"
+                style="min-width:230px; border-radius: 0em;">
+                <li data-role="list-divider" style="border-width: 0px;  background-color: #424242; border-radius: 0em;">
+                    <i class="fa fa-ellipsis-h"></i></li>
+                <li data-icon="check"><a href="#">提交</a></li>
+                <li data-icon="back"><a href="#" data-rel="back">取消</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- /footer -->
+</div>
+<script>
+    $('#myTabs a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+</script>
+<script>
+    var radarChartData = {
+        labels: ["product", "sales", "purchase", "HR", "IT", "SCM", "developing"],
+        datasets: [
+            {
+                label: "My First dataset",
+                fillColor: "rgba(220,220,220,0.2)",
+                strokeColor: "rgba(220,220,220,1)",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: [65, 59, 90, 81, 56, 55, 40]
+            },
+            {
+                label: "My Second dataset",
+                fillColor: "rgba(151,187,205,0.2)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: [28, 48, 40, 19, 96, 27, 100]
+            }
+        ]
+    };
+
+    window.onload = function () {
+        window.myRadar = new Chart(document.getElementById("canvas").getContext("2d")).Radar(radarChartData, {
+            responsive: true
+        });
+    }
+
+</script>
+</body>
+</html>

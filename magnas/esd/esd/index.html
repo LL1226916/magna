@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/index.css" />
+	
+  </head>
+
+  <body style="background-color: #1b057f;overflow:-Scroll;overflow-y:hidden">
+    <header>
+	  <div class="logoL">
+		  <img src="img/WechatIMG269.png" style="width: 205px;height: 45px;">
+	  </div>
+      <h1>执行器区域看板</h1>
+      <div class="showTime"></div>
+	  <div class="logoR">
+		  <img src="img/WechatIMG282.png" style="width: 200px;height: 40px;"/>
+	  </div>
+	  <script language="JavaScript">
+	   // setTimeout(function(){location.reload()},10000); //指定3秒刷新一次
+	  </script>
+      <script type="text/javascript">
+        var t = null;
+        t = setTimeout(time, 1000); //開始运行
+        function time() {
+          clearTimeout(t); //清除定时器
+          dt = new Date();
+          var y = dt.getFullYear();
+          var mt = dt.getMonth() + 1;
+          var day = dt.getDate();
+          var h = dt.getHours(); //获取时
+          var m = dt.getMinutes(); //获取分
+          var s = dt.getSeconds(); //获取秒
+		  if(mt<10){
+		   mt = "0"+mt; 
+		   }
+		   if(day<10){
+		   day = "0"+day; 
+		   }
+		   if(h<10){
+		   h = "0"+h; 
+		   }
+		   if(m<10){
+		   m = "0"+m; 
+		   }
+		   if(s<10){
+		   s = "0"+s; 
+		   }
+          document.querySelector(".showTime").innerHTML =
+            
+            y +
+            "/" +
+            mt +
+            "/" +
+            day +
+            " " +
+            h +
+            ":" +
+            m +
+            ":" +
+            s ;
+          t = setTimeout(time, 1000); //设定定时器，循环运行
+        }
+		
+		
+			var date1 = '2021-05-19'
+			
+			var i = 779;
+		function add() {
+			var date2 = new Date();
+			var years = date2.getFullYear();
+			var month = date2.getMonth() + 1;
+			var days = date2.getDate();
+			var hours = date2.getHours(); //获取时
+			var min = date2.getMinutes(); //获取分
+			var sec = date2.getSeconds(); //获取秒
+			var date3 = 
+			years +
+            "-" +
+            month +
+            "-" +
+            days;
+			var c = moment(date3).diff(moment(date1), 'days')
+			var  startDate = Date.parse(date1);
+			   var  endDate = Date.parse(date3);
+			   var days1=(endDate - startDate)/(1*24*60*60*1000);
+			   // alert(days);
+		  i+c;
+		  console.log(c+ "日期")
+		  //console.log(date3+ ":" + date1 + "日期")
+		  document.querySelector(".security").innerHTML = i+c
+		    
+		   
+		 // t = setTimeout(time, 1000); //设定定时器，循环运行
+		}
+		setInterval("add()",1000);
+		
+      </script>
+    </header>
+	<div id="">
+    <section class="mainbox">
+      <div class="column">
+		<div class="no">
+			<h2 class="h">2021  Non-Recordable Incidents Days</h2>
+          <div class="no-hd">
+            <h2 class="security"></h2>
+          </div>
+		  <h2>Employee Suggestions</h2>
+		  <div class="no-hd">
+		    <h2 class="security2"></h2>
+		  </div>
+		</div>
+        <!-- <div class="panel bar" >
+          <h2>
+            OEE  TOP10
+          </h2>
+          <div class="chart"></div>
+          <div class="panel-footer"></div>
+        </div> -->
+        <div class="panel line">
+          <h2 class="h">计划完成率</h2>
+          <div class="chart"></div>
+          <div class="panel-footer"></div>
+        </div>
+        <div class="panel pie">
+          <h2 class="h">工废率</h2>
+          <div class="chart"></div>
+          <div class="panel-footer"></div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="panel bar1" style="background-color: #;">
+          <h2 class="h">设备状态</h2>
+		  <div class="panel-footer"></div>
+		  <div>
+			  <div id="" style="font-size: 14px;color: #FFF">
+			  	
+			  </div>
+			  <div class="">
+				  
+				  <div class="lampA">
+					  <div class="lampB">
+						  <div id="lamp" class="d1" style="width: 1rem;height: 0.595rem;">
+							
+						  </div>
+						  <p class="p1"></p>
+					  </div>
+					  <div class="lampB">
+						  <div id="lamp" class="d2" style="width: 1rem;height: 0.595rem;">
+							
+						  </div>
+						  <p class="p2"></p>
+					  </div>
+					  <div class="lampB">
+						  <div id="lamp" class="d3" style="width: 1rem;height: 0.595rem;">
+							
+						  </div>
+						  <p class="p3"></p>
+					  </div>
+					  <div class="lampB">
+						  <div id="lamp" class="d4" style="width: 1rem;height: 0.595rem;">
+							
+						  </div>
+						  <p class="p4"></p>
+					  </div>
+					  <div class="lampB">
+						  <div id="lamp" class="d5" style="width: 1rem;height: 0.595rem;">
+							
+						  </div>
+						  <p class="p5"></p>
+					  </div>
+					  <!-- <div class="lampB">
+					  	  <div id="lamp" style="width: 50px;height: 30px;background-color: #c8c8c8;">
+					  	  
+					  	  </div>
+					  	  <p></p>
+					  </div> -->
+					  
+				  </div>
+				  <div class="lampR" >
+					  <table border="0px" cellspacing="" cellpadding="" >
+						<tr>
+							<td>运行中设备数量：</td>
+							<td ><p class="t1"></p></td>
+						</tr>
+						<tr>
+							<td>待机设备数量：</td>
+							<td ><p class="t2"></p></td>
+						</tr>
+						<tr>
+							<td>维修设备数量：</td>
+							<td ><p class="t3"></p></td>
+						</tr>
+						<tr>
+							<td>报修设备数量：</td>
+							<td ><p class="t4"></p></td>
+						</tr>
+					  </table>
+				  </div>
+			  </div>
+			  <div id="" style="font-size: 14px;color: #FFF;">
+			  	
+			  </div>
+			  <div class="">
+			  				  <div class="lampA">
+			  					  <div class="lampB">
+			  					  						  <div id="lamp" class="d6" style="width: 1rem;height: 0.595rem;">
+			  					  							
+			  					  						  </div>
+			  					  						  <p class="p6"></p>
+			  					  </div>
+			  					  <div class="lampB">
+			  					  						  <div id="lamp" class="d7" style="width: 1rem;height: 0.595rem;">
+			  					  							
+			  					  						  </div>
+			  					  						  <p class="p7"></p>
+			  					  </div>
+			  					  <div class="lampB">
+			  					  						  <div id="lamp" class="d8" style="width: 1rem;height: 0.595rem;">
+			  					  							
+			  					  						  </div>
+			  					  						  <p class="p8"></p>
+			  					  </div>
+			  					  <div class="lampB">
+			  					  						  <div id="lamp" class="d9" style="width: 1rem;height: 0.595rem;">
+			  					  							
+			  					  						  </div>
+			  					  						  <p  class="p9"></p>
+			  					  </div>
+			  					  <div class="lampB">
+			  					  						  <div id="lamp" class="d10" style="width: 1rem;height: 0.595rem;">
+			  					  							
+			  					  						  </div>
+			  					  						  <p class="p10"></p>
+			  					  </div>
+			  				  </div>
+			  				  <!-- <div class="lampR">
+			  					  <table border="0px" cellspacing="" cellpadding="">
+			  						<tr>
+			  							<td>运行中设备数量：</td>
+			  							<td>20</td>
+			  						</tr>
+			  						<tr>
+			  							<td>待机设备数量：</td>
+			  							<td>3</td>
+			  						</tr>
+			  						<tr>
+			  							<td>维修设备数量：</td>
+			  							<td>1</td>
+			  						</tr>
+			  					  </table>
+			  				  </div> -->
+			  			  </div>
+			  
+		  </div>
+        </div>
+        <div class="panel bar1" >
+          <h2 class="h">合格率</h2>
+          <div class="chart" ></div>
+          <div class="panel-footer"></div>
+        </div>
+		<!-- <div class="panel bar2" >
+		  <h2>合格率  TOP10</h2>
+		  <div class="chart" ></div>
+		  <div class="panel-footer"></div>
+		</div> -->
+		<div class="panel bar" >
+		  <h2 class="h">
+		    OEE
+		  </h2>
+		  <div class="chart"></div>
+		  <div class="panel-footer"></div>
+		</div>
+      </div>
+	  
+      <div class="column">
+        <div class="panel item">
+          <h2 class="h">问题汇总清单</h2>
+          <div class="chart" ></div>
+          <div class="panel-footer"></div>
+          
+        </div>
+        <div class="panel line1">
+          <h2 class="h">设备报修 (分钟)</h2>
+          <div class="chart"></div>
+          <div class="panel-footer"></div>
+        </div>
+        <div class="panel pie1">
+          <!-- <h2 class="h">客户抱怨</h2> -->
+		  <h2 class="h">小时产能</h2>
+		  <div class="panel-footer"></div>
+          <div class="table">
+          	<table border="" cellspacing="0" cellpadding="0">
+          		<tr>
+					<th>时间</th>
+					<th>MR4</th>
+					<th>MR5</th>
+					<th>GEN 5C</th>
+					<th>SOD</th>
+				</tr>
+          		<tr>
+					<td>1213-23-32</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>2313-23-21</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>2310-23-12</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>2313-23-23</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>2012-30-23</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>1232-23-12</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>1232-23-12</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>1232-23-12</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>1232-23-12</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>1232-23-12</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>1232-23-12</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>1232-23-12</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+          	</table>	
+          </div>
+        </div>
+      </div>
+	  
+    </section>
+	<div class="removeCss">
+			  <div class="mark" style="float: left;">
+			  	<h3>Customer <br>Complaints</h3>
+			  </div>
+			  <div class="bottright">
+			  	<div class="bott">
+			  		<div class="bott1">
+			  			<div class="imgLogo">
+			  				<img src="img/bc.png" >
+			  			</div>
+			  			<div class="num">
+			  				<h3>0</h3>
+			  			</div>
+			  		</div>
+			  		<div class="bott1">
+			  			<div class="imgLogo">
+			  				<img src="img/volvo.png" >
+			  			</div>
+			  			<div class="num">
+			  				<h3>1</h3>
+			  			</div>
+			  		</div>
+			  		<div class="bott1" >
+			  			<div class="imgLogo">
+			  				<img src="img/bm.png" >
+			  			</div>
+			  			<div class="num">
+			  				<h3>0</h3>
+			  			</div>
+			  		</div>
+			  		<div class="bott1">
+			  			<div class="imgLogo">
+			  				<img src="img/bt.png" >
+			  			</div>
+			  			<div class="num">
+			  				<h3>0</h3>
+			  			</div>
+			  		</div>
+			  		<div class="bott1">
+			  			<div class="imgLogo">
+			  				<img src="img/ft.png" >
+			  			</div>
+			  			<div class="num">
+			  				<h3>0</h3>
+			  			</div>
+			  		</div>
+			  		<div class="bott1">
+			  			<div class="imgLogo">
+			  				<img  src="img/ft2.png" >
+			  			</div>
+			  			<div class="num">
+			  				<h3>0</h3>
+			  			</div>
+			  		</div>
+			  		<div class="bott1" >
+			  			<div class="imgLogo">
+			  				<img  src="img/wl.png" >
+			  			</div>
+			  			<div class="num">
+			  				<h3>0</h3>
+			  			</div>
+			  		</div>
+			  		<div class="bott1" >
+			  			<div class="imgLogo">
+			  				<img src="img/WechatIMG414.png" >
+			  			</div>
+			  			<div class="num">
+			  				<h3>0</h3>
+			  			</div>
+			  		</div>
+			  		
+			  	</div>
+			  </div>
+			  
+	</div>
+	</div>
+    <script src="js/flexible.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/index.js"></script>
+	<script src="js/moment.js"></script>
+	<!-- <script src="js/test.js"></script>
+	<script src="db/mysql.js"></script> -->
+  </body>
+</html>

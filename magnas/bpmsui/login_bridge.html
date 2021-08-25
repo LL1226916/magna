@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, target-densitydpi=device-dpi">
+
+  <title>BPMS</title>
+  <link rel="stylesheet" type="text/css" href="css/jquery.mobile.css" />
+  <link rel="stylesheet" type="text/css" href="css/color.css" />
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+  <link rel="stylesheet" type="text/css" href="css/jqm-demos.css">
+  <link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.css">
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="css/google-icon.css">
+  <link rel="stylesheet" type="text/css" href="css/site.css" />
+  <script src="libs/jquery.js?v=20210120"></script>
+  <script src="libs/jquery.mobile.js?v=1598853811990"></script>
+  <script src="libs/bootstrap.js?v=1598853811990"></script>
+  <script src="libs/knockout.js?v=1598853811990"></script>
+  <script src="common/config.js?v=20200927001"></script>
+  <script src="common/util.js?v=1598853811990"></script>
+  <script src="common/service.js?v=1598853811990"></script>
+  <script src="libs/moment/moment.js?v=1598853811990"></script>
+  <script src="loginBridge.js?v=1598853811990"></script>
+  <script src="loginBridgeViewModel.js?v=1598853811990"></script>
+  <link rel="shortcut icon" href="favicon.ico">
+  <style>
+    @media screen and (min-width:0px) {
+      .row {
+        margin-left: 16px;
+        margin-right: 16px;
+        margin-top: 48px;
+      }
+    }
+
+    @media screen and (min-width:667px) {
+      .row {
+        margin-left: 16px;
+        margin-right: 16px;
+        margin-top: 48px;
+      }
+    }
+
+    @media screen and (min-width:992px) {
+      .row {
+        margin-left: 32px;
+        margin-right: 32px;
+        margin-top: 32px;
+      }
+    }
+
+    @media screen and (min-width:1200px) {
+      .row {
+        margin-left: 80px;
+        margin-right: 80px;
+        margin-top: 32px;
+      }
+    }
+
+    @media screen and (min-width:1600px) {
+      .row {
+        margin-left: 156px;
+        margin-right: 156px;
+        margin-top: 32px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div data-role="page" id="pageView" data-theme="c" style="background-color:#607d8b">
+    <div data-role="content" style="padding: 2px 2px;" data-bind="visible:false;">
+    
+    </div>
+    <!-- /content -->
+
+
+    <div data-role="popup" id="popupMessage" data-dismissible="false" data-theme="b" data-overlay-theme="a" class="ui-corner-all"
+    style="min-width:300px; max-width:320px; background-color:#ffffff">
+    <div data-role="content" style="padding: 4px 4px;">
+        <p align="center" style="margin:8px 8px; margin-bottom:32px">
+            <font color="#C62828">
+                <i class="fad fa-2x fa-times-circle"></i>
+            </font>
+        </p>
+        
+        <p align="left" style="padding: 0px 3px; margin-bottom: 3px;">
+            <b>登陆失败</b>
+        </p>
+
+        <p align="left" style="padding: 0px 3px; margin-bottom: 0px;">
+            <font color="#9e9e9e" size="-2" data-bind="text:message"></font>
+        </p>
+
+        <p align="left" style="padding: 0px 3px; margin-bottom: 32px;">
+            <font color="#9e9e9e" size="-2" data-bind="text:errorCode"></font>
+        </p>
+
+        <p style="padding: 0px 0px;">
+            <a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #37474f; color:#fff; text-shadow: 0 1px 0 #111; margin: 0px 0px">确认</a>
+        </p>
+    </div>
+</div>
+  </div>
+</body>
+
+</html>

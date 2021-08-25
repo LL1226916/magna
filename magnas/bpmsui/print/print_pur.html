@@ -1,0 +1,367 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, target-densitydpi=device-dpi">
+    <title>bpm-print</title>
+    <!--<link rel="stylesheet" type="text/css" href="themes/jquery.mobile-1.4.5.min.css"/>
+    <link rel="stylesheet" type="text/css" href="themes/color.min.css"/>
+    <link rel="stylesheet" type="text/css" href="themes/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="themes/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="themes/jqm-demos.css">
+    <link rel="stylesheet" type="text/css" href="themes/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" type="text/css" href="themes/jquery.mobile.icons.min.css">
+    <link rel="stylesheet" type="text/css" href="themes/jquery.mobile.structure-1.4.5.min.css">
+    <link rel="stylesheet" type="text/css" href="themes/all.min.css">
+    <link rel="stylesheet" type="text/css" href="themes/googleicon.css">
+    <link rel="stylesheet" type="text/css" href="themes/site.css"/>	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.4.1/paper.css">	
+-->
+ <link rel="stylesheet" type="text/css" href="themes/bootstrap.min.css">
+
+
+
+
+
+	
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="scripts/libs/jquery.js"></script>
+    <script src="scripts/libs/handlebars-v4.7.3.js"></script>
+	<script src="scripts/libs/moment.js"></script>	
+    <style>
+        @media screen and (min-width: 0px) {
+            .row {
+                margin-left: 0px;
+                margin-right: 0px;
+                margin-top: 0px;
+            }
+        }
+
+        @media screen and (min-width: 667px) {
+            .row {
+                margin-left: 6px;
+                margin-right: 6px;
+                margin-top: 32px;
+            }
+        }
+
+        @media screen and (min-width: 992px) {
+            .row {
+                margin-left: 6px;
+                margin-right: 6px;
+                margin-top: 32px;
+            }
+
+            .pagination-container {
+                padding-left: 2px;
+            }
+        }
+
+        @media screen and (min-width: 1200px) {
+            .row {
+                margin-left: 6px;
+                margin-right: 6px;
+                margin-top: 32px;
+            }
+
+            .pagination-container {
+                padding-left: 2px;
+            }
+        }
+
+
+		
+        @media print {
+            .pagebreak {page-break-after: always;}
+
+			}
+        }
+    </style>
+
+	<style>
+    body {
+      background: rgb(204, 204, 204);
+    }
+    page[size="A4"] {
+      background: white;
+      width: 21cm;
+	  #height: 29.7cm;
+	  height: 28cm;
+      display: block;
+      margin: 0 auto;
+      margin-bottom: 0.5cm;
+    }
+    @media print {
+      body,
+      page[size="A4"] {
+		size: auto;
+        margin: 0;
+        box-shadow: 0;
+      }
+    }	
+	</style>
+
+</head>
+
+
+<body>
+    <page size="A4">
+      <main id="js-page-content" role="main" class="page-content"> </main>
+	</page>
+
+</body>
+<!--<body class="A4">
+
+  <section class="sheet padding-10mm">
+		<main id="js-page-content" role="main" class="page-content"> </main>
+  </section>
+
+</body>-->
+
+<script id="template" type="text/x-handlebars-template">
+<!-- Start of second page: #options -->
+<div data-role="page" id="form" data-theme="b" style="background-color: #ffffff;" >
+	<!--<div><img src="img/1280px-Magna_logo.svg.png" alt="logo" height="26px"> </div>-->
+    <div role="main" class="ui-content" style=" margin-bottom:5px; float: none; margin-left: 30px; margin-right: 30px;">
+
+        <div class="row" style="margin-top: 3px">
+			
+            <p align="center" style="margin-top: 10px; margin-bottom: 0px; color: #000000; font-size: 2em;">
+                物资采购付款申请</p>
+
+		<div class="row" style="margin-top: 10px">
+			<div class="col-12">
+			   
+			  <table id="dt-basic-example" class="table"  width="100%" >
+				<tbody>
+				  <tr>
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">单据编号：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{data.PROC_INST_ID_}}</td>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">报销主题：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{data.BUSINESS_KEY_}}</td>
+					
+
+					
+				  </tr>
+				  <tr>
+
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">报销人姓名：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{data.apply}}</td>
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">报销人部门：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{data.department}}</td>
+
+					
+				  </tr>
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">申请日期：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{formatDate data.START_TIME_}}</td>
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">审批通过日期：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" >{{formatDate data.END_TIME_}}</td>	
+				  </tr>	
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">报销总金额：</td>
+					<td  scope="col" width="85%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" colspan="3">{{data.totalamount}}</td>	
+				  </tr>	
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">备注：</td>
+					<td  scope="col" width="85%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" colspan="3">{{data.comments}}</td>	
+				  </tr>					  
+				</tbody>
+			  </table>
+			</div>
+		</div>	
+
+        <div class="row" style="margin-top: 0px">
+            <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2"
+                 style="padding:6px 6px;font-size: 1.2em">
+                <p style="margin: 0px 0px">报销明细：</p>
+            </div>
+
+        </div>			
+		<div class="row" style="margin-top: 2px">
+			<div class="col-12">
+			   
+			  <table id="dt-basic-example" class="table"  width="100%" >
+				<thead>
+				  <tr>
+
+					<th  scope="col" width="13%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">成本中心</th>
+					<th  scope="col" width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">用途说明（零件号及零件名）</th>
+					<th  scope="col" width="8%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">项目号</th>
+					<th  scope="col" width="10%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">发票号码</th>
+					<th  scope="col" width="11%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">发票类型</th>
+					<th  scope="col" width="10%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">未税金额</th>
+					<th  scope="col" width="9%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">税额</th>
+					<th  scope="col" width="10%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">小计</th>
+
+					 
+				  </tr>
+				</thead>
+				<tbody>
+				{{#each details}}
+				  <tr>
+					<td  scope="col" width="13%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{costcenter.name}}</td>
+					<td  scope="col" width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{expdetail}}</td>
+					<td  scope="col" width="8%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{projno}}</td>
+					<td  scope="col" width="10%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{invoceno}}</td>
+					<td  scope="col" width="11%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{invocetype}}</td>
+					<td  scope="col" width="10%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{untaxedamount}}</td>					
+					<td  scope="col" width="9%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{tax}}</td>
+					<td  scope="col" width="10%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{amount}}</td>
+					
+				  </tr>
+				{{/each}}
+				</tbody>
+			  </table>
+			</div>
+		</div>
+		
+        <div class="row" style="margin-top: 0px">
+            <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2"
+                 style="padding:6px 6px;font-size: 1.2em">
+                <p style="margin: 0px 0px">申请明细：</p>
+            </div>
+
+        </div>			
+		<div class="row" style="margin-top: 2px">
+			<div class="col-12">
+			   
+			  <table id="dt-basic-example" class="table"  width="100%" >
+				<thead>
+				  <tr>
+
+					<th  scope="col" style="min-width:100px; max-width:100px; overflow:visible; word-break:break-all; padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">ID</th>
+					<th  scope="col" style="min-width:200px; max-width:200px; overflow:visible; word-break:break-all; padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">主题</th>
+					<th  scope="col" style="min-width:80px; max-width:80px; overflow:visible; word-break:break-all; padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">采购类型</th>
+					<th  scope="col" style="min-width:80px; max-width:80px; overflow:visible; word-break:break-all; padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">物品</th>
+					<th  scope="col" style="min-width:45px; max-width:45px; overflow:visible; word-break:break-all; padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">单价</th>
+					<th  scope="col" style="min-width:45px; max-width:45px; overflow:visible; word-break:break-all; padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">数量</th>
+					<th  scope="col" style="min-width:45px; max-width:45px; overflow:visible; word-break:break-all; padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">总价</th>
+					<th  scope="col" style="min-width:55px; max-width:55px; overflow:visible; word-break:break-all; padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">供应商</th>
+					<th  scope="col" style="min-width:55px; max-width:55px; overflow:visible; word-break:break-all; padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">签收人</th>
+
+
+					 
+				  </tr>
+				</thead>
+				<tbody>
+				{{#each applyDetails}}
+				  <tr>
+					<td  scope="col" style="min-width:100px;  max-width:100px; overflow:visible; word-break:break-all; padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{1}}</td>
+					<td  scope="col" style="min-width:200px;  max-width:200px; overflow:visible; word-break:break-all; padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{2}}</td>
+					<td  scope="col" style="min-width:80px;  max-width:80px; overflow:visible; word-break:break-all; padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{5}}</td>
+					<td  scope="col" style="min-width:80px;  max-width:80px; overflow:visible; word-break:break-all; padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{8}}</td>
+					<td  scope="col" style="min-width:45px;  max-width:45px; overflow:visible; word-break:break-all; padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{12}}</td>
+					<td  scope="col" style="min-width:45px;  max-width:45px; overflow:visible; word-break:break-all; padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{13}}</td>
+					<td  scope="col" style="min-width:45px;  max-width:45px; overflow:visible; word-break:break-all; padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{14}}</td>
+					<td  scope="col" style="min-width:55px;  max-width:55px; overflow:visible; word-break:break-all; padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{15}}</td>
+					<td  scope="col" style="min-width:55px;  max-width:55px; overflow:visible; word-break:break-all; padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{16}}</td>
+				  </tr>
+				{{/each}}
+				</tbody>
+			  </table>
+			</div>
+		</div>	
+		
+        <div class="row" style="margin-top: 0px">
+            <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2"
+                 style="padding:6px 6px;font-size: 1.2em">
+                <p style="margin: 0px 0px">审核意见：</p>
+            </div>
+
+        </div>		
+		<div class="row" style="margin-top: 2px">
+			<div class="col-12">
+			   
+			  <table id="dt-basic-example" class="table"  width="100%">
+				<thead>
+				  <tr>
+
+					<th  scope="col" width="11%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">审核人</th>
+					<th  scope="col" width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">审批环节</th>
+					<th  scope="col" width="19%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">审核时间</th>
+					<th  scope="col" width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">审核意见</th>
+		 
+				  </tr>
+				</thead>
+				<tbody>
+				{{#each allApproveHiStr}}
+				  <tr>
+					<td  scope="col" width="11%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{assigneeName}}</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{taskName}}</td>
+					<td  scope="col" width="19%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{formatDateTime approveTime}}</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{approveMemo}}</td>
+					
+				  </tr>					  
+				{{/each}}
+				</tbody>
+			  </table>
+			</div>
+		</div>
+
+
+		
+    </div>
+
+</div>
+</script>
+
+
+<script>
+
+
+	//获取sn参数
+	function getQueryVariable(variable)
+	{
+		   var query = window.location.search.substring(1);
+		   var vars = query.split("&");
+		   for (var i=0;i<vars.length;i++) {
+				   var pair = vars[i].split("=");
+				   if(pair[0] == variable){return pair[1];}
+		   }
+		   return(false);
+	}
+
+	var PROC_INST_ID_ = (getQueryVariable("PROC_INST_ID_") === false ? "" : getQueryVariable("PROC_INST_ID_"));
+
+
+	
+    Handlebars.registerHelper('formatDate', function (epochTime) {
+        if (epochTime) {
+            return moment(Number(epochTime)).format("YYYY-MM-DD");
+		}
+        else{
+            return "";
+		}
+    });
+    Handlebars.registerHelper('formatDateTime', function (epochTime) {
+        if (epochTime) {
+            return moment(Number(epochTime)).format("YYYY-MM-DD HH:mm");
+		}
+        else{
+            return "";
+		}
+    });	
+	//从metabase获取数据并展示
+
+	var metabaseUrl = "https://mttmb.magna.cn/public/question/b4ef49b2-a208-4987-8bd6-21effff4669d.json";//物资采购付款申请
+	var getDataSettings = {
+	  "url": metabaseUrl + "?parameters=[{\"type\":\"category\",\"target\":[\"variable\",[\"template-tag\",\"PROC_INST_ID_\"]],\"value\":\"" + PROC_INST_ID_ + "\"}]",
+	  "method": "GET"
+	}
+	$.ajax(getDataSettings).done(function (response) {
+		var renderData = {"data" : response[0], "details": JSON.parse(response[0].details),"allApproveHiStr": JSON.parse(response[0].allApproveHiStr),"applyDetails": response[0].applyDetails == "" ? [] : JSON.parse(response[0].applyDetails)}
+		
+		var template = document.getElementById('template').innerHTML;
+		
+		var rendered = Handlebars.compile(template);
+		document.getElementById('js-page-content').innerHTML = rendered(renderData);
+		window.print();
+	});
+
+	
+</script>
+
+</html>

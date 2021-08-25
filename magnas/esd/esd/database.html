@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<h2 class="security"></h2>
+		<div class="" style="height: 100px;"></div>
+		<div style="margin-left: 20px;margin-right: 20px;">
+			<table class="table table-bordered">
+			    <thead>
+			      <tr>
+			        <th>标准产能</th>
+			        <th>批次总数量</th>
+			        <th>产能达标率</th>
+					<th>合格数量</th>
+					<th>批次合格率</th>
+					<th>零件号</th>
+					<th>零件名称</th>
+					<th>工序号</th>
+					<th>设备编号及名称</th>
+					<th>生产时间</th>
+					<th>标准节拍</th>
+					<th>停机时间</th>
+					<th>目标OEE</th>
+					<th>设备号</th>
+					<th>工废价格</th>
+					<th>总价格</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr>
+			        <td>John</td>
+			        <td>Doe</td>
+			        <td>john@example.com</td>
+			      </tr>
+			      <tr>
+			        <td>Mary</td>
+			        <td>Moe</td>
+			        <td>mary@example.com</td>
+			      </tr>
+			      <tr>
+			        <td>July</td>
+			        <td>Dooley</td>
+			        <td>july@example.com</td>
+			      </tr>
+			    </tbody>
+			</table>
+		</div>
+		
+		<script src="js/bootstrap.min.js"></script>
+		<script src="db/mysql.js"></script>
+		<script type="text/javascript">
+			
+			const db = require('./db/mysql')
+			db.select().then(res=>{
+				function add() {
+					document.querySelector(".security").innerHTML = res[1].NAME_
+				}
+			}).catch(reason=>{
+				console.log(reason)
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title> </title>
+  <meta name="Description" content="Page Title">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1894.6">
+
+  <link rel="stylesheet" media="screen, print" href="public/css/vendors.bundle.css">
+<!--   <link rel="stylesheet" media="screen, print" href="public/css/app.bundle.css">
+  <link rel="stylesheet" media="screen, print" href="public/css/fa-brands.css">
+  <link rel="stylesheet" media="screen, print" href="public/css/fa-regular.css">
+  <link rel="stylesheet" media="screen, print" href="public/css/fa-duotone.css">
+  <link rel="stylesheet" media="screen, print" href="public/css/fa-solid.css">
+  <link rel="stylesheet" media="screen, print" href="public/css/datagrid/datatables/datatables.bundle.css"> -->
+
+  <link rel="stylesheet" media="screen, print" href="public/js/formiojs/formio.full.css" />
+  <style type="text/css">
+    .custom-center input{
+        text-align:center;
+    }
+	
+	table.table{border:1px solid #000;border-collapse:collapse !important;}
+	table.table td{border:1px solid #000 !important;}
+	table.table th{border:1px solid #000 !important;}	
+
+
+     @media print {
+	
+	table.table{border:1px solid #000;border-collapse:collapse !important;}
+	table.table td{border:1px solid #000 !important;}
+	table.table th{border:1px solid #000 !important;}
+    .nprint { display:none; }
+    .pagebreak {page-break-after: always;}    
+    }
+
+  </style>
+
+</head>
+<body >
+<script src="public/js/vendors.bundle.js"></script>
+<script src="public/js/app.bundle.js"></script>
+<script src="public/js/statistics/peity/peity.bundle.js"></script>
+<script src="public/js/statistics/sparkline/sparkline.bundle.js"></script>
+
+<script src="public/js/formiojs/formio.full.js"></script>
+
+<!-- <button type="button" class="btn_search" onclick="dayin()">打印</button> -->
+<div align="center" class="nprint">
+  <button onclick="dayin()">打印</button>
+</div>
+<div id="formData" class="p-10" style="padding: 10px 50px 10px 50px"></div>
+<script>
+  var form = {}
+  var variables = {}
+  var endActivityId = ''
+
+  $(document).ready(function(){
+    var a=GetRequest();
+    var processId = a['processId'];
+    getVariables(processId)
+    getEndActivityId(processId)
+  })
+
+
+  function GetRequest() {
+    var url = location.search; //获取url中"?"符后的字串
+    var theRequest = new Object();
+    if (url.indexOf("?") != -1) {
+      var str = url.substr(1);
+      strs = str.split("&");
+      for(var i = 0; i < strs.length; i ++) {
+        theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+      }
+    }
+    return theRequest;
+  }
+
+  function getFormJson(params){
+    $.ajax({
+      url: 'https://mttbpms.magna.cn/mongo-rest/ux/form/'+ params,
+      type: 'get',
+      dataType: 'json',
+      beforeSend: function (XMLHttpRequest) {
+        XMLHttpRequest.setRequestHeader("Authorization", "Basic c3ZjLm10dDpQcnQyMDEzIQ==");
+      },
+      success: function(res){
+        form = res
+        createForm()
+      },
+      error: function(){
+
+      }
+    })
+  }
+
+  function getVariables(params) {
+    $.ajax({
+      url: 'https://mttbpms.magna.cn/bpms-rest/service/history/historic-variable-instances?processInstanceId='+params+'&size=100000',
+      type: 'get',
+      dataType: 'json',
+      beforeSend: function (XMLHttpRequest) {
+        XMLHttpRequest.setRequestHeader("Authorization", "Basic c3ZjLm10dDpQcnQyMDEzIQ==");
+      },
+      success: function(res){
+        variables = res
+        var publicFormKey
+        var obj = res.data.find(function (obj) {
+          return obj.variable.name === "public_printFormKey"
+        })
+        publicFormKey = obj.variable.value
+        getFormJson(publicFormKey)
+      },
+      error: function(){
+
+      }
+    })
+  }
+
+  function getEndActivityId(params) {
+    $.ajax({
+      url: 'https://mttbpms.magna.cn/bpms-rest/service/history/historic-process-instances/'+params,
+      type: 'get',
+      dataType: 'json',
+      beforeSend: function (XMLHttpRequest) {
+        XMLHttpRequest.setRequestHeader("Authorization", "Basic c3ZjLm10dDpQcnQyMDEzIQ==");
+      },
+      success: function(res){
+        endActivityId = res.endActivityId
+      },
+      error: function(){
+
+      }
+    })
+  }
+
+  function sortByKey(array,key,order){
+    if (order === 'asc'){
+      return array.sort(function(a,b){
+        var x = a[key];
+        var y = b[key];
+        return ((x<y)?-1:(x>y)?1:0)
+      })
+    }else if (order === 'desc'){
+      return array.sort(function(b,a){
+        var x = a[key];
+        var y = b[key];
+        return ((x<y)?-1:(x>y)?1:0)
+      })
+    }
+  }
+
+  function createForm(){
+    Formio.createForm(
+            document.getElementById("formData"),
+            {
+              components: form.formData
+            },
+            {
+              language: "ch",
+              readOnly: false
+            }
+    ).then(function(form){
+      var variableJson = {}
+      const resultData = variables.data
+      sortByKey(resultData,'id','asc')
+      resultData.forEach(item => {
+        try {
+          variableJson[item.variable.name] = JSON.parse(item.variable.value)
+        }
+        catch(err){
+          variableJson[item.variable.name] = item.variable.value
+        }
+
+      })
+      form.submission = {
+        data: variableJson
+      }
+    });
+  }
+
+  function dayin(){
+    // var userAgent = navigator.userAgent.toLowerCase(); //取得浏览器的userAgent字符串
+    // if (userAgent.indexOf("trident") > -1){
+    //   alert("请使用google或者360浏览器打印");
+    //   return false;
+    // }else if(userAgent.indexOf('msie')>-1){
+    //   var onlyChoseAlert = simpleAlert({
+    //     "content":"请使用Google或者360浏览器打印",
+    //     "buttons":{
+    //       "确定":function () {
+    //         onlyChoseAlert.close();
+    //       }
+    //     }
+    //   })
+    //   alert("请使用google或者360浏览器打印");
+    //   return false;
+    // }else{//其它浏览器使用lodop
+    //   var oldstr = document.body.innerHTML;
+    //   var headstr = "<html><head><title></title></head><body>";
+    //   var footstr = "</body>";
+    //   //此处id换为你自己的id
+    //   var printData = document.getElementById("formData").innerHTML; //获得 div 里的所有 html 数据
+    //   document.body.innerHTML = headstr+printData+footstr;
+         window.print();
+    //   //打印结束后，放开隐藏内容
+    //   document.body.innerHTML = oldstr ;
+    // }
+  }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,429 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, target-densitydpi=device-dpi">
+    <title>bpm-print</title>
+    <!--<link rel="stylesheet" type="text/css" href="themes/jquery.mobile-1.4.5.min.css"/>
+    <link rel="stylesheet" type="text/css" href="themes/color.min.css"/>
+    <link rel="stylesheet" type="text/css" href="themes/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="themes/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="themes/jqm-demos.css">
+    <link rel="stylesheet" type="text/css" href="themes/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" type="text/css" href="themes/jquery.mobile.icons.min.css">
+    <link rel="stylesheet" type="text/css" href="themes/jquery.mobile.structure-1.4.5.min.css">
+    <link rel="stylesheet" type="text/css" href="themes/all.min.css">
+    <link rel="stylesheet" type="text/css" href="themes/googleicon.css">
+    <link rel="stylesheet" type="text/css" href="themes/site.css"/>	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.4.1/paper.css">	
+-->
+ <link rel="stylesheet" type="text/css" href="themes/bootstrap.min.css">
+
+
+
+
+
+	
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="scripts/libs/jquery.js"></script>
+    <script src="scripts/libs/handlebars-v4.7.3.js"></script>
+	<script src="scripts/libs/moment.js"></script>	
+    <style>
+        @media screen and (min-width: 0px) {
+            .row {
+                margin-left: 0px;
+                margin-right: 0px;
+                margin-top: 0px;
+            }
+        }
+
+        @media screen and (min-width: 667px) {
+            .row {
+                margin-left: 6px;
+                margin-right: 6px;
+                margin-top: 32px;
+            }
+        }
+
+        @media screen and (min-width: 992px) {
+            .row {
+                margin-left: 6px;
+                margin-right: 6px;
+                margin-top: 32px;
+            }
+
+            .pagination-container {
+                padding-left: 2px;
+            }
+        }
+
+        @media screen and (min-width: 1200px) {
+            .row {
+                margin-left: 6px;
+                margin-right: 6px;
+                margin-top: 32px;
+            }
+
+            .pagination-container {
+                padding-left: 2px;
+            }
+        }
+
+
+		
+        @media print {
+            .pagebreak {page-break-after: always;}
+
+			}
+        }
+    </style>
+
+	<style>
+    body {
+      background: rgb(204, 204, 204);
+    }
+    page[size="A4"] {
+      background: white;
+      width: 21cm;
+	  #height: 29.7cm;
+	  height: 28cm;
+      display: block;
+      margin: 0 auto;
+      margin-bottom: 0.5cm;
+    }
+    @media print {
+      body,
+      page[size="A4"] {
+		size: auto;
+        margin: 0;
+        box-shadow: 0;
+      }
+    }	
+	</style>
+
+</head>
+
+
+<body>
+    <page size="A4">
+      <main id="js-page-content" role="main" class="page-content"> </main>
+	</page>
+
+</body>
+<!--<body class="A4">
+
+  <section class="sheet padding-10mm">
+		<main id="js-page-content" role="main" class="page-content"> </main>
+  </section>
+
+</body>-->
+
+<script id="template" type="text/x-handlebars-template">
+<!-- Start of second page: #options -->
+<div data-role="page" id="form" data-theme="b" style="background-color: #ffffff;" >
+	<!--<div><img src="img/1280px-Magna_logo.svg.png" alt="logo" height="26px"> </div>-->
+    <div role="main" class="ui-content" style=" margin-bottom:5px; float: none; margin-left: 30px; margin-right: 30px;">
+
+        <div class="row" style="margin-top: 3px">
+			
+            <p align="center" style="margin-top: 10px; margin-bottom: 0px; color: #000000; font-size: 2em;">
+                招待费报销</p>
+ 
+		<div class="row" style="margin-top: 10px">
+			<div class="col-12">
+			   
+			  <table id="dt-basic-example" class="table"  width="100%" >
+				<tbody>
+				  <tr>
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">单据编号：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{data.PROC_INST_ID_}}</td>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">报销主题：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{data.BUSINESS_KEY_}}</td>
+				  </tr>
+				  <tr>
+
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">报销人姓名：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{data.apply}}</td>
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">报销人部门：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{data.department}}</td>
+
+					
+				  </tr>
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">申请日期：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{formatDate data.START_TIME_}}</td>
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">审批通过日期：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" >{{formatDate data.END_TIME_}}</td>	
+				  </tr>	
+				  
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">是否宴请：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{data.fete}}</td>
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">宴请人均金额：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" >{{data.realamount}}</td>	
+				  </tr>	
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">宴请总计金额：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{data.realtotalamount}}</td>
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">宴请发票号：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" >{{data.invoiceno}}</td>	
+				  </tr>
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">宴请招待日期：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{formatDate data.realdate}}</td>
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">宴请招待地点：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" >{{data.address}}</td>	
+				  </tr>
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">宴请被招待人员：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{data.names}}</td>
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">宴请我司陪同人员：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" >{{data.ournames}}</td>	
+				  </tr>					  
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">宴请项目号：</td>
+					<td  scope="col" width="85%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" colspan="3">{{data.projno}}</td>	
+				  </tr>					  
+
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">是否消费：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{data.consume}}</td>
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">消费人均金额：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" >{{data.xfrealamount}}</td>	
+				  </tr>	
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">消费总计金额：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{data.xfrealtotalamount}}</td>
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">消费发票号：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" >{{data.xfinvoiceno}}</td>	
+				  </tr>
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">消费时间：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{formatDate data.xfrealdate}}</td>
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">消费地点及内容：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" >{{data.xfaddress}}</td>	
+				  </tr>
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">消费被招待人员：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{data.xfnames}}</td>
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">消费我司陪同人员：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" >{{data.xfournames}}</td>	
+				  </tr>						  
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">消费项目号：</td>
+					<td  scope="col" width="85%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" colspan="3">{{data.xfprojno}}</td>	
+				  </tr>						  
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">是否送礼：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{data.gift}}</td>
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">送礼人均金额：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" >{{data.slrealamount}}</td>	
+				  </tr>	
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">送礼总计金额：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{data.slrealtotalamount}}</td>
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">送礼发票号：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" >{{data.slinvoiceno}}</td>	
+				  </tr>	
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">送礼时间：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{formatDate data.slrealdate}}</td>
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">收礼人：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" >{{data.slnames}}</td>	
+				  </tr>	
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">送礼内容：</td>
+					<td  scope="col" width="85%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" colspan="3">{{data.slgifts}}</td>	
+				  </tr>					  
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">送礼项目号：</td>
+					<td  scope="col" width="85%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" colspan="3">{{data.slprojno}}</td>	
+				  </tr>						  
+				  
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">报销总金额：</td>
+					<td  scope="col" width="85%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" colspan="3">{{data.totalamount}}</td>	
+				  </tr>	
+				  
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">费用成本中心：</td>
+					<td  scope="col" width="85%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" colspan="3">{{data.checkCostcenter}}</td>	
+				  </tr>	
+				  
+				</tbody>
+			  </table>
+			</div>
+		</div>	
+
+        <div class="row" style="margin-top: 0px">
+            <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2"
+                 style="padding:6px 6px;font-size: 1.2em">
+                <p style="margin: 0px 0px">预申请：</p>
+            </div>
+        </div>
+		
+		<div class="row" style="margin-top: 10px">
+			<div class="col-12">
+			  <table id="dt-basic-example" class="table"  width="100%" >
+				<tbody>
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">招待性质：</td>
+					<td  scope="col" width="85%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" colspan="3">{{data.hospitality}}</td>	
+				  </tr>	
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">出差/来访时间从：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{formatDate data.from}}</td>
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">至：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" >{{formatDate data.to}}</td>	
+				  </tr>
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">被招待公司名称：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{ data.corp}}</td>
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">被招待人员名单：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" >{{ data.names}}</td>	
+				  </tr>
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">是否招待政府部门：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{ data.isgov}}</td>
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">预计招待天数：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" >{{ data.days}}</td>	
+				  </tr>	
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">预计招待次数：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{ data.times}}</td>
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">预计餐费总额：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" >{{ data.excepttotalamount}}</td>	
+				  </tr>	
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">每顿预算：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{ data.exceptamount}}</td>
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">是否消费：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" >{{ data.isconsum}}</td>	
+				  </tr>	
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">消费地点及项目：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{ data.consumitems}}</td>
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">消费费用预算：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" >{{ data.consumamount}}</td>	
+				  </tr>	
+				  <tr>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">是否送礼：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{ data.isgift}}</td>
+				  	<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">送礼金额：</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">{{ data.giftamount}}</td>
+					
+
+				  </tr>
+				  <tr>
+
+					<td  scope="col" width="20%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">礼品内容：</td>
+					<td  scope="col"  width="85%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600" colspan="3" >{{ data.giftitems}}</td>	
+				  </tr>					  
+				</tbody>
+			  </table>
+			</div>
+		</div>	
+				  
+        <div class="row" style="margin-top: 0px">
+            <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2"
+                 style="padding:6px 6px;font-size: 1.2em">
+                <p style="margin: 0px 0px">审核意见：</p>
+            </div>
+
+        </div>		
+		<div class="row" style="margin-top: 2px">
+			<div class="col-12">
+			   
+			  <table id="dt-basic-example" class="table"  width="100%">
+				<thead>
+				  <tr>
+
+					<th  scope="col" width="11%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">审核人</th>
+					<th  scope="col" width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">审批环节</th>
+					<th  scope="col" width="19%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">审核时间</th>
+					<th  scope="col" width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 600">审核意见</th>
+		 
+				  </tr>
+				</thead>
+				<tbody>
+				{{#each allApproveHiStr}}
+				  <tr>
+					<td  scope="col" width="11%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{assigneeName}}</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{taskName}}</td>
+					<td  scope="col" width="19%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{formatDateTime approveTime}}</td>
+					<td  scope="col"  width="30%" style="padding:6px 6px; border: thin solid #000000; border-width:1.5px; font-size: 1em; font-weight: 500">{{approveMemo}}</td>
+					
+				  </tr>	
+			  
+				{{/each}}
+				</tbody>
+			  </table>
+			</div>
+		</div>
+
+
+		
+    </div>
+
+</div>
+</script>
+
+
+<script>
+
+
+	//获取sn参数
+	function getQueryVariable(variable)
+	{
+		   var query = window.location.search.substring(1);
+		   var vars = query.split("&");
+		   for (var i=0;i<vars.length;i++) {
+				   var pair = vars[i].split("=");
+				   if(pair[0] == variable){return pair[1];}
+		   }
+		   return(false);
+	}
+
+	var PROC_INST_ID_ = (getQueryVariable("PROC_INST_ID_") === false ? "" : getQueryVariable("PROC_INST_ID_"));
+
+
+	
+    Handlebars.registerHelper('formatDate', function (epochTime) {
+        if (epochTime) {
+            return moment(Number(epochTime)).format("YYYY-MM-DD");
+		}
+        else{
+            return "";
+		}
+    });
+    Handlebars.registerHelper('formatDateTime', function (epochTime) {
+        if (epochTime) {
+            return moment(Number(epochTime)).format("YYYY-MM-DD HH:mm");
+		}
+        else{
+            return "";
+		}
+    });	
+	//从metabase获取数据并展示
+
+	var metabaseUrl = "https://mttmb.magna.cn/public/question/80d3b364-9b19-406a-b954-5f1d0faf1d65.json";//日常报销
+	var getDataSettings = {
+	  "url": metabaseUrl + "?parameters=[{\"type\":\"category\",\"target\":[\"variable\",[\"template-tag\",\"PROC_INST_ID_\"]],\"value\":\"" + PROC_INST_ID_ + "\"}]",
+	  "method": "GET"
+	}
+	$.ajax(getDataSettings).done(function (response) {
+		var renderData = {"data" : response[0],"allApproveHiStr": JSON.parse(response[0].allApproveHiStr)}
+		
+		var template = document.getElementById('template').innerHTML;
+		
+		var rendered = Handlebars.compile(template);
+		document.getElementById('js-page-content').innerHTML = rendered(renderData);
+		window.print();
+	});
+
+	
+</script>
+
+</html>

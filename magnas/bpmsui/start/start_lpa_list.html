@@ -1,0 +1,183 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, target-densitydpi=device-dpi">
+<title>mobilez</title>
+<!--<link href="css/jquery.mobile-1.3.2.css" rel="stylesheet" />-->
+<link href="themes/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css" />
+<!--<link href="css/jquery.mobile.theme-1.3.2.css" rel="stylesheet" type="text/css" />
+<link href="css/jquery.mobile.structure-1.3.2.css" rel="stylesheet" />-->
+<link rel="stylesheet" href="themes/bladecolor.min.css" />
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="themes/bootstrap.min.css">
+<link rel="stylesheet" href="themes/bootstrap-theme.min.css">
+<link rel="stylesheet" href="themes/jqm-demos.css">
+<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css">
+<link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.5.min.css">
+<link href="themes/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="themes/googleicon.css" rel="stylesheet">
+<link href="themes/site.css" rel="stylesheet" />
+<script src="scripts/libs/jquery.js"></script>
+<script src="scripts/libs//jquery.mobile-1.4.5.js"></script>
+<script src="scripts/libs/bootstrap.min.js"></script>
+<link rel="shortcut icon" href="favicon.ico">
+<style>
+@media screen and (min-width:0px) {
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+}
+}
+
+@media screen and (min-width:667px) {
+.row {
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 32px;
+}
+}
+
+@media screen and (min-width:992px) {
+.row {
+    margin-left: 32px;
+    margin-right: 32px;
+    margin-top: 32px;
+}
+.pagination-container {
+    padding-left: 2px;
+}
+}
+ @media screen and (min-width:1200px) {
+.row {
+    margin-left: 156px;
+    margin-right: 156px;
+    margin-top: 32px;
+}
+.pagination-container {
+    padding-left: 2px;
+}
+ @media screen and (min-width:1600px) {
+.row {
+ margin-left: 300px;
+ margin-right: 300px;
+ margin-top: 32px;
+}
+ @media screen and (min-width:1900px) {
+.row {
+ margin-left: 340px;
+ margin-right: 340px;
+ margin-top: 32px;
+}
+}
+</style>
+</head>
+<body>
+<div data-role="page" id="appshome" data-theme="c" style="background-image: url(images/tweets-bg.jpg); background-attachment:fixed; bottom:0px; text-shadow: 0 0 0;" >
+  <div data-role="header" data-theme="b"  style="background-color:#009688; background-image:url(images/bg/bannerbg3.jpg); background-size:cover; box-shadow:0 2px 5px 0 rgba(0, 0, 0, 0.24); border-bottom-width:0px;">
+    <div class="ui-grid-a">
+      <div class="ui-block-a">
+        <h3 style="margin-left: 10px; margin-top:8px; margin-bottom:8px; font-weight:300; "><font style="color:#ffffff; margin-left:3px; opacity:0.6">bpms</font></h3>
+      </div>
+      <div class="ui-block-b">
+        <h3 style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom:8px; text-shadow: 0 0px; color:rgba(15,15,15,1.00); text-align:right"><img src="images/mobilexlogow.png" height="26px" style="margin-top:-3px;"></h3>
+      </div>
+    </div>
+    <!-- /grid-a --> 
+    
+  </div>
+  <div data-role="main" style="padding: 2px 2px;">
+    <ul class="nav nav-tabs" id="myTabs" role="tablist" style="margin-left: 3px; margin-right: 3px; margin-top: 3px; border-bottom-width: 0px;">
+      <li style="min-width: 90px;" role="presentation" class="active"><a href="#device" id="device-tab" role="tab" data-toggle="tab" aria-controls="device" aria-expanded="true" style="padding-bottom:4px">
+        <p align="center" style="margin: 0px 0px; color:#00796b; font-weight:300"><i class="fa fa-2x fa-fw fa-tasks"></i></p>
+        </a></li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="device" aria-labelledBy="device-tab">
+        <div class="ui-body ui-body-b ui-content" style="background-image: url(images/tweets-bg.jpg); border-width:0px; border-top-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; margin: 0px 2px; padding: 0px 0px; padding-bottom:6px; min-height:300px; margin-bottom:64px">
+          <div class="row" style="margin: 12px 12px">
+            <p align="center" style="color:#009688; margin-top:48px; margin-bottom:12px; "><i class="fa fa-2x fa-fw fa-list" style="margin-bottom: 12px"></i><br>
+              请选择LPA流程</p>
+            <div class="ui-field-contain" style="border: none">
+
+			  <form>
+                <fieldset data-role="controlgroup" id="radios" >
+                  <!--<input type="radio" name="radio-choice-v-2" id="radio-choice-v-2-a" value="1" url="start_lpa_list.html" checked="checked"><label for="radio-choice-v-2-a">LPA</label>
+                  <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2-b" value="2"><label for="radio-choice-v-2-b">点检</label>
+                  <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2-c" value="3"><label for="radio-choice-v-2-c">合理化建议</label>
+				  <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2-d" value="4" id="radios" ><label for="radio-choice-v-2-d">变化点管理</label>-->
+                </fieldset>
+              </form>
+            </div>
+            <p align="center" style="margin-top: 32px"><a id="ok" onclick="ok()" href="#" class="ui-btn ui-corner-all ui-btn-inline" style="background-color: #009688; color:#ffffff; text-shadow: none; font-weight: 300; font-size: 18px"><i class="fa fa-fw fa-check" style="margin-right: 8px"></i>确认</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+</div>
+ <script type="text/javascript">
+ 
+var settings = {
+  "url": "https://mttmb.magna.cn/public/question/7b23f6ff-b359-4529-bc52-e3c124aa1955.json",
+  "method": "GET",
+  "timeout": 0,
+};
+
+var radios = $('#radios');
+$.ajax(settings).done(function (response) {
+  for( var i in response){
+	var radio = '<input type="radio" name="radio-choice-v-2" id="radio-choice-v-2-' +i+ '"value="'+response[i].CODE_+'" url="'+response[i].CODE_+'"><label for="radio-choice-v-2-'+i+'">' + response[i].NAME_ + '</label>'
+	radios.append(radio);
+  }
+
+  $("input[type=radio]").checkboxradio().checkboxradio("refresh"); 
+}); 
+
+
+
+
+var dateTime = new Date();
+var localeDate = new Date(dateTime.getFullYear(),dateTime.getMonth(),dateTime.getDate())
+var at8AM = new Date(localeDate.getTime()+8*60*60*1000);//当天早上8点
+var at8PM = new Date(localeDate.getTime()+20*60*60*1000);//当天晚上8点
+var at12PM = new Date(localeDate.getTime()+24*60*60*1000);//当天晚上12点
+var at8PM_lastNight= new Date(new Date(localeDate).getTime()-4*60*60*1000);//昨天晚上8点
+if ( at8AM.getTime() <= dateTime.getTime() && dateTime.getTime() < at8PM.getTime() ){ // [8:00-20:00)
+	var date = at8AM;
+} else {
+	if ( at8PM.getTime() <= dateTime.getTime() && dateTime.getTime() <= at12PM.getTime() ) //[20:00-24:00]
+		var date = at8PM;
+	else //(24:00-08:00)
+		var date = at8PM_lastNight; 
+}
+
+
+//document.getElementsByTagName('b')[1].innerHTML = date.toLocaleString('zh',{ hour12: true });
+
+var timestamp = date.getTime() - 402336000000;
+var textValue = "&businessKey=" + timestamp.toString(16);
+
+function ok(){
+	var options = $("#radios :radio:checked"); //获取选中的项
+
+	if(options.attr('url') == "https://mttbpms.magna.cn/lpa/#/tasks"){
+		var url = options.attr('url');
+		window.location.href = url;	
+	}else{
+		var url = options.attr('url');
+		if(url){
+			window.location.href = url+textValue;		
+		}
+		
+	}
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,618 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, target-densitydpi=device-dpi">
+<title>BPMS － 我的流程</title>
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.css"/>
+<link rel="stylesheet" type="text/css" href="css/color.css"/>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+<link rel="stylesheet" href="libs/formiojs/formio.full.css" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker.css">
+<link rel="stylesheet" type="text/css" href="css/jqm-demos.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure.css">
+<link rel="stylesheet" type="text/css" href="css/kc.fab.css">
+<link rel="stylesheet" type="text/css" href="css/all.min.css">
+<link rel="stylesheet" type="text/css" href="css/google-icon.css">
+<link rel="stylesheet" type="text/css" href="css/site.css"/>
+<script src="libs/jquery.js?v=20210120"></script>
+<script src="libs/knockout.jquery.mobile.js?v=20201111"></script>
+<script src="libs/jquery.mobile.js?v=20201111"></script>
+<script src="libs/bootstrap.js?v=20201111"></script>
+<script src="libs/moment/moment.js?v=20201111"></script>
+<script src="libs/moment/locale/zh-cn.js?v=20201111"></script>
+<script src="libs/bootstrap-datetimepicker.js?v=20201111"></script>
+<script src="libs/formiojs/formio.full.js?v=20201111"></script>
+<script src="libs/knockout.js?v=20201111"></script>
+<script src="libs/koExternalTemplateEngine_all.js?v=20201111"></script>
+<script src="libs/ko.extension.js?v=20201111"></script>
+<script src="libs/oex/utils.js?v=20201111"></script>
+<script src="libs/oex/jqm-checked.js?v=20201111"></script>
+<script src="libs/oex/jqm-datetime.js?v=20201111"></script>
+<script src="libs/oex/jqm-selected.js?v=20201111"></script>
+<script src="libs/oex/jqm-number.js?v=20201111"></script>
+<script src="libs/oex/jqm-money.js?v=20201111"></script>
+<script src="libs/oex/jqm-tel.js?v=20201111"></script>
+<script src="libs/oex/jqm-email.js?v=20201111"></script>
+<script src="libs/oex/jqm-switch.js?v=20201111"></script>
+<script src="libs/oex/jqm-psb.js?v=20201111"></script>
+<script src="libs/oex/jqm-id.js?v=20201111"></script>
+<script src="libs/oex/jqm-join.js?v=20201111"></script>
+<script src="libs/oex/jqm-auto-multi.js?v=20201111"></script>
+<script src="libs/oex/jqm-upload.js?v=20201111"></script>
+<script src="libs/oex/jqm-ctr.js?v=20201111"></script>
+<script src="libs/CLDRPluralRuleParser.js?v=20201111"></script>
+<script src="libs/jquery.i18n/jquery.i18n.js?v=20201111"></script>
+<script src="libs/jquery.i18n/jquery.i18n.messagestore.js?v=20201111"></script>
+<script src="libs/jquery.i18n/jquery.i18n.fallbacks.js?v=20201111"></script>
+<script src="libs/jquery.i18n/jquery.i18n.language.js?v=20201111"></script>
+<script src="libs/jquery.i18n/jquery.i18n.parser.js?v=20201111"></script>
+<script src="libs/jquery.i18n/jquery.i18n.emitter.js?v=20201111"></script>
+<script src="libs/jquery.i18n/jquery.i18n.emitter.bidi.js?v=20201111"></script>
+<script src="libs/kc.fab.js?v=20201111"></script>
+<script src="common/config.js?v=20201111"></script>
+<script src="common/util.js?v=20210203"></script>
+<script src="common/service.js?v=20201111"></script>
+<script src="common/baseViewModel.js?v=20201111"></script>
+<script src="instanceDetail.js?v=20201111"></script>
+<script src="instanceDetailViewModel.js?v=20210120"></script>
+
+<link rel="shortcut icon" href="favicon.ico"><style>
+/* These apply across all breakpoints because they are outside of a media query */
+        /* Make the labels light gray all caps across the board */
+        /* White bg, large blue text for rank and title */
+.movie-list tbody th {
+    font-size: 1.2em;
+    color: #77bbff;
+    margin-top: 0em;
+    text-align: center;
+}
+/*  Add a bit of extra left padding for the title */
+.movie-list tbody td.title {
+    padding-left: .8em;
+}
+/* Add strokes */
+.movie-list thead th {
+    border-bottom: 1px solid #d6d6d6; /* non-RGBA fallback */
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+.movie-list tbody th, .movie-list tbody td {
+    border-bottom: 1px solid #e6e6e6; /* non-RGBA fallback  */
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+}
+
+/*  Custom stacked styles for mobile sizes */
+        /*  Use a max-width media query so we don't have to undo these styles */
+@media (max-width: 40em) {
+/*  Negate the margin between sections */
+.movie-list tbody th {
+    margin-top: 0;
+    text-align: left;
+}
+/*  White bg, large blue text for rank and title */
+.movie-list tbody th, .movie-list tbody td.title {
+    display: block;
+    font-size: 1.2em;
+    line-height: 110%;
+    margin-top: 0em;
+    padding: .5em .5em;
+    background-color: #fff;
+    color: #77bbff;/*-moz-box-shadow: 0 1px 6px rgba(0, 0, 0, .1);
+                -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, .1);
+                box-shadow: 0 1px 6px rgba(0, 0, 0, .1);*/
+}
+/*  Hide labels for rank and title */
+.movie-list tbody th .ui-table-cell-label, .movie-list tbody td.title .ui-table-cell-label {
+    display: none;
+}
+/*  Position the title next to the rank, pad to the left */
+.movie-list tbody td.title {
+    margin-top: -2.1em;
+    padding-left: 2.2em;
+    color: #607d8b;
+    border-bottom: 1px solid rgba(0, 0, 0, .15);
+}
+/*  Make the data bold */
+.movie-list th, .movie-list td {
+    font-weight: 400;
+}
+/* Make the label elements a percentage width */
+.movie-list td .ui-table-cell-label, .movie-list th .ui-table-cell-label {
+/* min-width: 20%;*/
+}
+}
+
+/* Media query to show as a standard table at wider widths */
+  
+@media ( min-width: 40em ) {
+.basicTabWrap {
+    overflow-y: scroll;
+    max-height: 250px;
+}
+/* Show the table header rows */
+.movie-list td, .movie-list th, .movie-list tbody th, .movie-list tbody td, .movie-list thead td, .movie-list thead th {
+    display: table-cell;
+    margin: 0;
+}
+/* Hide the labels in each cell */
+.movie-list td .ui-table-cell-label, .movie-list th .ui-table-cell-label {
+    display: none;
+}
+}
+
+/* Hack to make IE9 and WP7.5 treat cells like block level elements */
+        /* Applied in a max-width media query up to the table layout breakpoint so we don't need to negate this */
+@media ( max-width: 40em ) {
+.movie-list td, .movie-list th {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+    clear: left;
+}
+}
+</style>
+<style>
+@media screen and (min-width: 0px) {
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+}
+
+@media screen and (min-width: 667px) {
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+}
+
+@media screen and (min-width: 992px) {
+.row {
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 16px;
+}
+}
+
+@media screen and (min-width: 1200px) {
+.row {
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 32px;
+}
+}
+
+@media screen and (min-width: 1600px) {
+.row {
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 32px;
+}
+}
+</style>
+</head>
+<body>
+<div data-role="page" id="main" data-theme="a" style="background-color: #f7f7f7">
+  <div data-role="content" style="padding: 0px 0px; margin-bottom:64px; background-color: #ffffff">
+    <div class="kc_fab_wrapper"></div>
+    <div class="jqm-block-content"
+             style="margin: 0px 0px; padding: 12px 12px;background-color:#ffffff; border-width: 0px; text-shadow: none; border-bottom-width: 0px; border-color:#cfd8dc; border-radius: 0px; min-height: 0px;">
+      <div class="ui-grid-a">
+        <div class="ui-block-a">
+          <p align="left" style="margin-top: 0px; font-size: 1.2em"><a href="javascript:history.back(-1)" style="color: #455a64; text-decoration: none"> <font color="#455a64"  style="font-weight:400"><i class="fad fa-fw fa-backspace" style="margin-right: 9px"></i><span data-i18n="my-processhistory">我的流程</span></font></a> </p>
+        </div>
+        <div class="ui-block-b">
+          <p align="right" style="padding-right: 4px; margin-top: 0px; font-size:1.2em"><a href="#panelComment" style="color: #455a64; text-decoration: none; margin-right: 9px;"><i class="fas fa-fw fa-envelope-open-text"></i> <font size="-2" color="#bdbdbd" style="font-weight:300" data-bind="text:commentInfo.comments().length"></font></a><a href="javascript:void(0)" data-bind="click:function(){delayPop('More',{positionTo:'#elMore'});}" id="elMore" data-rel="popup"  style="color: #455a64"> <i class="far fa-fw fa-ellipsis-h"></i> </a></p>
+        </div>
+      </div>
+    </div>
+    
+    <ul class="nav nav-tabs" id="myTabs" role="tablist"
+        style="margin-left: 2px; margin-right: 2px; margin-top: 4px; border-bottom-width: 0px;">
+      <li style="min-width: 80px;" role="presentation" class="active"><a href="#home" id="home-tab"
+                                                                           data-bind="click:switchTab"
+                                                                           aria-controls="home"
+                                                                           aria-expanded="true">
+        <p align="center" style="margin: 0px 0px;"><i class="fad fa-fw fa-info"></i> <span style="display:block; font-weight: 300"><span data-i18n="info">基本信息</span></span> </p>
+        </a></li>
+      <li data-bind="visible:attachments().length>0" style="min-width: 80px;" role="presentation"><a href="#attachment" id="attachment-tab"
+                                                            data-bind="click:switchTab"
+                                                            aria-controls="attachment">
+        <p align="center" style="margin: 0px 0px;"><i class="fad fa-fw fa-paperclip"></i>&nbsp;<span
+                    data-bind="text:attachments().length"></span> <span style="display:block; font-weight: 300"><span data-i18n="attachment">附件</span></span> </p>
+        </a></li>
+      <li style="min-width: 80px;" role="presentation"><a href="#history" id="history-tab"
+                                                            data-bind="click:switchTab"
+                                                            aria-controls="history">
+        <p align="center" style="margin: 0px 0px;"><i class="fad fa-fw fa-history"></i> <span style="display:block; font-weight: 300"><span data-i18n="history">历史</span></span> </p>
+        </a></li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+      <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledBy="home-tab">
+        <div class="ui-body ui-body-b ui-content"
+                 style="background-color: #f7f7f7; border-width:0px; border-bottom-right-radius: 0em; border-bottom-left-radius:0em; min-height: 400px; margin: 0 0px; padding: 6px 12px">
+          <div class="row">
+            <p align="left" style="padding: 0px 0px; margin-bottom:0px; font-weight:300; color:#bdbdbd"><font size="+1" style="font-weight:600; color:#000000;" data-bind="text:businessKey()||'N/A'"></font></p>
+            <p data-bind="visible:deleteReason" data-i18n="deleted">已删除</p>
+            <div class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                             aria-haspopup="true" aria-expanded="false">
+              <p align="left" style="padding: 0px 0px; font-weight:400; color:#000000"> <font color="#607d8b"><span data-bind="text:formatName(id(),processName())"></span> <span class="caret" style="color:#e91e63"></span></font></p>
+              </a>
+              <ul class="dropdown-menu" style="padding:0px 0px">
+                <li><a href="javascript:void(0);"
+                                   data-bind="click:function(){pop('info', {'title': '',  'description': processDescription()});}"
+                                   title="详情" style="padding: 8px 8px;"><i
+                           class="fad fa-fw fa-book-open" style="color: #03a9f4"></i> <span data-i18n="instruction">说明</span></a></li>
+                <li role="separator" class="divider" style="margin: 0px 0px"></li>
+                <li><a href="javascript:void(0);" data-bind="click:function(){secureExecute('viewImage','flow')}"
+                                   title="流程图" style="padding: 8px 8px;"><i
+																					   class="fad fa-fw fa-draw-polygon" style="color: #03a9f4"></i> <span data-i18n="flowchart">流程图</span></a></li>
+                <li role="separator" class="divider" style="margin: 0px 0px"></li>
+                <li data-bind="visible:!endTime()"><a href="javascript:void(0);"
+                                                                         data-bind="click:function(){secureExecute('viewImage','history')}"
+                                                                         title="流程历史" style="padding: 8px 8px;"><i
+																						class="fad fa-fw fa-history" style="color: #03a9f4"></i> <span data-i18n="my-processhistory">流程历史</span></a></li>
+              </ul>
+            </div>
+          </div>
+		  
+		  <div class="row" id="formData"></div>		
+          <!-- ko  jqmTemplate:{foreach:fields,name:'properties'} --> 
+          <!-- /ko --> 
+          
+          <!-- ko basicTables:tables --> 
+          <!-- /ko --> 
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane fade in" id="attachment" aria-labelledBy="attachment-tab">
+        <div class="ui-body ui-body-b ui-content"
+                 style="background-color: #f7f7f7; border-width:0px; border-bottom-right-radius: 0em; border-bottom-left-radius:0em; min-height: 400px; margin: 0 0px; padding: 6px 12px">
+          <div class="row">
+            <legend style="font-weight:400; color: #b0bec5"><b><span data-i18n="my-attachments">附件清单</span></b></legend>
+          </div>
+          <div class="row">
+            <ul data-role="listview"
+                        data-bind="jqmTemplate: { name: 'attachmentRead', foreach: attachments }, jqmRefreshList: attachments"
+                        data-inset="true" style="margin-top:0px;">
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane fade in" id="history" aria-labelledBy="history-tab">
+        <div class="ui-body ui-body-b ui-content"
+                 style="background-color: #f7f7f7; border-width:0px; border-bottom-right-radius: 0em; border-bottom-left-radius:0em; min-height: 400px; margin: 0 0px; padding: 6px 12px">
+          <div class="row">
+            <legend style="font-weight:400; color: #b0bec5"><b><span data-i18n="my-processhistory">流程历史</span></b></legend>
+          </div>
+          <div class="row">
+            <ul data-role="listview"
+                        data-bind="jqmTemplate: { name: 'flow', foreach: flows }, jqmRefreshList: flows"
+                        data-inset="true" data-iconpos="left" style="margin-top:0px;">
+            </ul>
+            <p align="center" data-bind="visible:!endTime()" style="color:#e91e63; margin-bottom:3px"><i class="fal fa-ellipsis-v"></i></p>
+            <p data-bind="visible:!endTime(),click:function(){secureExecute('viewImage','history')};"
+                       align="center" style="color:#e91e63"><a href="javascript:void(0);" style="color: #e91e63" title="流程图"> <i class="fal fa-2x fa-history"></i></a></p>
+          </div>
+          <div class="row">
+            <legend style="font-weight:400; color: #b0bec5"><b><span><span data-i18n="sub-process">子流程</span></span></b></legend>
+          </div>
+          <div class="row">
+            <ul data-role="listview" data-bind="jqmTemplate: { name: 'singleInstance', foreach: subInstances }, jqmRefreshList:subInstances" data-theme="a" data-inset="true" data-iconpos="left" style="margin-top:0px;">
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-role="panel" id="panelgrid" data-position-fixed="true" data-position="right" data-display="overlay" data-theme="a">
+    <div class="jqm-block-content" style="margin: -14px -14px; margin-bottom: 14px; padding: 9px 9px; padding-top: 30px; background-color: #455a64; border:none; min-height: 0px; border-radius: 0em;">
+      <p align="center" style="margin-bottom:10px;"> <i class="material-icons md-56 md-light">face</i> </p>
+      <div class="ui-grid-a" style="text-shadow: 0 0 0; color:#FFFFFF">
+        <div class="ui-block-a">
+          <p align="left" style="padding-left:8px;"> <font size="+1" data-bind="text:user.name"></font> <br>
+            <font color="#BDBDBD"> <span data-bind="text:user.Roles"></span> <br>
+            <span data-bind="text:user.sub"></span> </font> </p>
+        </div>
+        <div class="ui-block-b">
+          <p align="right" style="margin-top: 8px; padding-right:3px;"> <a href="javascript:void(0);" data-bind="click:logout"> <i class="fal fa-2x fa-sign-out"></i> </a> </p>
+        </div>
+      </div>
+    </div>
+    <ul data-role="listview" data-theme="b" class="ui-nodisc-icon ui-alt-icon">
+      <li data-role="collapsible" data-iconpos="right" data-inset="false"
+                  style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) " data-collapsed-icon="bars"
+                  data-expanded-icon="carat-u">
+        <h2 style="padding:0px 0px; margin:0px 0px;"><span data-i18n="my-bpms">我的BPMS</span></h2>
+        <ul data-role="listview" data-theme="a"
+                      style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+          <li><a rel="external" href="index.html"
+                        style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i class="fas fa-fw fa-home" style="margin-right: 8px; color: #03a9f4"></i><span data-i18n="my-home">工作台</span></a></li>
+          <!--<li><a rel="external"   href="assign.html"
+                        style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i class="fas fa-fw fa-users-cog" style="margin-right: 8px; color: #03a9f4"></i><span data-i18n="my-authorize">授权管理</span></a></li>-->
+          <li><a rel="external" href="#"
+                        style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i class="fas fa-fw fa-chart-area" style="margin-right: 8px; color: #03a9f4"></i><span data-i18n="my-report">报表</span></a></li>
+        </ul>
+      </li>
+      <li data-role="collapsible" data-iconpos="right" data-inset="false"
+                  style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) " data-collapsed-icon="bars"
+                  data-expanded-icon="carat-u">
+        <h2 style="padding:0px 0px; margin:0px 0px;"><span data-i18n="my-tasks">我的任务</span></h2>
+        <ul data-role="listview" data-theme="a"
+                      style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+          <li><a rel="external" href="task_list.html"
+                             style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i class="fas fa-fw fa-tasks" style="margin-right: 8px; color: #03a9f4"></i><span data-i18n="my-todo">待处理任务</span></a></li>
+          <li><a rel="external" href="history_list.html"
+                             style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i class="fas fa-fw fa-history" style="margin-right: 8px; color: #03a9f4"></i><span data-i18n="my-taskhistory">任务历史</span></a></li>
+        </ul>
+      </li>
+      <li data-role="collapsible" data-iconpos="right" data-inset="false"
+                  style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) " data-collapsed-icon="bars"
+                  data-expanded-icon="carat-u">
+        <h2 style="padding:0px 0px; margin:0px 0px;"><span data-i18n="my-processes">我的流程</span></h2>
+        <ul data-role="listview" data-theme="a"
+                      style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+          <li><a rel="external" href="process_list.html"
+                        style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i class="fas fa-fw fa-layer-plus" style="margin-right: 8px; color: #03a9f4"></i><span data-i18n="create-process">启动流程</span></a></li>
+          <li><a rel="external"   href="instance_list.html"
+                        style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i class="fas fa-fw fa-history" style="margin-right: 8px; color: #03a9f4"></i><span data-i18n="my-processhistory">流程历史</span></a></li>
+        </ul>
+      </li>
+      
+      <!--
+              <li data-role="collapsible" data-iconpos="right" data-inset="false"
+                  style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) " data-collapsed-icon="bars"
+                  data-expanded-icon="carat-u">
+                  <h2 style="padding:0px 0px; margin:0px 0px;">设置</h2>
+                  <ul data-role="listview" data-theme="a"
+                      style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+                      <li><a rel="external" href="../settings/indexDesign.html"
+                             style="font-weight:200; background-color:transparent"><img
+                              src="images/Glyphish/icons/19-gear@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                              style="top: 11px;">首页设置</a></li>
+  
+                  </ul>
+              </li>
+              -->
+    </ul>
+    <p align="center" style="margin-top: 30px;"> <img src="images/bpmslogoxs.png" height="18px"> </p>
+  </div>
+  <div data-role="panel" id="panelComment" data-position-fixed="true" data-position="right" data-display="overlay" data-theme="a" style="background-color: #ffffff">
+    <div class="jqm-block-content" style="margin: -14px -14px; margin-bottom: 14px; padding: 3px 3px; padding-top: 30px; background-color: #ffffff; border:none; min-height: 0px; border-radius: 0em;">
+      <p align="center" style="margin-bottom:30px;"> <i class="far fa-fw fa-2x fa-comments-alt"></i> </p>
+      <ul data-role="listview" class="ui-alt-icon ui-nodisc-icon" data-bind="jqmTemplate: { name: 'comment', foreach: commentInfo.comments }, jqmRefreshList:  commentInfo.comments "
+        style=" max-height:340px; margin-top: 9px; overflow:scroll; overflow-style:auto">
+      </ul>
+      <ul data-role="listview" data-inset="true" style="border:none;">
+        <form  style="margin:0px 0px;" data-bind="" autocomplete="off" onsubmit="return false;">
+          <input type="text" data-theme="b" placeholder="@ 协同人员..." data-i18n="[placeholder]collaborator" controlType="psbi"
+            id="to" data-bind="psb:commentInfo.to"
+            style="font-weight:300; height:39px; font-size:medium;">
+          <ul data-role="listview" data-inset="true" data-filter="false" data-filter-reveal="false">
+          </ul>
+          <!-- 
+          <ul style="display:none;" data-role="listview" class="ui-nodisc-icon ui-alt-icon ui-listview ui-listview-inset ui-corner-all ui-shadow" 
+           data-inset="true"></ul> -->
+          
+          <textarea data-theme="b" data-i18n="[placeholder]collaborative-information"  placeholder="协同信息..." 
+            style="font-weight:300; font-size:medium;" data-bind="value:commentInfo.message"></textarea>
+        </form>
+        <a href="javascript:void(0);" data-bind="click:doComment"
+          class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #263238; border-color: #263238; color:#fff; margin: 0px 0px; font-weight:300"><span data-i18n="send">发送</span></a>
+      </ul>
+    </div>
+  </div>
+  <p style="margin-top: 8em; margin-bottom: 8em;"><br>
+  </p>
+  <div data-role="footer" data-fullscreen="true" data-position="fixed" style=" border-bottom-width: 0px;">
+    <div data-role="navbar" data-theme="b">
+      <ul>
+        <li data-bind="css: { 'ui-disabled': !hasPrev() }"> <a href="javascript:void(0);" data-bind="click:function(){secureExecute('getPrev')}" class="ui-btn-b"
+                   style="font-weight:300"><i
+                        class="fad fa-2x fa-chevron-left" style="margin-bottom: 8px;"></i><br>
+          <span data-i18n="prev-record">上一条</span></a></li>
+        <li><a href="javascript:void(0);" data-bind="click:function(){window.location.href ='instance_list.html';}"
+                   class="ui-btn-b" style="font-weight:300"><i
+                    class="far fa-2x fa-layer-group" style="margin-bottom: 8px;"></i><br>
+          <span data-i18n="my-process">流程选择</span></a></li>
+        <li data-bind="css: { 'ui-disabled': !hasNext() }"> <a href="javascript:void(0);" data-bind="click:function(){secureExecute('getNext')}" class="ui-btn-b"
+                   style="font-weight:300"><i
+                        class="fad fa-2x fa-chevron-right" style="margin-bottom: 8px;"></i><br>
+          <span data-i18n="next-record">下一条</span></a></li>
+        
+        <!--  <li><a id="btnMore" href="javascript:void(0);" data-bind="click:function(){delayPop('More',{positionTo:'#btnMore'});}"  data-rel="popup" class="ui-btn-b" style="font-weight:300"><i
+                    class="far fa-2x fa-ellipsis-h" style="margin-bottom: 8px;"></i><br>
+          <span data-i18n="more">更多</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+  <div data-role="popup" id="popSubTable" data-overlay-theme="b" data-theme="b" style="max-height: 600px; min-width: 480px; padding: 16px 16px; padding-bottom: 8px;"> 
+    <!-- ko if:  exampleTable() --> 
+    <!-- ko  basicTable: exampleTable() --> 
+    <!-- /ko --> 
+    <!-- /ko -->
+    <p align="center" style="margin-top: 16px"><a href="#" data-rel="back" class="ui-btn ui-btn-inline ui-corner-all" style="margin: 0px 0px"><i class="fas fa-fw fa-times" style="margin-right: 8px"></i>返回</a></p>
+  </div>
+  <!--
+<div data-role="popup" id="popDelete" data-dismissible="false" data-theme="a" data-overlay-theme="a" style="min-width:300px; max-width:300px; border:none">
+    <ul data-role="listview" data-inset="true" style="border:none">
+        <li data-role="list-divider" style="border:none; border-bottom-left-radius:0; border-bottom-right-radius:0; padding:14px 14px; background-color:#00acc1; font-weight:300 "><i class="fas fa-fw fa-trash"></i> <span data-i18n="revoke-ins">撤销流程</span></li>
+        <form  style="margin:16px 16px;">
+        <input type="text" data-theme="b" data-bind="value:deleteReason" data-i18n="[placeholder]del-instance-reason" 
+        placeholder="撤销原因..." required style="font-weight:300; height:39px; font-size:medium;">
+        </form>
+        <div class="ui-grid-a" style="margin:12px 12px; padding-bottom:12px;">
+        <div class="ui-block-a"><a href="javascript:void(0);" data-bind="click: $root.delete" class="ui-btn ui-btn-icon-left ui-icon-check ui-corner-all ui-btn-b" style="background-color: #00bcd4; color:#fff; margin: 4px 4px; font-weight:300" data-i18n="ok">确认</a> </div>
+        <div class="ui-block-b"><a href="#" data-rel="back" class="ui-btn ui-btn-icon-left ui-icon-delete ui-corner-all ui-btn-b" style="background-color: #9e9e9e; color:#fff; margin: 4px 4px; font-weight:300" data-i18n="cancel">取消</a></div>
+        </div>
+    </ul>
+</div>
+-->
+  <div data-role="popup" id="popDelete" data-dismissible="false" data-theme="a" data-overlay-theme="a" style="min-width:320px; border:none; background-color: #ffffff" class="ui-popup ui-body-a ui-overlay-shadow ui-corner-all">
+    <ul data-role="listview" data-inset="true" style="border:none" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+      <li data-role="list-divider" style="border:none; border-bottom-left-radius:0; border-bottom-right-radius:0; padding:14px 14px; background-color:#ffffff; font-weight:300; color: #000000; text-shadow: none " role="heading" class="ui-li-divider ui-bar-inherit ui-first-child ui-last-child"> <i class="far fa-fw fa-trash"></i> <span data-i18n="revoke-ins">删除流程实例</span> </li>
+      <form onsubmit="return false;" style="margin:16px 16px;">
+        <span data-bind="visible:superProcessInstanceId"><i class="far fa-fw fa-info"></i>&nbsp;<span data-bind="text:$.i18n('sub-task-warning', superProcessInstanceId())"></span></span>
+        <div data-bind="visible:superProcessInstanceId" class="ui-grid-a" style="margin:12px 12px; padding-bottom:12px;">
+          <div class="ui-block-a"> <a href="javascript:void(0);" data-bind="click:function(){ $root.toInstance({id:superProcessInstanceId(), processDefinitionId:''});}" class="ui-btn ui-btn-icon-left ui-icon-check ui-corner-all ui-btn-b" style="background-color: #00838f; color:#fff; margin: 4px 4px; font-weight:300"><span data-i18n="ok">前往主流程</span></a> </div>
+        </div>
+        <input type="text" data-theme="b" data-bind="value:deleteReason" data-i18n="[placeholder]del-instance-reason" 
+        placeholder="撤销原因..." required style="font-weight:300; height:39px; font-size:medium;">
+      </form>
+      <div class="ui-grid-a" style="margin:11px 11px; padding-bottom:12px;">
+        <div class="ui-block-a"> <a href="javascript:void(0);" data-bind="click:function(){ $root.deleteInstance();}" class="ui-btn ui-btn-icon-left ui-icon-check ui-corner-all ui-btn-b" style="background-color: #37474f; color:#fff; margin: 4px 4px; font-weight:300"><span data-i18n="ok">确认</span></a> </div>
+        <div class="ui-block-b"> <a href="#" data-rel="back" class="ui-btn ui-btn-icon-left ui-icon-delete ui-corner-all ui-btn-b" style="background-color: #9e9e9e; color:#fff; margin: 4px 4px; font-weight:300"><span data-i18n="cancel">取消</span></a> </div>
+      </div>
+    </ul>
+  </div>
+  <div data-role="popup" id="popComments" data-dismissible="false" data-theme="b" data-overlay-theme="b" style="min-width:350px; max-width:480px;border:none"> <a href="#" data-rel="back" class="ui-btn ui-alt-icon ui-nodisc-icon ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+    <ul data-role="listview" data-inset="true" style="border:none;  min-height:240px;">
+      <li data-role="list-divider" style="border:none; border-bottom-left-radius:0; border-bottom-right-radius:0; padding:14px 14px; background-color:#00838f; font-weight:300 "><i class="fal fa-fw fa-comments"></i> <span data-i18n="synergy">协同</span></li>
+      <form  style="margin:16px 16px;" data-bind="" autocomplete="off" onsubmit="return false;">
+        <input type="text" data-theme="b" placeholder="@ 协同人员..." data-i18n="[placeholder]collaborator" controlType="psbi"
+            id="to" data-bind="psb:commentInfo.to"
+            style="font-weight:300; height:39px; font-size:medium;">
+        <ul data-role="listview" data-inset="true" data-filter="false" data-filter-reveal="false">
+        </ul>
+        <!-- 
+          <ul style="display:none;" data-role="listview" class="ui-nodisc-icon ui-alt-icon ui-listview ui-listview-inset ui-corner-all ui-shadow" 
+           data-inset="true"></ul> -->
+        
+        <textarea data-theme="b" data-i18n="[placeholder]collaborative-information"  placeholder="协同信息..." 
+            style="font-weight:300; font-size:medium;" data-bind="value:commentInfo.message"></textarea>
+      </form>
+      <a href="javascript:void(0);" data-bind="click:doComment"
+          class="ui-btn ui-btn-icon-left ui-icon-check ui-corner-all ui-btn-b" style="background-color: #00838f; color:#fff; margin: 14px 14px; font-weight:300"><span data-i18n="send">发送</span></a>
+    </ul>
+    <ul data-role="listview" class="ui-alt-icon ui-nodisc-icon" data-bind="jqmTemplate: { name: 'comment', foreach: commentInfo.comments }, jqmRefreshList:  commentInfo.comments "
+        style=" max-height:360px; overflow:scroll; overflow-style:auto">
+    </ul>
+  </div>
+  <div data-role="popup" id="popFlow" data-dismissible="false" data-theme="b" data-overlay-theme="a"
+         class="ui-corner-all"
+         style="min-width:300px; max-width:300px; background-image:url(images/tweets-bg.jpg)">
+    <div data-role="content" style="padding: 4px 4px;">
+      <p align="center" style="margin:8px 8px;"><font color="#607D8B"><i class="fa fa-2x fa-comments"></i></font> </p>
+      <hr style="border-color: #607D8B; margin-bottom: 0px; margin-top:11px;">
+      <p align="left" style="padding: 0px 3px; margin-bottom: 16px;"><span data-bind="text:flow.id"></span>:&nbsp;<span
+                    data-bind="text:flow.name"></span> <br>
+        <span data-bind="text:flow.date()+ ' '+flow.time()"></span> <br data-bind="visible:!!flow.assignee()">
+        <span data-bind="visible:!!flow.assignee()">执行人: <b data-bind="text:flow.assignee"></b></span> <br data-bind="visible:!!flow.coreAction()[0]">
+        <span data-bind="visible:!!flow.coreAction()[0]"><span data-bind="text:flow.coreAction()[0]"></span>: <b
+                        data-bind="text:flow.coreAction()[1]"></b></span> <br data-bind="visible:!!flow.coreValue()[0]">
+        <span data-bind="visible:!!flow.coreValue()[0]"><span data-bind="text:flow.coreValue()[0]"></span>: <b
+                        data-bind="text:flow.coreValue()[1]"></b></span> </p>
+      <p align="left" data-bind="visible:!!flow.coreComments()[0]" style="padding: 0px 3px; margin-bottom: 32px;"> <span data-bind="text:flow.coreComments()[0]"></span>: <br>
+        <span data-bind="text:flow.coreComments()[1]"></span> </p>
+      <p style="padding: 0px 0px;"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b"
+                                            style="background-color: #424242; color:#fff; text-shadow: 0 1px 0 #111; margin: 0px 0px">确认</a> </p>
+    </div>
+  </div>
+  <div data-role="popup" id="popMore" data-theme="b" data-overlay-theme="a" style="border-width: 0px">
+    <ul data-role="listview" class="ui-nodisc-icon ui-alt-icon" data-inset="true"
+            style="min-width:230px; border-radius: 0em;">
+      <li data-bind="css: { 'ui-disabled': !canDelete() }"><a href="javascript:void(0);" data-bind="click:startDelete"><i class="fad fa-fw fa-trash" style="margin-right: 9px"></i><span data-i18n="revoke-ins">撤销流程</span></a></li>
+      <li data-bind=""><a href="javascript:void(0);" data-bind="click:startComments"><i class="fad fa-fw fa-comments-alt" style="margin-right: 9px"></i><span data-i18n="chat">流程协同</span> <span data-bind="text:commentInfo.comments().length" style="color: #bdbdbd"></span></a></li>
+      <li ><a href="javascript:void(0);" data-bind="click:print,visible:printable"><i class="fad fa-fw fa-print" style="margin-right: 9px"></i><span data-i18n="print">单据打印</span></a></li>
+    </ul>
+  </div>
+</div>
+<script type="text/html" id="flow">
+    <li data-bind="attr:{'data-icon': ($index()==0?'carat-d':'eye')}">
+        <a href="javascript:void(0)" style="border-width:0px; border-left-width:3px; border-bottom-width:1px" class="ui-alt-icon ui-nodisc-icon"
+           data-bind="css:{'ui-icon-carat-d':$index()==0,'ui-icon-eye':$index()!=0},click:$root.selectFlow">
+            <p style="font-weight:800"><font color="#607d8b"><i class="fas fa-fw fa-play"></i></font>
+            <span data-bind="text:name"></span></p>
+			 <!-- ko if: coreInfo.coreComments --> 
+               <p align="left" style="color: #000000">
+                 <span data-bind="text:coreInfo.coreComments.name" style="color: #607d8b"></span>:  <b><span data-bind="text:coreInfo.coreComments.value"></span></b>
+               </p> 
+             <!-- /ko --> 
+            <p style="margin-bottom:0px; color:#607d8b">
+            <span data-bind="visible:assignee;"><i class="far fa-fw fa-user-circle"></i>&nbsp;<span data-bind="text: (assignee || '')"></span></span>&nbsp;&nbsp;&nbsp;
+               <span data-bind="visible:endTime;">
+               <i class="far fa-fw fa-clock"></i>&nbsp;<span data-bind="text: BPMS.Services.Utils.formatDateTime(endTime, 't5')"></span>
+            </span>
+            </p>
+            <p style="margin-bottom:0px; color:#607d8b" data-bind="visible:owner">
+                <span data-bind="visible:owner;"><i class="far fa-fw fa-users-medical"></i>&nbsp;<span data-bind="text: (owner || '')"></span></span>&nbsp;&nbsp;&nbsp;
+            </p>
+            <span class="ui-li-count" style="font-weight:300"
+                  data-bind="visible:$root.getAction($data,$index),text:$root.getAction($data,$index)"></span>
+        </a>
+    </li>
+</script> 
+<script type="text/html" id="properties">
+    <div class="row" style="margin-top: 0">
+        <legend data-bind="style:{display: $index()==0?'block':'none'}" style="margin-bottom: 3px;">
+            <font color="#b0bec5"><b><span data-i18n="basic-info">基本信息</span></b></font>
+        </legend>
+
+        <!-- ko  jqmTemplate:{foreach:$data,name:'property'} -->
+        <!-- /ko -->
+    </div>
+</script> 
+<script type="text/html" id="comment">
+    <li data-theme="b" data-bind="attr:{'data-icon':to?'eye':'comment'}">
+        <a href="javascript:void(0);" style="padding:9px 9px" data-bind="click:$parent.selectComment.bind($parent)">     
+        <p style="font-weight:600; margin-bottom:3px; margin-top:0px"><span data-bind="text:fromName"></span></p>
+        <p style="color:#607d8b; font-weight:600; margin-top:0px" data-bind="visible:taskId"><span data-bind="text:taskId"></span>: <span data-bind="text:taskName"></span></p>
+        <p style="color: #607d8b; margin-top:0px; word-break:normal; white-space:pre-wrap; padding-right:24px"  title="" data-bind="text:message,attr: {title:message}"></p>
+		
+		<p  data-bind="visible:toName" style="margin-bottom:3px"><span data-bind="text:BPMS.Services.Utils.formatDateTime(stamp, 't3')"></span>&nbsp;<strong data-bind="text:BPMS.Services.Utils.formatDateTime(stamp, 't4')"></strong></p>
+        <p  data-bind="visible:toName" style="margin-top:0px; margin-bottom:0px">
+                <span style="color:#e91e63"><i class="fad fa-fw fa-at"></i> <b data-bind="text:toName"></b>&nbsp;</span>
+          
+        </p>
+		
+		
+        <p style="margin-top:0px; margin-bottom:0px" data-bind="visible:!toName"><span data-bind="text:BPMS.Services.Utils.formatDateTime(stamp, 't3')"></span>&nbsp;<strong data-bind="text:BPMS.Services.Utils.formatDateTime(stamp, 't4')"></strong></p>
+        </a>
+    </li>
+</script> 
+<script type="text/html" id="property">
+    <div class="col-lg-4 col-sm-6 col-xs-12 col-md-6"
+         style="margin-bottom: 4px; padding: 0px 0px; font-size:medium">
+        <font size="-1" color="#607d8b" data-bind="text:name+':'"></font>
+      
+          <!-- ko if: $data.controlType !== 't9i' -->        
+          <font size="-1" style="color:#000000; font-weight:600"><span data-bind="html:BPMS.Services.Utils.formatSingleProperty($data,$root)"></span></font>
+          <!-- /ko -->
+          <!-- ko if: $data.controlType === 't9i' -->
+              <ul data-role="listview" data-inset="true" style="margin-top:0px;" data-bind="jqmTemplate: { name: 'attachmentRead', foreach: value }, jqmRefreshList:  value">
+              </ul>
+          <!-- /ko -->
+    </div>
+</script> 
+<script type="text/html" id="collapsibleTable">
+  <div data-bind="visible:typeof($data.parentTable)==='undefined'" class="row" >
+    <legend style="margin-bottom: 3px;">
+    <font size="-1" color="#b0bec5" style="font-weight:600"><i class="far fa-fw fa-table" style="margin-right:3px"></i><b data-bind="text:$data.name"></b></font>
+    </legend>
+    <div data-role="collapsible" data-mini="true" class="ui-alt-icon ui-nodisc-icon" data-collapsed="false" data-collapsed-icon="carat-d" data-theme="b"
+    data-expanded-icon="carat-u" style="margin-top:18px; border-radius:0px" data-iconpos="right">
+    <h4><i class="fad fa-fw fa-sigma"></i>&nbsp;<span data-bind="text:$data.rows().length"></span></h4>
+    <!-- ko  basicTable: $data -->
+    <!-- /ko -->
+    </div>
+  </div>
+</script> 
+<script type="text/html" id="singleInstance">
+    <li data-icon="eye" class="ui-alt-icon ui-nodisc-icon" data-theme="b">
+      <a href="javascript:void(0);" style="border-width:0px; border-left-width:3px; border-bottom-width:1px;"  data-bind="click:$root.toInstance">
+        <p style="color:#000000"><i class="far fa-fw fa-play"></i></font>
+        <span data-bind="text:id"></span><span data-bind="visible:!!businessKey,text:':'+ businessKey"></span>
+        <p style="margin-bottom:0px; color:#607d8b"><span data-bind="text:startUser"></span>&nbsp;<b data-bind="visible: endTime,text: BPMS.Services.Utils.formatDateTime(endTime, 't5')">2015-5-22 13:11PM</b></p>
+      <span class="ui-li-count" style="font-weight:300" data-bind="text:endTime?'已完成':'进行中'"></span>
+    </a>
+    </li>
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 388 338" style="enable-background:new 0 0 388 338;" xml:space="preserve">
+<style type="text/css">
+	.st0{opacity:0.3;fill:#A6D2DD;enable-background:new    ;}
+	.st1{opacity:0.5;fill:#A6D2DD;enable-background:new    ;}
+	.st2{display:none;fill:#FF005C;}
+	.st3{fill:#A6D2DD;}
+	.st4{opacity:0.65;fill:#546E7A;}
+	.st5{opacity:0.36;fill:#546E7A;}
+	.st6{opacity:0.16;fill:#546E7A;}
+	.st7{opacity:0.32;fill:#546E7A;}
+	.st8{opacity:0.6;fill:#546E7A;}
+	.st9{opacity:0.2;fill:#546E7A;}
+	.st10{opacity:0.55;fill:#546E7A;}
+	.st11{fill:#546E7A;}
+	.st12{fill:#FFFFFF;}
+	.st13{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:3;stroke-miterlimit:10;}
+</style>
+<path class="st0" d="M184,238h138c6,0,11-4.9,11-11V116c0-6.1-5-11-11-11H184c-6.1,0-11,4.9-11,11v111C173,233.1,177.9,238,184,238z
+	"/>
+<path class="st1" d="M297.6,275.3H108.8c-5.2,0-9.4-4.2-9.4-9.4V76.6c0-5.2,4.2-9.4,9.4-9.4h188.8c5.2,0,9.4,4.2,9.4,9.4v189.3
+	C307,271.1,302.8,275.3,297.6,275.3z"/>
+<path class="st2" d="M264.6,301.3H89.8c-9,0-16.4-7.3-16.4-16.4V57.6c0-9,7.3-16.4,16.4-16.4h174.8c9,0,16.4,7.3,16.4,16.4v227.3
+	C281,293.9,273.7,301.3,264.6,301.3z"/>
+<path class="st3" d="M255.1,301.3H99.3c-14.3,0-25.9-11.7-25.9-25.9V67.1c0-14.3,11.7-25.9,25.9-25.9h155.7
+	c14.3,0,25.9,11.7,25.9,25.9v208.2C281,289.6,269.3,301.3,255.1,301.3z"/>
+<rect x="100" y="86" class="st4" width="32" height="40"/>
+<rect x="132" y="86" class="st5" width="65.3" height="48.5"/>
+<rect x="197.3" y="86" class="st6" width="60.8" height="48.5"/>
+<rect x="197.3" y="134.5" class="st7" width="60.8" height="48.5"/>
+<rect x="197.3" y="183" class="st8" width="60.8" height="48.5"/>
+<rect x="197.3" y="231.5" class="st9" width="60.8" height="43.8"/>
+<rect x="99.4" y="231.5" class="st10" width="97.6" height="43.8"/>
+<g>
+	
+		<image style="overflow:visible;opacity:0.6;enable-background:new    ;" width="200" height="158" xlink:href="BACFDF2F.png"  transform="matrix(1 0 0 1 41 94)">
+	</image>
+	<g>
+		<path class="st11" d="M216.1,238H61.8c-6,0-10.8-4.9-10.8-10.9V115.7c0-6,4.9-10.8,10.8-10.8h154.3c6,0,10.9,4.9,10.9,10.8v111.5
+			C227,233.1,222.1,238,216.1,238z"/>
+	</g>
+</g>
+<g>
+	<path class="st12" d="M74.4,211.7v-23.8c9.6,2.9,18.5,4.3,26,4.3c7,0,9.5-0.6,9.5-5s-2.4-5.3-13.7-8.2C79,174.4,75,169.7,75,155.6
+		c0-17.3,8.2-26.3,35.6-26.3c9.9,0,19.2,1.2,24.1,2.7l-0.9,21.5c-4.3-1.1-14.7-3.1-22-3.1c-8.7,0-9.6,1.4-9.6,4.3
+		c0,2.9,2,2.9,15.1,6.6c17.1,4.7,20.3,10.2,20.3,25c0,21.7-13.1,27.8-35.3,27.8C91.7,214.3,84,213.7,74.4,211.7z"/>
+	<path class="st12" d="M206.1,129.4l-0.6,25.8h-2.3c-9.8,0-19.6,3.7-20.9,15.1v43.1h-29v-82.5h29v14.4c4.7-13.1,12.5-15.9,22.1-15.9
+		H206.1z"/>
+</g>
+<line class="st13" x1="99.4" y1="67.2" x2="258" y2="67.2"/>
+</svg>

@@ -1,0 +1,609 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>SRM - 标签打印</title>
+  <link rel="stylesheet" type="text/css" href="css/jquery.mobile.css"/>
+  <link rel="stylesheet" type="text/css" href="css/color.css"/>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker.css">
+  <link rel="stylesheet" type="text/css" href="css/jqm-demos.css">
+  <link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.css">
+  <link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure.css">
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="css/google-icon.css">
+  <link rel="stylesheet" type="text/css" href="css/site.css"/>
+  <script src="libs/jquery.js?v=20210120"></script>
+  <script src="libs/jquery.form.js?v=1598853811990"></script>
+  <script src="libs/jquery.mobile.js?v=1598853811990"></script>
+  <script src="libs/bootstrap.js?v=1598853811990"></script>
+  <script src="libs/moment/moment.js?v=1598853811990"></script>
+  <script src="libs/moment/locale/zh-cn.js?v=1598853811990"></script>
+  <script src="libs/bootstrap-datetimepicker.js?v=1598853811990"></script>
+  <script src="libs/knockout.js?v=1598853811990"></script>
+  <script src="libs/knockout.mapping.js?v=1598853811990"></script>
+  <script src="libs/koExternalTemplateEngine_all.js?v=1598853811990"></script>
+  <script src="libs/ko.extension.js?v=1598853811990"></script>
+  <script src="libs/oex/utils.js?v=1598853811990"></script>
+  <script src="libs/oex/jqm-checked.js?v=1598853811990"></script>
+  <script src="libs/oex/jqm-datetime.js?v=1598853811990"></script>
+  <script src="libs/oex/jqm-selected.js?v=1598853811990"></script>
+  <script src="libs/oex/jqm-number.js?v=1598853811990"></script>
+  <script src="libs/oex/jqm-money.js?v=1598853811990"></script>
+  <script src="libs/oex/jqm-tel.js?v=1598853811990"></script>
+  <script src="libs/oex/jqm-email.js?v=1598853811990"></script>
+  <script src="libs/oex/jqm-psb.js?v=1598853811990"></script>
+  <script src="libs/oex/jqm-id.js?v=1598853811990"></script>
+  <script src="libs/oex/jqm-upload.js?v=1598853811990"></script>
+  <script src="libs/oex/jqm-switch.js?v=1598853811990"></script>
+  <script src="libs/oex/jqm-ctr.js?v=1598853811990"></script>
+  <script src="common/config.js?v=1598853811990"></script>
+  <script src="common/util.js?v=1598853811990"></script>
+  <script src="common/service.js?v=1598853811990"></script>
+  <script src="common/baseViewModel.js?v=1598853811990"></script>
+  <script src="tagPrint.js?v=1598853811990"></script>
+  <script src="tagPrintViewModel.js?v=1598853811990"></script>
+  <link rel="shortcut icon" href="favicon.ico">
+  
+<style>
+@media screen and (min-width:0px) {
+.row {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+}
+
+@media screen and (min-width:667px) {
+.row {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	margin-bottom: 16px;
+}
+}
+
+@media screen and (min-width:992px) {
+.row {
+	margin-left: 72px;
+	margin-right: 72px;
+	margin-top: 3px;
+}
+}
+ @media screen and (min-width:1200px) {
+.row {
+	margin-left: 260px;
+	margin-right: 260px;
+	margin-top: 32px;
+}
+}
+ @media screen and (min-width:1600px) {
+.row {
+ margin-left: 360px;
+ margin-right: 360px;
+ margin-top: 32px;
+}
+}
+ @media screen and (min-width:2400px) {
+.row {
+ margin-left: 400px;
+ margin-right: 400px;
+ margin-top: 32px;
+}
+}
+</style>
+
+</head>
+<body>
+<div data-role="page" id="main" data-theme="a" style="background-image: url(images/bg.jpg)">
+  <div data-role="content" style="padding: 2px 2px;">
+    <div class="jqm-block-content hidden-lg hidden-sm hidden-md" style="margin: 2px 2px; padding: 8px 8px;background-image: url(images/bg/bgsrm.jpg); background-size:cover; border-color:#bdbdbd; min-height: 0px;">
+      <div class="ui-grid-a">
+        <div class="ui-block-a">
+          <p align="left" style="margin-top: 0px; text-shadow: 0px 1px 3px rgba(128,128,128,1.00);"><font color="#FFFFFF" size="+1" style="font-weight:600"><i class="fa fa-cube"></i> 标签打印</font><br>
+            <font color="#FFFFFF" size="-1">SRM</font></p>
+        </div>
+        <div class="ui-block-b">
+          <p align="right" style="padding-right: 4px; margin-top: 0px;"><a href="#panelgrid"><font color="#FFFFFF"  style="text-shadow: 0px 0px 3px rgba(128,128,128,1.00);"><i class="fa fa-2x fa-bars"></i></font></a><br>
+          </p>
+        </div>
+      </div>
+      <div class="ui-grid-a">
+        <div class="ui-block-a">
+          <p align="left" style="color:#FFFFFF; margin-bottom:0px; margin-top:20px; text-shadow:1px 2px 3px rgba(128,128,128,1.00)"><font size="-1"> </font></p>
+        </div>
+        <div class="ui-block-b">
+          <p align="right" style="color:#FFFFFF; margin-bottom:0px; margin-top:20px; text-shadow:1px 2px 3px rgba(128,128,128,1.00)"><a href="#" data-rel="popup" data-transition="pop"><font size="-1"> </font></a></p>
+        </div>
+      </div>
+      <p align="center" style="margin-bottom: 12px; margin-top: -52px;"><img src="images/dlogosm2.png" height="42px"></p>
+    </div>
+    <div class="jqm-block-content hidden-xs" style="margin: 2px 2px; padding: 8px 8px; background-image: url(images/bg/bgsrm.jpg); background-size:cover; border-color:#bdbdbd; min-height: 0px;">
+      <div class="ui-grid-a"  style="padding: 9px 9px">
+        <div class="ui-block-a" style=" padding-right: 19px;">
+          <div class="ui-grid-b" style="background-color:rgba(46,46,46,0.20); border-radius: 0.3em; padding: 9px 9px">
+            <div class="ui-block-a">
+              <p align="center" style="text-shadow: 0px 1px 3px rgba(128,128,128,1.00); margin: 0px 0px">
+                <a href="javascript:void(0);" data-bind="click:function(){startUpload('material');}"><font size="+1" color="#FFFFFF"><i class="fa fa-upload"></i></font><br>
+                <font size="-1" color="#FFFFFF">文件导入打印</font></a></p>
+            </div>
+            <div class="ui-block-b">
+              <p align="center" style="text-shadow: 0px 1px 3px rgba(128,128,128,1.00); margin: 0px 0px">
+                <a href="javascript:void(0);" data-bind="click:startSearchMaterial"><font size="+1" color="#FFFFFF"><i class="fa fa-search"></i></font><br>
+                <font size="-1" color="#FFFFFF">高级搜索</font></a></p>
+            </div>
+            <div class="ui-block-c">
+              <p align="center" style="text-shadow: 0px 1px 3px rgba(128,128,128,1.00); margin: 0px 0px">
+                <a rel="external" href="index.html">
+                  <font size="+1" color="#FFFFFF"><i class="fa fa-puzzle-piece"></i></font><br>
+                <font size="-1" color="#FFFFFF">BPMS</font>
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="ui-block-b">
+          <div class="ui-grid-a">
+            <div class="ui-block-a">
+              <p align="left" style="margin-top: 0px; text-shadow: 0px 1px 3px rgba(128,128,128,1.00); padding-left: 4px;"><font color="#FFFFFF" size="+1" style="font-weight:600"><i class="fa fa-cube"></i> 标签打印</font><br>
+                <font color="#FFFFFF" size="-1">SRM</font></p>
+            </div>
+            <div class="ui-block-b">
+              <p align="right" style="padding-right: 4px; margin-top: 0px;"><a href="#panelgrid"><font color="#FFFFFF"  style="text-shadow: 0px 0px 3px rgba(128,128,128,1.00);"><i class="fa fa-2x fa-bars"></i></font></a></p>
+            </div>
+          </div>
+          <p align="center" style="margin-top: -34px;"><img src="images/dlogosm2.png" height="42px"></p>
+        </div>
+      </div>
+    </div>
+    <div data-role="popup" id="popSearchMaterial" data-theme="b" data-overlay-theme="a" style="min-width:300px; max-width:300px; background-image:url(images/tweets-bg.jpg); border-radius:0px; border: none; padding-top:8px;">
+      <div data-role="content" style="padding: 0px 0px; border-radius: 0px;">
+        <p align="center" style="margin:8px 8px;"><font color="#009688" size="+2">订单查询</font></p>
+        <p align="center" style="padding: 8px 8px; padding-bottom:0px;">
+          <input type="text" data-theme="b" data-clear-btn="true" name="orderNumber" id="orderNumber" data-bind="value:material.orderNumber" placeholder="采购订单编号" >
+          <input type="text" data-theme="b" data-clear-btn="true" name="lineNumber" id="lineNumber" data-bind="value:material.lineNumber" placeholder="行号">
+          <input type="text" data-theme="b" data-clear-btn="true" name="materialNumber" id="materialNumber" data-bind="value:material.materialNumber" placeholder="物料代码">
+        </p>
+        <p align="center" style="padding: 0px 0px; padding-bottom:0px; margin-top:16px;">
+        <div class="ui-grid-a">
+          <div class="ui-block-a"> <a href="#" data-rel="back" style="margin:0px 0px; background-color:#9e9e9e; border:none;" class="ui-btn">
+            <p align="center" style="margin-bottom:4px; text-shadow: 1px 1px 3px rgba(74,74,74,0.4); color:#333333"><i class="material-icons md-light">reply</i></p>
+            <p align="center" style="font-weight:300; margin-bottom:0px; color:#ffffff">返回</p>
+            </a> </div>
+          <div class="ui-block-b"> <a href="javascript:void(0);" data-bind="click:searchMaterial" style="margin:0px 0px; background-color:#e91e63; border:none" class="ui-btn">
+            <p align="center" style="margin-bottom:4px; text-shadow: 1px 1px 3px rgba(74,74,74,0.4); color:#333333"><i class="material-icons md-light">search</i></p>
+            <p align="center" style="font-weight:300; margin-bottom:0px; color:#ffffff">查询</p>
+            </a> </div>
+        </div>
+        </p>
+      </div>
+    </div>
+    <div data-role="popup" id="popSearchStock" data-theme="b" data-overlay-theme="a" style="min-width:300px; max-width:300px; background-image:url(images/tweets-bg.jpg); border-radius:0px; border: none; padding-top:8px;">
+      <div data-role="content" style="padding: 0px 0px; border-radius: 0px;">
+        <p align="center" style="margin:8px 8px;"><font color="#009688" size="+2">库存查询</font></p>
+        <p align="center" style="padding: 8px 8px; padding-bottom:0px;">
+          <input type="text" data-theme="b" data-clear-btn="true" name="itemref" id="itemref" data-bind="value:stock.itemref" placeholder="物料代码" >
+          <input type="text" data-theme="b" data-clear-btn="true" name="stofcy" id="stofcy"  data-bind="value:stock.stofcy" placeholder="地点">
+          <input type="text" data-theme="b" data-clear-btn="true" name="loc" id="loc"  data-bind="value:stock.loc" placeholder="库位">
+        </p>
+        <p align="center" style="padding: 0px 0px; padding-bottom:0px; margin-top:16px;">
+        <div class="ui-grid-a">
+          <div class="ui-block-a"> <a href="#" data-rel="back" style="margin:0px 0px; background-color:#9e9e9e; border:none;" class="ui-btn">
+            <p align="center" style="margin-bottom:4px; text-shadow: 1px 1px 3px rgba(74,74,74,0.4); color:#333333"><i class="material-icons md-light">reply</i></p>
+            <p align="center" style="font-weight:300; margin-bottom:0px; color:#ffffff">返回</p>
+            </a> </div>
+          <div class="ui-block-b"> <a href="javascript:void(0);" data-bind="click:searchStock" style="margin:0px 0px; background-color:#e91e63; border:none" class="ui-btn">
+            <p align="center" style="margin-bottom:4px; text-shadow: 1px 1px 3px rgba(74,74,74,0.4); color:#333333"><i class="material-icons md-light">search</i></p>
+            <p align="center" style="font-weight:300; margin-bottom:0px; color:#ffffff">查询</p>
+            </a> </div>
+        </div>
+        </p>
+      </div>
+    </div>
+    <div data-role="popup" id="popStockAssign"  data-theme="b" data-overlay-theme="a" style="min-width:300px; max-width:300px; background-image:url(images/tweets-bg.jpg); border-radius:0px; border: none; padding-top:8px;">
+      <div data-role="content" style="padding: 0px 0px; border-radius: 0px;">
+        <p align="center" style="margin:9px 9px;"><font color="#009688" size="+2">原始批次分配</font></p>
+        <p align="left" style="margin:9px 9px;">
+          <font color="#bdbdbd" size="+1"><strong data-bind="text:stockItem.ITMREF_0"></strong></font><br>
+          <font color="#BDBDBD"><span data-bind="text:stockItem.ITMDES1_0()+' '+stockItem.ITMDES1_0()"></span><br>
+          <i class="fa fa-fw fa-barcode"></i>&nbsp;<span data-bind="text:stockItem.LOT_0"></span></font></p>
+        <p align="left" style="margin-bottom:0px; margin-left:9px;">库存数量: <b data-bind="text:stockItem.QTYSTU_0"></b>&nbsp;<span data-bind="text:stockItem.PUU_0"></span></p>
+        <p align="left" style="margin-top:0px; margin-left:9px;">标准包装数量: <b data-bind="text:stockItem.PCUSTUCOE_0"></b>&nbsp;<span data-bind="text:stockItem.PUU_0"></span></p>
+        <p align="center" style="padding: 8px 8px; padding-bottom:0px;">
+            <input type="text" data-theme="b" data-clear-btn="true" data-bind="value: stockItem.assignBatch" name="assignBatch" id="assignBatch" placeholder="原始批次" >
+            <input type="number" data-theme="b" data-clear-btn="true" data-bind="number: stockItem.assignNumber" name="assignNumber" id="assignNumber" placeholder="包装数量">
+        </p>
+        <p align="center" style="padding: 0px 0px; padding-bottom:0px; margin-top:16px;">
+        <div class="ui-grid-a">
+          <div class="ui-block-a"> <a href="#" data-rel="back" style="margin:0px 0px; background-color:#9e9e9e; border:none;" class="ui-btn">
+            <p align="center" style="margin-bottom:4px; text-shadow: 1px 1px 3px rgba(74,74,74,0.4); color:#333333"><i class="material-icons md-light">reply</i></p>
+            <p align="center" style="font-weight:300; margin-bottom:0px; color:#ffffff">返回</p>
+            </a> </div>
+          <div class="ui-block-b"> <a href="javascript:void(0);" data-bind="click:assignStock" style="margin:0px 0px; background-color:#e91e63; border:none" class="ui-btn">
+            <p align="center" style="margin-bottom:4px; text-shadow: 1px 1px 3px rgba(74,74,74,0.4); color:#333333"><i class="material-icons md-light">print</i></p>
+            <p align="center" style="font-weight:300; margin-bottom:0px; color:#ffffff">打印</p>
+            </a>
+          </div>
+        </div>
+        </p>
+      </div>
+    </div>
+    <div data-role="popup" id="popUpload"  data-theme="b" data-overlay-theme="a" style="min-width:340px; max-width:480px; background-image:url(images/tweets-bg.jpg); border-radius:0px; border: none; padding-top:8px;">
+      <div data-role="content" style="padding: 0px 0px; border-radius: 0px;">
+        <p align="center" style="margin:8px 8px;"><font color="#009688" size="+2">打印文件上传</font></p>
+        <p align="center" style="padding: 8px 8px; padding-bottom:0px;">
+          <textarea name="fileContent" rows="10" id="fileContent" data-bind="value:fileContent"
+          data-autogrow="false" placeholder="在此粘贴CSV文件中的内容"></textarea>
+        </p>
+        <p align="center" style="padding: 0px 0px; padding-bottom:0px; margin-top:10px;">
+        <div class="ui-grid-a">
+          <div class="ui-block-a"> <a href="#" data-rel="back" style="margin:0px 0px; background-color:#9e9e9e; border:none" class="ui-btn">
+            <p align="center" style="margin-bottom:4px; text-shadow: 1px 1px 3px rgba(74,74,74,0.4); color:#333333"><i class="material-icons md-light">reply</i></p>
+            <p align="center" style="font-weight:300; margin-bottom:0px; color:#ffffff">返回</p>
+            </a> </div>
+          <div class="ui-block-b"> <a href="javascript:void(0);" data-bind="click:upload" style="margin:0px 0px; background-color:#e91e63; border:none" class="ui-btn">
+            <p align="center" style="margin-bottom:4px; text-shadow: 1px 1px 3px rgba(74,74,74,0.4); color:#333333"><i class="material-icons md-light">send</i></p>
+            <p align="center" style="font-weight:300; margin-bottom:0px; color:#ffffff">执行</p>
+            </a> </div>
+        </div>
+        </p>
+      </div>
+    </div>
+     <ul class="nav nav-tabs" id="myTabs" role="tablist" style="margin-left: 2px; margin-right: 2px; margin-top: 4px; border-bottom-width: 0px;">
+      <li style="min-width: 60px;" role="presentation" class="active"><a data-bind="click:switchTab" href="#print" role="tab" id="print-tab" data-toggle="tab" aria-controls="print" aria-expanded="true" style="padding-bottom:4px">
+        <p align="center" style="margin: 0px 0px;"><i class="material-icons md-36">archive</i></p>
+        </a></li>
+      <li style="min-width: 60px;" role="presentation"><a data-bind="click:switchTab" href="#printf" role="tab" id="printf-tab" data-toggle="tab" aria-controls="printf" aria-expanded="true" style="padding-bottom:4px">
+        <p align="center" style="margin: 0px 0px;"><i class="material-icons md-36">unarchive</i></p>
+        </a></li>
+      <li style="min-width: 60px;" role="presentation"><a data-bind="click:switchTab" href="#printrt" role="tab" id="printrt-tab" data-toggle="tab" aria-controls="printrt" aria-expanded="true" style="padding-bottom:4px">
+        <p align="center" style="margin: 0px 0px;"><i class="material-icons md-36">move_to_inbox</i></p>
+        </a></li>
+      <li style="min-width: 60px;" role="presentation"><a data-bind="click:switchTab" href="#printr" role="tab" id="printr-tab" data-toggle="tab" aria-controls="printr" aria-expanded="true" style="padding-bottom:4px">
+        <p align="center" style="margin: 0px 0px;"><i class="material-icons md-36">developer_board</i></p>
+        </a></li>
+      <li style="min-width: 60px;" role="presentation"><a data-bind="click:switchTab" href="#help" role="tab" id="help-tab" data-toggle="tab" aria-controls="help" aria-expanded="true" style="padding-bottom:4px">
+        <p align="center" style="margin: 0px 0px;"><i class="material-icons md-36">live_help</i></p>
+        </a></li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="print" aria-labelledBy="print-tab">
+        <div class="ui-body ui-body-b ui-content" style="background-image: url(images/works-bg.jpg); border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 800px; margin: 0 2px; padding: 2px 2px">
+          <div class="row" style="margin-bottom:0px;">
+            <p align="right" style="margin-top:20px">
+              <a href="javascript:void(0);" data-bind="click:startSearchMaterial" data-toggle="tooltip" data-placement="bottom" title="订单查询" style="font-weight:300;  margin-left:20px; margin-right:8px; font-size: x-large; color:#c2185b"><i class="material-icons">search</i></a><a href="javascript:void(0);" data-bind="css: { 'ui-disabled': items().length===0},click:printOrder" data-toggle="tooltip" data-placement="bottom" title="打印标签" style="font-weight:300;  margin-left:20px; margin-right:8px; font-size: x-large; color:#c2185b"><i class="material-icons">print</i></a><a href="javascript:void(0);"data-bind="css: { 'ui-disabled': (items().length===0)&&false},click:function(){startUpload('material');}" data-toggle="tooltip" data-placement="bottom" title="CSV上传批量打印" style="font-weight:300;  margin-left:20px; margin-right:8px; font-size: x-large; color:#c2185b"><i class="material-icons">cloud_upload</i></a></p>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" style="padding:0px 0px;">
+              <form class="ui-filterable" style=" padding-left:3px; padding-right:3px;">
+                <input id="autocomplete-input" data-type="search" placeholder="筛选记录...">
+              </form>
+          <ul data-role="listview" data-bind="jqmTemplate: { name: 'materialItem', foreach: items }, jqmRefreshList: items" data-filter="true" data-inset="true" data-input="#rich-autocomplete-input" style="margin: 2px 2px;">
+          </ul>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="printf" aria-labelledBy="printf-tab">
+        <div class="ui-body ui-body-b ui-content" style=" background-image: url(images/works-bg.jpg); border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 800px; margin: 0 2px; padding: 2px 2px">
+          <div class="row" style=" margin-bottom:0px">
+            <p align="right" style="margin-top:20px">
+              <a href="javascript:void(0);" data-bind="click:startAssignOffline, css: { 'ui-disabled': !canAssignOrder() }" data-toggle="tooltip" data-placement="bottom" title="打印标签" style="font-weight:300;  margin-left:20px; margin-right:8px; font-size: x-large; color:#c2185b"><i class="material-icons">print</i></a>
+              <a href="javascript:void(0);" data-bind="click:function(){startUpload('final');}" data-toggle="tooltip" data-placement="bottom" title="CSV上传批量打印" style="font-weight:300;  margin-left:20px; margin-right:8px; font-size: x-large; color:#c2185b"><i class="material-icons">cloud_upload</i></a></p>
+          </div>
+          <div class="row" style="margin-bottom:3px">
+            <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" style="padding:2px 2px; margin-top:3px;">
+              <input type="search" name="order" id="order" data-bind="event:{keydown:keydown},value:order" placeholder="输入生产订单号查询" style="height:42px; font-size:larger; font-weight:300; color:#9E9E9E;">
+            </div>
+            <!-- <p align="center">
+              <a href="javascript:void(0);" data-bind="click:searchOrder"><font color="#c2185b"><i class="fa fa-fw fa-search"></i> 查询</font></a>
+            </p> -->
+          </div>
+          <div class="row" style="margin-top:3px">
+            <div class="jqm-block-content" data-bind="visible:productOrder.MFGNUM_0" style="margin:3px 3px; border-color:#e0e0e0; border-radius:4px">
+              <div class="row" style="margin:0px 0px">
+                <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8" style="padding:0px 0px">
+                  <p  style=" margin-top:3px; margin-left:3px; margin-bottom:9px; font-weight:200; "><font size="+1" style="text-shadow: 0px 0px 3px rgba(192,192,192,0.6)"><font color="#e91e63"><i class="fa fa-fw fa-file"></i></font>&nbsp;<b data-bind="text:productOrder.MFGNUM_0"></b></font></p>
+                </div>
+                <div class="col-lg-4 col-sm-4 col-xs-4 col-md-4" style="padding:0px 0px">
+                  <p  align="right" style=" margin-top:0px; margin-left:3px; margin-bottom:3px; font-weight:600;"><font size="+1" color="#298983"><span class="label label-danger" style="background-color:#e91e63"  data-bind="text:productOrder.EXTQTY_0() - productOrder.CPLQTY_0()"></span></font></p>
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6" style="padding:2px 2px">
+                  <p style=" margin:3px 3px; margin-bottom:0px; margin-top:0px; font-weight:400"><font color="#9e9e9e">物料代码</font><br>
+                    <font color="#333333" style=" font-weight:600; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)" data-bind="text:productOrder.ITMREF_0"></font></p>
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6" style="padding:2px 2px">
+                  <p style=" margin:3px 3px; margin-bottom:0px; margin-top:0px; font-weight:400"><font color="#9e9e9e">物料名称</font><br>
+                    <font color="#333333" style=" font-weight:600; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)" data-bind="text:productOrder.ITMDES1_0"></font></p>
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6" style="padding:2px 2px">
+                  <p style=" margin:3px 3px; margin-bottom:0px; margin-top:0px; font-weight:400"><font color="#9e9e9e">生产地点</font><br>
+                    <font color="#333333" style=" font-weight:600; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)" data-bind="text:productOrder.MFGFCY_0"></font></p>
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6" style="padding:2px 2px">
+                    <p style=" margin:3px 3px; margin-bottom:0px; margin-top:0px; font-weight:400"><font color="#9e9e9e">标准包装数</font><br>
+                      <font color="#333333" style=" font-weight:600; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)" data-bind="text:productOrder.PCUSTUCOE_0"></font></p>
+                  </div>
+                  <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6" style="padding:2px 2px">
+                    <p style=" margin:3px 3px; margin-bottom:0px; margin-top:0px; font-weight:400"><font color="#9e9e9e">单位</font><br>
+                      <font color="#333333" style=" font-weight:600; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)" data-bind="text:productOrder.STU_0"></font></p>
+                  </div>
+              </div>
+              <hr style="margin:6px 6px; border-top-color:none">
+              <div class="row" style="margin:0px 0px;">
+                <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6" style="padding:2px 2px">
+                  <p style=" margin:3px 3px; margin-bottom:0px; margin-top:0px; font-weight:400"><font color="#9e9e9e">工单行</font><br>
+                    <font color="#333333" style=" font-weight:600; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)"  data-bind="text:productOrder.MFGLIN_0"></font></p>
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6" style="padding:2px 2px">
+                  <p style=" margin:3px 3px; margin-bottom:0px; margin-top:0px; font-weight:400"><font color="#9e9e9e">计划数量</font><br>
+                    <font color="#333333" style=" font-weight:600; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)" data-bind="text:productOrder.EXTQTY_0"></font></p>
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6" style="padding:2px 2px">
+                  <p style=" margin:3px 3px; margin-bottom:0px; margin-top:0px; font-weight:400"><font color="#9e9e9e">已下线数量</font><br>
+                    <font color="#333333" style=" font-weight:600; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)" data-bind="text:productOrder.CPLQTY_0"></font></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+      <div role="tabpanel" class="tab-pane" id="printrt" aria-labelledBy="printrt-tab">
+        <div class="ui-body ui-body-b ui-content" style=" background-image: url(images/works-bg.jpg); border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 800px; margin: 0 2px; padding: 2px 2px">
+          <div class="row" style="margin-bottom:0px">
+            <p align="right" style="margin-top:20px"><a href="#popSearchStock" data-rel="popup" data-position-to="window" data-transition="pop" data-toggle="tooltip" data-placement="bottom" title="库存查询" style="font-weight:300;  margin-left:20px; margin-right:8px; font-size: x-large; color:#c2185b"><i class="material-icons">search</i></a>
+              <a href="javascript:void(0);" data-bind="click:function(){startUpload('return');}" data-toggle="tooltip" data-placement="bottom" title="CSV上传批量打印" style="font-weight:300;  margin-left:20px; margin-right:8px; font-size: x-large; color:#c2185b"><i class="material-icons">cloud_upload</i></a></p>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" style="padding:0px 0px;">
+              <form class="ui-filterable" style=" padding-left:3px; padding-right:3px;">
+                <input id="autocomplete-input-stock" data-type="search" placeholder="筛选记录...">
+              </form>
+              <ul data-role="listview" data-filter="true" data-bind="jqmTemplate: { name: 'stockItem', foreach: stockItems }, jqmRefreshList: stockItems" data-input="#autocomplete-input-stock" data-inset="true" data-theme="b"  style="margin: 3px 3px; border-radius:6px;">
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="printr" aria-labelledBy="printr-tab">
+        <div class="ui-body ui-body-b ui-content" style=" background-image: url(images/works-bg.jpg); border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 800px; margin: 0 2px; padding: 2px 2px">
+          <div class="row" style="margin-bottom:0px">
+            <p align="right" style="margin-top:20px">
+              <a href="javascript:void(0);" data-bind="click:printDevice" data-toggle="tooltip" data-placement="bottom" title="打印标签" style="font-weight:300;  margin-left:20px; margin-right:8px; font-size: x-large; color:#c2185b"><i class="material-icons">print</i></a>
+              <a href="javascript:void(0);" data-bind="click:function(){startUpload('resources');}" data-toggle="tooltip" data-placement="bottom" title="CSV上传批量打印" style="font-weight:300;  margin-left:20px; margin-right:8px; font-size: x-large; color:#c2185b"><i class="material-icons">cloud_upload</i></a>
+            </p>
+          </div>
+          <div class="row" style="margin-bottom:3px">
+            <!-- ko with: device.deviceType -->
+            <div class="col-lg-4 col-sm-6 col-xs-12 col-md-4" style="padding:3px 3px;"  data-bind="basicField:$data">
+            </div>
+            <!-- /ko -->
+          </div>
+          <div class="row" style="margin-bottom:3px">
+            <legend style="padding-left: 3px; margin-top:16px;"><font size="-1" color="#000000"></font></legend>
+            <!-- ko with: device.deviceNumber -->
+            <div class=" col-lg-4 col-sm-6 col-xs-12 col-md-4" style="padding:3px 3px;"  data-bind="basicField:$data">
+            </div>
+            <!-- /ko -->
+            <!-- ko with: device.deviceName -->
+            <div class=" col-lg-4 col-sm-6 col-xs-12 col-md-4" style="padding:3px 3px;" data-bind="basicField:$data">
+            </div>
+            <!-- /ko -->
+          </div>
+          <div class="row" style="margin-bottom:3px">
+            <legend style="padding-left: 3px; margin-top:16px;"><font size="-1" color="#000000"></font></legend>
+            <!-- ko with: device.deviceProperty1 -->
+            <div class=" col-lg-4 col-sm-6 col-xs-12 col-md-4" style="padding:3px 3px;" data-bind="basicField:$data">
+            </div>
+            <!-- /ko -->
+            <!-- ko with: device.deviceProperty2 -->
+            <div class=" col-lg-4 col-sm-6 col-xs-12 col-md-4" style="padding:3px 3px;" data-bind="basicField:$data">
+            </div>
+            <!-- /ko -->
+            </div>
+            <div class="row" style="margin-bottom:3px">
+            <!-- ko with: device.deviceProperty3 -->
+            <div class=" col-lg-4 col-sm-6 col-xs-12 col-md-4" style="padding:3px 3px;" data-bind="basicField:$data">
+            </div>
+            <!-- /ko -->
+            <!-- ko with: device.deviceProperty4 -->
+            <div class=" col-lg-4 col-sm-6 col-xs-12 col-md-4" style="padding:3px 3px;" data-bind="basicField:$data">
+            </div>
+            <!-- /ko -->
+          </div>
+        </div>
+   
+    </div>
+    <div role="tabpanel" class="tab-pane" id="help" aria-labelledBy="help-tab">
+        <div class="ui-body ui-body-b ui-content" style=" background-image: url(images/tweets-bg.jpg); border-width:0px; border-top-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; margin: 0px 2px; padding: 0px 0px; padding-bottom:6px;  min-height:800px; margin-bottom:120px;">
+        <div class="row">
+            <div class="jqm-block-content" style="margin:6px; background-color:#ffffff;">
+            <p align="left" style="margin:0px 0px; margin-bottom:6px; color:#2196f3; font-weight:600; font-size: x-large">使用说明</p>
+            <hr>
+            <p align="left" style="margin:0px 0px; font-size:large">第一步</p>
+            <div align="left" style="margin:0px 0px;">扫描源库位标识，以确定物料的拣出库位。</div>
+            <p align="left" style="margin:0px 0px; margin-top:9px; font-size:large">第二步</p>
+            <div align="left" style="margin:0px 0px;">扫描目标库位标识，以确定物料将要存放的库位。</div>
+            <p align="left" style="margin:0px 0px; margin-top:9px; font-size:large">第三步</p>
+            <div align="left" style="margin:0px 0px;">扫描待移动的物料包装（包含物料代码、批次及包装数量信息）。</div>
+          </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div data-role="popup" id="popAssign"  data-theme="b" data-overlay-theme="a" style="min-width:320px; max-width:480px; background-image:url(images/tweets-bg.jpg); border-radius:0px; border: none; padding-top:8px;">
+    <div data-role="content" style="padding: 0px 0px; border-radius: 0px;">
+      <p align="center" style="margin:8px 8px;"><font color="#009688" size="+2">批次及数量分配</font></p>
+      <p align="center" style="padding: 8px 8px; padding-bottom:0px;">
+        <input type="text" data-theme="b" data-clear-btn="true" name="batch" id="batch" data-bind="value:line.batch" placeholder="批次" >
+        <input type="number" data-theme="b" data-clear-btn="false" name="number" id="number" data-bind="value:line.number" placeholder="数量">
+      </p>
+      <p align="left" style="margin:8px 8px; font-size:small">
+        <font color="#bdbdbd"><i class="fa fa-fw fa-warning"></i> 剩余分配配数量:</font> <b data-bind="text:line.remain"></b> <font color="#bdbdbd"> | <i class="fa fa-fw fa-inbox"></i> 最小包装:</font> <b  data-bind="text:line.standard"></b>&nbsp;<span data-bind="text:line.unit"></span></p>
+      <p align="center" style="padding: 0px 0px; padding-bottom:0px; margin-top:16px;">
+      <div class="ui-grid-a">
+        <div class="ui-block-a"> <a href="#" data-rel="back" style="margin:0px 0px; background-color:#9e9e9e; border:none" class="ui-btn">
+          <p align="center" style="margin-bottom:4px; text-shadow: 1px 1px 3px rgba(74,74,74,0.4); color:#333333"><i class="material-icons md-light">reply</i></p>
+          <p align="center" style="font-weight:300; margin-bottom:0px; color:#ffffff">返回</p>
+          </a> </div>
+        <div class="ui-block-b"> <a href="javascript:void(0);" data-bind="click:assign" style="margin:0px 0px; background-color:#e91e63; border:none" class="ui-btn">
+          <p align="center" style="margin-bottom:4px; text-shadow: 1px 1px 3px rgba(74,74,74,0.4); color:#333333"><i class="material-icons md-light">send</i></p>
+          <p align="center" style="font-weight:300; margin-bottom:0px; color:#ffffff">分配</p>
+          </a> </div>
+      </div>
+      </p>
+    </div>
+  </div>
+<div data-role="popup" id="popAssignOffline"  data-theme="b" data-overlay-theme="a" style="min-width:320px; max-width:480px; background-image:url(images/tweets-bg.jpg); border-radius:0px; border: none; padding-top:8px;">
+    <div data-role="content" style="padding: 0px 0px; border-radius: 0px;">
+      <p align="center" style="margin:8px 8px;"><font color="#009688" size="+2">下线数量确认</font></p>
+      <p align="left" style="margin:8px 8px; margin-top:32px; font-size:small"><font color="#bdbdbd"><i class="fa fa-fw fa-warning"></i> 剩余分配配数量:</font> <b data-bind="text:productOrder.EXTQTY_0() - productOrder.CPLQTY_0()"></b> <font color="#bdbdbd"> | <i class="fa fa-fw fa-inbox"></i> 标准包装:</font> <b data-bind="text:productOrder.PCUSTUCOE_0"></b> <span data-bind="text:productOrder.PUU_0"></span></p>
+      <p align="center" style="padding: 8px 8px; padding-bottom:0px;">
+        <input type="text" data-theme="b" data-bind="datetime: offline.date" control-type="t3" data-clear-btn="false"
+        name="offineDate" id="offineDate" placeholder="下线日期" >
+        <input type="number"  data-theme="b" data-bind="number: offline.number" control-type="t6" data-clear-btn="false" 
+         name="offineNumber" id="offineNumber" placeholder="数量">
+      </p>
+      <p align="left" style="margin:8px 8px; margin-top:24px; font-size:small"><font color="#bdbdbd">
+        <i class="fa fa-fw fa-hourglass"></i> 待生成标签数:</font> <b data-bind="text:offline.packageNumber"></b> <font color="#bdbdbd"> | <i class="fa fa-fw fa-hourglass-half"></i> 尾数包装:</font> <b data-bind="text:offline.remainder"></b>&nbsp;<span data-bind="text:productOrder.PUU_0"></span></p>
+      <p align="center" style="padding: 0px 0px; padding-bottom:0px; margin-top:16px;">
+      <div class="ui-grid-a">
+        <div class="ui-block-a"> <a href="#" data-rel="back" style="margin:0px 0px; background-color:#9e9e9e; border:none" class="ui-btn">
+          <p align="center" style="margin-bottom:4px; text-shadow: 1px 1px 3px rgba(74,74,74,0.4); color:#333333"><i class="material-icons md-light">reply</i></p>
+          <p align="center" style="font-weight:300; margin-bottom:0px; color:#ffffff">返回</p>
+          </a> </div>
+        <div class="ui-block-b">
+          <a href="javascript:void(0);" data-bind="css:{ 'ui-disabled':!offline.available()},click:assignOffline" style="margin:0px 0px; background-color:#e91e63; border:none" class="ui-btn">
+          <p align="center" style="margin-bottom:4px; text-shadow: 1px 1px 3px rgba(74,74,74,0.4); color:#333333"><i class="material-icons md-light">send</i></p>
+          <p align="center" style="font-weight:300; margin-bottom:0px; color:#ffffff">执行</p>
+          </a> </div>
+      </div>
+      </p>
+    </div>
+  </div>
+  <div data-role="panel" id="panelgrid" data-position-fixed="true" data-position="right" data-display="overlay"  data-theme="a">
+    <div class="jqm-block-content" style="margin: -14px -14px; margin-bottom: 14px; padding: 9px 9px; padding-top: 30px; background-color: #ad1457; border:none; min-height: 0px; border-radius: 0em;">
+      <p align="center" style="margin-bottom:10px;"><i class="material-icons md-56 md-light">face</i></p>
+      <div class="ui-grid-a" style="text-shadow: 0 0 0; color:#FFFFFF">
+        <div class="ui-block-a">
+          <p align="left" style="padding-left:8px;"><font size="+1" data-bind="text:user.name"></font><br>
+              <font color="#BDBDBD"><span data-bind="text:user.Roles"></span><br>
+                  <span data-bind="text:user.sub"></span>
+              </font>
+          </p>
+      </div>
+      <div class="ui-block-b">
+          <p align="right" style="margin-top: 8px;"><a href="javascript:void(0);" data-bind="click:logout"><i
+                  class="fa fa-2x fa-sign-out"></i></a></p>
+      </div>
+      </div>
+    </div>
+    <ul data-role="listview" data-theme="b" class="ui-nodisc-icon ui-alt-icon">
+      <li data-role="collapsible" data-iconpos="right" data-inset="false"
+          style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) " data-collapsed-icon="bars"
+          data-expanded-icon="carat-u">
+          <h2 style="padding:0px 0px; margin:0px 0px;">我的BPMS</h2>
+          <ul data-role="listview" data-theme="a" style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+              <li><a rel="external" href="index.html" style="font-weight:200; background-color:transparent"><img
+                      src="images/Glyphish/icons/81-dashboard@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                      style="top: 11px;">工作台</a></li>
+              <li><a rel="external" href="assign.html" style="font-weight:200; background-color:transparent"><img
+                      src="images/Glyphish/icons/112-group@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                      style="top: 11px;">授权管理</a></li>
+              <li><a rel="external" href="#" style="font-weight:200; background-color:transparent"><img
+                      src="images/Glyphish/icons/16-line-chart@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                      style="top: 11px;">报表</a></li>
+          </ul>
+      </li>
+      <li data-role="collapsible" data-iconpos="right" data-inset="false"
+          style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) " data-collapsed-icon="bars"
+          data-expanded-icon="carat-u">
+          <h2 style="padding:0px 0px; margin:0px 0px;">我的任务</h2>
+          <ul data-role="listview" data-theme="a" style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+              <li><a rel="external" href="task_list.html" style="font-weight:200; background-color:transparent"><img
+                      src="images/Glyphish/icons/09-chat-2@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                      style="top: 11px;">待处理任务</a></li>
+              <li><a rel="external" href="history_list.html" style="font-weight:200; background-color:transparent"><img
+                      src="images/Glyphish/icons/11-clock@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                      style="top: 11px;">任务历史</a></li>
+          </ul>
+      </li>
+      <li data-role="collapsible" data-iconpos="right" data-inset="false"
+          style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) " data-collapsed-icon="bars"
+          data-expanded-icon="carat-u">
+          <h2 style="padding:0px 0px; margin:0px 0px;">我的流程</h2>
+          <ul data-role="listview" data-theme="a" style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+              <li><a rel="external" href="process_list.html" style="font-weight:200; background-color:transparent"><img
+                      src="images/Glyphish/icons/10-medical@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                      style="top: 11px;">启动流程</a></li>
+              <li><a rel="external" href="instance_list.html" style="font-weight:200; background-color:transparent"><img
+                      src="images/Glyphish/icons/15-tags@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                      style="top: 11px;">流程历史</a></li>
+          </ul>
+      </li>
+  </ul>
+    <p align="center" style="margin-top: 30px;"><img src="images/srmlogo2.png" height="21px"></p>
+  </div>
+  <div data-role="footer"  data-fullscreen="true" data-position="fixed" style=" border-bottom-width: 0px;">
+    <div data-role="navbar" >
+      <ul>
+          <li><a href="javascript:void(0);" data-bind="click:startSearchMaterial" class="ui-btn-b" style="font-weight:300"><i class="material-icons">search</i><br>
+            搜索</a></li>
+        <li  data-bind="css: { 'ui-disabled': items().length===0}"><a href="javascript:void(0);" data-bind="click:printOrder" class="ui-btn-b" style="font-weight:300"><i class="material-icons">print</i><br>
+          打印</a></li>
+          <li><a href="javascript:void(0);" data-bind="click:function(){startUpload('material');}" class="ui-btn-b" style="font-weight:300"><i class="material-icons">cloud_upload</i><br>
+            上传</a></li>
+      </ul>
+    </div>
+    <!-- /navbar --> 
+    
+  </div>
+  <!-- /footer --> 
+</div>
+<script type="text/html" id="materialItem">
+    <li data-role="list-divider" style="background-color:#f5f5f5; color:#757575"><span data-bind="text:POHNUM_0"></span>
+      <font color="#bdbdbd"> | <span data-bind="text:POPLIN_0"></span></font>
+      <span class="ui-li-count"><span data-bind="text:assignedNumber"></span><font color="#BDBDBD"> | <span data-bind="text:QTYPUU_0"></span></font></span></li>
+    <li data-icon="gear" data-split-icon="gear" class=" ui-alt-icon ui-nodisc-icon">
+      <a href="#">
+      <h2 style="margin-bottom:0px; color:#9E9E9E" data-bind="text:ITMREF_0"></h2>
+      <p style="color:#9e9e9e; margin-top:0px;" ><span data-bind="text: ITMDES1_0"></span>&nbsp;<span data-bind="text: ITMDES2_0"></span></p>
+      <p style="color:#9E9E9E"><b data-bind="text:BPSNUM_0"></b> <span data-bind="text:BPRNAM_0"></span></p>
+      <p class="ui-li-aside" style="margin-top:4px; right:10px; color:#9E9E9E"><i class="fa fa-fw fa-inbox"></i> <strong  data-bind="text:PCUSTUCOE_0"></strong>&nbsp;<span data-bind="text:PUU_0"></span></p>
+      </a>
+      <a data-bind="css: { 'ui-disabled': !$root.canAssign($data)}" class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Purchase album</a>
+      <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1" style="padding: 0px 0px; border-radius:0px; box-shadow:3px 3px 16px 0 rgba(0,0,0,0.44)">
+        <li data-bind=""><a href="javascript:void(0);" data-bind="click:$root.startAssign.bind($root)" style="padding-top: 6px; padding-bottom: 6px; padding-left:12px; font-weight:300;"><font size="+1"><i class="fa fa-fw fa-barcode"></i></font><font size="+1"> 批次分配</font></a></li>
+        <li role="separator" class="divider" style="margin: 0px 0px; background-color:#80cbc4"></li>
+        <li data-bind="css: { 'ui-disabled': batches().length===0}"><a href="javascript:void(0);" data-bind="click:$root.printLine.bind($root)" style="padding-top: 6px; padding-bottom: 6px; padding-left:12px; font-weight:300;"><font size="+1"><i class="fa fa-fw fa-print"></i> </font><font size="+1"> 打印</font></a></li>
+      </ul>
+    </li>
+    <!-- <span data-bind="text:batches().length"></span> -->
+
+    <!-- ko jqmTemplate: { name: 'lotBatch', foreach: batches }, jqmRefreshList: batches -->
+    <!-- /ko -->
+</script>
+<script type="text/html" id="stockItem">
+  <li data-icon="eye" data-bind="css: { 'ui-disabled':  !$root.canAssign($data) || QTYSTU_0 <= 0}">
+    <a href="javascript:void(0);" data-bind="click:$root.selectStock.bind($root)" style="padding-left:10px;" aria-expanded="false">
+      <p style="margin: 3px 3px; margin-bottom:0px; color:#333333;"><strong style="font-size:large" data-bind="text:ITMREF_0"></strong></p>
+      <p style="margin: 3px 3px; margin-top:0px; color:#bdbdbd;" data-bind="text:ITMDES1_0 + ' '+ ITMDES2_0"></p>
+      <p style="margin: 3px 3px; margin-top:8px; color:#333333;"><i class="fa fa-fw fa-barcode"></i>&nbsp;<strong data-bind="text:LOT_0"></strong></p>
+      <p style=" margin: 3px 3px; color:#333333;"><i class="fa fa-fw fa-building"></i> <strong data-bind="text:STOFCY_0"></strong></p>
+      <p style=" margin: 3px 3px; color:#333333;"><i class="fa fa-fw fa-location-arrow"></i> <strong data-bind="text:LOCTYP_0"></strong> <font color="#C9C9C9">|</font>&nbsp;<span data-bind="text:LOC_0"></span></p>
+      <p class="ui-li-aside" style="margin-right:3px"><i class="fa fa-fw fa-cube"></i> <strong data-bind="text:PCUSTUCOE_0"></strong>&nbsp;<span data-bind="text:PUU_0"></span></p>
+      <span class="ui-li-count" style="color:#333333;"><strong data-bind="text:STA_0"></strong> <font color="#C9C9C9">|</font> <b style="color:#0288d1" data-bind="text:QTYSTU_0"></b>&nbsp;<span data-bind="text:PUU_0"></span></span></a>
+    </li>
+</script>
+
+<script type="text/html" id="lotBatch">
+  <li data-icon="delete" data-split-icon="delete" class=" ui-alt-icon ui-nodisc-icon">
+      <a href="javascript:void(0);"><p><i class="fa fa-fw fa-barcode"></i>&nbsp;<strong data-bind="text:batch"></strong></p><span class="ui-li-count"><span data-bind="text:number"></span>&nbsp;<font data-bind="visible:part2" color="#BDBDBD">(<span data-bind="text:part1"></span>+<span data-bind="text:part2"></span>)&nbsp;</font><font color="#BDBDBD">|&nbsp;<span data-bind="text:package"></span>U</font></span></a><a href="javascript:void(0);" data-bind="click:function(){$root.removeBatch($parent,$data);}"></a>
+  </li>
+</script>
+</body>
+</html>

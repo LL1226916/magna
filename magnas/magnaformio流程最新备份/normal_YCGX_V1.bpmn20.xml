@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test/frm">
+  <process id="MAGNA_YCGC" name="企业用车_更新派车" isExecutable="true" activiti:candidateStarterUsers="svc.mtt,maorong.wu,info.mtt" activiti:candidateStarterGroups="YCGC" xmlns:activiti="http://activiti.org/bpmn" activiti:versionTag="V1.0">
+    <documentation>{
+"description": "企业用车_更新派车",
+"businessKey": "${YYYY-MM-DD} 企业用车_更新派车 ${user.name}"
+}</documentation>
+    <startEvent id="startevent1" name="Start" activiti:initiator="initiator" activiti:formKey="1607663070711">
+      <extensionElements>
+        <activiti:executionListener event="start" class="org.activiti.engine.impl.bpmn.listener.ScriptExecutionListener">
+          <activiti:field name="language">
+            <activiti:string><![CDATA[groovy]]></activiti:string>
+          </activiti:field>
+          <activiti:field name="script">
+            <activiti:string><![CDATA[
+			//初始化
+				import groovy.json.JsonOutput;
+
+				execution.setVariable("public_procinstid",execution.getProcessInstanceId());
+				execution.setVariable("public_applyFor",new Date().getTime()+"");//填表日期,申请日期
+				execution.setVariable("public_businessKey",execution.getBusinessKey());
+
+				execution.setVariable("procinstid",execution.getProcessInstanceId());
+
+				execution.setVariable("businessKey",execution.getBusinessKey());
+				]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+        <activiti:executionListener event="end" class="org.activiti.engine.impl.bpmn.listener.ScriptExecutionListener">
+          <activiti:field name="language">
+            <activiti:string><![CDATA[groovy]]></activiti:string>
+          </activiti:field>
+          <activiti:field name="script">
+            <activiti:string><![CDATA[
+			
+			]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </startEvent>
+    <endEvent id="ES" name="End">
+      <extensionElements>
+        <activiti:executionListener event="end" class="org.activiti.engine.impl.bpmn.listener.ScriptExecutionListener">
+          <activiti:field name="language">
+            <activiti:string><![CDATA[groovy]]></activiti:string>
+          </activiti:field>
+          <activiti:field name="script">
+            <activiti:string><![CDATA[
+				import groovy.json.JsonSlurper;
+				import groovy.json.JsonOutput;				
+				import com.eorionsolution.bpms.extension.rest.RestAPI;
+				
+				
+				def wxBodyOldMap = new JsonSlurper().parseText(execution.getVariable("wxBody"));
+				
+				
+				//通知用户有任务执行
+				def wxRestParam = new HashMap<String,Object>()
+				def wxHeaderMap = new HashMap<String,String>()
+
+				def wxBodyMap = new HashMap()
+				
+				wxBodyMap.put('touser', wxBodyOldMap.touser + "|"  + driverWeChat);
+				wxBodyMap.put('agentid',1000022);
+				wxBodyMap.put('title', businessKey);
+				wxBodyMap.put('description', '派车信息已更新，请使用电脑端火狐或谷歌浏览器打开如下链接查看信息<div></div>https://mttbpms.magna.cn/formprint/print.html?processId='+procinstid);
+				wxBodyMap.put('url','https://mttbpms.magna.cn/formprint/print.html?processId=' + procinstid);
+				def wxBody = JsonOutput.toJson(wxBodyMap);
+
+				execution.setVariable("wxBody",JsonOutput.toJson(wxBodyMap));
+				wxHeaderMap.put("Content-Type","application/json");
+				wxRestParam.put("_http_method","POST");
+				wxRestParam.put("_http_headers",wxHeaderMap);
+				wxRestParam.put("_http_url", 'http://127.0.0.1:8281/wechat/message/send');
+				wxRestParam.put("_http_body", wxBody);
+				def wxResult = RestAPI.execute(wxRestParam)
+				]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </endEvent>
+    <sequenceFlow id="flow32" sourceRef="startevent1" targetRef="ES"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_MAGNA_YCGC">
+    <bpmndi:BPMNPlane bpmnElement="MAGNA_YCGC" id="BPMNPlane_MAGNA_YCGC">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="320.0" y="140.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ES" id="BPMNShape_ES">
+        <omgdc:Bounds height="35.0" width="35.0" x="320.0" y="250.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow32" id="BPMNEdge_flow32">
+        <omgdi:waypoint x="337.0" y="175.0"></omgdi:waypoint>
+        <omgdi:waypoint x="337.0" y="250.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

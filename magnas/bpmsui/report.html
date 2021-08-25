@@ -1,0 +1,334 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, target-densitydpi=device-dpi">
+<title>Z3 | Report</title>
+<link href="themes/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css" />
+
+<!--<link href="css/jquery.mobile.theme-1.3.2.css" rel="stylesheet" />
+<link href="css/jquery.mobile.structure-1.3.2.css" rel="stylesheet" />-->
+
+<link rel="stylesheet" href="themes/bladecolor.min.css" />
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="themes/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="themes/bootstrap-theme.min.css">
+<link rel="stylesheet" href="themes/jqm-demos.css">
+<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css">
+<link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.5.min.css">
+<link href="css/all.min.css" rel="stylesheet" type="text/css">
+<link href="css/googleicon.css" rel="stylesheet">
+<link href="css/site.css" rel="stylesheet" />
+<!--<script src="scripts/lib/jquery-1.8.2.js?v=1598853811990"></script>
+<!--<script src="scripts/app/knockout.jquery.mobile.js?v=1598853811990"></script>-->
+<!--<script src="scripts/lib/jquery.mobile-1.3.2.js?v=1598853811990"></script>-->
+
+<script src="vendor/jquery/dist/jquery.js?v=20210120"></script>
+<script src="lib/jquery.mobile-1.4.5.js?v=1598853811990"></script>
+<script src="js/bootstrap.min.js?v=1598853811990"></script>
+<script src="scripts/app/util.js?v=1598853811990"></script>
+<script src="scripts/lib/amplify.js?v=1598853811990"></script>
+<script src="scripts/lib/knockout-2.2.0.js?v=1598853811990"></script>
+<script src="scripts/lib/knockout.mapping-latest.js?v=1598853811990"></script>
+<script src="scripts/lib/koExternalTemplateEngine_all.js?v=1598853811990"></script>
+<script src="scripts/app/services/user.js?v=1598853811990"></script>
+<script src="scripts/app/viewmodel/LogonViewModel.js?v=1598853811990"></script>
+<script src="scripts/app/ko.extentions.js?v=1598853811990"></script>
+<script src="scripts/app/app.js?v=1598853811990"></script>
+<script src="scripts/app/logonApp.js?v=1598853811990"></script>
+<link rel="shortcut icon" href="favicon.ico">
+<style>
+@media screen and (min-width:0px) {
+.row {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 16px;
+	margin-bottom: 16px;
+}
+}
+
+@media screen and (min-width:667px) {
+.row {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 16px;
+	margin-bottom: 16px;
+}
+}
+
+@media screen and (min-width:992px) {
+.row {
+	margin-left: 80px;
+	margin-right: 0px;
+	margin-top: 16px;
+}
+}
+ @media screen and (min-width:1200px) {
+.row {
+	margin-left: 80px;
+	margin-right: 80px;
+	margin-top: 32px;
+}
+ }
+ @media screen and (min-width:1600px) {
+.row {
+ margin-left: 80px;
+ margin-right: 80px;
+ margin-top: 32px;
+}
+}
+</style>
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+</head>
+<body>
+<div data-role="page" class="ui-responsive-panel" id="main" data-theme="a" style="background-image: url(images/bg.jpg)">
+  <div data-role="header" data-theme="b"  style="background-color:#FFFFFF; box-shadow: 0 2px 5px 0 hsla(0,0%,39%,.3)">
+    <div class="ui-grid-b">
+      <div class="ui-block-a">
+        <h3 style="margin-left: 10px; margin-right: 10px; margin-top: 10px; opacity: 0.5; font-weight: 200; margin-bottom:8px; text-shadow: 0 0px; color:#03a9f4; text-align:left"><a href="#panelgrid" style="color: #03a9f4"><i class="fal fa-chart-pie-alt"></i></a> <font style="opacity: 0.5">报表中心</font></h3>
+      </div>
+      <div class="ui-block-b">
+        <h3 style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom:8px; text-shadow: 0 0px; color:#03a9f4; font-weight: 100; text-align:center"><a href="#popupde" data-rel="popup" data-position-to="window" data-transition="fade" style="color:#009688; font-weight:100; margin-right: 8px"> <img src="images/cube.svg" height="24px" style="margin-top:-3px;"></a> <font style="font-size: 18px"><b>Z<sup> 3</sup></b> 智能制造协同平台</font></h3>
+      </div>
+      <div class="ui-block-c">
+        <h3 style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom:8px; text-shadow: 0 0px; color:#bdbdbd; text-align:right"><a href="#panelgrid" style="color: #2196f3"><i class="fal fa-bars"></i></a></h3>
+      </div>
+    </div>
+    <!-- /grid-a --> 
+    
+  </div>
+  <div data-role="content" style="padding: 2px 2px; margin-top: 3px;">
+    <div class="col-sm-12 col-xs-12 col-md-4 col-lg-3" style="padding: 0px 0px; ">
+      <div class="ui-body ui-body-b ui-content" style=" border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 600px; max-height:854px; margin: 0 2px; padding: 2px 2px; overflow: auto; overflow-style:auto; ">
+        <div class="ui-grid-a">
+          <div class="ui-block-a">
+            <p align="center" style="margin: 14px 14px;"><a href="#popupNewRep" data-rel="popup"  data-position-to="window" style="color: #e91e63;font-weight: 300;"><i class="fas fa-fw fa-plus-circle"></i> 新建报表</a></p>
+          </div>
+          <div class="ui-block-b">
+            <p align="center" style="margin: 14px 14px;"><a href="#" style="color: #90a4ae;font-weight: 300;"><i class="fas fa-fw fa-search"></i> 查询报表</a></p>
+          </div>
+        </div>
+        <div data-role="popup" id="popupNewRep" data-dismissible="false" data-transition="fade" data-theme="a" data-overlay-theme="a" style="min-width:300px; max-width:300px; border:none">
+          <ul data-role="listview" data-inset="true" style="border:none">
+            <li data-role="list-divider" style=" text-align: center; border-bottom-left-radius:0; border-bottom-right-radius:0; padding:14px 14px; background-color:#0277bd; font-weight:300; border: none "><i class="fas fa-fw fa-plus-circle"></i> 创建报表</li>
+            <form  style="margin:16px 16px;">
+              <input type="email" data-theme="b" placeholder="输入报表名称..." style="font-weight:300; height:38px; font-size:medium;">
+            </form>
+            <div class="ui-grid-a" style="margin:12px 12px; padding-bottom:12px;">
+              <div class="ui-block-a"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#03a9f4; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-check-double" style="margin-right: 12px"></i>创建</a> </div>
+              <div class="ui-block-b"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#333333; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-times" style="margin-right: 12px"></i>取消</a> </div>
+            </div>
+          </ul>
+        </div>
+        <ul data-role="listview" class="ui-alt-icon ui-nodisc-icon"  data-split-icon="plus" data-split-theme="a" data-theme="b" data-filter="true" data-inset="true" data-input="#rich-autocomplete-input2" style="margin: 2px 2px;">
+          <li><a href="#" rel="external">
+            <h2>费用报销</h2>
+            <p style="color: #757575">F101</p>
+            <span class="ui-li-count"><i class="fas fa-fw fa-chart-area" style="color: #03a9f4"></i></span> </a></li>
+          <li><a href="#" rel="external">
+            <h2>费用报销</h2>
+            <p style="color: #757575">F101</p>
+            <span class="ui-li-count"><i class="fas fa-fw fa-chart-pie" style="color: #03a9f4"></i></span> </a></li>
+          <li><a href="#" rel="external">
+            <h2>费用报销</h2>
+            <p style="color: #757575">F101</p>
+            <span class="ui-li-count"><i class="fas fa-fw fa-table" style="color: #03a9f4"></i></span> </a></li>
+          <li><a href="#" rel="external">
+            <h2>费用报销</h2>
+            <p style="color: #757575">F101</p>
+            <span class="ui-li-count"><i class="fas fa-fw fa-table" style="color: #03a9f4"></i></span> </a></li>
+          <li><a href="#" rel="external">
+            <h2>费用报销</h2>
+            <p style="color: #757575">F101</p>
+            <span class="ui-li-count"><i class="fas fa-fw fa-table" style="color: #03a9f4"></i></span> </a></li>
+          <li><a href="#" rel="external">
+            <h2>费用报销</h2>
+            <p style="color: #757575">F101</p>
+            <span class="ui-li-count"><i class="fas fa-fw fa-table" style="color: #03a9f4"></i></span> </a></li>
+          <li><a href="#" rel="external">
+            <h2>费用报销</h2>
+            <p style="color: #757575">F101</p>
+            <span class="ui-li-count"><i class="fas fa-fw fa-table" style="color: #03a9f4"></i></span> </a></li>
+          <li><a href="#" rel="external">
+            <h2>费用报销</h2>
+            <p style="color: #757575">F101</p>
+            <span class="ui-li-count"><i class="fas fa-fw fa-table" style="color: #03a9f4"></i></span> </a></li>
+          <li><a href="#" rel="external">
+            <h2>费用报销</h2>
+            <p style="color: #757575">F101</p>
+            <span class="ui-li-count"><i class="fas fa-fw fa-table" style="color: #03a9f4"></i></span> </a></li>
+          <li><a href="#" rel="external">
+            <h2>费用报销</h2>
+            <p style="color: #757575">F101</p>
+            <span class="ui-li-count"><i class="fas fa-fw fa-table" style="color: #03a9f4"></i></span> </a></li>
+          <li><a href="#" rel="external">
+            <h2>费用报销</h2>
+            <p style="color: #757575">F101</p>
+            <span class="ui-li-count"><i class="fas fa-fw fa-table" style="color: #03a9f4"></i></span> </a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-12 col-xs-12 col-md-8 col-lg-9" style="padding: 0px 0px; ">
+      <div class="ui-body ui-body-b ui-content" style="border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 600px; margin: 0 2px; padding: 2px 2px;">
+        <div class="row" style="margin:0px 0px; padding:3px 3px">
+          <div class="col-sm-6 col-xs-12 col-md-6 col-lg-6" style="padding: 3px 3px; ">
+            <p align="left" style="padding: 0px 0px; font-weight:300; margin-bottom: 3px; font-size: 28px; color:#333333"><i class="fas fa-fw fa-chart-area"></i> 费用报销流程</p>
+            <p style=" font-weight:300; color: #b0bec5; font-size: 12px"><i class="fal fa-fw fa-sync-alt"></i> 2019-5-10 | <i class="fal fa-fw fa-user-alt"></i> Blade Shao</p>
+          </div>
+          <div class="col-sm-6 col-xs-12 col-md-6 col-lg-6" style="padding: 3px 3px; ">
+            <p align="right" style="padding:3px 3px; margin-bottom:0px;"><a href="#" style="font-weight:300; color: #e91e63; margin-left:16px;" ><i class="fas fa-fw fa-save"></i> 保存</a><a href="#" style="font-weight:300; color: #e91e63; margin-left:18px;"><i class="fas fa-fw fa-sync"></i> 刷新</a> <a href="#popupAssign" data-rel="popup" data-position-to="window" style="font-weight:300; color: #e91e63; margin-left:18px;"><i class="fas fa-fw fa-user-friends"></i> 分配</a><a href="#popupMenu" data-rel="popup"  style="font-weight:300; color: #e91e63; margin-left:18px; margin-right: 24px"><i class="fas fa-fw fa-ellipsis-v"></i> 更多</a></p>
+          </div>
+          <div data-role="popup" id="popupMenu" data-theme="b" style="border: none">
+            <ul data-role="listview" data-inset="true" class="ui-alt-icon ui-nodisc-icon" style="min-width:160px; border: none">
+              <li><a href="#" style="font-weight: 300"><i class="fas fa-fw fa-download" style="margin-right: 16px; color: #e91e63"></i>导出</a></li>
+              <li><a href="#" style="font-weight: 300"><i class="fas fa-fw fa-trash" style="margin-right: 16px; color: #e91e63"></i>删除</a></li>
+            </ul>
+          </div>
+          <div data-role="popup" id="popupAssign" data-dismissible="false" data-transition="fade" data-theme="a" data-overlay-theme="a" style="min-width:300px; max-width:300px; border:none">
+            <ul data-role="listview" data-inset="true" style="border:none">
+              <li data-role="list-divider" style=" text-align: center; border-bottom-left-radius:0; border-bottom-right-radius:0; padding:14px 14px; background-color:#0277bd; font-weight:300; border: none "><i class="fas fa-fw fa-user-friends"></i> 分配报表权限</li>
+              <form class="ui-filterable" style="margin:16px 16px;">
+                <input id="autocomplete-input" data-type="search" data-theme="b" placeholder="查询用户..." style="font-weight:300; height:38px; font-size:medium;">
+              </form >
+              <ul data-role="listview" data-theme="b" class="ui-alt-icon ui-nodisc-icon" data-filter="true" data-filter-reveal="true" data-input="#autocomplete-input" data-inset="true" style="margin: 16px 16px">
+                <li data-icon="check"><a href="#">Apple</a></li>
+                <li><a href="#">Banana</a></li>
+                <li><a href="#">Cherry</a></li>
+                <li><a href="#">Cranberry</a></li>
+                <li><a href="#">Grape</a></li>
+                <li><a href="#">Orange</a></li>
+              </ul>
+              <div class="ui-grid-a" style="margin:12px 12px; padding-bottom:12px;">
+                <div class="ui-block-a"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#03a9f4; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-check-double" style="margin-right: 12px"></i>分配</a> </div>
+                <div class="ui-block-b"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#333333; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-times" style="margin-right: 12px"></i>取消</a> </div>
+              </div>
+            </ul>
+          </div>
+        </div>
+        <div class="row" style="margin: 3px 6px;">
+          <div class="col-sm-6 col-xs-6 col-md-3 col-lg-4" style="padding: 3px 3px; ">
+            <legend style="font-size: 14px; color: #607d8b; margin-bottom: 0px;">数据源 <a href="#" style="margin-left: 4px; color: #4caf50"><i class="fas fa-fw fa-plus-circle"></i></a></legend>
+          </div>
+          <div class="col-sm-6 col-xs-6 col-md-3 col-lg-4" style="padding: 3px 3px; ">
+            <legend style="font-size: 14px; color: #607d8b; margin-bottom: 0px;">连接键 <a href="#" style="margin-left: 4px; color: #4caf50"><i class="fas fa-fw fa-plus-circle"></i></a></legend>
+          </div>
+          <div class="col-sm-6 col-xs-6 col-md-3 col-lg-4" style="padding: 3px 3px; ">
+            <legend style="font-size: 14px; color: #607d8b; margin-bottom: 0px;">可视化</legend>
+          </div>
+        </div>
+        <div class="row" style="margin: 3px 3px">
+          <div class="col-sm-6 col-xs-6 col-md-3 col-lg-4" style="padding: 3px 3px; "> <a href="#" style="margin-left: 3px; font-size: 14px; font-weight: 600;text-decoration:underline">Order</a><a href="#" style="color: #b0bec5"><i class="fas fa-fw fa-times"></i></a> <a href="#" style="margin-left: 3px; font-size: 14px; font-weight: 600;text-decoration:underline">Customer</a><a href="#" style="color: #b0bec5"><i class="fas fa-fw fa-times"></i></a> </div>
+          <div class="col-sm-6 col-xs-6 col-md-3 col-lg-4" style="padding: 3px 3px; "> <a href="#" style="margin-left: 3px; font-size: 14px; font-weight: 600;text-decoration:underline">Order</a><a href="#" style="color: #b0bec5"> <i class="fas fa-fw fa-pencil"></i></a> <i class="far fa-fw fa-lock-alt" style="color: #e91e63;  margin: 0px 6px"></i> <a href="#" style="margin-left: 3px; font-size: 14px; font-weight: 600;text-decoration:underline">Order</a><a href="#" style="color: #b0bec5"> <i class="fas fa-fw fa-pencil"></i></a> </div>
+          <div class="col-sm-6 col-xs-6 col-md-3 col-lg-4" style="padding: 3px 3px; "> <a href="#" style="margin-right: 8px; font-weight: 600; font-size: 14px; "><i class="fas fa-fw fa-chart-area" style="margin-right: 6px;"></i>区域 <i class="fas fa-fw fa-chevron-down" style="color:#b0bec5 "></i></a> </div>
+        </div>
+        <div class="row" style="margin: 3px 6px; margin-top: 32px">
+          <div class="col-sm-6 col-xs-6 col-md-3 col-lg-4" style="padding: 3px 3px; ">
+            <legend style="font-size: 14px; color: #607d8b; margin-bottom: 0px;">分组条件 <a href="#" style="margin-left: 4px; color: #4caf50"><i class="fas fa-fw fa-plus-circle"></i></a></legend>
+          </div>
+          <div class="col-sm-6 col-xs-6 col-md-3 col-lg-4" style="padding: 3px 3px; ">
+            <legend style="font-size: 14px; color: #607d8b; margin-bottom: 0px;">查看 <a href="#" style="margin-left: 4px; color: #4caf50"><i class="fas fa-fw fa-plus-circle"></i></a></legend>
+          </div>
+          <div class="col-sm-6 col-xs-6 col-md-3 col-lg-4" style="padding: 3px 3px; ">
+            <legend style="font-size: 14px; color: #607d8b; margin-bottom: 0px;">筛选条件 <a href="#" style="margin-left: 4px; color: #4caf50"><i class="fas fa-fw fa-plus-circle"></i></a></legend>
+          </div>
+        </div>
+        <div class="row" style="margin: 3px 3px">
+          <div class="col-sm-6 col-xs-6 col-md-3 col-lg-4" style="padding: 3px 3px; "> <a href="#" style="margin-left: 3px; font-size: 14px; font-weight: 600;text-decoration:underline">Order</a><a href="#" style="color: #b0bec5"><i class="fas fa-fw fa-times"></i></a> <a href="#" style="margin-left: 3px; font-size: 14px; font-weight: 600;text-decoration:underline">Customer</a><a href="#" style="color: #b0bec5"><i class="fas fa-fw fa-times"></i></a> <a href="#" style="margin-left: 3px; font-size: 14px; font-weight: 600;text-decoration:underline">Customer</a><a href="#" style="color: #b0bec5"><i class="fas fa-fw fa-times"></i></a> <a href="#" style="margin-left: 3px; font-size: 14px; font-weight: 600;text-decoration:underline">Customer</a><a href="#" style="color: #b0bec5"><i class="fas fa-fw fa-times"></i></a> </div>
+          <div class="col-sm-6 col-xs-6 col-md-3 col-lg-4" style="padding: 3px 3px; "> <a href="#" style="margin-left: 3px; font-size: 14px; font-weight: 600; text-decoration:underline"><font color="#333333"><b>总和的</b></font> Order</a><a href="#" style="color: #b0bec5"><i class="fas fa-fw fa-times"></i></a> <a href="#" style="margin-left: 3px; font-size: 14px; font-weight: 600; text-decoration:underline"><font color="#333333"><b>平均值的</b></font> Order</a><a href="#" style="color: #b0bec5"><i class="fas fa-fw fa-times"></i></a> </div>
+          <div class="col-sm-6 col-xs-6 col-md-3 col-lg-4" style="padding: 3px 3px; "> <a href="#" style="margin-left: 3px; font-size: 14px; font-weight: 600">Order <i class="fal fa-fw fa-not-equal" style="color: #e91e63"></i> <span style="font-weight: 600; color: #333333">123</span></a><a href="#" style="color: #b0bec5"><i class="fas fa-fw fa-times"></i></a> <a href="#" style="margin-left: 3px; font-size: 14px; font-weight: 600">Order <i class="fal fa-fw fa-arrows-h" style="color: #e91e63"></i> <span style="font-weight: 600; color: #333333">123</span>,<span style="font-weight: 600; color: #333333">566</span></a><a href="#" style="color: #b0bec5"><i class="fas fa-fw fa-times"></i></a> </div>
+        </div>
+        <div class="row" style="margin: 3px 3px; margin-top: 32px;">
+          <p align="center"><a href="#" class="ui-btn ui-btn-inline ui-corner-all" style="background-color: #e91e63; color: #FFFFFF; font-weight: 300; margin-top: 24px; margin-bottom: 28px"><i class="fas fa-fw fa-play" style="margin-right: 9px"></i>生成报表</a></p>
+          <iframe src="https://mttmb.magna.cn/public/question/c0c3c753-60bf-4628-a1ee-713011b96685" frameborder="0" width="100%"
+                        height="600" allowtransparency></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-role="panel" id="panelgrid" data-position-fixed="true" data-position="right" data-display="overlay"  data-theme="a">
+    <div class="jqm-block-content" style="margin: -14px -14px; margin-bottom: 14px; padding: 9px 9px; padding-top: 30px; background-image: url( images/bg/mix01.jpg); background-size: cover; border:none; min-height: 0px; border-radius: 0em;">
+      <p align="center" style="margin-bottom:10px;"><i class="material-icons md-56 md-light">face</i></p>
+      <div class="ui-grid-a" style="text-shadow: 0 0 0; color:#FFFFFF">
+        <div class="ui-block-a">
+          <p align="left" style="padding-left:8px;"><font size="+1">邵剑秋</font><br>
+            <font color="#BDBDBD">ABC Company<br>
+            121123</font></p>
+        </div>
+        <div class="ui-block-b">
+          <p align="right" style="margin-top: 10px; padding-right:3px;"><a href="#"><i class="fas fa-sign-out-alt"></i></a></p>
+        </div>
+      </div>
+    </div>
+    <ul data-role="listview"  data-theme="b" class="ui-nodisc-icon ui-alt-icon">
+      <li data-role="collapsible" data-iconpos="right" data-inset="false" style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) "  data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+        <h2 style="padding:0px 0px; margin:0px 0px;">我的 Z<sup>3</sup></h2>
+        <ul data-role="listview" data-theme="a" style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+          <li><a href="#" style="font-weight:200; background-color:transparent"><i class="fas fa-fw fa-home-heart" style="margin-right: 16px; color:#03a9f4 "></i>我的首页</a></li>
+          <li><a href="#" style="font-weight:200; background-color:transparent"><i class="fas fa-fw fa-user" style="margin-right: 16px; color:#03a9f4 "></i>我的账户</a></li>
+          <li><a href="#" style="font-weight:200; background-color:transparent"><i class="fas fa-fw fa-users-class" style="margin-right: 16px; color:#03a9f4 "></i>我的组织</a></li>
+        </ul>
+      </li>
+      <li data-role="collapsible" data-iconpos="right" data-inset="false" style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) "  data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+        <h2 style="padding:0px 0px; margin:0px 0px;">我的待办</h2>
+        <ul data-role="listview" data-theme="a" style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+          <li><a href="#" style="font-weight:200; background-color:transparent"><i class="fas fa-fw fa-tasks" style="margin-right: 16px; color:#03a9f4 "></i>待办任务</a></li>
+          <li><a href="#" style="font-weight:200; background-color:transparent"><i class="fas fa-fw fa-history" style="margin-right: 16px; color:#03a9f4 "></i>任务历史</a></li>
+        </ul>
+      </li>
+      <li data-role="collapsible" data-iconpos="right" data-inset="false" style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) "  data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+        <h2 style="padding:0px 0px; margin:0px 0px;">我的流程</h2>
+        <ul data-role="listview" data-theme="a" style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+          <li><a href="#" style="font-weight:200; background-color:transparent"><i class="fas fa-fw fa-layer-group" style="margin-right: 16px; color:#03a9f4 "></i>流程中心</a></li>
+          <li><a href="#" style="font-weight:200; background-color:transparent"><i class="fas fa-fw fa-history" style="margin-right: 16px; color:#03a9f4 "></i>流程历史</a></li>
+        </ul>
+      </li>
+      <li data-role="collapsible" data-iconpos="right" data-inset="false" style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) "  data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+        <h2 style="padding:0px 0px; margin:0px 0px;">我的设计</h2>
+        <ul data-role="listview" data-theme="a" style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+          <li><a href="#" style="font-weight:200; background-color:transparent"><i class="fas fa-fw fa-drafting-compass" style="margin-right: 16px; color:#03a9f4 "></i>流程设计</a></li>
+          <li><a href="#" style="font-weight:200; background-color:transparent"><i class="fas fa-fw fa-cloud-upload" style="margin-right: 16px; color:#03a9f4 "></i>流程部署</a></li>
+          <li><a href="#" style="font-weight:200; background-color:transparent"><i class="fas fa-fw fa-chart-pie" style="margin-right: 16px; color:#03a9f4 "></i>报表设计</a></li>
+        </ul>
+      </li>
+    </ul>
+    <p align="center" style="margin-top: 64px;"><img src="images/cube.svg" height="36px"></p>
+  </div>
+  <p align="center" style=" margin-bottom:3em">&nbsp;</p>
+  <br>
+  <div data-role="footer"  data-fullscreen="true" data-position="fixed" style=" border-bottom-width: 0px; opacity: 1">
+    <div data-role="navbar" >
+      <ul>
+        <li><a href="#" data-rel="popup" class="ui-btn-b" style="font-weight:300"><i class="fal fa-2x fa-chevron-left" style="margin-bottom: 8px"></i><br>
+          上一页</a></li>
+        <li><a href="#" data-rel="popup" class="ui-btn-b" style="font-weight:300"><i class="fal fa-2x fa-chevron-right" style="margin-bottom: 8px"></i><br>
+          下一页</a></li>
+        <li><a href="#" data-rel="popup"  class="ui-btn-b" style="font-weight:300"><i class="fal fa-2x fa-home-heart" style="margin-bottom: 8px"></i><br>
+          主页</a></li>
+        <li><a href="#popaction" data-rel="popup"  data-transition="fade" class="ui-btn-b" style="font-weight:300"><i class="fal fa-2x fa-question" style="margin-bottom: 8px"></i><br>
+          帮助</a></li>
+      </ul>
+    </div>
+    <!-- /navbar -->
+    <div data-role="popup" id="popaction" data-theme="b" data-overlay-theme="a" style="border-width: 0px">
+      <ul data-role="listview" class="ui-nodisc-icon ui-alt-icon" data-inset="true" style="min-width:230px; border-radius: 0em; ">
+        <li data-role="list-divider" style="border-width: 0px;  background-color: #424242; border-radius: 0em; text-shadow: 0 0 0;"><i class="fal fa-ellipsis-h"></i></li>
+        <li data-icon="forbidden"><a href="#">无</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- /footer --> 
+</div>
+<script>
+$("#myTabs a").click(function (e) {
+  e.preventDefault();
+  $(this).tab('show');
+});
+</script>
+</body>
+</html>

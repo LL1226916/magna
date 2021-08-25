@@ -1,0 +1,247 @@
+<!doctype html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, target-densitydpi=device-dpi">
+    <title data-i18n="process-title">BPMS - 启动流程</title>
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile.css" />
+    <link rel="stylesheet" type="text/css" href="css/color.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" type="text/css" href="css/jqm-demos.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure.css">
+    <link rel="stylesheet" type="text/css" href="css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/google-icon.css">
+    <link rel="stylesheet" type="text/css" href="css/site.css?v=20200924" />
+  
+    <script src="libs/jquery.js?v=20210120"></script>
+    <script src="libs/jquery.mobile.js?v=20200924"></script>
+    <script src="libs/bootstrap.js?v=1598853811990"></script>
+    <script src="libs/knockout.js?v=1598853811990"></script>
+    <script src="libs/koExternalTemplateEngine_all.js?v=1598853811990"></script>
+    <script src="libs/ko.extension.js?v=1598853811990"></script>
+    <script src="libs/moment/moment.js?v=1598853811990"></script>
+    <script src="libs/CLDRPluralRuleParser.js?v=1598853811990"></script>
+    <script src="libs/jquery.i18n/jquery.i18n.js?v=1598853811990"></script>
+    <script src="libs/jquery.i18n/jquery.i18n.messagestore.js?v=1598853811990"></script>
+    <script src="libs/jquery.i18n/jquery.i18n.fallbacks.js?v=1598853811990"></script>
+    <script src="libs/jquery.i18n/jquery.i18n.language.js?v=1598853811990"></script>
+    <script src="libs/jquery.i18n/jquery.i18n.parser.js?v=1598853811990"></script>
+    <script src="libs/jquery.i18n/jquery.i18n.emitter.js?v=1598853811990"></script>
+    <script src="libs/jquery.i18n/jquery.i18n.emitter.bidi.js?v=1598853811990"></script>
+    <script src="common/config.js?v=20200924"></script>
+    <script src="common/util.js?v=1598853811990"></script>
+    <script src="common/service.js?v=1598853811990"></script>
+    <script src="common/baseViewModel.js?v=1598853811990"></script>
+    <script src="processListViewModel.js?v=1598853811990"></script>
+    <script src="processCreateViewModel.js?v=1598853811990"></script>
+    <script src="process.js?v=1598853811990"></script>
+    <script src="processViewModel.js?v=1598853811990"></script>
+    <link rel="shortcut icon" href="favicon.ico">
+  
+<style>
+@media screen and (min-width:0px) {
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+}
+
+@media screen and (min-width:667px) {
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+}
+
+@media screen and (min-width:992px) {
+.row {
+    margin-left: 80px;
+    margin-right: 0px;
+    margin-top: 16px;
+}
+}
+
+@media screen and (min-width:1200px) {
+.row {
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 32px;
+}
+}
+
+@media screen and (min-width:1600px) {
+.row {
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 32px;
+}
+}
+</style>
+</head>
+
+<body>
+<div data-role="page" class="ui-responsive-panel" id="main" data-theme="a" style="background-color: #f7f7f7">
+  <div data-role="header" data-position="fixed" data-visible-on-page-show="true" style="margin: 0px 0px; border-bottom-width: 1px; border-color: #cfd8dc; padding: 8px 8px; padding-bottom: 3px; background-color: #f1f1f1;  min-height: 0px;">
+    <div class="ui-grid-a" style="padding: 3px 3px; ">
+      <div class="ui-block-a" style="font-size: 1.3em"><a href="#panelgrid"><img src="images/menu.svg" style="height: 14px; margin-bottom: 5px; text-decoration: none; margin-left: 6px; margin-right: 12px; opacity: 0.5"><img src="images/logo.svg" style="height: 26px; margin-bottom: 5px; text-decoration: none; margin-right: 0px"></a><a href="#" style="text-shadow: none; font-weight: 300; color: #455a64; "><i class="fal fa-fw fa-caret-right" style="color:#b0bec5; margin-right: 3px"></i><span data-i18n="my-process">我的流程</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></a>
+		<a href="#popSearch" data-rel="popup" style="color: #455a64; margin-right: 24px; text-decoration: none">
+          <i class="far fa-fw fa-search-plus"></i>
+        </a>
+        <a href="#popFilter" data-rel="popup" style="color:#455a64; margin-right: 24px; text-decoration: none">
+          <i class="far fa-fw fa-folder-tree"></i>
+        </a>
+	  </div>
+      <div class="ui-block-b" style="text-align: right; text-shadow: none; font-size: 1.3em">
+
+        <span style="color: #f5f5f5; font-weight: 300">|</span>
+        <a href="#panelAccount" style="font-weight: 300; margin-left: 24px; margin-right: 16px; text-decoration: none; text-shadow: none; color:#455a64">
+          <i class="far fa-fw fa-user-circle" style="margin-right:6px;"></i><span style="font-weight: 300; opacity: 0.5" data-bind="text:user.name"></span>
+        </a>
+      </div>
+    </div>
+	
+  </div>
+  <div data-role="content" style="padding: 0px 0px; background-color: #ffffff">
+    <div data-role="popup" id="popSearch" data-dismissible="false" data-theme="a" data-overlay-theme="a" style="min-width:300px; max-width:300px; border:none; background-color: #ffffff">
+      <ul data-role="listview" data-inset="true" style="border:none">
+        <li data-role="list-divider" style="border:none; border-bottom-left-radius:0; border-bottom-right-radius:0; padding:14px 14px; background-color:#ffffff; color: #000000; text-shadow: none; font-weight:300 "> <i class="far fa-fw fa-search-plus"></i> <span data-i18n="search">搜索</span></li>
+        <form style="margin:16px 16px; background-color: #ffffff">
+          <input type="text" data-bind="value:nameLike" data-theme="b" data-i18n="[placeholder]process-name-keyword" placeholder="流程名称关键字..." style="font-weight:300; height:39px; font-size:medium;">
+          <input type="text" data-bind="value:keyLike" data-theme="b" data-i18n="[placeholder]process-id-keyword" placeholder="流程ID关键字..." style="font-weight:300; height:39px; font-size:medium;">
+        </form>
+        <div class="ui-grid-a" style="margin:12px 12px; padding-bottom:12px;">
+          <div class="ui-block-a"> <a href="javacript:void(0);" data-bind="click:doSearch" class="ui-btn ui-corner-all ui-btn-b" style="background-color: #455a64; border-color: #37474f; color:#fff; margin: 4px 4px; font-weight:300"><i class="fad fa-fw fa-check" style="margin-right: 12px"></i><span data-i18n="search">搜索</span></a> </div>
+          <div class="ui-block-b"> <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-btn-b" style=" color:#000000; margin: 4px 4px; font-weight:300"><i class="far fa-fw fa-times" style="margin-right: 12px"></i><span data-i18n="cancel">取消</span></a> </div>
+        </div>
+      </ul>
+    </div>
+    <div data-role="popup" id="popFilter" data-theme="b" data-overlay-theme="a" style="border-width: 0px; border-radius: 0.32em">
+      <ul id="processList" data-role="listview" class="ui-nodisc-icon ui-alt-icon" data-inset="true"
+                style="min-width:230px; border-radius: 0.32em; border-width: 0px">
+
+		<li><a href="javascript:void(0);" data-rel="back" data-bind="click:function(){secureExecute('selectCategory','fin')}"><i class="far fa-fw fa-folders" style="margin-right: 12px; color: #78909c"></i><span>财务类</span></a></li>
+        <li><a href="javascript:void(0);" data-rel="back" data-bind="click:function(){secureExecute('selectCategory','frm')}"><i class="far fa-fw fa-folders" style="margin-right: 12px; color: #78909c"></i><span>人事类</span></a></li>
+        <li><a href="javascript:void(0);" data-rel="back" data-bind="click:function(){secureExecute('selectCategory','pur')}"><i class="far fa-fw fa-folders" style="margin-right: 12px; color: #78909c"></i><span>效率类</span></a></li>
+		<li><a href="javascript:void(0);" data-rel="back" data-bind="click:function(){secureExecute('selectCategory','normal')}"><i class="far fa-fw fa-folders" style="margin-right: 12px; color: #78909c"></i><span>日常类</span></a></li>
+		<li><a href="javascript:void(0);" data-rel="back" data-bind="click:function(){secureExecute('selectCategory','admin')}"><i class="far fa-fw fa-folders" style="margin-right: 12px; color: #78909c"></i><span>管理表单</span></a></li>
+		<li><a href="javascript:void(0);" data-rel="back" data-bind="click:function(){secureExecute('selectCategory','processApply')}"><i class="far fa-fw fa-folders" style="margin-right: 12px; color: #78909c"></i><span>工艺申请单</span></a></li>
+		<li><a href="javascript:void(0);" data-rel="back" data-bind="click:function(){secureExecute('selectCategory','repairs')}"><i class="far fa-fw fa-folders" style="margin-right: 12px; color: #78909c"></i><span>报修表单</span></a></li>
+		<li><a href="javascript:void(0);" data-rel="back" data-bind="click:function(){secureExecute('selectCategory','deviation')}"><i class="far fa-fw fa-folders" style="margin-right: 12px; color: #78909c"></i><span>偏差单申请</span></a></li>
+		<li><a href="javascript:void(0);" data-rel="back" data-bind="click:function(){secureExecute('selectCategory','other')}"><i class="far fa-fw fa-folders" style="margin-right: 12px; color: #78909c"></i><span>其他表单</span></a></li>
+		<li><a href="javascript:void(0);" data-rel="back" data-bind="click:function(){secureExecute('selectCategory','lpa')}"><i class="far fa-fw fa-folders" style="margin-right: 12px; color: #78909c"></i><span>lpa</span></a></li>
+		<li><a href="javascript:void(0);" data-rel="back" data-bind="click:function(){secureExecute('selectCategory','ink')}"><i class="far fa-fw fa-folders" style="margin-right: 12px; color: #78909c"></i><span>墨水屏</span></a></li>
+        <li><a href="javascript:void(0)" onclick="location.reload()"  data-rel="back"><i class="far fa-fw fa-redo-alt" style="margin-right: 12px"></i><span>ALL</span></a></li>
+      </ul>
+    </div>
+    <div id="myTabContent" class="tab-content">
+      <div role="tabpanel" class="tab-pane fade in active" id="common" aria-labelledBy="all-tab">
+        <div class="col-sm-12 col-xs-12 col-md-4 col-lg-3" style="padding: 0px 0px; ">
+          <div data-role="navbar"  >
+             <ul >
+              <li data-bind="css: { 'ui-disabled': !$root[$root.type()].hasPrev()}" ><a href="javascript:void(0)"  
+              data-bind="click:function(){secureExecute('getPrev')}" class="ui-btn-b" style="border-width: 0px; padding:12px 12px; border-top-width: 0px; font-weight: 300; font-size: 1em"><i class="fad fa-fw fa-chevron-left" style="margin-right: 6px"></i><span data-i18n="prev-page">上一页</span></a></li>
+              <li ><a href="javascript:void(0)" data-bind="click:function(){secureExecute('refresh')}" class="ui-btn-b" style="border-width: 0px; font-weight: 300; font-size: 1em; padding:12px 12px; border-top-width: 0px; "><i class="fad fa-fw fa-sync" style="margin-right: 6px"></i><span data-i18n="refresh">刷新</span></a></li>
+              <li data-bind="css: { 'ui-disabled': !$root[$root.type()].hasNext()}"><a href="javascript:void(0)" data-bind="click:function(){secureExecute('getNext')}" class="ui-btn-b" style="border-width: 0px; font-weight: 300;font-size: 1em; padding:12px 12px; border-top-width: 0px; border-right-width: 0px "><i class="fad fa-fw fa-chevron-right" style="margin-right: 6px"></i><span data-i18n="next-page">下一页</span></a></li>
+            </ul>
+          </div>
+          <div class="ui-body ui-body-b ui-content main-content" style="background-color: #f9f9f9; border-width:1px; border-left-width: 0px; border-bottom-right-radius: 0em; border-bottom-left-radius:0em; min-height: 300px;margin: 0 0px; padding: 0px 0px; overflow: auto; overflow-style:auto">
+            <ul data-role="listview" data-split-icon="plus" data-filter="true" data-inset="true" data-input="#rich-autocomplete-input"
+            style="margin: 2px 2px;" data-bind="jqmTemplate: { name: 'item', foreach: $root[$root.type()].items }, jqmRefreshList: $root[$root.type()].items">
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-12 col-xs-12 col-md-8 col-lg-9" style="padding: 0px 0px; ">
+          <div class="ui-body ui-body-b ui-content" style="background-color: #fcfcfc; border-width: 0px; border-top-width: 0px; border-bottom-width: 1px; border-color: #cfd8dc; border-bottom-right-radius: 0em; border-bottom-left-radius:0em; min-height: 24px; margin: 0 0px; padding: 9px 28px; text-align: left; "><a href="javascript:void(0)" data-bind="css: { 'ui-disabled': $root.detail.documents().length===0 },click:function(){$root.pop('attachments',{attachments:$root.detail.documents()});}" style="font-weight:300; color: #000000; margin-right:36px;"> <i class="far fa-fw fa-file-search" style="color:#0086ff; margin-right: 6px"></i><span data-i18n="documents">文档</span></a> <a href="instance_list.html" rel="external" style="font-weight:300; color: #000000; margin-right:36px;"> <i class="far fa-fw fa-hourglass-half" style="color:#0086ff; margin-right: 6px"></i><span data-i18n="unfinished">进行中</span>&nbsp;<font size="-2"><span style="font-weight: 800; color: #b0bec5" data-bind="text:detail.instanceCount"></span></font> </a>
+            <a href="javascript:void(0);" data-bind="click:function(){$root.selectItem({id:$root.detail.id()});}" style="font-weight:300; color: #000000; margin-right:36px;">
+              <i class="far fa-fw fa-layer-plus" style="color:#0086ff; margin-right: 6px"></i><span data-i18n="create-process">启动流程</span></a>
+
+              <a href="javascript:void(0);" rel="external" data-bind="attr:{'href':'instance.html?type=draft&processDefinitionId='+encodeURIComponent($root.detail.id()) }" style="font-weight:300; color: #000000; margin-right:36px;">
+                <i class="far fa-fw fa-copy" style="color:#0086ff; margin-right: 6px"></i><span data-i18n="create-fromdraft">相关草稿</span></a>
+              
+            </div>
+          <div class="ui-body ui-body-b ui-content main-content" data-bind="visible:detail.loaded" style="background-color: #ffffff; border-width:0px;  border-bottom-right-radius: 0em; border-bottom-left-radius:0em;  min-height: 300px;  margin: 0 0px; padding: 12px 24px; overflow: auto; overflow-style:auto;">
+            <div class="row" style="margin:0px 0px; padding:3px 3px">
+              <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12" style="padding: 3px 0px; ">
+                <p align="left" style="padding: 0px 0px; font-weight:600; font-size:1.3em; color:#000000; margin-bottom:0px; "> <span  data-bind="text:detail.getName(detail.id(), detail.name())"></span> </p>
+                <p style="margin-top: 6px; font-weight:300; color: #607d8b"> <i class="far fa-fw fa-folder"></i> <b data-bind="text:$root.getCategory(detail.category())"></b><font color="#BDBDBD">&nbsp; | &nbsp; </font><span data-bind="text:detail.id"></span></p>
+              </div>
+            </div>
+            <div class="col-sm-6 col-xs-12 col-md-4 col-lg-4" style="padding: 3px 4px; ">
+              <legend style="margin-bottom: 16px;"> <font size="-1" color="#b0bec5" style="font-weight:600"> <i class="far fa-fw fa-book-open" style="color: #0086ff; margin-right: 9px"></i><span data-i18n="instruction">说明</span></font> </legend>
+              <p data-bind="text:detail.description"></p>
+            </div>
+            <div class="col-sm-6 col-xs-12 col-md-8 col-lg-8" style="padding: 3px 4px; ">
+              <legend style="margin-bottom: 16px;"> <font size="-1" color="#b0bec5" style="font-weight:600"> <i class="far fa-fw fa-draw-polygon"  style="color: #0086ff; margin-right: 9px"></i>&nbsp;<span data-i18n="flowchart">流程图</span></font> </legend>
+              <img data-bind="visible:!detail.pdfDocument(), attr:{src:detail.imageUrl}" width="100%">
+              <iframe data-bind="visible: detail.pdfDocument, attr:{src:detail.pdfDocument()}" width="100%" height="600"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-role="panel" id="panelgrid" data-position-fixed="true" data-position="left" data-display="push" data-theme="a">
+    <div class="jqm-block-content" style="margin-left: -14px; margin-right: -14px; margin-top: -23px; margin-bottom: 14px; padding: 0px 9px; padding-top: 32px; background-image: url(images/bg/bgc2.jpg); background-size: cover; height: 170px; border:none; min-height: 0px; border-radius: 0em;">
+      <p align="center" style="font-size: 1.2em; margin-bottom: 0px; font-weight: 600"><img src="images/logobw.svg" style="height: 56px"><br>
+        <span style="color: #ffffff">businez</span></p>
+      <p align="center" style="margin-top: 30px; font-weight: 300; opacity: 0.5; color: #ffffff; text-shadow: none; font-size: 0.5em">eorion bpms | <b>Ver 3.5</b></p>
+    </div>
+    <div class="ui-grid-a" style=" margin:0px 0px; padding:16px 0px; margin-top: 32px">
+      <div class="ui-block-a" style=" margin:0px 0px; padding:0px 0px">
+        <p align="center"><a rel="external" href="index.html"><i class="fad fa-fw fa-planet-moon" style="color: #0086ff; font-size: 1.5em"></i> <span style="display: block; color: #607d8b; margin-top: 6px; font-size: 0.7em; font-weight: 400" data-i18n="my-bpms">我的BPMS</span></a></p>
+      </div>
+      <div class="ui-block-b" style=" margin:0px 0px; padding:0px 0px">
+        <p align="center"><a rel="external" target="_blank" href="https://mttmb.magna.cn" ><i class="fad fa-fw fa-chart-area" style="color: #0086ff; font-size: 1.5em"></i> <span style="display: block; color: #607d8b; margin-top: 6px; font-size: 0.7em; font-weight: 400" data-i18n="my-report">Report</span></a></p>
+      </div>
+    </div>
+    <div class="ui-grid-a" style=" margin:0px 0px; padding:12px 0px;">
+      <div class="ui-block-a" style=" margin:0px 0px; padding:0px 0px">
+        <p align="center"><a rel="external" href="task_list.html"><i class="fad fa-fw fa-inbox-in" style="color: #0086ff; font-size: 1.5em"></i> <span style="display: block; color: #607d8b; margin-top: 6px; font-size: 0.7em; font-weight: 400" data-i18n="my-todo">todo</span></a></p>
+      </div>
+      <div class="ui-block-b" style=" margin:0px 0px; padding:0px 0px">
+        <p align="center"><a rel="external" href="history_list.html"><i class="fad fa-fw fa-history" style="color: #0086ff; font-size: 1.5em"></i> <span style="display: block; color: #607d8b; margin-top: 6px; font-size: 0.7em; font-weight: 400" data-i18n="my-taskhistory">task histroy</span></a></p>
+      </div>
+    </div>
+    <div class="ui-grid-a" style=" margin:0px 0px; padding:12px 0px;">
+      <div class="ui-block-a" style=" margin:0px 0px; padding:0px 0px">
+        <p align="center"><a rel="external" href="process_list.html"><i class="fad fa-fw fa-layer-plus" style="color: #0086ff; font-size: 1.5em"></i> <span style="display: block; color: #607d8b; margin-top: 6px; font-size: 0.7em; font-weight: 400" data-i18n="create-process">createprocess</span></a></p>
+      </div>
+      <div class="ui-block-b" style=" margin:0px 0px; padding:0px 0px">
+        <p align="center"><a rel="external"   href="instance_list.html"><i class="fad fa-fw fa-hourglass-end" style="color: #0086ff; font-size: 1.5em"></i> <span style="display: block; color: #607d8b; margin-top: 6px; font-size: 0.7em; font-weight: 400" data-i18n="my-processhistory">myinstance</span></a></p>
+      </div>
+    </div>
+  </div>
+  <div data-role="panel" id="panelAccount" data-position-fixed="true" data-position="right" data-display="push" data-theme="a">
+    <div class="jqm-block-content" style="margin: -14px -14px; margin-bottom: 14px; padding: 9px 9px; padding-top: 30px; background-color: #f9f9f9; border:none; min-height: 0px; border-radius: 0em;">
+      <p align="center" style="margin-bottom:10px; color: #0086ff"> <i class="far fa-4x fa-fw fa-user-circle"></i> </p>
+      <p align="center" style="color: #000000; font-size: 1.3em; margin-bottom: 0px"> <span data-bind="text:user.name"></span></p>
+      <p align="center" style="margin-top: 2px; color: #90a4ae; font-size: 0.8em"> <span data-bind="text:user.email"></span></p>
+      <hr>
+      <p style="word-break: break-all; word-wrap: break-word; padding: 3px 9px; color: #546e7a"><i class="fad fa-fw fa-users" style="margin-right: 12px; color: #0086ff "></i><span data-bind="text:user.Roles"></span></p>
+      <p style="word-break: break-all; word-wrap: break-word; padding: 3px 9px; color: #546e7a"><i class="fad fa-fw fa-id-card-alt" style="margin-right: 12px; color: #0086ff "></i><span data-bind="text:user.sub"></span></p>
+      <hr>
+      <p align="center" style="margin-top: 24px; font-size: 1.2em;"> <a href="javascript:void(0);" data-bind="click:logout" style="color: #000000; font-weight: 300"> <i class="fad fa-sign-out" style="color: #0086ff; margin-right: 9px"></i><span data-i18n="signout">Logout</span></a> </p>
+    </div>
+  </div>
+  
+  <!-- /footer --> 
+</div>
+<script type="text/html" id="item">
+        <li class="ui-alt-icon ui-nodisc-icon">
+            <a href="javascript:void(0);" data-bind="click:$root.loadItem" style="background-color:#f9f9f9; text-decoration:none; border-width:0px; border-bottom-width:1px">
+                <p style="color: #000000; font-weight:400; font-size:0.9em" data-bind="text:name"></p>
+                <p style="color: #607d8b; font-weight:300" data-bind="text:id.split(':')[0]"></p>
+                <span class="ui-li-count" style="background-color:#cfd8dc" data-bind="text:$root.getCategory(category)"></span></a>
+            </a>
+            <a href="javascript:void(0);" style="border-width:0px; background-color:#f9f9f9; border-bottom-width:1px" data-bind="click:$root.selectItem">add</a>
+          </li>
+  </script>
+</body>
+</html>

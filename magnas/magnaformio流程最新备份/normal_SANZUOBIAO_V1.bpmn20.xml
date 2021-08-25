@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/other">
+  <process id="SANZUOBIAO" name="三坐标送检记录" isExecutable="true" activiti:candidateStarterUsers="svc.mtt" activiti:candidateStarterGroups="admin,MTT_EMPLOYEE">
+    <documentation>
+{ "businessKey": "三坐标送检记录 ${user.name} ${YYYY-MM-DD}"
+}		
+	</documentation>    
+	<startEvent id="startevent1" name="Start" activiti:initiator="initiator" activiti:formKey="1604637292921">
+      <extensionElements>
+        <activiti:executionListener class="org.activiti.engine.impl.bpmn.listener.ScriptExecutionListener" event="end">
+          <activiti:field name="language">
+            <activiti:string>groovy</activiti:string>
+          </activiti:field>
+          <activiti:field name="script">
+            <activiti:string><![CDATA[
+			
+				import groovy.json.JsonSlurper;
+				import groovy.json.JsonOutput;		
+
+				
+				def formkey = execution.getVariable("1604637292921")
+				def newObj = [] //新的json对象
+				def jsonSlurper = new JsonSlurper();
+				def jsonObj = jsonSlurper.parseText(formkey);
+				def list = jsonObj["fields"];
+
+				list.each { elem ->
+					def element = new HashMap();
+					element.put("question", elem.legend)
+					element.put("answer", jsonObj.data.(elem.components.find{x -> x.label == "回答"}.key))
+					newObj << element;
+				}
+				execution.setVariable("lpaQuestionString",JsonOutput.toJson(newObj))	
+				]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>	
+	</startEvent>
+    <userTask id="usertask1" name="三坐标测量" activiti:assignee="${checker}" activiti:formKey="1605249783232">
+      <extensionElements>
+        <activiti:taskListener event="create" class="org.activiti.engine.impl.bpmn.listener.ScriptTaskListener">
+          <activiti:field name="language">
+            <activiti:string><![CDATA[groovy]]></activiti:string>
+          </activiti:field>
+          <activiti:field name="script">
+            <activiti:string><![CDATA[
+				import groovy.json.JsonSlurper;
+				import groovy.json.JsonOutput;
+				import com.eorionsolution.bpms.extension.rest.RestAPI;	
+
+				//获取用户名,微信号,邮箱
+				Map<String, Object> restParam = new java.util.HashMap<String,Object>();
+                def headerMap = new java.util.HashMap<String,String>(); 			
+				restParam.put("_http_method","GET");
+				restParam.put("_http_headers",headerMap);
+				restParam.put("_http_body","");	
+				def param=java.net.URLEncoder.encode('[{"type":"category","target":["variable",["template-tag","sn"]],"value":"'+task.getAssignee()+'"}]', "UTF-8");
+				restParam.put("_http_url", 'http://127.0.0.1:3000/public/question/5586c703-b53b-4e4a-98b6-3598604673dd.json?parameters='+param);
+				def result = RestAPI.execute(restParam);				
+				def body = result._http_response_body;
+				def assigneeInfo = new JsonSlurper().parseText(body);
+				if(assigneeInfo.size() == 0)
+					throw new org.activiti.engine.ActivitiIllegalArgumentException("未找到" + task.getAssignee() + "信息，请联系管理员");
+					
+				def initiator_name = assigneeInfo[0].EMPLOYEE_NAME_.toString();	//姓名
+				def initiator_email = assigneeInfo[0].MAIL_.toString();			//邮箱
+				def wechatId = assigneeInfo[0].WECHAT_CODE_.toString();			//微信id
+
+				
+				//通知用户有任务执行
+				def wxRestParam = new HashMap<String,Object>()
+				def wxHeaderMap = new HashMap<String,String>()
+				def wxBodyMap = new HashMap()
+
+				
+				wxBodyMap.put('touser', wechatId);//如果多个用户用|符合分隔
+				wxBodyMap.put('agentid',1000022);
+				wxBodyMap.put('title', "三坐标送检");
+				wxBodyMap.put('description', "请您测量");
+				wxBodyMap.put('url',"https://mttbpms.magna.cn/task.html?processInstanceId="+ task.getExecution().getProcessInstanceId());
+				def wxBody = JsonOutput.toJson(wxBodyMap);
+
+				task.getExecution().setVariable("wxBody1",JsonOutput.toJson(wxBodyMap));
+				wxHeaderMap.put("Content-Type","application/json");
+				wxRestParam.put("_http_method","POST");
+				wxRestParam.put("_http_headers",wxHeaderMap);
+				wxRestParam.put("_http_url", 'http://10.228.4.174:8281/wechat/message/send');
+				wxRestParam.put("_http_body", wxBody);
+				def wxResult = RestAPI.execute(wxRestParam);
+				
+				]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+        <activiti:taskListener event="complete" class="org.activiti.engine.impl.bpmn.listener.ScriptTaskListener">
+          <activiti:field name="language">
+            <activiti:string><![CDATA[groovy]]></activiti:string>
+          </activiti:field>
+          <activiti:field name="script">
+            <activiti:string><![CDATA[
+				import groovy.json.JsonSlurper;
+				import groovy.json.JsonOutput;
+				
+				def formkey = task.getExecution().getVariable("1605249783232")
+				def newObj = [] //新的json对象
+				def jsonSlurper = new JsonSlurper();
+				def jsonObj = jsonSlurper.parseText(formkey);
+				def list = jsonObj["fields"];
+
+				list.each { elem ->
+					def element = new HashMap();
+					element.put("question", elem.legend)
+					element.put("answer", jsonObj.data.(elem.components.find{x -> x.label == "回答"}.key))
+					newObj << element;
+				}
+				task.getExecution().setVariable("lpaQuestionString",JsonOutput.toJson(newObj))			
+				]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+      </extensionElements>		
+	</userTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
+    <!--<userTask id="usertask2" name="取回" activiti:assignee="${checker}" activiti:formKey="1605250772606">-->
+    <userTask id="usertask2" name="取回" activiti:assignee="${initiator}" activiti:formKey="1605250772606">
+      <extensionElements>
+        <activiti:taskListener event="create" class="org.activiti.engine.impl.bpmn.listener.ScriptTaskListener">
+          <activiti:field name="language">
+            <activiti:string><![CDATA[groovy]]></activiti:string>
+          </activiti:field>
+          <activiti:field name="script">
+            <activiti:string><![CDATA[
+				import groovy.json.JsonSlurper;
+				import groovy.json.JsonOutput;
+				import com.eorionsolution.bpms.extension.rest.RestAPI;	
+
+				//获取用户名,微信号,邮箱
+				Map<String, Object> restParam = new java.util.HashMap<String,Object>();
+                def headerMap = new java.util.HashMap<String,String>(); 			
+				restParam.put("_http_method","GET");
+				restParam.put("_http_headers",headerMap);
+				restParam.put("_http_body","");	
+				def param=java.net.URLEncoder.encode('[{"type":"category","target":["variable",["template-tag","sn"]],"value":"'+task.getAssignee()+'"}]', "UTF-8");
+				restParam.put("_http_url", 'http://127.0.0.1:3000/public/question/5586c703-b53b-4e4a-98b6-3598604673dd.json?parameters='+param);
+				def result = RestAPI.execute(restParam);				
+				def body = result._http_response_body;
+				def assigneeInfo = new JsonSlurper().parseText(body);
+				if(assigneeInfo.size() == 0)
+					throw new org.activiti.engine.ActivitiIllegalArgumentException("未找到" + task.getAssignee() + "信息，请联系管理员");
+					
+				def initiator_name = assigneeInfo[0].EMPLOYEE_NAME_.toString();	//姓名
+				def initiator_email = assigneeInfo[0].MAIL_.toString();			//邮箱
+				def wechatId = assigneeInfo[0].WECHAT_CODE_.toString();			//微信id
+
+				
+				//通知用户有任务执行
+				def wxRestParam = new HashMap<String,Object>()
+				def wxHeaderMap = new HashMap<String,String>()
+				def wxBodyMap = new HashMap()
+
+				
+				wxBodyMap.put('touser', wechatId);//如果多个用户用|符合分隔
+				wxBodyMap.put('agentid',1000022);
+				wxBodyMap.put('title', "三坐标送检");
+				wxBodyMap.put('description', "您送检的样件已测量，请确认取会");
+				wxBodyMap.put('url',"https://mttbpms.magna.cn/task.html?processInstanceId="+ task.getExecution().getProcessInstanceId());
+				def wxBody = JsonOutput.toJson(wxBodyMap);
+
+				task.getExecution().setVariable("wxBody2",JsonOutput.toJson(wxBodyMap));
+				wxHeaderMap.put("Content-Type","application/json");
+				wxRestParam.put("_http_method","POST");
+				wxRestParam.put("_http_headers",wxHeaderMap);
+				wxRestParam.put("_http_url", 'http://10.228.4.174:8281/wechat/message/send');
+				wxRestParam.put("_http_body", wxBody);
+				def wxResult = RestAPI.execute(wxRestParam);
+				
+				]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+        <activiti:taskListener event="complete" class="org.activiti.engine.impl.bpmn.listener.ScriptTaskListener">
+          <activiti:field name="language">
+            <activiti:string><![CDATA[groovy]]></activiti:string>
+          </activiti:field>
+          <activiti:field name="script">
+            <activiti:string><![CDATA[
+				import groovy.json.JsonSlurper;
+				import groovy.json.JsonOutput;
+				
+				def formkey = task.getExecution().getVariable("1605250772606")
+				def newObj = [] //新的json对象
+				def jsonSlurper = new JsonSlurper();
+				def jsonObj = jsonSlurper.parseText(formkey);
+				def list = jsonObj["fields"];
+
+				list.each { elem ->
+					def element = new HashMap();
+					element.put("question", elem.legend)
+					element.put("answer", jsonObj.data.(elem.components.find{x -> x.label == "回答"}.key))
+					newObj << element;
+				}
+				task.getExecution().setVariable("lpaQuestionString",JsonOutput.toJson(newObj))				
+			
+				]]></activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
+      </extensionElements>	
+	</userTask>
+    <sequenceFlow id="flow2" sourceRef="usertask1" targetRef="usertask2"></sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow3" sourceRef="usertask2" targetRef="endevent1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_SANZUOBIAO">
+    <bpmndi:BPMNPlane bpmnElement="SANZUOBIAO" id="BPMNPlane_SANZUOBIAO">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="140.0" y="140.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="220.0" y="130.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="370.0" y="130.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="520.0" y="140.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="175.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="220.0" y="157.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="325.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="370.0" y="157.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="475.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="520.0" y="157.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, target-densitydpi=device-dpi">
+<title>businez | eorion</title>
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.css" />
+<link rel="stylesheet" type="text/css" href="css/color.css" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+<link rel="stylesheet" type="text/css" href="css/jqm-demos.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.css">
+<link rel="stylesheet" type="text/css" href="css/all.min.css">
+<link rel="stylesheet" type="text/css" href="css/google-icon.css">
+<link rel="stylesheet" type="text/css" href="css/site.css" />
+<script src="libs/jquery.js?v=1583331091520"></script>
+<script src="libs/jquery.mobile.js?v=1583331091520"></script>
+<script src="libs/bootstrap.js?v=1583331091520"></script>
+<script src="libs/knockout.js?v=1583331091520"></script>
+<script src="common/config.js?v=1583331091520"></script>
+<script src="common/util.js?v=1583331091520"></script>
+<script src="common/service.js?v=1583331091520"></script>
+<script src="libs/moment/moment.js?v=1583331091520"></script>
+<script src="libs/CLDRPluralRuleParser.js?v=1583331091520"></script>
+<script src="libs/jquery.i18n/jquery.i18n.js?v=1583331091520"></script>
+<script src="libs/jquery.i18n/jquery.i18n.messagestore.js?v=1583331091520"></script>
+<script src="libs/jquery.i18n/jquery.i18n.fallbacks.js?v=1583331091520"></script>
+<script src="libs/jquery.i18n/jquery.i18n.language.js?v=1583331091520"></script>
+<script src="libs/jquery.i18n/jquery.i18n.parser.js?v=1583331091520"></script>
+<script src="libs/jquery.i18n/jquery.i18n.emitter.js?v=1583331091520"></script>
+<script src="libs/jquery.i18n/jquery.i18n.emitter.bidi.js?v=1583331091520"></script>
+<script src="login.js?v=1583331091520"></script>
+<script src="loginViewModel.js?v=1583331091520"></script>
+<link rel="shortcut icon" href="favicon.ico">
+<style>
+@media screen and (min-width:0px) {
+.row {
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 48px;
+}
+}
+
+@media screen and (min-width:667px) {
+.row {
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 48px;
+}
+}
+
+@media screen and (max-width:992px) and (min-width:300px) {
+.bgs {
+    background-size: cover;
+}
+}
+
+@media screen and (min-width:992px) {
+.row {
+    margin-left: 32px;
+    margin-right: 32px;
+    margin-top: 32px;
+}
+}
+
+@media screen and (min-width:1200px) {
+.row {
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 32px;
+}
+}
+
+@media screen and (min-width:1600px) {
+.row {
+    margin-left: 156px;
+    margin-right: 156px;
+    margin-top: 32px;
+}
+}
+</style>
+</head>
+<body>
+<div data-role="page" id="logonView" class="bgs" data-theme="b" style="background-image: url(images/bg/loginbg2.jpg); background-size: cover">
+  <div data-role="content" style="padding: 0px 0px;"> 
+    
+    <!--language-->
+    <div class="row" align="center" data-bind="visible:!language()">
+      <div class="jqm-block-content" style="margin: 2px 2px; margin-top: 48px; padding: 8px 8px; background-color: #37474f; border: none; min-height: 0px; max-width: 320px;">
+        <p align="center" style="margin:8px 8px; margin-bottom: 72px; color: #ffffff"><i class="fad fa-4x fa-language"></i></p>
+        <p align="center" style="padding: 8px 8px; padding-bottom:0px;"> <a href="javascript:void(0);" data-bind="click:function(){selectLanguage('zh');}" class="ui-btn ui-corner-all" style="font-weight: 400; font-size: large">中文</a> <a href="javascript:void(0);" data-bind="click:function(){selectLanguage('en');}" class="ui-btn ui-corner-all" style="font-weight: 400; font-size: large">English</a> <a href="javascript:void(0);" data-bind="click:function(){selectLanguage('ja');}" class="ui-btn ui-corner-all" style="font-weight: 400; font-size: large">日本語</a> </p>
+      </div>
+    </div>
+    
+    <!--login normal-->
+    <div class="row" align="center" style="margin: 0px 0px"  data-bind="visible:language() && !uid">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="background-color: #f1f1f1; border-right-width: 1px; border-color: #000000; min-height: 800px;box-shadow: 2px 0px 3px rgba(192,192,192,0.6)">
+        <div class="jqm-block-content" style="margin: 2px 2px; margin-top: 0px; padding: 8px 8px; background: none; border: none; min-height: 0px; max-width: 320px;">
+          <p align="center" style="margin:8px 8px; margin-bottom: 24px; margin-top: 34px; color: #607d8b; "><img src="images/logobw.svg" style="height: 6em"></p>
+          <p align="center" style="padding: 8px 8px; padding-bottom:0px;">
+            <input type="text" data-bind="value:userName" data-theme="b" data-clear-btn="true" name="userName" id="userName" data-i18n="[placeholder]user-name" placeholder="用户名" style=" font-size: larger; font-weight: 400 " >
+            <input type="password" data-bind="value:password" data-theme="b" data-clear-btn="true" name="password" id="password" data-i18n="[placeholder]password" placeholder="密码" style="font-size:larger; font-weight: 400 ">
+          </p>
+          <p align="center" style="padding: 8px 8px; padding-bottom:0px;"> <a href="javascript:void(0);" data-bind="click:login" class="ui-btn ui-corner-all ui-btn-b" style="background-color:#37474f; font-weight:600; border-radius: 3px; font-size:larger; color:#fff;"> <i class="fad fa-fw fa-sign-in" style="margin-right: 9px"></i><span data-i18n="login">登录</span> </a> </p>
+          <p data-bind="visible: wechatUser" align="center" style="margin: 16px 16px; color: #546e7a">或</p>
+          <p data-bind="visible: wechatUser" align="center" style="padding: 8px 8px; padding-top:0px;">
+            <button type="submit" data-bind="click:startUidLogin" class="ui-btn ui-corner-all ui-btn-b" style="background-color:#ffffff; font-weight:400; border-radius: 3px; font-size:larger; color:#0086ff; text-shadow: none"> <i class="fab fa-fw fa-weixin"></i>&nbsp;<span data-bind="text:wechatUser && wechatUser.name || ''"></span>&nbsp;身份登录 </button>
+          </p>
+        </div>
+        <p align="center" data-bind="click:function(){language('');}" style="cursor: pointer; font-weight: 300; margin-top: 36px; color: #37474f"><i class="far fa-2x fa-fw fa-language"></i><br>
+          <span data-i18n="switch-language">切换语言</span></p>
+      </div>
+      <div class="col-lg-6 col-md-6 hidden-xs hidden-sm" style="padding-top: 32px; min-height: 800px;">
+        <div class="col-lg-4 col-md-4" style="margin-top: 16px">
+          <p align="center"><img src="images/logo.svg" style="height: 48px;"><span style="display: block; margin-top: 3px; font-weight: 800">BPMS</span><span style="display: block; margin-top: 0px; font-size:0.7em; font-weight: 300">for Process Management</span></p>
+        </div>
+        <div class="col-lg-4 col-md-4" style="margin-top: 16px">
+          <p align="center"><img src="images/rclogo.svg" style="height: 48px;"><span style="display: block; margin-top: 3px; font-weight: 800">RCS</span><span style="display: block; margin-top: 0px; font-size:0.7em; font-weight: 300">for Resource Calendar</span></p>
+        </div>
+        <div class="col-lg-4 col-md-4" style="margin-top: 16px">
+          <p align="center"><img src="images/srlogo.svg" style="height: 48px;"><span style="display: block; margin-top: 3px; font-weight: 800">SRM</span><span style="display: block; margin-top: 0px; font-size:0.7em; font-weight: 300">for Supply Chain</span></p>
+        </div>
+		  
+		  <div class="col-lg-4 col-md-4" style="margin-top: 16px">
+          <p align="center"><img src="images/xlogo.svg" style="height: 48px;"><span style="display: block; margin-top: 3px; font-weight: 800">BI</span><span style="display: block; margin-top: 0px; font-size:0.7em; font-weight: 300">for Data Insight</span></p>
+        </div>
+		  
+		  <div class="col-lg-4 col-md-4" style="margin-top: 16px">
+          <p align="center"><img src="images/logoonly.svg" style="height: 17px; margin: 16px 0px;"><span style="display: block; margin-top: 3px; font-weight: 800">KANPOD</span><span style="display: block; margin-top: 0px; font-size:0.7em; font-weight: 300">for KANBAN</span></p>
+        </div>
+		  
+		  <div class="col-lg-4 col-md-4" style="margin-top: 16px">
+          <p align="center"><i class="fal fa-fw fa-ellipsis-h" style="font-size: 48px;"></i><span style="display: block; margin-top: 3px; font-weight: 800">More</span><span style="display: block; margin-top: 0px; font-size:0.7em; font-weight: 300">Industrial Innovation</span></p>
+        </div>
+		 
+		    <div class="col-lg-12 col-md-12" style="margin-top: 64px">
+          
+        </div>
+		   <div class="col-lg-4 col-md-4" style="margin-top: 16px">
+          <p align="center"><i class="fad fa-fw fa-globe" style="font-size: 32px;"></i><span style="display: block; margin-top: 3px; font-weight: 800">EORION</span></p>
+        </div>
+		  <div class="col-lg-4 col-md-4" style="margin-top: 16px">
+          <p align="center"><i class="fad fa-fw fa-globe-asia" style="font-size: 32px;"></i><span style="display: block; margin-top: 3px; font-weight: 800">NXN</span></p>
+        </div>
+		
+		  <div class="col-lg-4 col-md-4" style="margin-top: 16px">
+          <p align="center"><i class="fad fa-fw fa-globe-europe" style="font-size: 32px;"></i><span style="display: block; margin-top: 3px; font-weight: 800">NEOXPHERE</span></p>
+			  
+        </div>
+			 
+      </div>
+    </div>
+    
+    <!--login uid -->
+    <div class="row" align="center" data-bind="visible:language() && uid">
+      <div class="jqm-block-content" style="margin: 2px 2px; margin-top: 0px; padding: 8px 8px; background: none; border: none; min-height: 0px; max-width: 320px;">
+        <p align="center" style="margin:8px 8px; margin-bottom: 12px; color: #607d8b"><i class="fad fa-4x fa-user-circle"></i></p>
+        <!-- <p align="center" style="color: #546e7a; font-weight: 400"><span data-bind="text:wechatUser&&wechatUser.userId"></span>&nbsp;<span data-bind="text:wechatUser&&wechatUser.name"></span></p> -->
+        <p align="center" style="color: #546e7a; font-weight: 400" data-bind="text:uid"></p>
+        <p align="center" style="padding: 8px 8px; padding-bottom:0px;">
+          <input type="password" data-bind="value:password" data-theme="b" data-clear-btn="true" name="password" id="upassword"  placeholder="密码" style="font-size:larger; ">
+        </p>
+        <p align="center" style="padding: 8px 8px; padding-bottom:0px;">
+          <button type="submit" data-bind="click:login" class="ui-btn ui-corner-all ui-btn-b" style="background-color:#607d8b; font-weight:600; border-radius: 3px; font-size:larger; color:#fff;"><span data-i18n="login">登录</span></button>
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- /content -->
+  
+  <div data-role="popup" id="popupde" data-dismissible="false" data-theme="b" data-overlay-theme="a" class="ui-corner-all"
+  style="min-width:300px; max-width:300px; background-image:url(images/tweets-bg.jpg)">
+    <div data-role="content" style="padding: 4px 4px;">
+      <p align="left" style="margin:8px 8px; margin-left:-4px;"> <img src="images/bpmslogon1.png" height="48"> </p>
+      <hr style="border-color: #607D8B; margin-bottom: 0px; margin-top:11px;">
+      <p align="left" style="padding: 0px 3px; margin-bottom: 8px; font-weight:300">BPMS (Business Process Management System) 业务流程管理系统</p>
+      <p align="left" style="padding: 0px 3px; margin-bottom: 32px; font-weight:300; font-size:smaller; color:#9E9E9E">CORE Ver: <b>1.0</b> <br>
+        API Ver: <b>1.0</b> <br>
+        OEX Ver: <b>2.1</b> <br>
+        APP Ver: <b>ios1.0</b> </p>
+      <p style="padding: 0px 0px;"> <a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #424242; color:#fff; text-shadow: 0 1px 0 #111; margin: 0px 0px">确认</a> </p>
+    </div>
+  </div>
+  <div data-role="popup" id="popupMessage" data-dismissible="false" data-theme="b" data-overlay-theme="a" class="ui-corner-all"
+  style="min-width:300px; max-width:300px; background-color:#ffffff">
+    <div data-role="content" style="padding: 9px 9px;">
+      <p align="center" style="margin:8px 8px; margin-bottom:24px"> <font color="#C62828"> <i class="fad fa-3x fa-ban"></i> </font> </p>
+      <p align="left" style="padding: 0px 3px; margin-bottom: 3px;"> <b>登陆失败</b> </p>
+      <p align="left" style="padding: 0px 3px; margin-bottom: 0px;"> <font color="#9e9e9e" size="-2" data-bind="text:message"></font> </p>
+      <p align="left" style="padding: 0px 3px; margin-bottom: 32px;"> <font color="#9e9e9e" size="-2" data-bind="text:errorCode"></font> </p>
+      <p style="padding: 0px 0px;"> <a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #37474f; color:#fff; text-shadow: 0 1px 0 #111; margin: 0px 0px">确认</a> </p>
+    </div>
+  </div>
+  <div data-role="popup" id="popupInvalid" data-dismissible="false" data-theme="b" data-overlay-theme="a" class="ui-corner-all"
+  style="min-width:300px; max-width:300px; background-color:#ffffff">
+    <div data-role="content" style="padding: 9px 9px;">
+      <p align="center" style="margin:8px 8px; margin-bottom:24px"> <font color="#C62828"> <i class="fad fa-3x fa-user-lock"></i> </font> </p>
+      <p align="left" style="padding: 0px 3px; margin-bottom: 3px;"> <b>输入错误</b> </p>
+      <p align="left" style="padding: 0px 3px; margin-bottom: 32px;"> <font color="#9e9e9e" size="-2" data-bind="text:message"></font> </p>
+      <p style="padding: 0px 0px;"> <a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #37474f; color:#fff; text-shadow: 0 1px 0 #111; margin: 0px 0px">确认</a> </p>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-fullscreen="true" style="border-bottom-width: 0px; border-top-width: 0px;  opacity:1">
+    <div data-role="navbar"  >
+      <ul>
+        <li><a href="#" class="ui-btn-b" style="font-weight:300; border-width: 0px; background-color: #fafafa;  color:#333333;">
+          <p align="left" style="margin: 0px 0px; margin-top:8px;"><font size="-1" color="#607d8b" style="font-weight:bold">eorion</font> <font size="-1" color="#90a4ae" style="font-weight: 300">bpm solution</font></p>
+          <p align="left" style="margin-bottom: 0px; margin-top: 5px;"> <font size="-3" color="#b0bec5">V3.5 on-promise/des</font></p>
+          </a></li>
+        <li><a href="#" class="ui-btn-b" style="font-weight:300; border-width: 0px; background-color: #fafafa;  color:#333333;">
+          <p align="right" style="margin-bottom:0px; margin-top: 6px; text-shadow: 0px 0px 3px rgba(192,192,192,0.6); color:#607d8b"><img src="images/logobw.svg" height="32px" alt="logo"></p>
+          </a> </li>
+      </ul>
+    </div>
+    <!-- /navbar --> 
+    
+  </div>
+</div>
+<!-- /page -->
+
+</body>
+</html>

@@ -1,0 +1,473 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, target-densitydpi=device-dpi">
+<title>visit-ez</title>
+<link rel="stylesheet" type="text/css" href="themes/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" type="text/css" href="themes/color.min.css" />
+<link rel="stylesheet" type="text/css" href="themes/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="themes/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="themes/jqm-demos.css">
+<link rel="stylesheet" type="text/css" href="themes/bootstrap-datetimepicker.css">
+<link rel="stylesheet" type="text/css" href="themes/jquery.mobile.icons.min.css">
+<link rel="stylesheet" type="text/css" href="themes/jquery.mobile.structure-1.4.5.min.css">
+<link rel="stylesheet" type="text/css" href="themes/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="themes/googleicon.css">
+<link rel="stylesheet" type="text/css" href="themes/site.css" />
+<link rel="shortcut icon" href="favicon.ico">
+<script src="scripts/libs/jquery.js"></script>
+<script src="scripts/libs/jquery.form.js"></script>
+<script src="scripts/libs/jquery.mobile-1.4.5.js"></script>
+<script src="scripts/libs/bootstrap.min.js"></script>
+<script src="scripts/libs/knockout.js"></script>
+<script src="scripts/libs/knockout.mapping.js"></script>
+<script src="scripts/libs/koExternalTemplateEngine.js"></script>
+<script src="scripts/libs/ko.extension.js"></script>
+<script src="scripts/libs/oex.utils.js"></script>
+<script src="scripts/libs/moment/moment.js"></script>
+<script src="scripts/libs/moment/locale/zh-cn.js"></script>
+<script src="scripts/libs/bootstrap-datetimepicker.js"></script>
+<script src="scripts/libs/MegaPixImage.js"></script>
+<script src="scripts/libs/jpeg_encoder_basic.js"></script>
+<script src="scripts/libs/oex/utils.js"></script>
+<script src="scripts/libs/oex/jqm-checked.js"></script>
+<script src="scripts/libs/oex/jqm-datetime.js"></script>
+<script src="scripts/libs/oex/jqm-selected.js"></script>
+<script src="scripts/libs/oex/jqm-number.js"></script>
+<script src="scripts/libs/oex/jqm-money.js"></script>
+<script src="scripts/libs/oex/jqm-tel.js"></script>
+<script src="scripts/libs/oex/jqm-email.js"></script>
+<script src="scripts/libs/oex/jqm-switch.js"></script>
+<script src="scripts/libs/oex/jqm-auto.js"></script>
+<script src="scripts/libs/oex/jqm-id.js"></script>
+<script src="scripts/libs/oex/jqm-upload2.js"></script>
+<script src="scripts/libs/oex/jqm-ctr3.js"></script>
+<script src="scripts/app/util.js"></script>
+<script src="scripts/app/service.js"></script>
+<script src="scripts/app/config.js"></script>
+<script src="scripts/app/baseViewModel.js"></script>
+<script src="scripts/app/index.js?v=2"></script>
+<link rel="shortcut icon" href="favicon.ico">
+<style>
+@media screen and (min-width:0px) {
+.row {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+}
+}
+
+@media screen and (min-width:667px) {
+.row {
+	margin-left: 16px;
+	margin-right: 16px;
+	margin-top: 32px;
+}
+}
+
+@media screen and (min-width:992px) {
+.row {
+	margin-left: 32px;
+	margin-right: 32px;
+	margin-top: 32px;
+}
+.pagination-container {
+	padding-left: 2px;
+}
+}
+ @media screen and (min-width:1200px) {
+.row {
+	margin-left: 156px;
+	margin-right: 156px;
+	margin-top: 32px;
+}
+.pagination-container {
+	padding-left: 2px;
+}
+}
+ @media screen and (min-width:1600px) {
+.row {
+ margin-left: 300px;
+ margin-right: 300px;
+ margin-top: 32px;
+}
+}
+ @media screen and (min-width:1900px) {
+.row {
+ margin-left: 340px;
+ margin-right: 340px;
+ margin-top: 32px;
+}
+}
+
+</style>
+</head>
+<body>
+<div data-role="page" id="appshome" data-theme="c" style="background-image: url(images/tweets-bg.jpg); background-attachment:fixed; bottom:0px; text-shadow: 0 0 0;" >
+  <div data-role="header" data-theme="b"  style="background-color:#009688; background-image:url(images/bg/bannerbg3.jpg); background-size:cover; box-shadow:0 2px 5px 0 rgba(0, 0, 0, 0.24); border-bottom-width:0px;">
+    <div class="ui-grid-a">
+      <div class="ui-block-a">
+        <h3 style="margin-left: 10px; margin-top:8px; margin-bottom:8px; font-weight:300; "><font style="color:#ffffff; margin-left:3px; opacity:0.6">visit-<b>ez</b></font></h3>
+      </div>
+      <div class="ui-block-b">
+        <h3 style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom:8px; text-shadow: 0 0px; color:rgba(15,15,15,1.00); text-align:right"><img src="images/mobilexlogow.png" height="26px" style="margin-top:-3px;"></h3>
+      </div>
+    </div>
+    <!-- /grid-a --> 
+    
+  </div>
+  <div data-role="main" style="padding: 2px 2px;">
+    <ul class="nav nav-tabs" id="myTabs" role="tablist" style="margin-left: 3px; margin-right: 3px; margin-top: 3px; border-bottom-width: 0px;">
+      <li style="min-width: 90px;" role="presentation" class="active"><a href="#main" id="main-tab" role="tab" data-toggle="tab" aria-controls="main" aria-expanded="true" style="padding-bottom:4px">
+        <p align="center" style="margin: 0px 0px; color:#00796b; font-weight:300"><i class="material-icons md-36">event</i></p>
+        </a></li>
+      <li style="min-width: 90px;" role="presentation" ><a href="#help" role="tab" id="help-tab" data-toggle="tab" aria-controls="help" style="padding-bottom:4px">
+        <p align="center" style="margin: 0px 0px; color:#dadada"><i class="material-icons md-36">live_help</i></p>
+        </a></li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="main" aria-labelledBy="main-tab">
+        <div class="ui-body ui-body-b ui-content" style="background-image: url(images/tweets-bg.jpg); border-width:0px; border-top-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; margin: 0px 2px; padding: 0px 0px; padding-bottom:6px; min-height:300px; margin-bottom:64px">
+          <div class="row">
+            <p align="center" style="color:#009688; margin-top:48px; margin-bottom:32px; "><i class="material-icons md-48">dialpad</i></p>
+            <p align="center" style="margin-top:0px; margin-bottom:3px; padding-left:16px; padding-right:16px; color:#757575; font-size:larger">
+              <input type="text" data-clear-btn="false" name="tel" id="tel" data-bind="tel: $root.keyword, keydown:keydown" control-type="t10" placeholder="请输入您的手机号码...">
+            </p>
+			</br></br></br>
+			<p align="center" style="margin-top:0px; margin-bottom:3px; padding-left:16px; padding-right:16px; color:#757575; font-size:larger">
+			  <a href="javascript:void(0);" data-bind="click:search"><i class="fa fa-2x fa-search"></i></a>
+			</p>
+          </div>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="help" aria-labelledBy="help-tab">
+        <div class="ui-body ui-body-b ui-content" style=" background-image: url(images/tweets-bg.jpg); border-width:0px; border-top-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; margin: 0px 2px; padding: 0px 0px; padding-bottom:6px;  min-height:300px; margin-bottom:120px;">
+          <div class="row">
+            <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" style="padding:3px 3px; margin:0px 0px; margin-top:3px;">
+              <div class="jqm-block-content" style="margin:0px; background-color:#ffffff; box-shadow:1px 1px 5px 0 rgba(0, 0, 0, 0.24)">
+                <p align="left" style="margin:0px 0px; margin-bottom:6px; color:#2196f3; font-weight:600; font-size: x-large">使用说明</p>
+                <hr>
+                <p align="left" style="margin:0px 0px; font-size:large; color:#BDBDBD">第一步</p>
+                <p align="left" style="margin:0px 0px; margin-bottom:18px"><i class="fa fa-fw fa-search"></i> 输入手机号查询历史访问记录。</p>
+                <p align="left" style="margin:0px 0px; margin-top:9px; font-size:large; color:#BDBDBD">第二步</p>
+                <p align="left" style="margin:0px 0px; margin-bottom:18px"><i class="fa fa-fw fa-calendar-check-o"></i> 填写本次访问申请并提交。</p>
+                <p align="left" style="margin:0px 0px; margin-top:9px; font-size:large; color:#BDBDBD">第三步</p>
+				<p align="left" style="margin:0px 0px; margin-bottom:18px"><i class="fa fa-fw fa-play-circle"></i> 观看安全须知录像。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /content --> 
+  
+  <!-- /footer -->
+  <!--<div data-role="footer" data-position="fixed" data-fullscreen="true"  style="border-bottom-width: 0px; opacity:1">
+    <div data-role="navbar" >
+      <ul style="background-color: #f9f9f9;">
+        <li data-bind="css: { 'ui-disabled': !keyword() && false}">
+          <a href="javascript:void(0);" data-bind="click:search" class="ui-btn-b" style="font-weight:300;  color:#333333; border-left-width:0px;">
+          <p align="center" style="margin-bottom:4px; text-shadow: 0px 0px 3px rgba(192,192,192,0.6); color:#333333"><i class="material-icons md-light" style="color:#009688">search</i></p>
+          <p align="center" style="margin: 0px 0px; margin-top:3px; color:#333333;">查询</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    
+  </div>-->
+  <!-- /footer --> 
+  
+</div>
+<!-- /page --> 
+
+<!-- Start of second page: #profile -->
+<div data-role="page" id="profile" data-theme="b" style="background-image: url(images/tweets-bg.jpg)">
+  <div data-role="header" data-theme="b"  style="background-color:#009688; background-image:url(images/bg/bannerbg3.jpg); background-size:cover; box-shadow:0 2px 5px 0 rgba(0, 0, 0, 0.24); border-bottom-width:0px;">
+    <div class="ui-grid-a">
+      <div class="ui-block-a">
+        <h3 style="margin-left: 10px; margin-top:8px; margin-bottom:8px; font-weight:300; "><font style="color:#ffffff; margin-left:3px; opacity:0.6">访问记录</b></font></h3>
+      </div>
+      <div class="ui-block-b">
+        <h3 style="margin-left: 10px; margin-right: 10px; margin-top: 8px; margin-bottom:8px; text-shadow: 0 0px; color:rgba(15,15,15,1.00); text-align:right"><img src="images/mobilexlogow.png" height="26px" style="margin-top:-3px;"></h3>
+      </div>
+    </div>
+    <!-- /grid-a --> 
+    
+  </div>
+  <!-- /header -->
+  
+  <div role="main" class="ui-content" style="padding: 2px 2px;">
+    <div class="row">
+      <p align="center" style="color:#009688; margin-top:24px; margin-bottom:0px"><i class="material-icons md-56">account_circle</i></p>
+      <p align="center" style="margin-top:0px; margin-bottom:3px; color:#757575; font-size:smaller" data-bind="text:tel"></p>
+      <p align="center" style="margin-top:0px; margin-bottom:3px; color:#757575; font-size:smaller" data-bind="text:corp"></p>
+      <p align="center" style="margin-top:0px; margin-bottom:3px; color:#333333;"><b data-bind="text:name"></b></p>
+      <p align="center" style="margin-bottom:24px;"><a href="javascript:void(0);" data-bind="click:editProfile"><font size="+2"><i class="fa fa-fw fa-edit"></i></font></a></p>
+      <div data-role="popup" id="popupEdit" data-theme="b" data-dismissible="false"  style="border-width: 0px; box-shadow: 1px 1px 100px rgba(74,74,74,0.9);">
+        <ul data-role="listview" class="ui-nodisc-icon ui-alt-icon" data-inset="true" style="min-width:320px; border:none; box-shadow:none">
+          <form>
+            <div style=" padding-left:24px; padding-top:24px">
+              <p style="font-size:x-large; font-weight:600; color:#009688"><i class="fa fa-fw fa-edit"></i>&nbsp;<span data-bind="text:name()?'信息更新':'信息填写'"></span></p>
+            </div>
+            <div style=" margin:0px 12px ; padding:12px 12px; padding-bottom:0px">
+              <input type="text" required data-bind="value:editingName" control-type="t1" style="font-size:large" name="editingName" id="editingName" placeholder="姓名...">
+            </div>
+            <div style=" margin:0px 12px ;padding:12px 12px; padding-top:3px; margin-bottom:16px;">
+              <!-- <input type="text" style="font-size:large" name="editingCorp" id="editingCorp" placeholder="公司..."> -->
+              <textarea required id="editingCorp" name="editingCorp" data-theme="b" data-bind="value: editingCorp"  control-type="t2" 
+              placeholder="公司..." style="font-weight:300; font-size:medium;"></textarea>
+            </div>
+          </form>
+          <div class="ui-grid-a">
+            <div class="ui-block-a">
+              <a href="#" data-rel="back" style="margin:0px 0px; background-color:#9e9e9e; border:none" class="ui-btn">
+              <p align="center" style="margin-bottom:4px; text-shadow: 1px 1px 3px rgba(74,74,74,0.4); color:#333333"><i class="material-icons md-light">close</i></p>
+              <p align="center" style="font-weight:300; margin-bottom:0px; color:#ffffff">返回</p>
+              </a>
+            </div>
+            <div class="ui-block-b">
+              <a href="javascript:void(0);" data-bind="click:confirmProfile" style="margin:0px 0px; background-color:#009688; border:none" class="ui-btn">
+              <p align="center" style="margin-bottom:4px; text-shadow: 1px 1px 3px rgba(74,74,74,0.4); color:#333333"><i class="material-icons md-light">check</i></p>
+              <p align="center" style="font-weight:300; margin-bottom:0px; color:#ffffff">确定</p>
+              </a>
+            </div>
+          </div>
+        </ul>
+      </div>
+      
+      <!-- data-input="#autocomplete-input" -->
+      <ul data-role="listview" data-filter="false" 
+      data-inset="true" data-theme="b" data-bind="jqmTemplate: { name: 'record', foreach: records }, jqmRefreshList:  records" style="margin-left:12px; margin-right:12px; box-shadow:1px 1px 5px 0 rgba(0, 0, 0, 0.24);">
+      </ul>
+      <p align="center" data-bind="visible:records().length===0" style="margin-top:24px; margin-bottom:24px; color:#333333; font-size:large">
+        <font color="#d32f2f"><i class="fa fa-fw fa-warning"></i></font>&nbsp;<span>未查询到365天内的访客记录</span>
+      </p>
+    </div>
+  </div>
+  <!-- /content -->
+  
+  <div data-role="footer"  data-position="fixed" data-tap-toggle="false" data-hide-during-focus="">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#" data-rel="back" class="ui-btn-b" style="font-weight:300; color:#333333; border-left-width:0px;">
+          <p align="center" style="margin-bottom:4px; text-shadow: 0px 0px 3px rgba(192,192,192,0.6); color:#333333"><i class="material-icons md-light" style="color:#009688">arrow_back</i></p>
+          <p align="center" style="margin: 0px 0px; margin-top:3px;">返回</p>
+          </a></li>
+        <li><a href="javascript:void(0);" data-bind="click:nextOptions" class="ui-btn-b" style="font-weight:300;  color:#333333; border-left-width:1px;">
+          <p align="center" style="margin-bottom:4px; text-shadow: 0px 0px 3px rgba(192,192,192,0.6); color:#333333"><i class="material-icons md-light" style="color:#009688">arrow_forward</i></p>
+          <p align="center" style="margin: 0px 0px; margin-top:3px;">下一步</p>
+          </a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- /footer --> 
+ 
+</div>
+<!-- /page two --> 
+
+<!-- Start of second page: #terms -->
+<div data-role="page" id="terms" data-theme="b" style="background-image: url(images/tweets-bg.jpg)">
+  <div data-role="header" data-theme="b"  style="background-color:#009688; background-image:url(images/bg/bannerbg3.jpg); background-size:cover; box-shadow:0 2px 5px 0 rgba(0, 0, 0, 0.24); border-bottom-width:0px;">
+    <div class="ui-grid-a">
+      <div class="ui-block-a">
+        <h3 style="margin-left: 10px; margin-top:8px; margin-bottom:8px; font-weight:300; "><font style="color:#ffffff; margin-left:3px; opacity: 0.6">安全须知</b></font></h3>
+      </div>
+      <div class="ui-block-b">
+        <h3 style="margin-left: 10px; margin-right: 10px; margin-top: 8px; margin-bottom:8px; text-shadow: 0 0px; color:rgba(15,15,15,1.00); text-align:right"><img src="images/mobilexlogow.png" height="26px" style="margin-top:-3px;"></h3>
+      </div>
+    </div>
+    <!-- /grid-a --> 
+    
+  </div>
+  <!-- /header -->
+  
+  <div role="main" class="ui-content" style="padding: 0px 0px;">
+    <div class="row">
+      <!-- <div class="col-lg-6 col-sm-6 col-xs-12 col-md-6" style="padding:6px 6px">
+        <form>
+          <p align="left" style="margin-top:8px;">是否需要进入车间施工?</p>
+          <fieldset data-role="controlgroup">
+            <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2a" value="on">
+            <label for="radio-choice-v-2a">是</label>
+            <input type="radio" name="radio-choice-v-2" id="radio-choice-v-2b" value="off">
+            <label for="radio-choice-v-2b">否</label>
+          </fieldset>
+        </form>
+      </div> -->
+
+      <!-- <div class="col-lg-6 col-sm-6 col-xs-12 col-md-6" style="padding:6px 6px"  data-bind="basicField: workshop"></div> -->
+
+      <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" style="position:absolute; padding:0px 0px;top:45px; bottom:65px">
+        <iframe data-bind="attr:{src:getPdfUrl()}" width="100%" height="100%"></iframe> 
+      </div>
+      <div class="col-lg-6 col-sm-6 col-xs-12 col-md-6" style="position:fixed; bottom:55px; padding:6px 6px" data-bind="css: { 'ui-disabled':read.disabled },basicField:$root.read">
+      </div>
+
+  </div>
+  <!-- /content -->
+
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+    <div data-role="navbar" >
+      <ul style="background-color: #f9f9f9;">
+        <li><a href="#" data-rel="back" class="ui-btn-b" style="font-weight:300;  color:#333333; border-left-width:0px;">
+          <p align="center" style="margin-bottom:4px; text-shadow: 0px 0px 3px rgba(192,192,192,0.6); color:#333333"><i class="material-icons md-light" style="color:#009688">arrow_back</i></p>
+          <p align="center" style="margin: 0px 0px; margin-top:3px;">返回</p>
+          </a>
+        </li>
+        <li data-bind="css: { 'ui-disabled':!read.value() }"><a href="javascript:void(0);" data-bind="click:save" class="ui-btn-b" style="font-weight:300;  color:#333333; border-left-width:1px;">
+          <p align="center" style="margin-bottom:4px; text-shadow: 0px 0px 3px rgba(192,192,192,0.6); color:#333333"><i class="material-icons md-light" style="color:#009688">arrow_forward</i></p>
+          <p align="center" style="margin: 0px 0px; margin-top:3px;">下一步</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- /footer --> 
+
+</div>
+</div>
+<!-- /page terms --> 
+
+<!-- Start of second page: #options -->
+<div data-role="page" id="options" data-theme="b" style="background-image: url(images/tweets-bg.jpg)">
+  <div data-role="header" data-theme="b"  style="background-color:#009688; background-image:url(images/bg/bannerbg3.jpg); background-size:cover; box-shadow:0 2px 5px 0 rgba(0, 0, 0, 0.24); border-bottom-width:0px;">
+    <div class="ui-grid-a">
+      <div class="ui-block-a">
+        <h3 style="margin-left: 10px; margin-top:8px; margin-bottom:8px; font-weight:300; "><font style="color:#ffffff; margin-left:3px; opacity:0.6">访问信息登记</b></font></h3>
+      </div>
+      <div class="ui-block-b">
+        <h3 style="margin-left: 10px; margin-right: 10px; margin-top: 8px; margin-bottom:8px; text-shadow: 0 0px; color:rgba(15,15,15,1.00); text-align:right"><img src="images/mobilexlogow.png" height="26px" style="margin-top:-3px;"></h3>
+      </div>
+    </div>
+    <!-- /grid-a --> 
+    
+  </div>
+  <!-- /header -->
+  
+  <div role="main" class="ui-content" style="padding: 2px 2px 2px 2px;">
+     <div class="row">
+      <div class="col-lg-6 col-sm-6 col-xs-12 col-md-6" style="padding:6px 6px" data-bind="basicField:$root.options[0]">
+      </div>
+      <div class="col-lg-6 col-sm-6 col-xs-12 col-md-6" style="padding:6px 6px" data-bind="basicField:$root.options[1]">
+      </div>
+      <div class="col-lg-6 col-sm-6 col-xs-12 col-md-6" style="padding:6px 6px" data-bind="basicField:$root.options[2]">
+      </div>
+      <div class="col-lg-6 col-sm-6 col-xs-12 col-md-6" style="padding:6px 6px" data-bind="basicField:$root.options[3]">
+      </div>
+      <div class="col-lg-6 col-sm-6 col-xs-12 col-md-6" style="padding:6px 6px" data-bind="basicField:$root.options[4]">
+      </div>
+      <div class="col-lg-6 col-sm-6 col-xs-12 col-md-6" style="padding:6px 6px" data-bind="basicField:$root.options[5]">
+      </div>
+      <form onsubmit="return false;" novalidate="novalidate" class="col-lg-6 col-sm-6 col-xs-12 col-md-6" style="padding:6px 6px" data-bind="basicField:$root.options[6]">
+      </form>
+      <div class="col-lg-6 col-sm-6 col-xs-12 col-md-6" style="padding:6px 6px" data-bind="basicField:$root.options[7]">
+      </div>
+      <div class="col-lg-6 col-sm-6 col-xs-12 col-md-6" style="padding:6px 6px" data-bind="visible:options[7].value()==='有',basicField:$root.options[8]">
+      </div>
+      <div class="col-lg-6 col-sm-6 col-xs-12 col-md-6" style="padding:6px 6px" data-bind="visible:options[7].value()==='有',basicField:$root.options[9]">
+      </div>
+      <div class="col-lg-6 col-sm-6 col-xs-12 col-md-6" style="padding:6px 6px" data-bind="basicField:$root.options[10]">
+      </div>
+    </div>  
+  </div>
+  <!-- /content -->
+  
+  <div data-role="footer"  data-position="fixed" data-tap-toggle="false">
+    <div data-role="navbar" >
+      <ul>
+        <li><a href="#" data-rel="back" class="ui-btn-b" style="font-weight:300;  color:#333333; border-left-width:0px;">
+          <p align="center" style="margin-bottom:4px; text-shadow: 0px 0px 3px rgba(192,192,192,0.6); color:#333333"><i class="material-icons md-light" style="color:#009688">arrow_back</i></p>
+          <p align="center" style="margin: 0px 0px; margin-top:3px;">返回</p>
+          </a></li>
+        <li><a href="javascript:void(0);" data-bind="click:nextTerms"  class="ui-btn-b" style="font-weight:300;  color:#333333; border-left-width:1px;">
+          <p align="center" style="margin-bottom:4px; text-shadow: 0px 0px 3px rgba(192,192,192,0.6); color:#333333"><i class="material-icons md-light" style="color:#009688">send</i></p>
+          <p align="center" style="margin: 0px 0px; margin-top:3px;">下一步</p>
+          </a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- /footer --> 
+</div>
+<!-- /page options --> 
+
+<!-- /page success -->
+<div data-role="page" id="success" data-theme="b" style="background-image: url(images/tweets-bg.jpg)"> 
+  
+  <!-- /header -->
+  
+  <div role="main" class="ui-content" style="padding: 2px 2px;">
+    <div class="row">
+      <p align="center" style="color:#009688; margin-top:24px; margin-bottom:0px"><i class="material-icons md-56">account_circle</i></p>
+      <p align="center" style="margin-top:0px; margin-bottom:3px; color:#757575; font-size:smaller" data-bind="text:tel"></p>
+      <p align="center" style="margin-top:0px; margin-bottom:24px; color:#333333;" data-bind="text:name"></p>
+      <ul data-role="listview"  data-inset="true" data-theme="b"  style="margin: 16px 16px; box-shadow:1px 1px 5px 0 rgba(0, 0, 0, 0.24);">
+        <li data-icon="check"><a href="#">
+          <h2 style="color:#bdbdbd" data-bind="text:processInstanceId"></h2>
+          <p style="font-weight:400"><i class="fa fa-fw fa-filter"></i>&nbsp;<span data-bind="text:options[0].value"></span></p>
+          <p style="font-weight:400"><i class="fa fa-fw fa-user"></i>&nbsp;<span data-bind="text:options[1].value"></span>&nbsp;|&nbsp;<span data-bind="text:department"></span></p>
+          <p style="font-weight:400"><i class="fa fa-fw fa-calendar-check-o"></i>&nbsp;<strong data-bind="text:BPMS.Services.Utils.formatDateTime(options[5].value(), 't3')"></strong>&nbsp;<span data-bind="text:BPMS.Services.Utils.formatDateTime(options[5].value(), 't4')"></span></p>
+          </a></li>
+      </ul>
+      <p align="center" style="margin-top:24px; margin-bottom:24px; color:#333333; font-size:large"><font color="#009688"><i class="fa fa-fw fa-check-square-o"></i></font> 访问申请提交成功</p>
+    </div>
+  </div>
+  <!-- /content -->
+  
+  <div data-role="footer" data-position="fixed"  data-tap-toggle="false">
+    <div data-role="navbar" >
+      <ul>
+        <li><a href="javascript:void(0);" data-bind="click:init" class="ui-btn-b" style="font-weight:300;  color:#333333; border-left-width:0px;">
+          <p align="center" style="margin-bottom:4px; text-shadow: 0px 0px 3px rgba(192,192,192,0.6); color:#333333"><i class="material-icons md-light" style="color:#009688">apps</i></p>
+          <p align="center" style="margin: 0px 0px; margin-top:3px;">主页</p>
+          </a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- /footer --> 
+</div>
+<div  id="popupError"  data-theme="b" data-overlay-theme="a" class="ui-corner-all" style="min-width:300px; max-width:300px; background-image: url(images/content-bg.jpg)">
+        <div class="row" style="margin:0px 0px; padding:0px 0px">
+          <div class="col-lg-9 col-sm-9 col-xs-9 col-md-9" style="padding:0px 0px">
+            <p align="left" style=" margin:6px 6px; font-weight:300"> <strong><font size="+1" color="#e91e63" data-bind="text:popupInfo.title,visible:popupInfo.title"></font> </strong><br>
+              <font color="#9E9E9E" data-bind="text:popupInfo.subTitle,visible:popupInfo.subTitle"></font></p>
+          </div>
+          <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3" style="padding:0px 0px">
+            <p align="right" style=" margin:6px 6px"><font color="#e91e63"><i class="fa fa-3x fa-ban"></i></font></p>
+          </div>
+        </div>
+        <legend style="margin-bottom:0px;"></legend>
+        <p align="left" style="margin:6px 6px; margin-bottom:3px; margin-top:8px; font-weight:200"><font size="+1" data-bind="text:popupInfo.message,visible:popupInfo.message"></font></p>
+        <p data-bind="visible:popupInfo.code" style="margin:6px 6px; margin-top:3px; margin-bottom:32px; font-weight:200"><font size="-1">code: <b data-bind="text:popupInfo.code"></b></font></p>
+        <p style="padding: 2px 2px; margin:2px 2px"><a href="#" data-rel="back" class="ui-btn ui-corner-all " style="margin:0px 0px; background-color:#e91e63; font-weight:300; min-width:120px; color:#ffffff; text-shadow: 0 1px 0 #111;"><i class="fa fa-fw fa-check"></i> 确定</a></p>
+</div>
+<div id="popupSuccess" data-theme="b" data-overlay-theme="a" class="ui-corner-all" style="min-width:300px; max-width:300px; background-image: url(images/content-bg.jpg)">
+  <div class="row" style="margin:0px 0px; padding:0px 0px">
+    <div class="col-lg-9 col-sm-9 col-xs-9 col-md-9" style="padding:0px 0px">
+      <p align="left" style=" margin:6px 6px; font-weight:300"> <strong><font size="+1" color="#009688" data-bind="text:popupInfo.title,visible:popupInfo.title"></font> </strong><br>
+        <font color="#9E9E9E" data-bind="text:popupInfo.subTitle,visible:popupInfo.subTitle"></font></p>
+    </div>
+    <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3" style="padding:0px 0px">
+      <p align="right" style=" margin:6px 6px"><font color="#009688"><i class="fa fa-3x fa-check-circle-o"></i></font></p>
+    </div>
+  </div>
+  <legend style="margin-bottom:0px;"></legend>
+  <p align="left" style="margin:6px 6px; margin-bottom:3px; margin-top:8px; font-weight:200"><font size="+1" data-bind="text:popupInfo.message,visible:popupInfo.message"></font></p>
+  <p data-bind="visible:popupInfo.code"  style="margin:6px 6px; margin-top:3px; margin-bottom:32px; font-weight:200"><font size="-1">code: <b data-bind="text:popupInfo.code"></b></font></p>
+  <p style="padding: 2px 2px; margin:2px 2px"><a href="#" data-rel="back" class="ui-btn ui-corner-all " style="margin:0px 0px; background-color:#009688; font-weight:300; min-width:120px; color:#ffffff; text-shadow: 0 1px 0 #111;"><i class="fa fa-fw fa-check"></i> 确定</a></p>
+</div>
+<!-- /page success --> 
+
+<script type="text/html" id="record">
+  <li>
+    <a href="javascript:void(0);" data-bind="click:$root.selectRecord.bind($root)">
+      <h2 data-bind="text:VISIT_REASON"></h2>
+      <p style="font-weight:400">受访人: <span data-bind="text:INTERVIEWEE_NAME"></span>&nbsp;|&nbsp;<span data-bind="text:INTERVIEWEE_DPT"></span></p>
+      <p class="ui-li-aside"><strong data-bind="text:BPMS.Services.Utils.formatDateTime(+(new Date(VISIT_TIME)), 't3')"></strong>&nbsp;<span data-bind="text:BPMS.Services.Utils.formatDateTime(+(new Date(VISIT_TIME)), 't4')"></span></p>
+      </a>
+    </li>
+</script>
+</body>
+</html>

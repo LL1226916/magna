@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="meeting" name="发起会议" isExecutable="true" activiti:candidateStarterUsers="svc.mtt" activiti:candidateStarterGroups="admin">
+    <startEvent id="startevent1" name="Start" activiti:initiator="initiator" activiti:formKey="1626748707480">
+    	<extensionElements>
+        <activiti:executionListener event="start" class="org.activiti.engine.impl.bpmn.listener.ScriptExecutionListener">
+          <activiti:field name="language">
+            <activiti:string><![CDATA[groovy]]></activiti:string>
+          </activiti:field>
+          <activiti:field name="script">
+            <activiti:string><![CDATA[//初始化审批历史
+				import groovy.json.JsonOutput;
+				def public_allApproveHi = [];
+				execution.setVariable("public_allApproveHi",JsonOutput.toJson(public_allApproveHi));
+				execution.setVariable("public_procinstid",execution.getProcessInstanceId());
+				execution.setVariable("public_applyFor",new Date().getTime()+"");//填表日期,申请日期
+				execution.setVariable("public_businessKey",execution.getBusinessKey());
+				execution.setVariable("public_approvalRuleSeq", "0");//初始化审批规则序列
+				execution.setVariable("public_seqFinish","N");//初始化审批规则是否遍历完
+				execution.setVariable("public_coreaction","同意");
+				execution.setVariable("procinstid",execution.getProcessInstanceId());
+
+				execution.setVariable("businessKey",execution.getBusinessKey());				
+				]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+        <activiti:executionListener event="end" class="org.activiti.engine.impl.bpmn.listener.ScriptExecutionListener">
+          <activiti:field name="language">
+            <activiti:string><![CDATA[groovy]]></activiti:string>
+          </activiti:field>
+          <activiti:field name="script">
+            <activiti:string><![CDATA[
+				//初始化审批历史
+				import groovy.json.JsonSlurper;
+				import groovy.json.JsonOutput;		
+				import com.eorionsolution.bpms.extension.rest.RestAPI;
+				
+				//查询申请人信息
+				Map<String, Object> restParam = new java.util.HashMap<String,Object>();
+                def headerMap = new java.util.HashMap<String,String>(); 			
+				restParam.put("_http_method","GET");
+				restParam.put("_http_headers",headerMap);
+				restParam.put("_http_body","");	
+				def param=java.net.URLEncoder.encode('[{"type":"category","target":["variable",["template-tag","sn"]],"value":"'+initiator+'"}]', "UTF-8");
+				restParam.put("_http_url", 'http://127.0.0.1:3000/public/question/5586c703-b53b-4e4a-98b6-3598604673dd.json?parameters='+param);
+				def result = RestAPI.execute(restParam);				
+				def body = result._http_response_body;
+				def initiatorInfo = new JsonSlurper().parseText(body);
+				if(initiatorInfo.size() == 0)
+					throw new org.activiti.engine.ActivitiIllegalArgumentException("未找到申请人信息");
+					
+				//保存申请人信息
+				execution.setVariable("public_isCostcenterPrincipal",initiatorInfo[0].IS_COSTCENTER_PRINCIPAL_.toString());	//是否经理 N/Y
+				execution.setVariable("public_mail",initiatorInfo[0].MAIL_.toString());										//邮箱
+				execution.setVariable("public_managerCode",initiatorInfo[0].MANAGER_CODE_.toString());						//经理
+				execution.setVariable("public_department",initiatorInfo[0].DEPARTMENT_.toString());							//部门
+				execution.setVariable("public_departmentID",initiatorInfo[0].DEPARTMENT_CODE_.toString());							//部门代码
+				execution.setVariable("public_initiatorName",initiatorInfo[0].EMPLOYEE_NAME_.toString());					//姓名（提单人）
+				execution.setVariable("initiatorWechatId",initiatorInfo[0].WECHAT_CODE_.toString());						//提单人微信id
+
+				execution.setVariable("public_createTime",new Date().format("YYYY-MM-dd HH:mm:ss"));					    //提单时间
+				
+				]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>		
+      </extensionElements>
+    </startEvent>
+    <sequenceFlow id="flow6" sourceRef="startevent1" targetRef="scripttask2"></sequenceFlow>
+    <scriptTask id="scripttask2" name="发送通知"  scriptFormat="groovy"  activiti:autoStoreVariables="false">
+    	<script>
+      <![CDATA[
+      import groovy.json.JsonSlurper;
+				import groovy.json.JsonOutput;		
+				import com.eorionsolution.bpms.extension.rest.RestAPI;
+				def publicInvolvedUsersList = new JsonSlurper().parseText(execution.getVariable("participants"));
+				def weachtString = "";
+				publicInvolvedUsersList.each{
+					elem->
+					weachtString = weachtString + "|" + elem.WECHAT;
+				}
+				
+				//微信通知用户有任务执行
+				def wxRestParam = new HashMap<String,Object>()
+				def wxHeaderMap = new HashMap<String,String>()
+
+				def wxBodyMap = new HashMap()
+				
+				wxBodyMap.put('touser', weachtString);
+				wxBodyMap.put('agentid',1000022);
+				wxBodyMap.put('title', businessKey);
+				wxBodyMap.put('description', '会议邀请:会议地点在'+execution.getVariable("meetingRoom")+',自定义地点在'+ execution.getVariable("meetingRoomDefinition") +',会议发起人:'+execution.getVariable("public_initiatorName"));
+				wxBodyMap.put('url','https://mttbpms.magna.cn/formprint/print.html?processId=' + procinstid);
+				def wxBody = JsonOutput.toJson(wxBodyMap);
+
+				execution.setVariable("wxBody",JsonOutput.toJson(wxBodyMap));
+				wxHeaderMap.put("Content-Type","application/json");
+				wxRestParam.put("_http_method","POST");
+				wxRestParam.put("_http_headers",wxHeaderMap);
+				wxRestParam.put("_http_url", 'http://127.0.0.1:8281/wechat/message/send');
+				wxRestParam.put("_http_body", wxBody);
+					
+					]]></script>
+    </scriptTask>
+    <userTask id="usertask2" name="更新会议" activiti:assignee="${initiator}" activiti:formKey="1626748707480"></userTask>
+    <sequenceFlow id="flow7" sourceRef="scripttask2" targetRef="usertask2"></sequenceFlow>
+    <sequenceFlow id="flow8" sourceRef="usertask2" targetRef="scripttask2"></sequenceFlow>
+    <intermediateCatchEvent id="timerintermediatecatchevent1" name="TimerCatchEvent">
+      <timerEventDefinition>
+      	<timeDate>${endTime}</timeDate>
+      </timerEventDefinition>
+    </intermediateCatchEvent>
+    <sequenceFlow id="flow10" sourceRef="scripttask2" targetRef="timerintermediatecatchevent1"></sequenceFlow>
+    
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_meeting">
+    <bpmndi:BPMNPlane bpmnElement="meeting" id="BPMNPlane_meeting">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="130.0" y="180.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask2" id="BPMNShape_scripttask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="210.0" y="170.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="360.0" y="170.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="timerintermediatecatchevent1" id="BPMNShape_timerintermediatecatchevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="245.0" y="270.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="165.0" y="197.0"></omgdi:waypoint>
+        <omgdi:waypoint x="210.0" y="197.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="315.0" y="197.0"></omgdi:waypoint>
+        <omgdi:waypoint x="360.0" y="197.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="412.0" y="170.0"></omgdi:waypoint>
+        <omgdi:waypoint x="412.0" y="91.0"></omgdi:waypoint>
+        <omgdi:waypoint x="262.0" y="91.0"></omgdi:waypoint>
+        <omgdi:waypoint x="262.0" y="170.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="262.0" y="225.0"></omgdi:waypoint>
+        <omgdi:waypoint x="262.0" y="270.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

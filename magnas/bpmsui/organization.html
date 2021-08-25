@@ -1,0 +1,467 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, target-densitydpi=device-dpi">
+<title>Z3 | Tenant and Org</title>
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.css" />
+<link rel="stylesheet" type="text/css" href="css/color.css" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="css/owl.theme.css">
+<link rel="stylesheet" type="text/css" href="css/owl.transitions.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+<link rel="stylesheet" type="text/css" href="css/jqm-demos.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure.css">
+<link rel="stylesheet" type="text/css" href="css/all.min.css">
+<link rel="stylesheet" type="text/css" href="css/google-icon.css">
+<link rel="stylesheet" type="text/css" href="css/site.css" />
+<script src="libs/jquery.js?v=20210120"></script>
+<script src="libs/jquery.mobile.js?v=1598853811990"></script>
+<script src="libs/bootstrap.js?v=1598853811990"></script>
+<script src="libs/jquery.sparkline.js?v=1598853811990"></script>
+<script src="libs/owl.carousel.js?v=1598853811990"></script>
+<script src="libs/knockout.js?v=1598853811990"></script>
+
+<script src="libs/koExternalTemplateEngine_all.js?v=1598853811990"></script>
+<script src="libs/ko.extension.js?v=1598853811990"></script>
+<script src="libs/shim.min.js?v=1598853811990"></script>
+<script src="libs/xlsx.full.min.js?v=1598853811990"></script>
+<script src="libs/oex/utils.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-checked.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-datetime.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-selected.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-number.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-money.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-tel.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-email.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-psb.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-cny.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-auto.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-relation.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-id.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-join.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-auto-multi.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-upload.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-switch.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-tree.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-value.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-ctr.js?v=1598853811990"></script>
+
+<script src="libs/moment/moment.js?v=1598853811990"></script>
+<script src="libs/bootstrap-collapse.js?v=1598853811990"></script>
+<script src="libs/bootstrap-transition.js?v=1598853811990"></script>
+<script src="libs/bootstrap-tab.js?v=1598853811990"></script>
+<script src="libs/prettify.js?v=1598853811990"></script>
+<script src="libs/application.js?v=1598853811990"></script>
+<script src="libs/jweixin-1.2.0.js?v=1598853811990"></script>
+<script src="common/config.js?v=1598853811990"></script>
+<script src="common/util.js?v=1598853811990"></script>
+<script src="common/service.js?v=1598853811990"></script>
+<script src="common/baseViewModel.js?v=1598853811990"></script>
+<script src="libs/CLDRPluralRuleParser.js?v=1598853811990"></script>
+<script src="libs/jquery.i18n/jquery.i18n.js?v=1598853811990"></script>
+<script src="libs/jquery.i18n/jquery.i18n.messagestore.js?v=1598853811990"></script>
+<script src="libs/jquery.i18n/jquery.i18n.fallbacks.js?v=1598853811990"></script>
+<script src="libs/jquery.i18n/jquery.i18n.language.js?v=1598853811990"></script>
+<script src="libs/jquery.i18n/jquery.i18n.parser.js?v=1598853811990"></script>
+<script src="libs/jquery.i18n/jquery.i18n.emitter.js?v=1598853811990"></script>
+<script src="libs/jquery.i18n/jquery.i18n.emitter.bidi.js?v=1598853811990"></script>
+<script src="organization.js?v=1598853811990"></script>
+<script src="organizationViewModel.js?v=1598853811990"></script>
+<link rel="shortcut icon" href="favicon.ico">
+<style>
+@media screen and (min-width:0px) {
+.row {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 16px;
+	margin-bottom: 16px;
+}
+}
+
+@media screen and (min-width:667px) {
+.row {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 16px;
+	margin-bottom: 16px;
+}
+}
+
+@media screen and (min-width:992px) {
+.row {
+	margin-left: 80px;
+	margin-right: 0px;
+	margin-top: 16px;
+}
+}
+ @media screen and (min-width:1200px) {
+.row {
+	margin-left: 80px;
+	margin-right: 80px;
+	margin-top: 32px;
+}
+}
+ @media screen and (min-width:1600px) {
+.row {
+ margin-left: 120px;
+ margin-right: 120px;
+ margin-top: 32px;
+}
+}
+</style>
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+</head>
+<body>
+<div data-role="page" class="ui-responsive-panel" id="main" data-theme="a" style="background-image: url(images/bg.jpg)">
+  <div data-role="header" data-theme="b"  style="background-color:#FFFFFF; box-shadow: 0 2px 5px 0 hsla(0,0%,39%,.3)">
+    <div class="ui-grid-b">
+      <div class="ui-block-a">
+        <h3 style="margin-left: 10px; margin-right: 10px; margin-top: 10px; opacity: 0.5; font-weight: 200; margin-bottom:8px; text-shadow: 0 0px; color:#03a9f4; text-align:left"><a href="#panelgrid" style="color: #03a9f4"><i class="fal fa-users-class"></i></a> <font style="opacity: 0.5">账户组织及权限</font></h3>
+      </div>
+      <div class="ui-block-b">
+        <h3 style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom:8px; text-shadow: 0 0px; color:#03a9f4; font-weight: 100; text-align:center"><a href="#popupde" data-rel="popup" data-position-to="window" data-transition="fade" style="color:#009688; font-weight:100; margin-right: 8px"> <img src="images/cube.svg" height="24px" style="margin-top:-3px;"></a> <font style="font-size: 18px"><b>Z<sup> 3</sup></b> 智能制造协同平台</font></h3>
+      </div>
+      <div class="ui-block-c">
+        <h3 style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom:8px; text-shadow: 0 0px; color:#bdbdbd; text-align:right"><a href="#panelgrid" style="color: #2196f3"><i class="fal fa-bars"></i></a></h3>
+      </div>
+    </div>
+    <!-- /grid-a --> 
+    
+  </div>
+  <div data-role="content" style="padding: 2px 2px; margin-top: 3px;">
+    <div class="col-sm-12 col-xs-12 col-md-4 col-lg-3" style="padding: 0px 0px; ">
+      <div class="ui-body ui-body-b ui-content" style=" border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 600px; max-height:854px; margin: 0 2px; padding: 2px 2px; overflow: auto; overflow-style:auto; ">
+        <p align="left" style="margin-left: 6px; font-weight: 600; font-size: 12px; margin-top: 12px; color: #b0bec5">用户</p>
+        <ul data-role="listview" class="ui-alt-icon ui-nodisc-icon" data-inset="true"  data-theme="b"  style="margin: 2px 2px; padding: 2px 2px;">
+          <li data-bind="click:function(){selectGroup(groups()[0]);}">
+            <a href="javascript:void(0);" style="padding: 3px 8px;">
+            <h2 ><i class="fas fa-fw fa-users" style="color: #03a9f4; margin-right: 8px; margin-left:8px"></i>内部用户</h2>
+            <span class="ui-li-count" data-bind="text:organization[''].total"></span>
+          </a>
+        </li>
+        </ul>
+        <p align="left" style="margin-left: 6px; font-weight: 600; font-size: 12px; margin-top: 32px; color: #b0bec5">内部用户组</p>
+        <ul data-role="listview"   data-bind="jqmTemplate: { name: 'group', foreach: displayGroups }, jqmRefreshList: displayGroups" class="ui-alt-icon ui-nodisc-icon" data-inset="true"  data-theme="b"  style="margin: 2px 2px; padding: 2px 2px;">
+         
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-12 col-xs-12 col-md-8 col-lg-9" style="padding: 0px 0px; ">
+      <div class="ui-body ui-body-b ui-content" style="border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 600px; margin: 0 2px; padding: 2px 2px;">
+        <div class="row" style="margin:0px 0px; padding:3px 3px">
+          <div class="col-sm-6 col-xs-12 col-md-6 col-lg-5" style="padding: 3px 3px; ">
+            <p data-bind="visible:groupId" align="left" style="padding: 0px 0px; font-weight:300; margin-bottom: 3px; font-size: 28px; color:#333333"><img src="images/diagram.svg" height="32px" style="margin-bottom: 4px; margin-left: 8px">&nbsp;<span data-bind="text:getCurrentGroup().name"></span></p>
+            <p data-bind="visible:!groupId()" align="left" style="padding: 0px 0px; font-weight:300; margin-bottom: 3px; font-size: 28px; color:#333333"><i class="fas fa-fw fa-users" style="color: #03a9f4; margin-right: 8px; margin-left:8px;width:32px;height:32px;"></i><span data-bind="text:getCurrentGroup().name"></span></p>
+            
+            <!-- <p style=" font-weight:300; margin-left: 6px; color:#b0bec5; font-size: 12px">
+              <i class="fas fa-fw fa-calendar-check"></i> 2019-5-10 | <i class="fas fa-fw fa-user-crown"></i> Blade Shao
+            </p> -->
+         
+          </div>
+          <div class="col-sm-6 col-xs-12 col-md-6 col-lg-7" style="padding: 3px 3px; ">
+            <p align="right" style="padding:3px 3px; margin-bottom:0px;"><a href="#popOrgInfo" data-bind="css: { 'ui-disabled':!groupId()}" data-rel="popup"  style="font-weight:300; color: #4caf50; margin-left:18px;"  ><i class="fas fa-fw fa-edit"></i> 修改组织信息</a><a href="#popInvite" data-rel="popup" style="font-weight:300; color: #4caf50; margin-left:18px;"  ><i class="fas fa-fw fa-user-plus"></i> 邀请新成员</a><a href="#popGroup" data-rel="popup" style="font-weight:300; color: #4caf50; margin-left:18px;"  ><i class="fas fa-fw fa-users-class"></i> 新建组</a><a href="#" style="font-weight:300; color: #bdbdbd; margin-left:18px; margin-right: 20px"  ><i class="fas fa-fw fa-search"></i> 搜索成员</a></p>
+          </div>
+          <div data-role="popup" id="popOrgInfo" data-dismissible="false" data-transition="fade" data-theme="a" data-overlay-theme="a" style="min-width:300px; max-width:300px; border:none">
+            <ul data-role="listview" data-inset="true" style="border:none">
+              <li data-role="list-divider" style=" text-align: center; border-bottom-left-radius:0; border-bottom-right-radius:0; padding:14px 14px; background-color:#0277bd; font-weight:300; border: none "><i class="fal fa-fw fa-edit"></i> 修改组织信息</li>
+              <form  style="margin:16px 16px;">
+                <input type="text" data-theme="b" placeholder="组织名称..." style="font-weight:300; height:38px; font-size:medium;">
+              </form>
+              <div class="ui-grid-a" style="margin:12px 12px; padding-bottom:12px;">
+                <div class="ui-block-a"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#4caf50; margin: 4px 4px; font-weight:300"><i class="far fa-fw fa-check-double" style="margin-right: 12px"></i>更新</a> </div>
+                <div class="ui-block-b"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#333333; margin: 4px 4px; font-weight:300"><i class="far fa-fw fa-times" style="margin-right: 12px"></i>取消</a> </div>
+              </div>
+            </ul>
+          </div>
+          <div data-role="popup" id="popInvite" data-dismissible="false" data-transition="fade" data-theme="a" data-overlay-theme="a" style="min-width:300px; max-width:300px; border:none">
+            <ul data-role="listview" data-inset="true" style="border:none">
+              <li data-role="list-divider" style=" text-align: center; border-bottom-left-radius:0; border-bottom-right-radius:0; padding:14px 14px; background-color:#0277bd; font-weight:300; border: none "><i class="fas fa-fw fa-user-plus"></i> 邀请新成员</li>
+              <form  style="margin:16px 16px;">
+                <input type="email" data-theme="b" placeholder="输入邮箱地址发送邀请..." style="font-weight:300; height:38px; font-size:medium;">
+              </form>
+              <div class="ui-grid-a" style="margin:12px 12px; padding-bottom:12px;">
+                <div class="ui-block-a"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#4caf50; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-comment-alt-check" style="margin-right: 12px"></i>发送邀请</a> </div>
+                <div class="ui-block-b"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#333333; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-times" style="margin-right: 12px"></i>取消</a> </div>
+              </div>
+            </ul>
+          </div>
+          <div data-role="popup" id="popGroup" data-dismissible="false" data-transition="fade" data-theme="a" data-overlay-theme="a" style="min-width:300px; max-width:300px; border:none">
+            <ul data-role="listview" data-inset="true" style="border:none">
+              <li data-role="list-divider" style=" text-align: center; border-bottom-left-radius:0; border-bottom-right-radius:0; padding:14px 14px; background-color:#0277bd; font-weight:300; border: none "><i class="fas fa-fw fa-users-class"></i> 创建组</li>
+              <form onsubmit="return false;" style="margin:16px 16px;">
+                <input type="email" data-theme="b" placeholder="组名称..." style="font-weight:300; height:38px; font-size:medium;">
+                <!-- <div class="dropdown">
+                  <button class="btn btn-default dropdown-toggle"  data-theme="b" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-image: none; font-size: 14px "> 所属组 <span class="caret"></span> </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="margin: 0px 0px; padding: 0px 0px; background-image: none">
+                    <li><a href="#">采购组</a></li>
+                    <li><a href="#">销售组</a></li>
+                    <li><a href="#">财务组</a></li>
+                    <li><a href="#">生产组</a></li>
+                  </ul>
+                </div> -->
+              </form>
+              <div class="ui-grid-a" style="margin:12px 12px; padding-bottom:12px;">
+                <div class="ui-block-a"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#4caf50; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-check-double" style="margin-right: 12px"></i>创建</a> </div>
+                <div class="ui-block-b"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#333333; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-times" style="margin-right: 12px"></i>取消</a> </div>
+              </div>
+            </ul>
+          </div>
+        </div>
+        <div class="row" style="margin: 3px 3px; padding: 9px 9px">
+          <legend style="font-size: 18px; color: #03a9f4; padding-bottom: 6px; border-bottom-color: #eceff1; font-weight: 600;  margin-left: 3px; margin-bottom: 6px;"><i class="fas fa-fw fa-users" style="margin-right: 6px"></i>所有成员<a href="#popGroupEdit" data-rel="popup" data-position-to="window" style="margin-left: 9px; font-weight: 300; color:#b0bec5"><i class="fal fa-fw fa-edit"></i></a></legend>
+			
+          <div data-role="popup" id="popUserEdit" data-dismissible="false" data-transition="fade" data-theme="a" data-overlay-theme="a" style="min-width:300px; max-width:300px; border:none">
+              <ul data-role="listview" data-inset="true" style="border:none">
+                <li data-role="list-divider" style=" text-align: center; border-bottom-left-radius:0; border-bottom-right-radius:0; padding:14px 14px; background-color:#0277bd; font-weight:300; border: none "><i class="fal fa-fw fa-user-edit"></i> 修改用户信息</li>
+                <form  style="margin:16px 16px;">
+                  <input type="text" data-theme="b" placeholder="姓名..." style="font-weight:300; height:38px; font-size:medium;">
+            <input type="email" data-theme="b" placeholder="邮箱..." style="font-weight:300; height:38px; font-size:medium;">
+            <input type="text" data-theme="b" placeholder="手机号码..." style="font-weight:300; height:38px; font-size:medium;">
+                </form>
+                <div class="ui-grid-a" style="margin:12px 12px; padding-bottom:12px;">
+                  <div class="ui-block-a"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#4caf50; margin: 4px 4px; font-weight:300"><i class="far fa-fw fa-check-double" style="margin-right: 12px"></i>更新</a> </div>
+                  <div class="ui-block-b"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#333333; margin: 4px 4px; font-weight:300"><i class="far fa-fw fa-times" style="margin-right: 12px"></i>取消</a> </div>
+                </div>
+              </ul>
+            </div>
+			
+			<div data-role="popup" id="popGroupEdit" data-dismissible="false" data-transition="fade" data-theme="a" data-overlay-theme="a" style="min-width:300px; max-width:300px; border:none">
+            <ul data-role="listview" data-inset="true" style="border:none">
+              <li data-role="list-divider" style=" text-align: center; border-bottom-left-radius:0; border-bottom-right-radius:0; padding:14px 14px; background-color:#0277bd; font-weight:300; border: none "><i class="fas fa-fw fa-users-class"></i> 更新组信息</li>
+              <form  style="margin:16px 16px;">
+                <input type="email" data-theme="b" placeholder="更改组名称..." style="font-weight:300; height:38px; font-size:medium;">
+                <div class="dropdown">
+                  <button class="btn btn-default dropdown-toggle"  data-theme="b" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-image: none; font-size: 14px "> 组类型 <span class="caret"></span> </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="margin: 0px 0px; padding: 0px 0px; background-image: none">
+                    <li><a href="#">采购组</a></li>
+                    <li><a href="#">销售组</a></li>
+                    <li><a href="#">财务组</a></li>
+                    <li><a href="#">生产组</a></li>
+                  </ul>
+                </div>
+              </form>
+              <div class="ui-grid-a" style="margin:12px 12px; padding-bottom:12px;">
+                <div class="ui-block-a"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#4caf50; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-check-double" style="margin-right: 12px"></i>更新</a> </div>
+                <div class="ui-block-b"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#333333; margin: 4px 4px; font-weight:300"><i class="fas fa-fw fa-times" style="margin-right: 12px"></i>取消</a> </div>
+              </div>
+            </ul>
+          </div>
+			
+          <table data-role="table" id="movie-table-custom" class="ui-body-d ui-shadow table-stripe ui-responsive movie-list table-stroke" data-mode="reflow"  style="margin-bottom: 8px; margin-top:8px; padding: 3px 3px">
+            <thead>
+              <tr class="ui-bar-d">
+                <th>账号</th>
+                <th data-priority="3">姓名</th>
+                <th data-priority="1">邮箱</th>
+                <th data-priority="2">手机号码</th>
+                <th data-priority="5" style="text-align: center">角色</th>
+                <th data-priority="6" style="text-align: center">操作</th>
+              </tr>
+            </thead>
+            <tbody data-bind="jqmTemplate: { name: 'userRow', foreach: organization[groupId()]&& organization[groupId()].items||[] }, jqmRefreshList: organization[groupId()]&& organization[groupId()].items||[]">
+              <!-- <tr>
+                <td>blade <a href="#"><i class="fas fa-fw fa-user-crown"></i> 所有者</a></td>
+                <td>Blade Shao</td>
+                <td>bladeshao@msn.com</td>
+                <td>12231</td>
+                <td style="text-align: center"><a href="#popRoleMenu" data-rel="popup"><i class="fal fa-fw fa-users-class"></i></a></td>
+                <td style="text-align: center"><a href="#popMenu" data-rel="popup"><i class="far fa-fw fa-ellipsis-v"></i></a></td>
+              </tr>
+              <tr>
+                <td>Shao</td>
+                <td>ABC</td>
+                <td>ABC@msn.com</td>
+                <td>12231</td>
+                <td style="text-align: center"><a href="#popRoleMenu" data-rel="popup"><i class="fal fa-fw fa-users-class"></i></a></td>
+                <td style="text-align: center"><a href="#popGroupAssign" data-rel="popup" data-position-to="window"><i class="far fa-fw fa-ellipsis-v"></i></a></td>
+              </tr> -->
+            </tbody>
+          </table>
+          <div data-role="popup" id="popMenu" data-theme="b" style="border: none">
+            <ul data-role="listview" data-inset="true" class="ui-alt-icon ui-nodisc-icon" style="min-width:180px; border: none">
+              <li><a href="javascript:void(0);" data-bind="click:function(){triggerDelay();}" style="font-weight: 300"><i class="fas fa-fw fa-user-edit" style="margin-right: 16px; color: #03a9f4"></i>修改信息</a></li>
+              <li><a href="javascript:void(0);" data-bind="click:startAssign" style="font-weight: 300"><i class="fas fa-fw fa-user-plus" style="margin-right: 16px; color: #03a9f4"></i>分配组</a></li>
+              <li data-bind="visible: groupId,css: { 'ui-disabled': !groupId()}"><a href="javascript:void(0);" data-bind="click:function(){triggerDelay();}" style="font-weight: 300"><i class="fas fa-fw fa-user-alt-slash" style="margin-right: 16px; color: #03a9f4"></i>移除出组</a></li>
+              <li><a href="javascript:void(0);" data-bind="click:function(){triggerDelay();}" style="font-weight: 300"><i class="fas fa-fw fa-times" style="margin-right: 16px; color: #03a9f4"></i>删除用户</a></li>
+            </ul>
+          </div>
+			
+	      	<div data-role="popup" id="popGroupAssign" data-dismissible="ture" data-transition="fade" data-theme="a" data-overlay-theme="a" style="min-width:300px; max-width:300px; border:none">
+            <ul data-role="listview" data-bind="jqmTemplate: { name: 'avaiableGroup', foreach: avaiableGroups }, jqmRefreshList:avaiableGroups " data-inset="true"  data-theme="b" class="ui-alt-icon ui-nodisc-icon" style="min-width:210px; border: none">
+				    </ul>
+          </div>	
+          <div data-role="popup" id="popRoleMenu" data-theme="b" style="border: none; box-shadow: none;">
+            <span data-bind="visible:!userGroups().length">不属于任何用户组</span>
+            <ul data-role="listview" data-bind="jqmTemplate: { name: 'userGroup', foreach: userGroups }, jqmRefreshList: userGroups"
+            data-inset="true" data-theme="b" class="ui-alt-icon ui-nodisc-icon" style="min-width:210px; border: none">
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+	
+	<div data-role="panel" id="panelgrid" data-position-fixed="true" data-position="right" data-display="overlay" data-theme="a">
+      <div class="jqm-block-content" style="margin: -14px -14px; margin-bottom: 14px; padding: 9px 9px; padding-top: 30px; background-color: #455a64; border:none; min-height: 0px; border-radius: 0em;">
+        <p align="center" style="margin-bottom:10px;"> <i class="material-icons md-56 md-light">face</i> </p>
+        <div class="ui-grid-a" style="text-shadow: 0 0 0; color:#FFFFFF">
+          <div class="ui-block-a">
+            <p align="left" style="padding-left:8px;"> <font size="+1" data-bind="text:user.name"></font> <br>
+              <font color="#BDBDBD"> <span data-bind="text:user.Roles"></span> <br>
+              <span data-bind="text:user.sub"></span> </font> </p>
+          </div>
+          <div class="ui-block-b">
+            <p align="right" style="margin-top: 8px; padding-right:3px;"> <a href="javascript:void(0);" data-bind="click:logout"> <i class="fal fa-2x fa-sign-out"></i> </a> </p>
+          </div>
+        </div>
+      </div>
+      <ul data-role="listview" data-theme="b" class="ui-nodisc-icon ui-alt-icon">
+        <li data-role="collapsible" data-iconpos="right" data-inset="false"
+                  style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) " data-collapsed-icon="bars"
+                  data-expanded-icon="carat-u">
+          <h2 style="padding:0px 0px; margin:0px 0px;"><span data-i18n="my-bpms">我的BPMS</span></h2>
+          <ul data-role="listview" data-theme="a"
+                      style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+            <li><a rel="external" href="index.html"
+                             style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i class="fas fa-fw fa-home" style="margin-right: 8px; color: #03a9f4"></i><span data-i18n="my-home">工作台</span></a></li>
+            <li><a rel="external"   href="assign.html"
+                             style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i class="fas fa-fw fa-users-cog" style="margin-right: 8px; color: #03a9f4"></i><span data-i18n="my-authorize">授权管理</span></a></li>
+            <li><a rel="external" href="#"
+                             style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i class="fas fa-fw fa-chart-area" style="margin-right: 8px; color: #03a9f4"></i><span data-i18n="my-report">报表</span></a></li>
+          </ul>
+        </li>
+        <li data-role="collapsible" data-iconpos="right" data-inset="false"
+                  style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) " data-collapsed-icon="bars"
+                  data-expanded-icon="carat-u">
+          <h2 style="padding:0px 0px; margin:0px 0px;"><span data-i18n="my-tasks">我的任务</span></h2>
+          <ul data-role="listview" data-theme="a"
+                      style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+            <li><a rel="external" href="task_list.html"
+                             style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i class="fas fa-fw fa-tasks" style="margin-right: 8px; color: #03a9f4"></i><span data-i18n="my-todo">待处理任务</span></a></li>
+            <li><a rel="external" href="history_list.html"
+                             style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i class="fas fa-fw fa-history" style="margin-right: 8px; color: #03a9f4"></i><span data-i18n="my-taskhistory">任务历史</span></a></li>
+          </ul>
+        </li>
+        <li data-role="collapsible" data-iconpos="right" data-inset="false"
+                  style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) " data-collapsed-icon="bars"
+                  data-expanded-icon="carat-u">
+          <h2 style="padding:0px 0px; margin:0px 0px;"><span data-i18n="my-processes">我的流程</span></h2>
+          <ul data-role="listview" data-theme="a"
+                      style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+            <li><a rel="external" href="process_list.html"
+                             style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i class="fas fa-fw fa-layer-plus" style="margin-right: 8px; color: #03a9f4"></i><span data-i18n="create-process">启动流程</span></a></li>
+            <li><a rel="external"   href="instance_list.html"
+                             style="font-weight:300; color: #607d8b; background-color:transparent; padding-left: 8px"><i class="fas fa-fw fa-history" style="margin-right: 8px; color: #03a9f4"></i><span data-i18n="my-processhistory">流程历史</span></a></li>
+          </ul>
+        </li>
+          
+          <!--
+                <li data-role="collapsible" data-iconpos="right" data-inset="false"
+                    style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) " data-collapsed-icon="bars"
+                    data-expanded-icon="carat-u">
+                    <h2 style="padding:0px 0px; margin:0px 0px;">设置</h2>
+                    <ul data-role="listview" data-theme="a"
+                        style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+                        <li><a rel="external" href="../settings/indexDesign.html"
+                               style="font-weight:200; background-color:transparent"><img
+                                src="images/Glyphish/icons/19-gear@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                                style="top: 11px;">首页设置</a></li>
+    
+                    </ul>
+                </li>
+                -->
+        </ul>
+      <p align="center" style="margin-top: 30px;"> <img src="images/bpmslogoxs.png" height="18px"> </p>
+    </div>
+  
+  <p align="center" style=" margin-bottom:3em">&nbsp;</p>
+  <br>
+  <div data-role="footer"  data-fullscreen="true" data-position="fixed" style=" border-bottom-width: 0px; opacity: 1">
+    <div data-role="navbar" >
+      <ul>
+        <!-- <li><a href="#" data-rel="popup" class="ui-btn-b" style="font-weight:300"><i class="fal fa-2x fa-cloud-upload" style="margin-bottom: 8px"></i><br>
+          批量处理</a></li>
+        <li><a href="#" data-rel="popup"  class="ui-btn-b" style="font-weight:300"><i class="fal fa-2x fa-sync-alt" style="margin-bottom: 8px"></i><br>
+          刷新</a></li>
+        <li><a href="#popaction" data-rel="popup"  data-transition="fade" class="ui-btn-b" style="font-weight:300"><i class="fal fa-2x fa-home-heart" style="margin-bottom: 8px"></i><br>
+          主页</a></li>
+        <li><a href="#" data-rel="popup" class="ui-btn-b" style="font-weight:300"><i class="fal fa-2x fa-question" style="margin-bottom: 8px"></i><br>
+          帮助</a></li> -->
+
+          <li><a href="javascript:void(0);" data-bind="click:test"  data-transition="fade" class="ui-btn-b" style="font-weight:300"><i class="fal fa-2x fa-home-heart" style="margin-bottom: 8px"></i><br>
+            主页</a></li>
+            <li><a href="javascript:void(0)" data-bind="click:function(){getData();}" class="ui-btn-b" style="font-weight:300"><i class="fal fa-2x fa-sync-alt" style="margin-bottom: 8px"></i><br>
+              刷新</a></li>
+              <li data-bind="css: { 'ui-disabled': !$root.organization[$root.groupId()]|| !$root.organization[$root.groupId()].hasPrev()}">
+                <a href="javascript:void(0)" data-bind="click:function(){secureExecute('getPrev')}" class="ui-btn-b"
+                  style="font-weight:300">
+                  <i class="far fa-2x fa-chevron-left" style="margin-bottom: 8px"></i>
+                  <br> <span data-i18n="prev-page">上一页</span>
+                </a>
+              </li>
+              <li data-bind="css: { 'ui-disabled': !$root.organization[$root.groupId()]|| !$root.organization[$root.groupId()].hasNext()}">
+                <a href="javascript:void(0)" data-bind="click:function(){secureExecute('getNext')}"  class="ui-btn-b"
+                  style="font-weight:300">
+                  <i class="far fa-2x fa-chevron-right" style="margin-bottom: 8px"></i>
+            <br> <span data-i18n="next-page">下一页</span>
+                </a>
+              </li>
+      </ul>
+    </div>
+    <!-- /navbar -->
+    <div data-role="popup" id="popaction" data-theme="b" data-overlay-theme="a" style="border-width: 0px">
+      <ul data-role="listview" class="ui-nodisc-icon ui-alt-icon" data-inset="true" style="min-width:230px; border-radius: 0em; ">
+        <li data-role="list-divider" style="border-width: 0px;  background-color: #424242; border-radius: 0em; text-shadow: 0 0 0;"><i class="fal fa-ellipsis-h"></i></li>
+        <li data-icon="forbidden"><a href="#">无</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- /footer --> 
+</div>
+<!-- <script>
+$('#myTabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+</script> -->
+
+<script type="text/html" id="group">
+<li data-bind="click:$root.selectGroup.bind($root)">
+  <a href="javascript:void(0);" style="padding: 3px 8px;">
+  <h2><i class="fas fa-fw fa-users-class" style="color: #03a9f4; margin-right: 8px; margin-left:8px"></i><span data-bind="text:name|| ''"></span></h2>
+  <span class="ui-li-count" data-bind="text:$root.organization[id]? $root.organization[id].total:''"></span></a>
+</li>
+</script>
+
+<script type="text/html" id="userRow">
+<tr>
+    <td><span data-bind="text:id"></span>&nbsp;<a data-bind="visible:false" href="javascript:void(0);"><i class="fas fa-fw fa-user-crown"></i> 所有者</a></td>
+    <td data-bind="text:lastName+' '+firstName"></td>
+    <td data-bind="text:email || ''"></td>
+    <td data-bind="text:id"></td>
+    <td style="text-align: center"><a href="javascript:void(0);" data-bind="attr:{id:'userRole'+$index()},click:function(){$root.getUserGroups($data,$index());}"><i class="fal fa-fw fa-users-class"></i></a></td>
+    <td style="text-align: center"><a href="javascript:void(0);" data-bind="attr:{id:'userMenu'+$index()},click:function(){$root.selectUserMenu($data,$index());}"><i class="far fa-fw fa-ellipsis-v"></i></a></td>
+  </tr>
+  </script>
+  <script type="text/html" id="userGroup">
+    <li data-icon="search" data-bind="click:$root.selectUserGroup.bind($root)"><a href="javascript:void(0);" style="font-weight: 300">
+      <i class="fas fa-fw fa-users-class" style="margin-right: 16px; color: #03a9f4"></i><span data-bind="text:name"></span></a>
+    </li>
+  </script>
+  <script type="text/html" id="avaiableGroup">
+    <li data-bind="visible:!id" data-role="list-divider" style="background-color: #0277bd; border:none">可分配组</li>
+    <li data-bind="visible:id,click:$root.assign.bind($root)"    data-icon="check"><a href="javascript:void(0);" style="font-weight: 300"><i class="fas fa-fw fa-users-class" style="margin-right: 16px; color: #03a9f4"></i><span data-bind="text:name"></span></a></li>
+  
+  </script>
+ 
+  
+</body>
+</html>

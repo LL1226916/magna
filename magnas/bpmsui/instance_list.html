@@ -1,0 +1,326 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, target-densitydpi=device-dpi">
+<title>BPMS － 我的流程</title>
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.css"/>
+<link rel="stylesheet" type="text/css" href="css/color.css"/>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+<link rel="stylesheet" type="text/css" href="css/jqm-demos.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure.css">
+<link rel="stylesheet" type="text/css" href="css/all.min.css">
+<link rel="stylesheet" type="text/css" href="css/google-icon.css">
+<link rel="stylesheet" type="text/css" href="css/site.css?v=20200924"/>
+
+<script src="libs/jquery.js?v=20210120"></script>
+<script src="libs/jquery.mobile.js?v=20200924"></script>
+<script src="libs/bootstrap.js?v=1598853811990"></script>
+<script src="libs/knockout.js?v=1598853811990"></script>
+<script src="libs/koExternalTemplateEngine_all.js?v=1598853811990"></script>
+<script src="libs/ko.extension.js?v=1598853811990"></script>
+<script src="libs/moment/moment.js?v=1598853811990"></script>
+<script src="libs/CLDRPluralRuleParser.js?v=1598853811990"></script>
+<script src="libs/jquery.i18n/jquery.i18n.js?v=1598853811990"></script>
+<script src="libs/jquery.i18n/jquery.i18n.messagestore.js?v=1598853811990"></script>
+<script src="libs/jquery.i18n/jquery.i18n.fallbacks.js?v=1598853811990"></script>
+<script src="libs/jquery.i18n/jquery.i18n.language.js?v=1598853811990"></script>
+<script src="libs/jquery.i18n/jquery.i18n.parser.js?v=1598853811990"></script>
+<script src="libs/jquery.i18n/jquery.i18n.emitter.js?v=1598853811990"></script>
+<script src="libs/jquery.i18n/jquery.i18n.emitter.bidi.js?v=1598853811990"></script>
+<script src="common/config.js?v=20200924"></script>
+<script src="common/util.js?v=20210203"></script>
+<script src="common/service.js?v=1598853811990"></script>
+<script src="common/baseViewModel.js?v=1598853811990"></script>
+
+<script src="instanceList.js?v=1598853811990"></script>
+<script src="instanceListViewModel.js?v=1598853811990"></script>
+
+<link rel="shortcut icon" href="favicon.ico"><style>
+@media screen and (min-width: 0px) {
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+}
+
+@media screen and (min-width: 667px) {
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+}
+
+@media screen and (min-width: 992px) {
+.row {
+    margin-left: 80px;
+    margin-right: 0px;
+    margin-top: 16px;
+}
+}
+
+@media screen and (min-width: 1200px) {
+.row {
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 32px;
+}
+}
+
+@media screen and (min-width: 1600px) {
+.row {
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 32px;
+}
+}
+</style>
+</head>
+<body>
+<div data-role="page" id="main" data-theme="a" style="background-color:#f7f7f7;">
+<div data-role="header" data-position="fixed" data-visible-on-page-show="true" 
+               style="margin: 0px 0px; padding: 12px 9px; padding-bottom: 0px; background-color:#ffffff; border-width: 0px; text-shadow: none; border-bottom-width: 0px; border-color:#cfd8dc; border-radius: 0px; min-height: 0px;">
+  <div class="ui-grid-a">
+        <div class="ui-block-a">
+          <p align="left" style="margin-top: 0px; margin-bottom:0px; font-size: 1.2em"><a href="#panelgrid"><img src="images/menu.svg" style="height: 14px; margin-bottom: 5px; text-decoration: none; margin-left: 6px; margin-right: 12px; opacity: 0.5"><img src="images/logobw.svg" style="height: 26px; margin-bottom: 5px; text-decoration: none; margin-right: 0px"></a><a href="#" style="text-shadow: none; font-weight: 400; color: #455a64; "><i class="fal fa-fw fa-caret-right" style="color:#b0bec5; margin-right: 0px"></i><span data-i18n="my-processhistory">流程历史</span></a></p>
+        </div>
+        <div class="ui-block-b">
+          <p align="right" style="padding-right: 4px; margin-top: 3px; margin-bottom:0px; font-size: 1.2em"><a href="#panelSearch" style="margin-right: 24px"><font  color="#455a64"><i class="far fa-search-plus"></i></font></a><a href="#panelAccount"><font
+                    color="#455a64"><i
+                    class="far fa-fw fa-user-circle"></i></font></a> </p>
+        </div>
+      </div>
+      
+       <ul class="nav nav-tabs" id="myTabs" role="tablist"
+        style="margin-left: 0px; margin-right: 0px; margin-top: 0px; border-bottom-width: 0px;">
+      <li style="min-width: 80px;" role="presentation" class="active"><a href="#unfinished"
+                                                                           data-bind="click:switchTab"
+                                                                           id="unfinished-tab" role="tab"
+                                                                           data-toggle="tab" aria-controls="unfinished"
+                                                                           aria-expanded="true">
+        <p align="center" style="margin: 0px 0px;"><i class="fad fa-fw fa-play"></i> <span
+                    data-bind="text:unfinishedCount"></span> <span style="display:block; font-weight: 300"><span data-i18n="running">进行中&nbsp;</span></span> </p>
+        </a></li>
+      <!-- <li style="display:none;" style="min-width: 80px;" role="presentation">
+            <a href="#due" data-bind="click:switchTab" role="tab" id="due-tab" data-toggle="tab" aria-controls="due">
+            <p align="center" style="margin: 0px 0px;"><i class="fa fa-2x fa-clock-o"></i> <span
+                    data-bind="text:dueCount"></span></p>
+            </a>
+        </li> -->
+      <li style="min-width: 80px;" role="presentation"><a href="#finished" data-bind="click:switchTab" role="tab"
+                                                            id="finished-tab"
+                                                            data-toggle="tab" aria-controls="finished">
+        <p align="center" style="margin: 0px 0px;"><i class="fad fa-fw fa-stop"></i> <span
+                    data-bind="text:finishedCount"></span> <span style="display:block; font-weight: 300"><span data-i18n="finished">已完成&nbsp;</span></span> </p>
+        </a></li>
+      <li style="min-width: 80px;" role="presentation"><a href="#involved" id="involved-tab" data-bind="click:switchTab" role="tab" data-toggle="tab" aria-controls="involved">
+        <p align="center" style="margin: 0px 0px;"><i class="fad fa-fw fa-at"></i> <span
+                  data-bind="text:involvedCount"></span> <span style="display:block; font-weight: 300"><span data-i18n="involved">受邀的&nbsp;</span></span> </p>
+        </a></li>
+      <li style="min-width: 80px;" role="presentation"><a href="#draft" id="draft-tab" data-bind="click:switchTab" role="tab" data-toggle="tab" aria-controls="edit">
+        <p align="center" style="margin: 0px 0px;"><i class="fad fa-fw fa-edit"></i> <span
+            data-bind="text:draftCount"></span> <span style="display:block; font-weight: 300"><span data-i18n="draft">草稿&nbsp;</span></span> </p>
+        </a></li>
+    </ul>
+</div>
+
+  	
+	
+	
+  <div data-role="content" style="padding: 0px 0px;  background-color: #ffffff">
+     
+    
+ 
+    <div id="myTabContent" class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="unfinished" aria-labelledBy="unfinished-tab">
+        <div class="ui-body ui-body-b ui-content"
+                 style="background-color:#f7f7f7; border-width:0px; border-bottom-right-radius: 0em; border-bottom-left-radius:0em; min-height: 800px; margin: 0px 0px; margin-bottom: 10px; padding: 0px 0px"> 
+          <!--   <form class="ui-filterable" style="margin: -4px 2px; margin-bottom:-3px; text-shadow: 0 0 0">
+            <input id="rich-autocomplete-input" data-type="search" placeholder="输入关键字搜索流程实例..." data-i18n="[placeholder]search-instance-key">
+          </form>-->
+          <ul data-role="listview" data-theme="b" data-filter="true" data-inset="true"
+                    data-bind="jqmTemplate: { name: 'item', foreach: unfinished.items }, jqmRefreshList: unfinished.items"
+                    data-input="#rich-autocomplete-input" style="margin: 6px 0px; margin-bottom: 64px; background-color: #ffffff">
+          </ul>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane fade" id="finished" aria-labelledBy="finished-tab">
+        <div class="ui-body ui-body-b ui-content"
+                 style="background-color:#f7f7f7; border-width:0px; border-bottom-right-radius: 0em; border-bottom-left-radius:0em; min-height: 800px; margin: 0 0px; padding: 0px 0px"> 
+          <!-- <form class="ui-filterable" style="margin: -4px 2px; margin-bottom:-3px; text-shadow: 0 0 0">
+            <input id="rich-autocomplete-input3" data-type="search" placeholder="输入关键字搜索流程实例..." data-i18n="[placeholder]search-instance-key">
+          </form>-->
+          <ul data-role="listview" data-theme="b" data-filter="true" data-inset="true"
+                    data-bind="jqmTemplate: { name: 'item', foreach: finished.items }, jqmRefreshList: finished.items"
+                    data-input="#rich-autocomplete-input3" style="margin: 2px 0px; margin-bottom: 64px">
+          </ul>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane fade" id="involved" aria-labelledBy="involved-tab">
+        <div class="ui-body ui-body-b ui-content"
+                     style="background-color:#f7f7f7; border-width:0px; border-bottom-right-radius: 0em; border-bottom-left-radius:0em; min-height: 800px; margin: 0 0px; padding: 0px 0px"> 
+          <!-- <form class="ui-filterable" style="margin: -4px 2px; margin-bottom:-3px; text-shadow: 0 0 0">
+            <input id="rich-autocomplete-input4" data-type="search" placeholder="输入关键字搜索流程实例..." data-i18n="[placeholder]search-instance-key">
+          </form>-->
+          <ul data-role="listview" data-theme="b" data-filter="true" data-inset="true"
+                        data-bind="jqmTemplate: { name: 'item', foreach: involved.items }, jqmRefreshList: involved.items"
+                        data-input="#rich-autocomplete-input4" style="margin: 2px 0px; margin-bottom: 64px">
+          </ul>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane " id="draft" aria-labelledBy="draft-tab">
+        <div class="ui-body ui-body-b ui-content"
+                         style="background-color:#f7f7f7; border-width:0px; border-bottom-right-radius: 0em; border-bottom-left-radius:0em; min-height: 800px; margin: 0 0px; padding: 0px 0px"> 
+          <!--  <form class="ui-filterable" style="margin: -4px 2px; margin-bottom:-3px; text-shadow: 0 0 0">
+            <input id="rich-autocomplete-input5" data-type="search" placeholder="输入关键字搜索流程实例..." data-i18n="[placeholder]search-instance-key">
+          </form>-->
+          <ul data-role="listview" data-theme="b" data-filter="true" data-inset="true"
+                            data-bind="jqmTemplate: { name: 'draftItem', foreach: draft.items }, jqmRefreshList: draft.items"
+                            data-input="#rich-autocomplete-input5" style="margin: 2px 0px; margin-bottom: 64px">
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-role="panel" id="panelgrid" data-position-fixed="true" data-position="left" data-display="push" data-theme="a">
+    <div class="jqm-block-content" style="margin-left: -14px; margin-right: -14px; margin-top: -23px; margin-bottom: 14px; padding: 0px 9px; padding-top: 32px; background-image: url(images/bg/bgc2.jpg); background-size: cover; height: 170px; border:none; min-height: 0px; border-radius: 0em;">
+      <p align="center" style="font-size: 1.2em; margin-bottom: 0px; font-weight: 600"><img src="images/logobw.svg" style="height: 56px"><br>
+        <span style="color: #ffffff">businez</span></p>
+      <p align="center" style="margin-top: 30px; font-weight: 300; opacity: 0.5; color: #ffffff; text-shadow: none; font-size: 0.5em">eorion bpms | <b>Ver 3.5</b></p>
+    </div>
+    <div class="ui-grid-a" style=" margin:0px 0px; padding:16px 0px; margin-top: 32px">
+      <div class="ui-block-a" style=" margin:0px 0px; padding:0px 0px">
+        <p align="center"><a rel="external" href="index.html"><i class="fad fa-fw fa-planet-moon" style="color: #0086ff; font-size: 1.5em"></i> <span style="display: block; color: #607d8b; margin-top: 6px; font-size: 0.7em; font-weight: 400" data-i18n="my-bpms">我的BPMS</span></a></p>
+      </div>
+      <div class="ui-block-b" style=" margin:0px 0px; padding:0px 0px">
+        <p align="center"><a rel="external" target="_blank" href="https://mttmb.magna.cn" ><i class="fad fa-fw fa-chart-area" style="color: #0086ff; font-size: 1.5em"></i> <span style="display: block; color: #607d8b; margin-top: 6px; font-size: 0.7em; font-weight: 400" data-i18n="my-report">Report</span></a></p>
+      </div>
+    </div>
+    <div class="ui-grid-a" style=" margin:0px 0px; padding:12px 0px;">
+      <div class="ui-block-a" style=" margin:0px 0px; padding:0px 0px">
+        <p align="center"><a rel="external" href="task_list.html"><i class="fad fa-fw fa-inbox-in" style="color: #0086ff; font-size: 1.5em"></i> <span style="display: block; color: #607d8b; margin-top: 6px; font-size: 0.7em; font-weight: 400" data-i18n="my-todo">todo</span></a></p>
+      </div>
+      <div class="ui-block-b" style=" margin:0px 0px; padding:0px 0px">
+        <p align="center"><a rel="external" href="history_list.html"><i class="fad fa-fw fa-history" style="color: #0086ff; font-size: 1.5em"></i> <span style="display: block; color: #607d8b; margin-top: 6px; font-size: 0.7em; font-weight: 400" data-i18n="my-taskhistory">task histroy</span></a></p>
+      </div>
+    </div>
+    <div class="ui-grid-a" style=" margin:0px 0px; padding:12px 0px;">
+      <div class="ui-block-a" style=" margin:0px 0px; padding:0px 0px">
+        <p align="center"><a rel="external" href="process_list.html"><i class="fad fa-fw fa-layer-plus" style="color: #0086ff; font-size: 1.5em"></i> <span style="display: block; color: #607d8b; margin-top: 6px; font-size: 0.7em; font-weight: 400" data-i18n="create-process">createprocess</span></a></p>
+      </div>
+      <div class="ui-block-b" style=" margin:0px 0px; padding:0px 0px">
+        <p align="center"><a rel="external"   href="instance_list.html"><i class="fad fa-fw fa-hourglass-end" style="color: #0086ff; font-size: 1.5em"></i> <span style="display: block; color: #607d8b; margin-top: 6px; font-size: 0.7em; font-weight: 400" data-i18n="my-processhistory">myinstance</span></a></p>
+      </div>
+    </div>
+  </div>
+	<div data-role="panel" id="panelAccount" data-position-fixed="true" data-position="right" data-display="push" data-theme="a">
+    <div class="jqm-block-content" style="margin: -14px -14px; margin-bottom: 14px; padding: 9px 9px; padding-top: 30px; background-color: #f9f9f9; border:none; min-height: 0px; border-radius: 0em;">
+      <p align="center" style="margin-bottom:10px; color: #0086ff"> <i class="far fa-4x fa-fw fa-user-circle"></i> </p>
+      <p align="center" style="color: #000000; font-size: 1.3em; margin-bottom: 0px"> <span data-bind="text:user.name"></span></p>
+      <p align="center" style="margin-top: 2px; color: #90a4ae; font-size: 0.8em"> <span data-bind="text:user.email"></span></p>
+      <hr>
+      <p style="word-break: break-all; word-wrap: break-word; padding: 3px 9px; color: #546e7a"><i class="fad fa-fw fa-users" style="margin-right: 12px; color: #0086ff "></i><span data-bind="text:user.Roles"></span></p>
+      <p style="word-break: break-all; word-wrap: break-word; padding: 3px 9px; color: #546e7a"><i class="fad fa-fw fa-id-card-alt" style="margin-right: 12px; color: #0086ff "></i><span data-bind="text:user.sub"></span></p>
+      <hr>
+      <p align="center" style="margin-top: 24px; font-size: 1.2em;"> <a href="javascript:void(0);" data-bind="click:logout" style="color: #000000; font-weight: 300"> <i class="fad fa-sign-out" style="color: #0086ff; margin-right: 9px"></i><span data-i18n="signout">Logout</span></a> </p>
+    </div>
+  </div>
+  <div data-role="panel" id="panelSearch" data-position-fixed="true" data-position="right" data-display="overlay" data-theme="a" style="background-color: #f7f7f7">
+    <div class="jqm-block-content" style="margin: -14px -14px; margin-bottom: 14px; padding: 9px 9px; padding-top: 30px; background-color: #f7f7f7; border:none; min-height: 0px; border-radius: 0em;">
+      <p align="center" style="margin-bottom:60px; color: #90a4ae"> <i class="fal fa-3x fa-fw fa-search-plus"></i> </p>
+      <ul data-role="listview" data-inset="true" style="border:none">
+        <form onsubmit="return false;" novalidate="novalidate" style="margin:3px 3px;">
+          <input type="text" data-bind="value:inputBusinessKey" data-theme="b" placeholder="流程主题..." style="font-weight:300; height:39px; font-size:medium;">
+          <div style="text-align: center;">或</div>
+          <input type="text" data-bind="value:inputProcessId"  data-theme="b" placeholder="流程实例ID..." style="font-weight:300; height:39px; font-size:medium;">
+        </form>
+        <a href="javacript:void(0);" data-bind="click:doSearch" data-rel="close" class="ui-btn ui-corner-all ui-btn-b" style="background-color: #37474f; color:#fff; margin: 3px 3px; margin-top: 48px; font-weight:300">搜索</a>
+      </ul>
+    </div>
+  </div>
+  <div data-role="footer" data-fullscreen="true" data-position="fixed" style=" border-bottom-width: 0px; opacity: 1">
+    <div data-role="navbar">
+      <ul>
+        <li data-bind="css: { 'ui-disabled': !($root[$root.type()].hasPrev()) }"><a
+                    href="javascript:void(0)" data-rel="popup"
+                    data-bind="click: function(){secureExecute('getPrev')}"
+                    class="ui-btn-b" style="font-weight:300"><i
+                    class="fad fa-2x fa-chevron-left" style="margin-bottom: 8px;"></i><br>
+          <span data-i18n="prev-page">上一页</span></a></li>
+        <li><a href="javascript:void(0);"
+                   data-bind="click:function(){secureExecute('getData')}"
+                   data-rel="popup" class="ui-btn-b" style="font-weight:300"><i
+                    class="fad fa-2x fa-sync-alt" style="margin-bottom: 8px;"></i><br>
+          <span data-i18n="refresh">刷新</span></a></li>
+        <li data-bind="css: { 'ui-disabled': !($root[$root.type()].hasNext()) }"><a href="javascript:void(0)"
+                                                                                        data-bind="click: function(){secureExecute('getNext')}"
+                                                                                        data-rel="popup"
+                                                                                        class="ui-btn-b"
+                                                                                        style="font-weight:300"><i
+                    class="fad fa-2x fa-chevron-right" style="margin-bottom: 8px;"></i><br>
+          <span data-i18n="next-page">下一页</span></a></li>
+        
+        <!--     <li><a href="#popMore" data-rel="popup" class="ui-btn-b" style="font-weight:300"><i
+                    class="far fa-2x fa-ellipsis-h-alt" style="margin-bottom: 8px;"></i><br>
+				<span data-i18n="more">更多</span></a></li>-->
+      </ul>
+    </div>
+    <!-- /navbar -->
+    <div data-role="popup" id="popMore" data-theme="b" data-overlay-theme="a" style="border-width: 0px">
+      <ul data-role="listview" class="ui-nodisc-icon ui-alt-icon" data-inset="true"
+            style="min-width:230px; border-radius: 0em;">
+        <li data-role="list-divider" style="border-width: 0px;  background-color: #424242; border-radius: 0em;"> <i class="fa fa-ellipsis-h"></i></li>
+        <li data-icon="forbidden"><a href="#"><span data-i18n="n/a">无</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- /footer --> 
+</div>
+<script type="text/html" id="item">
+    <li class="ui-nodisc-icon ui-alt-icon">
+        <a href="javascript:void(0)" style="border-width:0px; border-bottom-width:1px; border-color:#eceff1; background-color:#f7f7f7" data-bind="click:function(){$root.selectItem($data,$index())}">
+                
+                <p style="color:#000000; font-size:0.85em; font-weight:800; margin-bottom:3px; margin-left:2px; margin-top:0px" data-bind="text:businessKey,visible:businessKey"></p>
+                <p style="color:#bdbdbd; font-size:0.85em; margin-bottom:3px; margin-left:2px"  data-bind="visible:!businessKey" ><span data-i18n="tsk-nosub">无主题</span></p>
+                <p style="color:#78909c; font-size:0.85em; font-weight:400; margin-top:0px; margin-bottom:0px; margin-left:2px" data-bind="text:$root.formatName(id,processName)"></p>
+    
+                <p style="margin-top:6px; margin-bottom:0px; font-weight:400"><font color="#78909c">
+                    <i class="far fa-fw fa-calendar-plus" data-bind="visible: startTime"></i>
+                    <span data-bind="text: BPMS.Services.Utils.formatDateTime(startTime, 't3')"></span><span
+                        data-bind="text: '&nbsp;' + BPMS.Services.Utils.formatDateTime(startTime, 't4')"></span>
+                </font></p>
+				<p style="color:#78909c; margin: 0px 0px; font-weight:400" data-bind="visible:superProcessInstanceId"><i class="far fa-fw fa-share-alt"></i>&nbsp;<span><span data-i18n="parent-process">上级流程</span></span>&nbsp;<span data-bind="text:superProcessInstanceId"></span></p>
+        <span class="ui-li-count" style="width:100px; background-color:#eceff1" data-bind="visible: endTime" data-i18n="finished">已完成</span>
+		<span class="ui-li-count" style="width:100px; background-color:#eceff1" data-bind="visible: deleteReason" data-i18n="deleted">已删除</span>      
+        <span class="ui-li-count" style="background-color:#eceff1; border-color:#eceff1; color:#000000" data-bind="visible: category, text: category"></span>
+            </a>
+    </li>
+</script> 
+<script type="text/html" id="draftItem">
+    <li data-bind="css: { 'ui-disabled':!processDefinitionId}" class="ui-nodisc-icon ui-alt-icon">
+        <a  href="javascript:void(0)" style="background-color:#f7f7f7; border-width:0px; border-bottom-width:1px; border-color:#eceff1;" data-bind="click:function(){$root.selectItem($data,$index())}">
+            <p style="color:#000000; font-weight:800; margin-left:3px; margin-bottom:3px; margin-top:0px" data-bind="text:businessKey,visible:businessKey"></p>
+            <p style="color:#bdbdbd; margin-left:3px; margin-bottom:3px" data-bind="visible:!businessKey && processDefinitionId" ><span data-i18n="tsk-nosub">无主题</span></p>
+            <p style="color:#ff5722; margin-bottom:0px" data-bind="visible:!processDefinitionId" >
+                <i class="far fa-fw fa-ban"></i>&nbsp;<span data-i18n="invalid">已失效</span>
+              </p>
+            <p style="color:#78909c; font-weight:400; margin-top:0px; margin-bottom:0px"><i class="far fa-fw " data-bind="css:{'fa-drafting-compass':type==='InstanceDraft','fa-heart':type==='InstanceTemplate'}"></i>&nbsp;<span data-bind="text:$root.formatName(id,processName)"></span></p>
+            <p style="margin:0px 0px; font-weight:400; margin-top:4px">
+                <font color="#78909c">
+                <i class="far fa-fw fa-calendar-plus" data-bind="visible: startTime"></i>
+                <span data-bind="text: BPMS.Services.Utils.formatDateTime(startTime, 't3')"></span><span
+                    data-bind="text: '&nbsp;' + BPMS.Services.Utils.formatDateTime(startTime, 't4')"></span>
+                </font>
+            </p>
+            <span class="ui-li-count" style="background-color:#eceff1; border-color:#eceff1; color:#000000"  data-bind="visible: category"><span data-bind="text: category"></span></span>
+            </a>
+    </li>
+</script>
+</body>
+</html>

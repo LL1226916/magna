@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/index.css" />
+	
+  </head>
+
+  <body style="background-color: #1b057f;overflow:-Scroll;overflow-y:hidden">
+    <header>
+	  <div class="logoL">
+		  <img src="img/WechatIMG269.png" style="width: 205px;height: 45px;">
+	  </div>
+      <h1>执行器区域看板</h1>
+      <div class="showTime"></div>
+	  <div class="logoR">
+		  <img src="img/WechatIMG282.png" style="width: 200px;height: 40px;"/>
+	  </div>
+      <script type="text/javascript">
+        var t = null;
+        t = setTimeout(time, 1000); //開始运行
+        function time() {
+          clearTimeout(t); //清除定时器
+          dt = new Date();
+          var y = dt.getFullYear();
+          var mt = dt.getMonth() + 1;
+          var day = dt.getDate();
+          var h = dt.getHours(); //获取时
+          var m = dt.getMinutes(); //获取分
+          var s = dt.getSeconds(); //获取秒
+		  if(mt<10){
+		   mt = "0"+mt; 
+		   }
+		   if(day<10){
+		   day = "0"+day; 
+		   }
+		   if(h<10){
+		   h = "0"+h; 
+		   }
+		   if(m<10){
+		   m = "0"+m; 
+		   }
+		   if(s<10){
+		   s = "0"+s; 
+		   }
+          document.querySelector(".showTime").innerHTML =
+            
+            y +
+            "/" +
+            mt +
+            "/" +
+            day +
+            " " +
+            h +
+            ":" +
+            m +
+            ":" +
+            s ;
+          t = setTimeout(time, 1000); //设定定时器，循环运行
+        }
+		
+		
+		
+			var i = 778;
+		function add() {
+		  i++;
+		  
+		  document.querySelector(".security").innerHTML = i
+		    
+		   
+		 // t = setTimeout(time, 1000); //设定定时器，循环运行
+		}
+		setInterval("add()",24*60*60*1000);
+      </script>
+    </header>
+    <section class="mainbox">
+      <div class="column">
+		<div class="no">
+		  <h2>Employee Suggestions</h2>
+		  <div class="no-hd">
+		    <h2 class="h">34</h2>
+		  </div>
+		</div>
+        <!-- <div class="panel bar" >
+          <h2>
+            OEE  TOP10
+          </h2>
+          <div class="chart"></div>
+          <div class="panel-footer"></div>
+        </div> -->
+        <div class="panel line">
+          <h2 class="h">计划完成率</h2>
+          <div class="chart"></div>
+          <div class="panel-footer"></div>
+        </div>
+        <div class="panel pie">
+          <h2 class="h">工废</h2>
+          <div class="chart"></div>
+          <div class="panel-footer"></div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="panel item">
+		  <h2 class="h">问题汇总清单</h2>
+          <div class="chart" ></div>
+          <div class="panel-footer"></div>
+          
+        </div>
+        <div class="panel bar1" >
+          <h2 class="h">合格率</h2>
+          <div class="chart" ></div>
+          <div class="panel-footer"></div>
+        </div>
+		<!-- <div class="panel bar2" >
+		  <h2>合格率  TOP10</h2>
+		  <div class="chart" ></div>
+		  <div class="panel-footer"></div>
+		</div> -->
+		<div class="panel bar" >
+		  <h2 class="h">
+		    OEE
+		  </h2>
+		  <div class="chart"></div>
+		  <div class="panel-footer"></div>
+		</div>
+      </div>
+	  
+      <div class="column">
+        <div class="no">
+          <h2 class="h">2021  Non-Recordable Incidents Days</h2>
+          <div class="no-hd">
+            <h2 class="security">778</h2>
+          </div>
+        </div>
+        <div class="panel line1">
+          <h2 class="h">设备报修 TOP6</h2>
+          <div class="chart"></div>
+          <div class="panel-footer"></div>
+        </div>
+        <div class="panel pie1">
+          <h2 class="h">客户投诉</h2>
+          <div class="chart"></div>
+          <div class="panel-footer"></div>
+        </div>
+      </div>
+	  
+    </section>
+	<div class="removeCss">
+			  <div class="mark" style="float: left;">
+			  	<h3>Customer complaints</h3>
+			  </div>
+			  <div class="bottright">
+			  	<div class="bott">
+			  		<div class="bott1">
+			  			<div class="imgLogo">
+			  				<img src="img/bc.png" >
+			  			</div>
+			  			<div class="num">
+			  				<h3>0</h3>
+			  			</div>
+			  		</div>
+			  		<div class="bott1">
+			  			<div class="imgLogo">
+			  				<img src="img/volvo.png" >
+			  			</div>
+			  			<div class="num">
+			  				<h3>1</h3>
+			  			</div>
+			  		</div>
+			  		<div class="bott1" >
+			  			<div class="imgLogo">
+			  				<img src="img/bm.png" >
+			  			</div>
+			  			<div class="num">
+			  				<h3>0</h3>
+			  			</div>
+			  		</div>
+			  		<div class="bott1">
+			  			<div class="imgLogo">
+			  				<img src="img/ft.png" >
+			  			</div>
+			  			<div class="num">
+			  				<h3>0</h3>
+			  			</div>
+			  		</div>
+			  		<div class="bott1">
+			  			<div class="imgLogo">
+			  				<img  src="img/df.png" >
+			  			</div>
+			  			<div class="num">
+			  				<h3>0</h3>
+			  			</div>
+			  		</div>
+			  		<div class="bott1" >
+			  			<div class="imgLogo">
+			  				<img  src="img/wl.png" >
+			  			</div>
+			  			<div class="num">
+			  				<h3>0</h3>
+			  			</div>
+			  		</div>
+			  		<div class="bott1" >
+			  			<div class="imgLogo">
+			  				<img src="img/WechatIMG414.png" >
+			  			</div>
+			  			<div class="num">
+			  				<h3>0</h3>
+			  			</div>
+			  		</div>
+			  		
+			  	</div>
+			  </div>
+			  
+	</div>
+    <script src="js/flexible.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/china.js"></script>
+    <script src="js/myMap.js"></script>
+  </body>
+</html>

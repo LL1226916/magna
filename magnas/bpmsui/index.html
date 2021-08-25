@@ -1,0 +1,690 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, target-densitydpi=device-dpi">
+    <title data-i18n="index-title">BPMS - 首页</title>
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile.css" />
+    <link rel="stylesheet" type="text/css" href="css/color.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.theme.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.transitions.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" type="text/css" href="css/jqm-demos.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure.css">
+    <link rel="stylesheet" type="text/css" href="css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/google-icon.css">
+    <link rel="stylesheet" type="text/css" href="css/site.css" />
+    <script src="libs/jquery.js?v=20210120"></script>
+    <script src="libs/jquery.mobile.js?v=20201127"></script>
+    <script src="libs/bootstrap.js?v=20201127"></script>
+    <script src="libs/jquery.sparkline.js?v=20201127"></script>
+    <script src="libs/owl.carousel.js?v=20201127"></script>
+    <script src="libs/knockout.js?v=20201127"></script>
+	<script src="libs/hmac-sha256.js"></script>
+	<script src="libs/enc-base64-min.js"></script>
+	
+    <script src="libs/koExternalTemplateEngine_all.js?v=20201127"></script>
+    <script src="libs/ko.extension.js?v=20201127"></script>
+    <script src="libs/shim.min.js?v=20201127"></script>
+    <script src="libs/xlsx.full.min.js?v=20201127"></script>
+    <script src="libs/oex/utils.js?v=20201127"></script>
+    <script src="libs/oex/jqm-checked.js?v=20201127"></script>
+    <script src="libs/oex/jqm-datetime.js?v=20201127"></script>
+    <script src="libs/oex/jqm-selected.js?v=20201127"></script>
+    <script src="libs/oex/jqm-number.js?v=20201127"></script>
+    <script src="libs/oex/jqm-money.js?v=20201127"></script>
+    <script src="libs/oex/jqm-tel.js?v=20201127"></script>
+    <script src="libs/oex/jqm-email.js?v=20201127"></script>
+    <script src="libs/oex/jqm-psb.js?v=20201127"></script>
+    <script src="libs/oex/jqm-cny.js?v=20201127"></script>
+    <script src="libs/oex/jqm-auto.js?v=20201127"></script>
+    <script src="libs/oex/jqm-relation.js?v=20201127"></script>
+    <script src="libs/oex/jqm-id.js?v=20201127"></script>
+    <script src="libs/oex/jqm-join.js?v=20201127"></script>
+	<script src="libs/oex/jqm-auto-multi.js?v=20201127"></script>
+    <script src="libs/oex/jqm-upload.js?v=20201127"></script>
+    <script src="libs/oex/jqm-switch.js?v=20201127"></script>
+    <script src="libs/oex/jqm-tree.js?v=20201127"></script>
+    <script src="libs/oex/jqm-value.js?v=20201127"></script>
+    <script src="libs/oex/jqm-ctr.js?v=20201127"></script>
+
+    <script src="libs/moment/moment.js?v=20201127"></script>
+    <script src="libs/bootstrap-collapse.js?v=20201127"></script>
+    <script src="libs/bootstrap-transition.js?v=20201127"></script>
+    <script src="libs/bootstrap-tab.js?v=20201127"></script>
+    <script src="libs/prettify.js?v=20201127"></script>
+    <script src="libs/application.js?v=20201127"></script>
+    <script src="libs/jweixin-1.2.0.js?v=20201127"></script>
+    <script src="common/config.js?v=20201127"></script>
+    <script src="common/util.js?v=20201127"></script>
+    <script src="common/service.js?v=20210209"></script>
+    <script src="common/baseViewModel.js?v=20201127"></script>
+    <script src="libs/CLDRPluralRuleParser.js?v=20201127"></script>
+    <script src="libs/jquery.i18n/jquery.i18n.js?v=20201127"></script>
+    <script src="libs/jquery.i18n/jquery.i18n.messagestore.js?v=20201127"></script>
+    <script src="libs/jquery.i18n/jquery.i18n.fallbacks.js?v=20201127"></script>
+    <script src="libs/jquery.i18n/jquery.i18n.language.js?v=20201127"></script>
+    <script src="libs/jquery.i18n/jquery.i18n.parser.js?v=20201127"></script>
+    <script src="libs/jquery.i18n/jquery.i18n.emitter.js?v=20201127"></script>
+    <script src="libs/jquery.i18n/jquery.i18n.emitter.bidi.js?v=20201127"></script>
+    <script src="index.js?v=20201127"></script>
+    <script type="text/javascript" src="libs/qrcode.min.js?v=1627004331"></script>
+    <script src="indexViewModel.js?v=20201127"></script>
+    <link rel="shortcut icon" href="favicon.ico">
+<style>
+@media screen and (min-width: 0px) {
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+}
+}
+
+@media screen and (min-width: 667px) {
+.row {
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-top: 6px;
+}
+}
+
+@media screen and (min-width: 992px) {
+.row {
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-top: 6px;
+}
+}
+
+@media screen and (min-width: 1200px) {
+.row {
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 32px;
+}
+}
+
+@media screen and (min-width: 1600px) {
+.row {
+    margin-left: 72px;
+    margin-right: 72px;
+    margin-top: 32px;
+}
+}
+
+@media screen and (min-width: 1900px) {
+.row {
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 32px;
+}
+}
+
+@media screen and (max-width:800px) and (min-width:300px) {
+.bgs {
+    background-color: #f7f7f7;
+    background-size: cover;
+}
+}
+
+@media screen and (min-width:801px) {
+.bgs {
+    background-image: url(images/bg/bgc3.jpg);
+    background-size: cover;
+}
+}
+</style>
+</head>
+<body>
+<div data-role="page" id="logonView" data-theme="c" class="bgs" style="background-attachment: fixed; text-shadow: 0 0 0;">
+  <div data-role="header" data-position="fixed" data-visible-on-page-show="true" data-theme="b" style="margin: 0px 0px; border-bottom-width: 0px; border-color: #cfd8dc; padding: 8px 8px; padding-bottom: 3px; background-color: #ffffff;  min-height: 0px;">
+    <div class="ui-grid-b" style="padding: 3px 3px; ">
+          <div class="ui-block-a" style="font-size: 1.3em">
+			  <a href="#panelgrid">
+				  <img src="images/menu.svg" style="height: 14px; margin-bottom: 5px; text-decoration: none; margin-left: 6px; margin-right: 12px; opacity: 0.5">
+				  <img src="images/logobw.svg" style="height: 26px; margin-bottom: 5px; text-decoration: none; margin-right: 0px">
+			  </a>
+			  <a href="#" class="hidden-xs" style="text-shadow: none; font-weight: 300; color: #455a64; ">
+				  <i class="fal fa-fw fa-caret-right" style="color:#b0bec5; margin-right: 3px"></i>
+				  <span data-i18n="my-bpms">我的首页</span>
+			  </a>
+			  
+		  </div>
+          <div class="ui-block-b" style="font-size: 1.3em; text-align: center">
+			  <a href="javascript:void(0);"  data-bind="click:scan" style="color: #b3e5fc; text-shadow: none">
+				  <i class="far fa-barcode-read"></i>
+			  </a>
+		  </div>
+          <div class="ui-block-c" style="text-align: right; text-shadow: none; font-size: 1.3em"> <a href="#popupde" data-rel="popup"  data-transition="fade" style="text-decoration: none"> <i class="far fa-fw fa-language" style="margin-right: 12px; color: #455a64"></i> </a> <span style="color: #E8E8E8; font-weight: 300">|</span><a href="#panelAccount" style="font-weight: 300; margin-left: 12px; margin-right: 6px; text-decoration: none; text-shadow: none; color:#455a64"><i class="far fa-fw fa-user-circle" style="margin-right:6px;"></i><span class="hidden-xs" style="font-weight: 300; opacity: 0.5" data-bind="text:user.name"></span></a>
+            <div data-role="popup" id="popupde" data-theme="b" data-overlay-theme="a" class="ui-corner-all"
+                        style="min-width:180px; border-width: 0px">
+              <ul data-role="listview" class="ui-alt-icon ui-nodisc-icon" data-inset="true"  style="border: none; ">
+                <li><a  data-bind="click:function(){selectLanguage('zh');}" href="javascript:void(0);">中文</a></li>
+                <li><a data-bind="click:function(){selectLanguage('en');}" href="javascript:void(0);">English</a></li>
+                <li><a data-bind="click:function(){selectLanguage('ja');}" href="javascript:void(0);">日本語</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /grid-a --> 
+  </div>
+  <div data-role="content" style="padding: 2px 2px; min-height:1000px;">
+    <div class="row">
+      <div class="col-sm-3 col-xs-6 col-md-2" style="padding: 0px 0px;">
+        <div class="jqm-block-content ui-responsive" data-bind="click:showUserDetail" style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; min-height:164px; background-color: #ffffff"> <font color="#000000" size="+1" style="font-weight:600;" data-bind="text:user.name"></font> <br>
+          <font color="#607d8b" style="font-weight:300"> <span data-bind="text:formatLongText(user.sub)"></span> <br>
+          <span style="font-weight: 600" data-i18n="welcomeback">Welcome back</span><!--/*<span data-bind="text:formatLongText(user.email)"></span>*/--> <br>
+          </font>
+          <p align="right" style="margin-bottom:4px;"> <a href="javascript:void(0);"> <i class="fad fa-fw fa-id-card-alt" style="font-size: 69px; color: #78909c; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)"></i> </a> </p>
+        </div>
+      </div>
+      <div class="col-sm-3 col-xs-6 col-md-2" style="padding: 0px 0px;">
+        <div class="jqm-block-content ui-responsive" data-bind="click:function(){go('instance_list.html')}" style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; min-height: 164px; background-color: #ffffff"> <font color="#000000" size="+1" style="font-weight:600; " data-i18n="my-process">我的流程</font> <br>
+          <font color="#607d8b" style="font-weight:300"><i class="fad fa-fw fa-info-circle"></i>&nbsp;<span data-i18n="unfinished">未完成</span> <br>
+          <div style="text-overflow:ellipsis; white-space: nowrap;"><i class="fad fa-fw fa-clock"></i>&nbsp;<span data-bind="text:now"></span></div>
+          </font>
+          <p align="right" style="margin-bottom:0px; margin-top: 12px; "> <font size="+4" color="#607d8b"> <b data-bind="text:processNumber">&nbsp;</b> </font> </p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-xs-12 col-md-4" style="padding: 0px 0px; ">
+        <div id="owl-demo" class="owl-carousel owl-theme">
+          <div class="item">
+            <div class="jqm-block-content ui-responsive" data-bind="click:goTaskPage" style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; min-height:164px; background-color: #ffffff "> 
+              <!---->
+              <div class="ui-grid-a">
+                <div class="ui-block-a"> <font color="#000000" size="+1" style="font-weight:600; " data-i18n="my-todo">我的任务</font> </div>
+                <div class="ui-block-b" style="text-align:right; padding-right: 6px;"> <a href="#popuprole" data-rel="popup" data-position-to="window" data-transition="fade"> <font size="+1"> <i class="fad fa-arrow-right" style="color: #607d8b"></i> </font> </a> </div>
+              </div>
+              <font color="#607d8b" style="font-weight:300"> <i class="fad fa-fw fa-user-circle"></i>&nbsp;<font style="font-weight:300" data-bind="text:user.name"></font> <br>
+              <i class="fad fa-fw fa-clock"></i>&nbsp;<span data-bind="text:now"></span> </font>
+              <p align="right" style="padding-right: 4px; margin-top: 32px; margin-bottom:0px; color: #607d8b"> <font size="+2"> <i class="fad fa-tasks"></i>&nbsp; <a href="task_list.html" style="color: #607d8b"> <b data-bind="text:allTaskNumber"></b> </a>&nbsp;&nbsp;&nbsp; <i class="fad fa-alarm-clock" data-type="delay"></i>&nbsp; <a data-type="delay" href="task_list.html?type=delay" style="color: #607d8b"> <b data-bind="text:delayTaskNumber" data-type="delay"></b> </a>&nbsp;&nbsp;&nbsp; <i class="fad fa-exclamation-circle" data-type="unfinished"></i>&nbsp; <a data-type="unfinished" href="task_list.html?type=unfinished" style="color: #607d8b"> <b data-bind="text:unfinishedTaskNumber" data-type="unfinished"></b> </a> </font> </p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="jqm-block-content ui-responsive" data-bind="click:goTaskPage" style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; min-height:164px; background-color: #ffffff;"> 
+              <!----> 
+              <font color="#000000" size="+1" style="font-weight:600; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)" data-i18n="group-tasks">组任务</font> <br>
+              <font color="#607d8b" style="font-weight:300"> <i class="fad fa-fw fa-info-circle"></i>&nbsp; <span data-i18n="group-tasks-tip">所有可接收的组任务</span> <br>
+              <i class="fad fa-fw fa-clock"></i>&nbsp; <span data-bind="text:now"></span> </font>
+              <p align="right" style="margin-top:12px; color: #81d4fa"> <font size="+4"> <i class="fal fa-tasks"></i>&nbsp; <a href="task_list.html" style="color: #03a9f4"> <b data-bind="text:allTaskNumber"></b> </a> </font> </p>
+              
+            </div>
+          </div>
+          <div class="item">
+            <div class="jqm-block-content ui-responsive" data-bind="click:goTaskPage" style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; min-height:164px; background-color: #ffffff; "> 
+              <!----> 
+              <font color="#000000" size="+1" style="font-weight:600; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)" data-i18n="overdue-tasks">延迟任务</font> <br>
+              <font color="#607d8b" style="font-weight:300"> <i class="fad fa-fw fa-info-circle"></i>&nbsp; <span data-i18n="overdue-tasks-tip">指派给我且已超时的任务</span> <br>
+              <i class="fad fa-fw fa-clock"></i>&nbsp; <span data-bind="text:now"></span> </font>
+              <p align="right" style="margin-top:12px; color: #81d4fa"> <font size="+4"> <i class="fal fa-alarm-clock" data-type="delay"></i>&nbsp; <a data-type="delay" href="task_list.html?type=delay" style="color: #03a9f4"> <b data-bind="text:delayTaskNumber" data-type="delay"></b> </a> </font> </p>
+             
+            </div>
+          </div>
+          <div class="item">
+            <div class="jqm-block-content ui-responsive" data-bind="click:goTaskPage" style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; min-height:164px; background-color: #ffffff; "> 
+              <!----> 
+              <font color="#000000" size="+1" style="font-weight:600; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)" data-i18n="unfinished-tasks">未完成任务</font> <br>
+              <font color="#607d8b" style="font-weight:300"> <i class="fad fa-fw fa-info-circle"></i>&nbsp; <span data-i18n="unfinished-tasks-tip">指派或已接收, 但未完成提交的任务</span> <br>
+              <i class="fad fa-fw fa-clock"></i>&nbsp; <span data-bind="text:now"></span> </font>
+              <p align="right" style="margin-top:12px; color: #81d4fa"> <font size="+4"> <i class="fal fa-exclamation-circle" data-type="unfinished"></i>&nbsp; <a data-type="unfinished" href="task_list.html?type=unfinished" style="color: #03a9f4"> <b data-bind="text:unfinishedTaskNumber" data-type="unfinished"></b> </a> </font> </p>
+               
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3 col-xs-6 col-md-2" style="padding: 0px 0px;">
+        <div class="jqm-block-content ui-responsive" data-bind="click:function(){go('process_list.html')}" style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; min-height: 164px; background-color: #ffffff"> <font color="#000000" size="+1" style="font-weight:600;" data-i18n="create-process">启动流程</font> <br>
+          <div style="height: 2.8em; font-weight: 300; color: #607d8b; overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp:2;"><i class="fad fa-layer-plus"></i>&nbsp;<span data-i18n="create-process-tip">快速启动新流程</span></div>
+          <p align="left" style="margin-bottom:0px; margin-top: 48px; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)"> <font size="+2" color="#607d8b"> <b> <i class="fad fa-robot"></i>&nbsp; <font size="-1"> <i class="fad fa-fw fa-truck"></i>&nbsp;&nbsp; <i class="fad fa-fw fa-chart-area"></i>&nbsp;&nbsp;<i class="fad fa-fw fa-dollar-sign"></i> </font> </b> </font> </p>
+        </div>
+      </div>
+      <button data-bind="click:switchUser" style="display: none;">login</button>
+      <div class="col-sm-3 col-xs-6 col-md-2" style="padding: 0px 0px;">
+        <div class="jqm-block-content ui-responsive" style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; min-height:164px; background-image: url(images/bigdata2.png); background-size:cover;"> <font color="#000000" size="+1" style="font-weight:600;" data-i18n="usermanual">使用说明</font> <br>
+          <div style="height: 2.8em; font-weight: 300; color: #607d8b; overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp:2;"><i class="fad fa-book-open"></i>&nbsp;<span data-i18n="usermanual-tip">BPMS</span></div>
+          <p align="right" style="margin-bottom:8px;"> <font size="+2" color="#9e9e9e">&nbsp;</font> </p>
+        </div>
+      </div>
+      <!--
+       <div class="col-sm-6 col-xs-12 col-md-4" style="padding: 0px 0px; ">
+           <div id="owl-demo" class="owl-carousel owl-theme">
+               <div class="item">
+                   <div class="jqm-block-content ui-responsive"
+                       style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; background-image:url(images/works-bg2.jpg); min-height: 164px; max-height: 173px;">
+                       <div class="ui-grid-a">
+                           <div class="ui-block-a"><font color="#006064" size="+1">销售达成率</font></div>
+                           <div class="ui-block-b" style="text-align:right"><a href="javascript:void(0);"
+                               data-bind="click:popMenu"><font
+                           size="+1"><i class="fa fa-ellipsis-v"></i></font></a>
+                           <div data-role="popup" id="popupMenu" data-theme="b" data-overlay-theme="a"
+                               style="border-width: 0px">
+                               <ul data-role="listview" class="ui-nodisc-icon ui-alt-icon" data-inset="true"
+                                   style="min-width:230px;  ">
+                                   <li data-role="list-divider"
+                                       style="border-width: 0px; padding-left: 20px; background-color: #424242;  ">
+                                   <i class="fa fa-ellipsis-h"></i></li>
+                                   <li data-icon="carat-r"><a href="javascript:void(0);"
+                                   data-bind="click:switchUser">用户切换</a></li>
+                                   <li data-icon="carat-r"><a href="javascript:void(0)"
+                                   data-bind="click:function(){window.location.href ='assign.html';}">授权管理</a>
+                               </li>
+                           </ul>
+                       </div>
+                   </div>
+               </div>
+               <font color="#9E9E9E">2016-Q2<br>
+               <i class="fa fa-clock-o"></i>&nbsp;2016-5-20 2:15PM</font>
+               <div class="ui-grid-a" style=" margin-top: 0.5em; margin-bottom:0.5em">
+                   <div class="ui-block-a">
+                       <p align="left" style="margin: 0.5em 0;"><span class="sparkbullet">10,12,12,9,7</span>
+                   </p>
+               </div>
+               <div class="ui-block-b">
+                   <p align="right" style="margin: 0 0;"><font size="+2"><i class="fa fa-bullseye"></i>
+                       12100</font>&nbsp;<font color="red" size="-1"><i
+                       class="fa fa-chevron-down"></i>&nbsp;9000</font>
+                   </p>
+               </div>
+           </div>
+           <div class="ui-grid-a">
+               <div class="ui-block-a">
+                   <p align="left"><a href="#"><font size="+1" color="#00BCD4"><i
+                   class="fa fa-pie-chart"></i></font></a></p>
+               </div>
+               <div class="ui-block-b">
+                   <p align="right"><font color="#9e9e9e" size="-1">BPMS-RPT</font></p>
+               </div>
+           </div>
+       </div>
+   </div>
+   <div class="item">
+       <div class="jqm-block-content ui-responsive"
+           style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; background-image:url(images/works-bg2.jpg); min-height: 164px; max-height: 173px;">
+           <div class="ui-grid-a">
+               <div class="ui-block-a"><font color="#006064" size="+1">财务报表</font></div>
+               <div class="ui-block-b" style="text-align:right"><font size="+1">&nbsp;</font></a> </div>
+           </div>
+           <font color="#9E9E9E">2016-Q2<br>
+           <i class="fa fa-clock-o"></i>&nbsp;2016-5-20 2:15PM</font>
+           <div class="ui-grid-a" style=" margin-top: 0.5em; margin-bottom:0.5em">
+               <div class="ui-block-a">
+                   <p align="left" style="margin: 0 0;"><font size="+2"><i class="fa fa-bullseye"></i>
+                       12100</font>&nbsp;<font color="red" size="-1"><i
+                       class="fa fa-chevron-down"></i>&nbsp;9000</font>
+                   </p>
+               </div>
+               <div class="ui-block-b">
+                   <p align="right" style="margin: 0 0;"><font size="+2"><i class="fa fa-bullseye"></i>
+                       12100</font>&nbsp;<font color="red" size="-1"><i
+                       class="fa fa-chevron-down"></i>&nbsp;9000</font>
+                   </p>
+               </div>
+           </div>
+           <div class="ui-grid-a">
+               <div class="ui-block-a">
+                   <p align="left"><a href="#"><font size="+1" color="#00BCD4"><i
+                   class="fa fa-pie-chart"></i></font></a></p>
+               </div>
+               <div class="ui-block-b">
+                   <p align="right"><font color="#9e9e9e" size="-1">BPMS-RPT</font></p>
+               </div>
+           </div>
+       </div>
+   </div>
+</div>
+</div>
+--> 
+    </div>
+    <br>
+    <!--<div class="row">
+      <p align="left" style="color: #b0bec5; margin-top:6px; margin-left: 3px; margin-bottom:6px; font-weight:300"> <i class="far fa-cog"></i> 流程设计 </p>
+      <div class="col-sm-3 col-xs-6 col-md-2" style="padding: 0px 0px;">
+        <div class="jqm-block-content ui-responsive" style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; min-height: 164px; "> <font color="#333333" size="+1" style="font-weight:600; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)" data-i18n="FormDesigner">KANBAN</font> <br>
+          <font color="#9e9e9e" style="font-weight:300"><span data-i18n="表单设计">KANBAN</span><br>
+          &nbsp; </font>
+          <p align="right"> <font size="+2"> <a href="process_builder.html" target="view_window"> <i class="fal fa-fw fa-pen" style="font-size: 64px"></i></a> </font> </p>
+        </div>
+      </div>
+      <div class="col-sm-3 col-xs-6 col-md-2" style="padding: 0px 0px;">
+        <div class="jqm-block-content ui-responsive" style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; min-height: 164px; "> <font color="#333333" size="+1" style="font-weight:600; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)" data-i18n="ProcessDesigner">KANBAN</font> <br>
+          <font color="#9e9e9e" style="font-weight:300"><span data-i18n="流程设计">KANBAN</span><br>
+          &nbsp; </font>
+          <p align="right"> <font size="+2"> <a href="process_builder.html" target="view_window"> <i class="fal fa-fw fa-sitemap" style="font-size: 64px"></i></a> </font> </p>
+        </div>
+      </div>
+    </div>-->
+    
+    <div class="row">
+      <div id="process-shortcut-wrapper" class="col-sm-12 col-xs-12 col-md-12 col-lg-12" style="padding: 0px 0px;">
+        <p  align="left" style=" margin-top:6px; margin-bottom:3px; font-size:20px; color: #b0bec5"><i class="far fa-fw fa-box-heart"></i> 我的常用流程</p>
+        
+        <!-- ko jqmTemplate: { name: 'ProcessShortcut', foreach: processes } --> 
+        <!-- /ko -->
+        
+        <div class="col-sm-4 col-xs-6 col-md-2 col-lg-2" style="padding: 0px 0px;">
+          <div class="jqm-block-content ui-responsive add-process"  style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; min-height: 164px; opacity: 0.7"><font color="#e91e63" size="+1" style="font-weight:600;">添加</font><br>
+            <font color="#607d8b" style="font-weight:300"流程快捷方式<br>
+            &nbsp;</font>
+            <div class="ui-grid-a" style=" margin:0px 0px; padding:0px 0px">
+              <div class="ui-block-a" style=" margin:0px 0px; padding:0px 0px">
+                <p align="left" style="margin: 0 0; font-weight: 700; color:#b0bec5"></p>
+              </div>
+              <div class="ui-block-b" style=" margin:0px 0px; padding:0px 0px">
+                <p align="right"><a href="javascript:void(0);" data-bind="click:onAddShortcut"><i class="fad fa-fw fa-plus-circle" style="font-size: 48px; margin-top: 26px; color: #4caf50 "></i></a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <p  align="left" style=" margin-top:6px; margin-bottom:3px; font-size:20px; color: #b0bec5"><i class="far fa-fw fa-heart"></i> 流程报表</p>
+<div >  
+<iframe
+    data-bind="attr: {src: detail.personBiUrl}"
+    frameborder="0"
+    width="350"
+    height="600"
+    allowtransparency
+></iframe>
+</div>  	  
+	  
+      <!--<div class="col-sm-3 col-xs-6 col-md-2" style="padding: 0px 0px;">
+        <div class="jqm-block-content ui-responsive" style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; min-height: 164px; background-color: #ffffff"> <font color="#000000" size="+1" style="font-weight:600;" data-i18n="email">电子邮件</font> <br>
+          <div style="height: 2.8em; font-weight: 300; color: #607d8b; overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp:2;"><span data-i18n="email-tip">登录Webmail</span></div>
+          <p align="right"> <font size="+2"> <a href="https://partner.outlook.cn" target="view_window"><i class="fad fa-fw fa-mail-bulk" style="font-size: 64px;  text-shadow: 0px 0px 3px rgba(192,192,192,0.6)"></i></a> </font> </p>
+        </div>
+      </div>-->
+      <div class="col-sm-3 col-xs-6 col-md-2" style="padding: 0px 0px;">
+        <div class="jqm-block-content ui-responsive" style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; min-height: 164px; background-color: #ffffff"> <font color="#000000" size="+1" style="font-weight:600;" data-i18n="BI">Metabase报表中心</font> <br>
+          <div style="height: 2.8em; font-weight: 300; color: #607d8b; overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp:2;"><span data-i18n="BI-tip">查看管理报表</span></div>
+          <p align="right"> <font size="+2"> <a href="https://mttmb.magna.cn" target="view_window"> <i class="fad fa-fw fa-chart-area" style="font-size: 64px;  text-shadow: 0px 0px 3px rgba(192,192,192,0.6)"></i></a> </font> </p>
+        </div>
+      </div>
+      <div class="col-sm-3 col-xs-6 col-md-2" style="padding: 0px 0px;" data-bind="click:function(){go('lpa/index.html')}">
+        <div class="jqm-block-content ui-responsive" style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; min-height: 164px; background-color: #ffffff"> <font color="#000000" size="+1" style="font-weight:600;">LPA</font> <br>
+          <div style="height: 2.8em; font-weight: 300; color: #607d8b; overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp:2;"><span ></span></div>
+          <p align="right"> <font size="+2"> <a > <i class="fad fa-long-arrow-right" style="font-size: 64px;  text-shadow: 0px 0px 3px rgba(192,192,192,0.6)"></i></a> </font> </p>
+        </div>
+      </div>
+      <div class="col-sm-3 col-xs-6 col-md-2" style="padding: 0px 0px;" data-bind="visible:user.Roles.indexOf('MTT_ADMIN') != -1 , click:function(){go('dist/index.html')}">
+        <div class="jqm-block-content ui-responsive" style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; min-height: 164px; background-color: #ffffff"> <font color="#000000" size="+1" style="font-weight:600;" >表单设计</font> <br>
+          <div style="height: 2.8em; font-weight: 300; color: #607d8b; overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp:2;"><span ></span></div>
+          <p align="right"> <font size="+2"> <a > <i class="fad fa-fw fa-object-ungroup" style="font-size: 64px;  text-shadow: 0px 0px 3px rgba(192,192,192,0.6)"></i></a> </font> </p>
+        </div>
+      </div>
+      <div class="col-sm-3 col-xs-6 col-md-2" style="padding: 0px 0px;" data-bind="visible:user.Roles.indexOf('MTT_ADMIN') != -1">
+        <div class="jqm-block-content ui-responsive" style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; min-height: 164px; background-color: #ffffff"> <font color="#000000" size="+1" style="font-weight:600;" >用户管理</font> <br>
+          <div style="height: 2.8em; font-weight: 300; color: #607d8b; overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp:2;"><span ></span></div>
+          <p align="right"> <font size="+2"> <a href="https://mttid.magna.cn" target="view_window"> <i class="fad fa-fw fa-address-card" style="font-size: 64px;  text-shadow: 0px 0px 3px rgba(192,192,192,0.6)"></i></a> </font> </p>
+        </div>
+      </div>		  
+      <!--<div class="col-sm-3 col-xs-6 col-md-2" style="padding: 0px 0px;">
+        <div class="jqm-block-content ui-responsive" style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; min-height: 164px; background-color: #ffffff"> <font color="#000000" size="+1" style="font-weight:600; " data-i18n="IS">身份管理</font> <br>
+          <div style="height: 2.8em; font-weight: 300; color: #607d8b; overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp:2;"><span data-i18n="IS-tip">身份管理</span></div>
+          <p align="right"> <font size="+2"> <a href="https://mttid.magna.cn/" target="view_window"> <i class="fad fa-fw fa-user-lock" style="font-size: 64px; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)"></i></a> </font> </p>
+        </div>
+      </div>-->
+      <!--<div class="col-sm-3 col-xs-6 col-md-2" style="padding: 0px 0px;">
+        <div class="jqm-block-content ui-responsive" style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; min-height: 164px; "> <font color="#000000" size="+1" style="font-weight:600; " data-i18n="Camunda EE">Camunda</font> <br>
+          <div style="height: 2.8em; font-weight: 300; color: #607d8b; overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp:2;"><span data-i18n="Camunda EE Demo">KANBAN</span></div>
+          <p align="right"> <font size="+2"> <a href="https://bpez.eorionsolution.com/" target="view_window"> <i class="fad fa-fw fa-video" style="font-size: 64px; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)"></i></a> </font> </p>
+        </div>
+      </div>
+      <div class="col-sm-3 col-xs-6 col-md-2" style="padding: 0px 0px;">
+        <div class="jqm-block-content ui-responsive" style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; min-height: 164px; "> <font color="#000000" size="+1" style="font-weight:600; " data-i18n="Optimize">Camunda</font> <br>
+          <div style="height: 2.8em; font-weight: 300; color: #607d8b; overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp:2;"><span data-i18n="Optimize Demo">KANBAN</span></div>
+          <p align="right"> <font size="+2"> <a href="https://bpezop.eorionsolution.com/" target="view_window"> <i class="fad fa-fw fa-chart-pie" style="font-size: 64px; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)"></i></a> </font> </p>
+        </div>
+      </div>
+      -->
+      <!-- <div class="col-sm-3 col-xs-6 col-md-2" style="padding: 0px 0px;"  data-bind="click:function(){go('tag_print.html')}">
+        <div class="jqm-block-content ui-responsive" style="margin: 2px 2px; padding: 8px 8px; border-color:#616161; min-height: 164px; box-shadow:1px 1px 3px rgba(74,74,74,0.58); background-image:url(images/bg/bannerbg1.jpg); background-size:cover"> <font color="#ffffff" size="+1" style="font-weight:600;  text-shadow: 0px 0px 3px rgba(192,192,192,0.6)" data-i18n="suppliez">SRM</font> <br>
+          <font color="#ffffff" style="font-weight:300;"><span data-i18n="suppliez-tip">供应商协同</span><br>
+          &nbsp; </font>
+          <div class="ui-grid-a" style=" margin:0px 0px; padding:0px 0px">
+            <div class="ui-block-a" style=" margin:0px 0px; padding:0px 0px">
+              <p align="left" style="margin: 0 0; font-weight:300; color:#bdbdbd;">ext-SRM</p>
+            </div>
+            <div class="ui-block-b" style=" margin:0px 0px; padding:0px 0px">
+              <p align="right"> <font size="+2"> <a href="#" target="view_window"> <img src="images/earth-grid.png" height="64px"> </a> </font> </p>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      
+      <!--<div class="col-sm-3 col-xs-6 col-md-2" style="padding: 0px 0px;" data-bind="click:function(){go('https://mobilez.eorionsolution.com/ui/index.html')}">
+        <div class="jqm-block-content ui-responsive" style="margin: 2px 2px; padding: 8px 8px; border-color:#616161; min-height: 164px; background-image:url(images/bg/bannerbg3.jpg); background-size:cover"> <font color="#ffffff" size="+1" style="font-weight:600;" data-i18n="mobilez">mobilez</font> <br>
+          <div style="height: 2.8em; font-weight: 300; color: #ffffff; overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp:2;"><span data-i18n="mobilez-tip">扫描移动快速应用</span></div>
+          <div class="ui-grid-a" style=" margin:0px 0px; padding:0px 0px">
+            <div class="ui-block-a" style=" margin:0px 0px; padding:0px 0px">
+              <p align="left" style="margin: 0 0; font-weight:300; color:#bdbdbd;"> </p>
+            </div>
+            <div class="ui-block-b" style=" margin:0px 0px; padding:0px 0px">
+              <p align="right"> <font size="+2"> <a href="#" target="view_window"> <img src="images/mobilexlogos.png" height="64px"> </a> </font> </p>
+            </div>
+          </div>
+        </div>
+      </div>-->
+      <div class="col-sm-6 col-xs-12 col-md-4 col-lg-4" style="padding: 0px 0px; ">
+        <div class="jqm-block-content ui-responsive" style="margin: 2px 2px; padding: 8px 8px; border-color:#424242; min-height: 164px; background-image: url(images/bg/banner.jpg); background-size:cover; text-shadow: 0 0 0;"> <font color="#ffffff" size="+1" style="font-weight:600; " data-i18n="quicktip">重要信息</font> <br>
+          <font color="#ffffff" style="font-weight:300"> <i class="fal fa-fw fa-calendar-check"></i>&nbsp;2020-02-01 <br>
+          <i class="fal fa-fw fa-bell-on"></i>&nbsp;Web</font>
+          <p align="right"> <font color="#ffffff" size="+2" style="text-shadow: 0px 0px 3px rgba(192,192,192,0.6)">orionBPMS V3.5正式发布</font> </p>
+          <div class="ui-grid-a">
+            <div class="ui-block-a">
+              <p align="left"></p>
+            </div>
+            <div class="ui-block-b">
+              <p align="right"> <a href="http://www.eorionsolution.com" target="view_window"> <font color="#ffffff" size="+1"> <b> <i class="fad fa-sign-in"></i> </b> </font> </a> </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+	  
+    </div>
+	 
+    <!-- <div class="row">
+            <p align="left" style="text-shadow: 1px 1px 2px #707070; margin-top:6px; margin-bottom:3px; font-weight:100">
+                <i class="material-icons md-light">cast</i>
+            </p>
+
+			
+	<div class="col-sm-3 col-xs-6 col-md-2" style="padding: 0px 0px;">
+        <div class="jqm-block-content ui-responsive" style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; min-height: 164px; box-shadow:1px 1px 3px rgba(74,74,74,0.58)"> <font color="#333333" size="+1" style="font-weight:600; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)" data-i18n="KAN-BIND">KANBAN</font> <br>
+          <font color="#9e9e9e" style="font-weight:300"><span data-i18n="KAN-tip">KANBAN</span><br>
+          &nbsp; </font>
+          <p align="right"> <font size="+2"> <a href="https://kan.eorionsolution.com/" target="view_window"> <i class="fas fa-fw fa-plug" style="font-size: 64px"></i></a> </font> </p>
+        </div>
+      </div>  		
+			
+      <div class="col-sm-3 col-xs-6 col-md-2" style="padding: 0px 0px;">
+        <div class="jqm-block-content ui-responsive" style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; min-height: 164px; box-shadow:1px 1px 3px rgba(74,74,74,0.58)"> <font color="#333333" size="+1" style="font-weight:600; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)" data-i18n="KAN-UPDATE">KANBAN</font> <br>
+          <font color="#9e9e9e" style="font-weight:300"><span data-i18n="KAN-tip">KANBAN</span><br>
+          &nbsp; </font>
+          <p align="right"> <font size="+2"> <a href="https://kan.eorionsolution.com/" target="view_window"> <i class="fas fa-fw fa-comment-alt-edit" style="font-size: 64px"></i></a> </font> </p>
+        </div>
+      </div>  
+
+	  <div class="col-sm-3 col-xs-6 col-md-2" style="padding: 0px 0px;">
+        <div class="jqm-block-content ui-responsive" style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; min-height: 164px; box-shadow:1px 1px 3px rgba(74,74,74,0.58)"> <font color="#333333" size="+1" style="font-weight:600; text-shadow: 0px 0px 3px rgba(192,192,192,0.6)" data-i18n="KAN-DEMO">KANBAN</font> <br>
+          <font color="#9e9e9e" style="font-weight:300"><span data-i18n="KAN-tip">KANBAN</span><br>
+          &nbsp; </font>
+          <p align="right"> <font size="+2"> <a href="https://kan.eorionsolution.com/" target="view_window"> <i class="fas fa-fw fa-laptop-code" style="font-size: 64px"></i></a> </font> </p>
+        </div>
+      </div>       
+	    
+	    
+        </div>   --> 
+    
+    <!--<div class="row">
+            <p align="left" style="text-shadow: 1px 1px 2px #707070; margin-top:6px; margin-bottom:3px; font-weight:100">
+                <i class="material-icons md-light">cast</i>
+            </p>
+
+            <div class="col-sm-12 col-xs-12 col-md-4" style="padding: 0px 0px;">
+                <div class="jqm-block-content ui-responsive" style="margin: 2px 2px; padding: 8px 8px; border-color:#616161; min-height: 164px; background-image:url(images/bg/dark-grey-tile.png); box-shadow:1px 1px 3px rgba(74,74,74,0.58)">
+
+                    <iframe src="https://mttmb.magna.cn/public/question/900619e9-38d0-4164-b7e8-ab25dcb908e0/#theme=night" frameborder="0"
+                        width="100%" height="300" allowtransparency></iframe>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12 col-md-8" style="padding: 0px 0px; ">
+                <div class="jqm-block-content ui-responsive" style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; min-height: 164px; background-image: url(images/works-bg.jpg); background-size:cover; text-shadow: 0 0 0; box-shadow:1px 1px 3px rgba(74,74,74,0.58)">
+                    <iframe src="https://mttmb.magna.cn/public/question/fefc4d90-f280-4e56-b570-b7c15d0be8cb" frameborder="0" width="100%"
+                        height="300" allowtransparency></iframe>
+                </div>
+            </div>
+        </div>--> 
+    
+    <br>
+    <br>
+    <br>
+  </div>
+  <!-- /content -->
+ 
+  
+  
+  
+  
+  <div data-role="popup" id="popupShortcut" data-dismissible="false" data-transition="fade" data-theme="a" data-overlay-theme="a" style="min-width:300px;  border:none">
+    <ul data-role="listview" data-inset="true" style="border:none">
+      <li data-role="list-divider" style=" text-align: center; border-bottom-left-radius:0; border-bottom-right-radius:0; padding:14px 14px; background-color:#0277bd; font-weight:300; border: none "><i class="fal fa-fw fa-external-link"></i> 创建应用快捷方式</li>
+      <!-- <form class="ui-filterable" style="margin:16px 16px;">
+        <input id="autocomplete-input" data-theme="b" data-type="search" placeholder="搜索应用..." style="font-size: large">
+      </form>
+      -->
+      <div data-bind="basicField: idField" style="margin:16px 16px;"></div>
+      <div class="ui-grid-a" style="margin:12px 12px; padding-bottom:12px;">
+        <div class="ui-block-a"><a href="javascript:void(0);" data-bind="click:addShortcut" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#4caf50; margin: 4px 4px; font-weight:300"><i class="far fa-fw fa-check-double" style="margin-right: 12px"></i>创建</a> </div>
+        <div class="ui-block-b"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#333333; margin: 4px 4px; font-weight:300"><i class="far fa-fw fa-times" style="margin-right: 12px"></i>取消</a> </div>
+      </div>
+    </ul>
+  </div>
+    
+    <div data-role="popup" id="popupDelShortcut" data-dismissible="false" data-transition="fade" data-theme="a" data-overlay-theme="a" style="min-width:300px;  border:none">
+    <ul data-role="listview" data-inset="true" style="border:none">
+      <li data-role="list-divider" style=" text-align: center; border-bottom-left-radius:0; border-bottom-right-radius:0; padding:14px 14px; background-color:#f44336; font-weight:300; border: none "><i class="fal fa-fw fa-folder-minus"></i> 删除快捷方式</li>
+      <p  style="margin:16px 16px; color:#333333">
+        是否删除下列快捷方式?<br>
+        <b><font size="+1" data-bind="text:deleting.name"></font></b>
+      </p>
+       
+      <div class="ui-grid-a" style="margin:12px 12px; padding-bottom:12px;">
+        <div class="ui-block-a"><a href="javascript:void(0);" data-bind="click:deleteShortcut" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#f44336; margin: 4px 4px; font-weight:300"><i class="far fa-fw fa-folder-minus" style="margin-right: 12px"></i>删除</a> </div>
+        <div class="ui-block-b"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b" style="background-color: #ffffff; color:#333333; margin: 4px 4px; font-weight:300"><i class="far fa-fw fa-times" style="margin-right: 12px"></i>取消</a> </div>
+      </div>
+    </ul>
+  </div>
+  <div data-role="popup" data-theme="b" data-overlay-theme="a" style="border-width: 0px">
+    <ul data-role="listview" class="ui-nodisc-icon ui-alt-icon" data-inset="true" style="min-width:230px; border-radius: 0em;">
+      <li data-role="list-divider" style="border-width: 0px; padding-left: 20px; background-color: #424242; border-radius: 0em;"> <i class="fa fa-ellipsis-h"></i> </li>
+      <li data-icon="carat-r"> <a href="#">用户切换</a> </li>
+      <li data-icon="carat-r"> <a href="#">授权管理</a> </li>
+    </ul>
+  </div>
+  <div data-role="panel" id="panelgrid" data-position-fixed="true" data-position="left" data-display="overlay" data-theme="a">
+    <div class="jqm-block-content" style="margin-left: -14px; margin-right: -14px; margin-top: -23px; margin-bottom: 14px; padding: 0px 9px; padding-top: 32px; background-image: url(images/bg/bgc2.jpg); background-size: cover; height: 170px; border:none; min-height: 0px; border-radius: 0em;">
+      <p align="center" style="font-size: 1.2em; margin-bottom: 0px; font-weight: 600"><img src="images/logobw.svg" style="height: 56px"><br>
+        <span style="color: #ffffff">businez</span></p>
+      <p align="center" style="margin-top: 30px; font-weight: 300; opacity: 0.5; color: #ffffff; text-shadow: none; font-size: 0.5em">eorion bpms | <b>Ver 3.5</b></p>
+    </div>
+    <div class="ui-grid-a" style=" margin:0px 0px; padding:16px 0px; margin-top: 32px">
+      <div class="ui-block-a" style=" margin:0px 0px; padding:0px 0px">
+        <p align="center"><a rel="external" href="index.html"><i class="fad fa-fw fa-planet-moon" style="color: #0086ff; font-size: 1.5em"></i> <span style="display: block; color: #607d8b; margin-top: 6px; font-size: 0.7em; font-weight: 400" data-i18n="my-bpms">我的BPMS</span></a></p>
+      </div>
+      <div class="ui-block-b" style=" margin:0px 0px; padding:0px 0px">
+        <p align="center"><a rel="external" target="_blank" href="https://mttmb.magna.cn" ><i class="fad fa-fw fa-chart-area" style="color: #0086ff; font-size: 1.5em"></i> <span style="display: block; color: #607d8b; margin-top: 6px; font-size: 0.7em; font-weight: 400" data-i18n="my-report">Report</span></a></p>
+      </div>
+    </div>
+    <div class="ui-grid-a" style=" margin:0px 0px; padding:12px 0px;">
+      <div class="ui-block-a" style=" margin:0px 0px; padding:0px 0px">
+        <p align="center"><a rel="external" href="task_list.html"><i class="fad fa-fw fa-inbox-in" style="color: #0086ff; font-size: 1.5em"></i> <span style="display: block; color: #607d8b; margin-top: 6px; font-size: 0.7em; font-weight: 400" data-i18n="my-todo">todo</span></a></p>
+      </div>
+      <div class="ui-block-b" style=" margin:0px 0px; padding:0px 0px">
+        <p align="center"><a rel="external" href="history_list.html"><i class="fad fa-fw fa-history" style="color: #0086ff; font-size: 1.5em"></i> <span style="display: block; color: #607d8b; margin-top: 6px; font-size: 0.7em; font-weight: 400" data-i18n="my-taskhistory">task histroy</span></a></p>
+      </div>
+    </div>
+    <div class="ui-grid-a" style=" margin:0px 0px; padding:12px 0px;">
+      <div class="ui-block-a" style=" margin:0px 0px; padding:0px 0px">
+        <p align="center"><a rel="external" href="process_list.html"><i class="fad fa-fw fa-layer-plus" style="color: #0086ff; font-size: 1.5em"></i> <span style="display: block; color: #607d8b; margin-top: 6px; font-size: 0.7em; font-weight: 400" data-i18n="create-process">createprocess</span></a></p>
+      </div>
+      <div class="ui-block-b" style=" margin:0px 0px; padding:0px 0px">
+        <p align="center"><a rel="external"   href="instance_list.html"><i class="fad fa-fw fa-hourglass-end" style="color: #0086ff; font-size: 1.5em"></i> <span style="display: block; color: #607d8b; margin-top: 6px; font-size: 0.7em; font-weight: 400" data-i18n="my-processhistory">myinstance</span></a></p>
+      </div>
+    </div>
+  </div>
+  <div data-role="panel" id="panelAccount" data-position-fixed="true" data-position="right" data-display="overlay" data-theme="a">
+    <div class="jqm-block-content" style="margin: -14px -14px; margin-bottom: 14px; padding: 9px 9px; padding-top: 30px; background-color: #f9f9f9; border:none; min-height: 0px; border-radius: 0em;">
+      <p align="center" style="margin-bottom:10px; color: #0086ff"> <i class="far fa-4x fa-fw fa-user-circle"></i> </p>
+      <p align="center" style="color: #000000; font-size: 1.3em; margin-bottom: 0px"> <span data-bind="text:user.name"></span></p>
+      <p align="center" style="margin-top: 2px; color: #90a4ae; font-size: 0.8em"> <span data-bind="text:user.email"></span></p>
+      <hr>
+      <p style="word-break: break-all; word-wrap: break-word; padding: 3px 9px; color: #546e7a"><i class="fad fa-fw fa-users" style="margin-right: 12px; color: #0086ff "></i><span data-bind="text:user.Roles"></span></p>
+      <p style="word-break: break-all; word-wrap: break-word; padding: 3px 9px; color: #546e7a"><i class="fad fa-fw fa-id-card-alt" style="margin-right: 12px; color: #0086ff "></i><span data-bind="text:user.sub"></span></p>
+      <hr>
+      <p align="center" style="margin-top: 24px; font-size: 1.2em;"> <a href="javascript:void(0);" data-bind="click:logout" style="color: #000000; font-weight: 300"> <i class="fad fa-sign-out" style="color: #0086ff; margin-right: 9px"></i><span data-i18n="signout">Logout</span></a> </p>
+    </div>
+  </div>
+  
+
+	<p align="right" style="font-size:1em; right:0px; bottom:0px; position:fixed"><a href="http://www.beian.miit.gov.cn/state/outPortal/loginPortal.action" target="view_window"><span style="color: #000000; font-weight: 100">沪ICP备19007614号</span></a></p>
+
+
+
+
+</div>
+
+
+
+<!-- /page -->
+<style>
+    #owl-demo .item img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        var owl = $("#owl-demo");
+        owl.owlCarousel({
+            autoPlay: 2000,
+            singleItem: true,
+            autoHeight: true,
+            pagination: false
+        });
+
+    });
+</script> 
+
+<script type="text/html" id="ProcessShortcut">
+  <div class="col-sm-4 col-xs-6 col-md-2 col-lg-2" style="padding: 0px 0px;">
+    <div class="jqm-block-content ui-responsive"  draggable="true" data-bind="attr:{title:name}"  style="margin: 2px 2px; padding: 8px 8px; border-color:#E4E4E4; min-height: 164px;max-height: 164px">
+      <font color="#000000" size="+1" style="font-weight:600; " data-bind="text:name"></font><br>
+      <!--<font color="#607d8b" style="font-weight:300" data-bind="text:processId.length>21? processId.substring(0,20)+'...' :processId"><br>-->
+      &nbsp;</font>
+      <div class="ui-grid-a" style=" margin:0px 0px; padding:0px 0px">
+        <div class="ui-block-a" style=" margin:0px 0px; padding:0px 0px">
+           <p align="left">
+             <a rel="external" data-bind="attr:{href:'process_create.html?'+ $.param({processDefinitionId:processId})}">
+              <i class="fad fa-external-link" style="font-size: 48px; color: #90a4ae; margin-top: 22px"></i>
+            </a>
+          </p>
+        </div>
+        <div class="ui-block-b" style=" margin:0px 0px; padding:0px 0px">
+          <p align="right" style="padding-top: 52px; padding-right: 6px"><a href="#popupDelShortcut" data-bind="click:$root.onDeleteShortcut.bind($root)" data-rel="popup" data-transition="none" style="color: #f44336"><i class="fad fa-fw fa-times-circle" style="margin-top：22px"></i></a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+</body>
+ 
+</html>

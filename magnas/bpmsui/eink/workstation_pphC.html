@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KANPOD WorkStation</title>
+<meta name="description" content="Page Title">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
+<!-- Call App Mode on ios devices -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!-- Remove Tap Highlight on Windows Phone IE -->
+<meta name="msapplication-tap-highlight" content="no">
+<!-- base css -->
+<link rel="stylesheet" media="screen, print" href="css/vendors.bundle.css">
+<link rel="stylesheet" media="screen, print" href="css/app.bundle.css">
+<!--<link rel="stylesheet" media="screen, print" href="css/themes/cust-theme-3.css">-->
+<link rel="stylesheet" media="screen, print" href="css/fa-brands.css">
+<link rel="stylesheet" media="screen, print" href="css/fa-regular.css">
+<link rel="stylesheet" media="screen, print" href="css/fa-duotone.css">
+<link rel="stylesheet" media="screen, print" href="css/fa-solid.css">
+<link rel="stylesheet" media="screen, print" href="css/datagrid/datatables/datatables.bundle.css">
+
+</head>
+<body >
+
+<!-- BEGIN Page Wrapper -->
+<div class="page-wrapper">
+  <div class="page-inner"> 
+    <!-- BEGIN Left Aside --> 
+    
+    <!-- END Left Aside -->
+    <div class="page-content-wrapper"> 
+
+      <main id="js-page-contentmain" role="main" class="page-content p-0 bg-gray-900"> 
+        
+        <!-- left slider --> 
+        
+        <!-- end left slider --> 
+        <!-- inbox container -->
+        <div class="row  d-flex flex-grow-1 p-0 "> 
+  
+          <div class="col-12 col-md-12 col-lg-12 col-xl-12 p-0 ">
+            <div class="row " style="margin: 0px 0px" id="js-page-content"> 
+
+              
+            </div>
+          </div>
+        </div>
+        
+        <!-- Your main content goes below here: --> 
+        
+      </main>
+      <!-- this overlay is activated only when mobile menu is triggered -->
+      <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
+
+      <p id="js-color-profile" class="d-none"> <span class="color-primary-50"></span> <span class="color-primary-100"></span> <span class="color-primary-200"></span> <span class="color-primary-300"></span> <span class="color-primary-400"></span> <span class="color-primary-500"></span> <span class="color-primary-600"></span> <span class="color-primary-700"></span> <span class="color-primary-800"></span> <span class="color-primary-900"></span> <span class="color-info-50"></span> <span class="color-info-100"></span> <span class="color-info-200"></span> <span class="color-info-300"></span> <span class="color-info-400"></span> <span class="color-info-500"></span> <span class="color-info-600"></span> <span class="color-info-700"></span> <span class="color-info-800"></span> <span class="color-info-900"></span> <span class="color-danger-50"></span> <span class="color-danger-100"></span> <span class="color-danger-200"></span> <span class="color-danger-300"></span> <span class="color-danger-400"></span> <span class="color-danger-500"></span> <span class="color-danger-600"></span> <span class="color-danger-700"></span> <span class="color-danger-800"></span> <span class="color-danger-900"></span> <span class="color-warning-50"></span> <span class="color-warning-100"></span> <span class="color-warning-200"></span> <span class="color-warning-300"></span> <span class="color-warning-400"></span> <span class="color-warning-500"></span> <span class="color-warning-600"></span> <span class="color-warning-700"></span> <span class="color-warning-800"></span> <span class="color-warning-900"></span> <span class="color-success-50"></span> <span class="color-success-100"></span> <span class="color-success-200"></span> <span class="color-success-300"></span> <span class="color-success-400"></span> <span class="color-success-500"></span> <span class="color-success-600"></span> <span class="color-success-700"></span> <span class="color-success-800"></span> <span class="color-success-900"></span> <span class="color-fusion-50"></span> <span class="color-fusion-100"></span> <span class="color-fusion-200"></span> <span class="color-fusion-300"></span> <span class="color-fusion-400"></span> <span class="color-fusion-500"></span> <span class="color-fusion-600"></span> <span class="color-fusion-700"></span> <span class="color-fusion-800"></span> <span class="color-fusion-900"></span> </p>
+
+    </div>
+  </div>
+</div>
+
+<script src="js/vendors.bundle.js"></script> 
+<script src="js/app.bundle.js"></script> 
+<script src="js/dependency/moment/moment.js"></script> 
+<script src="js/statistics/peity/peity.bundle.js"></script> 
+<script src="js/statistics/sparkline/sparkline.bundle.js"></script> 
+<script src="js/handlebars-v4.7.3.js"></script> 
+<script src="js/moment.js"></script> 
+<script type="text/javascript" src="js/echarts.min.js"></script> 
+<script type="text/javascript">
+            // push settings with "false" save to local
+            initApp.pushSettings("nav-function-minify layout-composed", false);
+
+        </script> 
+<script id="template" type="text/x-handlebars-template">
+
+
+<div class="col-12 mt-3 p-0 pl-6 pr-6">
+<div id="_left" style="margin-top: 10px; height: 260px" class="col-12 p-0"></div> 
+</div>
+
+   <div class="col-12 mt-0 pl-6 pr-6 pt-3">
+    
+		 <table class="table table-bordered text-white">
+			<thead>
+			  <tr class="bg-gray-600">
+			    <th style="font-size:1em; min-width: 65px">DATE</th>
+				<th style="font-size:1em; min-width: 65px">1</th>
+				<th style="font-size:1em; min-width: 65px">2</th>
+				<th style="font-size:1em; min-width: 65px">3</th>
+				<th style="font-size:1em; min-width: 65px">4</th>
+				<th style="font-size:1em; min-width: 65px">5</th>
+				<th style="font-size:1em; min-width: 65px">6</th>
+				<th style="font-size:1em; min-width: 65px">7</th>
+				<th style="font-size:1em; min-width: 65px">8</th>
+				<th style="font-size:1em; min-width: 65px">9</th>
+				<th style="font-size:1em; min-width: 65px">10</th>
+				<th style="font-size:1em; min-width: 65px">11</th>
+				<th style="font-size:1em; min-width: 65px">12</th>
+				<th style="font-size:1em; min-width: 65px">13</th>
+				<th style="font-size:1em; min-width: 65px">14</th>
+				<th style="font-size:1em; min-width: 65px">15</th>
+			  </tr>
+			</thead>
+			<tbody>
+
+			  <tr class="bg-gray-800">
+			    <th style="font-size:1em; min-width: 65px">生产数</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[0].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[1].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[2].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[3].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[4].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[5].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[6].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[7].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[8].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[9].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[10].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[11].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[12].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[13].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[14].outputQty}}</th>
+			  </tr>
+			  <tr class="bg-gray-800">
+			    <th style="font-size:1em; min-width: 65px">工作时间</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[0].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[1].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[2].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[3].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[4].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[5].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[6].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[7].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[8].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[9].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[10].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[11].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[12].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[13].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[14].workTime}}</th>
+			  </tr>
+			  <tr class="bg-gray-800">
+			    <th style="font-size:1em; min-width: 65px">PPH</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[0].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[1].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[2].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[3].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[4].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[5].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[6].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[7].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[8].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[9].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[10].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[11].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[12].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[13].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[14].pph}}</th>
+			  </tr>
+			</tbody>
+		</table>
+		
+		
+		<table class="table table-bordered text-white">
+			<thead>
+			  <tr class="bg-gray-600">
+			    <th style="font-size:1em; min-width: 65px">DATE</th>
+				<th style="font-size:1em; min-width: 65px">16</th>
+				<th style="font-size:1em; min-width: 65px">17</th>
+				<th style="font-size:1em; min-width: 65px">18</th>
+				<th style="font-size:1em; min-width: 65px">19</th>
+				<th style="font-size:1em; min-width: 65px">20</th>
+				<th style="font-size:1em; min-width: 65px">21</th>
+				<th style="font-size:1em; min-width: 65px">22</th>
+				<th style="font-size:1em; min-width: 65px">23</th>
+				<th style="font-size:1em; min-width: 65px">24</th>
+				<th style="font-size:1em; min-width: 65px">25</th>
+				<th style="font-size:1em; min-width: 65px">26</th>
+				<th style="font-size:1em; min-width: 65px">27</th>
+				<th style="font-size:1em; min-width: 65px">28</th>
+				<th style="font-size:1em; min-width: 65px">29</th>
+				<th style="font-size:1em; min-width: 65px">30</th>
+				<th style="font-size:1em; min-width: 65px">31</th>
+			  </tr>
+			</thead>
+			<tbody>
+
+			  <tr class="bg-gray-800">
+			    <th style="font-size:1em; min-width: 65px">生产数</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[15].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[16].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[17].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[18].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[19].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[20].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[21].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[22].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[23].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[24].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[25].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[26].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[27].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[28].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[29].outputQty}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[30].outputQty}}</th>
+			  </tr>
+			  <tr class="bg-gray-800">
+			    <th style="font-size:1em; min-width: 65px">工作时间</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[15].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[16].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[17].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[18].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[19].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[20].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[21].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[22].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[23].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[24].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[25].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[26].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[27].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[28].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[29].workTime}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[30].workTime}}</th>
+			  </tr>
+			  <tr class="bg-gray-800">
+			    <th style="font-size:1em; min-width: 65px">PPH</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[15].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[16].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[17].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[18].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[19].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[20].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[21].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[22].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[23].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[24].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[25].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[26].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[27].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[28].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[29].pph}}</th>
+				<th style="font-size:1em; min-width: 65px">{{list.[30].pph}}</th>
+			  </tr>
+			</tbody>
+		</table>	
+		
+	</div>
+  
+ 
+  
+</script> 
+<script type="text/javascript">
+	
+
+	//设置时间
+	var current_datetime = new Date();
+	var formatted_date = moment(new Date().getTime()).format("YYYY-MM-DD HH:mm:ss");
+	$('#refreshTime').text(formatted_date)
+
+	//获取sn参数
+	function getQueryVariable(variable)
+	{
+		   var query = window.location.search.substring(1);
+		   var vars = query.split("&");
+		   for (var i=0;i<vars.length;i++) {
+				   var pair = vars[i].split("=");
+				   if(pair[0] == variable){return pair[1];}
+		   }
+		   return(false);
+	}
+
+	var sn = (getQueryVariable("sn") === false ? "d86e3daca16383d9" : getQueryVariable("sn"));	
+	
+	//从metabase获取数据并展示
+	
+	var metabaseUrl = "https://mttmb.magna.cn/public/question/d5d6df00-6e4e-4c76-b083-2425a97baaf6.json";//
+
+	var getDataSettings = {
+	  "url": encodeURI(metabaseUrl + "?parameters=[{\"type\":\"category\",\"target\":[\"variable\",[\"template-tag\",\"sn\"]],\"value\":\"" + sn + "\"}]"),
+	  "method": "GET"
+	}
+		
+	$.ajax(getDataSettings).done(function (response) {
+		if(response[0]){
+			var list = []
+			var details = JSON.parse(response[0].details);
+			list.push(details.find(function(elem){return elem.day == "1";}) ? details.find(function(elem){return elem.day == "1";}) : {"day":"1","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "2";}) ? details.find(function(elem){return elem.day == "2";}) : {"day":"2","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "3";}) ? details.find(function(elem){return elem.day == "3";}) : {"day":"3","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "4";}) ? details.find(function(elem){return elem.day == "4";}) : {"day":"4","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "5";}) ? details.find(function(elem){return elem.day == "5";}) : {"day":"5","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "6";}) ? details.find(function(elem){return elem.day == "6";}) : {"day":"6","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "7";}) ? details.find(function(elem){return elem.day == "7";}) : {"day":"7","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "8";}) ? details.find(function(elem){return elem.day == "8";}) : {"day":"8","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "9";}) ? details.find(function(elem){return elem.day == "9";}) : {"day":"9","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "10";}) ? details.find(function(elem){return elem.day == "10";}) : {"day":"10","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "11";}) ? details.find(function(elem){return elem.day == "11";}) : {"day":"11","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "12";}) ? details.find(function(elem){return elem.day == "12";}) : {"day":"12","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "13";}) ? details.find(function(elem){return elem.day == "13";}) : {"day":"13","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "14";}) ? details.find(function(elem){return elem.day == "14";}) : {"day":"14","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "15";}) ? details.find(function(elem){return elem.day == "15";}) : {"day":"15","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "16";}) ? details.find(function(elem){return elem.day == "16";}) : {"day":"16","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "17";}) ? details.find(function(elem){return elem.day == "17";}) : {"day":"17","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "18";}) ? details.find(function(elem){return elem.day == "18";}) : {"day":"18","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "19";}) ? details.find(function(elem){return elem.day == "19";}) : {"day":"19","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "20";}) ? details.find(function(elem){return elem.day == "20";}) : {"day":"20","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "21";}) ? details.find(function(elem){return elem.day == "21";}) : {"day":"21","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "22";}) ? details.find(function(elem){return elem.day == "22";}) : {"day":"22","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "23";}) ? details.find(function(elem){return elem.day == "23";}) : {"day":"23","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "24";}) ? details.find(function(elem){return elem.day == "24";}) : {"day":"24","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "25";}) ? details.find(function(elem){return elem.day == "25";}) : {"day":"25","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "26";}) ? details.find(function(elem){return elem.day == "26";}) : {"day":"26","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "27";}) ? details.find(function(elem){return elem.day == "27";}) : {"day":"27","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "28";}) ? details.find(function(elem){return elem.day == "28";}) : {"day":"28","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "29";}) ? details.find(function(elem){return elem.day == "29";}) : {"day":"29","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "30";}) ? details.find(function(elem){return elem.day == "30";}) : {"day":"30","outputQty":"","workTime":"","pph":""});
+			list.push(details.find(function(elem){return elem.day == "31";}) ? details.find(function(elem){return elem.day == "31";}) : {"day":"31","outputQty":"","workTime":"","pph":""});
+
+			console.log(response[0])
+			console.log(list)
+			
+			var renderData = {"data" : response[0], "list": list}
+
+			var template = document.getElementById('template').innerHTML;
+			
+			var rendered = Handlebars.compile(template);
+			document.getElementById('js-page-content').innerHTML = rendered(renderData);	
+            
+			$( '#_left' ).ready(function() {
+
+					var myChartL = echarts.init(document.getElementById("_left"), 'dark');
+					optionL = {
+						title: {
+							text: 'PPH',
+							top: "top",
+							left: "center",
+							textStyle: {
+								fontSize: 24
+							}
+						   
+						},
+						xAxis: {
+							type: 'category',
+							data: ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"],
+							axisLabel: {
+								fontSize: 16
+							}
+						},
+						yAxis: {
+							type: 'value',
+							axisLabel: {
+								fontSize: 16
+							}
+						},
+						series: [{
+							data: [list[0].pph,list[1].pph,list[2].pph,list[3].pph,list[4].pph,list[5].pph,list[6].pph,list[7].pph,list[8].pph,list[9].pph,list[10].pph,list[11].pph,list[12].pph,list[13].pph,list[14].pph,list[15].pph,
+								   list[16].pph,list[17].pph,list[18].pph,list[19].pph,list[20].pph,list[21].pph,list[22].pph,list[23].pph,list[24].pph,list[25].pph,list[26].pph,list[27].pph,list[28].pph,list[29].pph,list[30].pph
+								  ],
+							type: 'line'
+						}]
+					};
+					if (optionL && typeof optionL === "object") {
+						myChartL.setOption(optionL, true);
+					}	
+				
+			});				
+			
+		}
+
+		
+	});
+
+ 
+</script> 
+
+<!--This page contains the basic JS and CSS files to get started on your project. If you need aditional addon's or plugins please see scripts located at the bottom of each page in order to find out which JS/CSS files to add.-->
+</body>
+</html>

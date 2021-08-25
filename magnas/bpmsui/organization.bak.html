@@ -1,0 +1,617 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, target-densitydpi=device-dpi">
+    <title>BPMS - 组织关系</title>
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile.css"/>
+    <link rel="stylesheet" type="text/css" href="css/color.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" type="text/css" href="css/jqm-demos.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="css/google-icon.css">
+    <link rel="stylesheet" type="text/css" href="css/site.css"/>
+
+    <script src="libs/jquery.js?v=20210120"></script>
+    <script src="libs/jquery.mobile.js?v=1561951604711"></script>
+    <script src="libs/bootstrap.js?v=1561951604711"></script>
+    <script src="libs/knockout.js?v=1561951604711"></script>
+    <script src="libs/koExternalTemplateEngine_all.js?v=1561951604711"></script>
+    <script src="libs/ko.extension.js?v=1561951604711"></script>
+    <script src="libs/moment/moment.js?v=1561951604711"></script>
+    <script src="common/config.js?v=1561951604711"></script>
+    <script src="common/util.js?v=1561951604711"></script>
+    <script src="common/service.js?v=1561951604711"></script>
+    <script src="common/baseViewModel.js?v=1561951604711"></script>
+
+    <script src="organization.js?v=1561951604711"></script>
+    <script src="organizationViewModel.js?v=1561951604711"></script>
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <style>
+        /* These apply across all breakpoints because they are outside of a media query */
+        /* Make the labels light gray all caps across the board */
+
+        /* White bg, large blue text for rank and title */
+        .movie-list tbody th {
+            font-size: 1.2em;
+            background-color: #fff;
+            color: #77bbff;
+            margin-top: 0em;
+            text-align: center;
+        }
+
+        /*  Add a bit of extra left padding for the title */
+        .movie-list tbody td.title {
+            padding-left: .8em;
+        }
+
+        /* Add strokes */
+        .movie-list thead th {
+            border-bottom: 1px solid #d6d6d6; /* non-RGBA fallback */
+            border-bottom: 1px solid rgba(0, 0, 0, .1);
+        }
+
+        .movie-list tbody th, .movie-list tbody td {
+            border-bottom: 1px solid #e6e6e6; /* non-RGBA fallback  */
+            border-bottom: 1px solid rgba(0, 0, 0, .05);
+        }
+
+        /*  Custom stacked styles for mobile sizes */
+        /*  Use a max-width media query so we don't have to undo these styles */
+        @media (max-width: 40em) {
+            /*  Negate the margin between sections */
+            .movie-list tbody th {
+                margin-top: 0;
+                text-align: left;
+            }
+
+            /*  White bg, large blue text for rank and title */
+            .movie-list tbody th, .movie-list tbody td.title {
+                display: block;
+                font-size: 1.2em;
+                line-height: 110%;
+                margin-top: 0em;
+                padding: .5em .5em;
+                background-color: #fff;
+                color: #77bbff;
+                -moz-box-shadow: 0 1px 6px rgba(0, 0, 0, .1);
+                -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, .1);
+                box-shadow: 0 1px 6px rgba(0, 0, 0, .1);
+            }
+
+            /*  Hide labels for rank and title */
+            .movie-list tbody th .ui-table-cell-label, .movie-list tbody td.title .ui-table-cell-label {
+                display: none;
+            }
+
+            /*  Position the title next to the rank, pad to the left */
+            .movie-list tbody td.title {
+                margin-top: -2.1em;
+                padding-left: 2.2em;
+                border-bottom: 1px solid rgba(0, 0, 0, .15);
+            }
+
+            /*  Make the data bold */
+            .movie-list th, .movie-list td {
+                font-weight: bold;
+            }
+
+            /* Make the label elements a percentage width */
+            .movie-list td .ui-table-cell-label, .movie-list th .ui-table-cell-label {
+                min-width: 20%;
+            }
+        }
+
+        /* Media query to show as a standard table at wider widths */
+     
+        @media ( min-width: 40em ) {
+            /* Show the table header rows */
+            .movie-list td, .movie-list th, .movie-list tbody th, .movie-list tbody td, .movie-list thead td, .movie-list thead th {
+                display: table-cell;
+                margin: 0;
+            }
+            /* Hide the labels in each cell */
+            .movie-list td .ui-table-cell-label, .movie-list th .ui-table-cell-label {
+                display: none;
+            }
+        }
+
+        /* Hack to make IE9 and WP7.5 treat cells like block level elements */
+        /* Applied in a max-width media query up to the table layout breakpoint so we don't need to negate this */
+        @media ( max-width: 40em ) {
+            .movie-list td, .movie-list th {
+                width: 100%;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                float: left;
+                clear: left;
+            }
+        }
+    </style>
+    <style>
+        @media screen and (min-width: 0px) {
+            .row {
+                margin-left: 0px;
+                margin-right: 0px;
+                margin-top: 0px;
+                margin-bottom: 16px;
+            }
+        }
+
+        @media screen and (min-width: 667px) {
+            .row {
+                margin-left: 0px;
+                margin-right: 0px;
+                margin-top: 16px;
+                margin-bottom: 16px;
+            }
+        }
+
+        @media screen and (min-width: 992px) {
+            .row {
+                margin-left: 80px;
+                margin-right: 0px;
+                margin-top: 16px;
+            }
+        }
+
+        @media screen and (min-width: 1200px) {
+            .row {
+                margin-left: 80px;
+                margin-right: 80px;
+                margin-top: 32px;
+            }
+        }
+
+        @media screen and (min-width: 1600px) {
+            .row {
+                margin-left: 80px;
+                margin-right: 80px;
+                margin-top: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div data-role="page" id="main" data-theme="a" style="background-image: url(images/bg.jpg);">
+<div data-role="content" style="padding: 2px 2px;">
+<div class="jqm-block-content hidden-lg hidden-sm hidden-md"
+     style="margin: -2px -2px; margin-bottom: 2px; padding: 8px 8px; padding-top:1em; background-image: url(images/bg/cncf_slide_mem.png); background-size:cover; border-color:#E4E4E4; min-height: 0px; border-radius:0px; border-width:0px">
+    <div class="ui-grid-a">
+        <div class="ui-block-a">
+            <p align="left" style="margin-top: 0px; text-shadow: 0px 1px 3px rgba(128,128,128,1.00);"><font
+                    color="#FFFFFF" size="+1" style="font-weight:300"><i class="fa fa-sitemap"></i> 组织关系</font><br>
+                <font color="#FFFFFF" size="-1">BPMS</font></p>
+        </div>
+        <div class="ui-block-b">
+            <p align="right" style="padding-right: 4px; margin-top: 0px;"><a href="#panelgrid"><font color="#FFFFFF"
+                                                                                                     style="text-shadow: 0px 0px 3px rgba(128,128,128,1.00);"><i
+                    class="fa fa-2x fa-bars"></i></font></a></p>
+        </div>
+    </div>
+    <p align="center" style="margin-bottom: 20px; margin-top: -20px;"><img src="images/dlogosm2.png"
+                                                                           height="42px"></p>
+</div>
+<div class="jqm-block-content hidden-xs"
+     style="margin: 2px 2px; padding: 8px 8px; background-image: url(images/bg/cncf_slide2d.png); background-size:contain; background-attachment:fixed; border-color:#E4E4E4; min-height: 0px;">
+    <div class="ui-grid-a" style="padding: 9px 9px">
+        <div class="ui-block-a" style=" padding-right: 19px;">
+            <div class="ui-grid-b" style="background-color:rgba(46,46,46,0.50); border-radius: 0.3em; padding: 9px 9px">
+                <div class="ui-block-a">
+                    <p align="center" style="text-shadow: 0px 1px 3px rgba(128,128,128,1.00); margin: 0px 0px"><a
+                            href="#"><font size="+1" color="#FFFFFF"><i class="fa fa-dashboard"></i></font><br>
+                        <font size="-1" color="#FFFFFF">我的工作台</font></a></p>
+                </div>
+                <div class="ui-block-b">
+                    <p align="center" style="text-shadow: 0px 1px 3px rgba(128,128,128,1.00); margin: 0px 0px"><a
+                            href="#"><font size="+1" color="#FFFFFF"><i class="fa fa-book"></i></font><br>
+                        <font size="-1" color="#FFFFFF">使用说明</font></a></p>
+                </div>
+                <div class="ui-block-c">
+                    <p align="center" style="text-shadow: 0px 1px 3px rgba(128,128,128,1.00); margin: 0px 0px"><a
+                            href="#"><font size="+1" color="#FFFFFF"><i class="fa fa-ellipsis-h"></i></font><br>
+                        <font size="-1" color="#FFFFFF">更多</font> </a></p>
+                </div>
+            </div>
+        </div>
+        <div class="ui-block-b">
+            <div class="ui-grid-a">
+                <div class="ui-block-a">
+                    <p align="left"
+                       style="margin-top: 0px; text-shadow: 0px 1px 3px rgba(128,128,128,1.00); padding-left: 4px;">
+                        <font color="#FFFFFF" size="+1" style="font-weight:300"><i class="fa fa-sitemap"></i>
+                            组织关系</font><br>
+                        <font color="#FFFFFF" size="-1">BPMS</font></p>
+                </div>
+                <div class="ui-block-b">
+                    <p align="right" style="padding-right: 4px; margin-top: 0px;"><a href="#panelgrid"><font
+                            color="#FFFFFF" style="text-shadow: 0px 0px 3px rgba(128,128,128,1.00);"><i
+                            class="fa fa-2x fa-bars"></i></font></a></p>
+                </div>
+            </div>
+            <p align="center" style="margin-top: -34px;"><img src="images/dlogosm2.png" height="42px"></p>
+        </div>
+    </div>
+</div>
+<ul class="nav nav-tabs" id="myTabs" role="tablist"
+    style="margin-left: 2px; margin-right: 2px; margin-top: 4px; border-bottom-width: 0px;">
+    <li style="min-width: 80px;" role="presentation" class="active"><a href="#home" id="home-tab" role="tab"
+                                                                       data-toggle="tab" aria-controls="home"
+                                                                       aria-expanded="true">
+        <p align="center" style="margin: 0px 0px;"><i class="fa fa-2x fa-user-plus"></i></p>
+    </a></li>
+    <li style="min-width: 80px;" role="presentation"><a href="#attachment" role="tab" id="attachment-tab"
+                                                        data-toggle="tab" aria-controls="attachment">
+        <p align="center" style="margin: 0px 0px;"><i class="fa fa-2x fa-group"></i></p>
+    </a></li>
+    <li style="min-width: 80px;" role="presentation"><a href="#hislog" role="tab" id="hislog-tab" data-toggle="tab"
+                                                        aria-controls="hislog">
+        <p align="center" style="margin: 0px 0px;"><i class="fa fa-2x fa-file-zip-o"></i></p>
+    </a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="home" aria-labelledBy="home-tab">
+    <div class="ui-body ui-body-b ui-content"
+         style="background-image: url(images/works-bg.jpg); border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 500px; margin: 0 2px; padding: 6px 6px">
+        <div class="row">
+            <h4 style="font-weight:400">创建汇报关系</h4>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-sm-12 col-xs-12 col-md-4"
+                 style="margin-bottom: 4px; padding: 3px 3px; font-size:medium">
+                <p style="color:#9E9E9E;"><font size="-1"><i class="fa fa-user"></i>&nbsp;汇报人</font></p>
+
+                <form class="ui-filterable">
+                    <input id="input1" data-type="search" placeholder="人员搜索...">
+                </form>
+                <ul data-role="listview" data-filter="true" class="ui-nodisc-icon ui-alt-icon"
+                    data-filter-reveal="true" data-input="#autocomplete-input1" data-inset="true">
+                    <li data-icon="check"><a href="#">邵剑秋<span class="ui-li-count">123456</span></a></li>
+                    <li data-icon="check"><a href="#">王晓新<span class="ui-li-count">776556</span></a></li>
+                    <li data-icon="check"><a href="#">陈俊<span class="ui-li-count">987654</span></a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-12 col-xs-12 col-md-4"
+                 style="margin-bottom: 4px; padding: 3px 3px; font-size:medium">
+                <p style="color:#9E9E9E;"><font size="-1"><i class="fa fa-user-md"></i>&nbsp;汇报对象</font></p>
+
+                <form class="ui-filterable">
+                    <input id="input2" data-type="search" placeholder="人员搜索...">
+                </form>
+                <ul data-role="listview" data-filter="true" class="ui-nodisc-icon ui-alt-icon"
+                    data-filter-reveal="true" data-input="#autocomplete-input" data-inset="true">
+                    <li data-icon="check"><a href="#">邵剑秋<span class="ui-li-count">123456</span></a></li>
+                    <li data-icon="check"><a href="#">王晓新<span class="ui-li-count">776556</span></a></li>
+                    <li data-icon="check"><a href="#">陈俊<span class="ui-li-count">987654</span></a></li>
+                </ul>
+            </div>
+            <div class="col-lg-8 col-sm-12 col-xs-12 col-md-8"
+                 style="margin-bottom: 4px; padding: 3px 3px; font-size:medium">
+                <p style="color:#9E9E9E;"><font size="-1"><i class="fa fa-industry"></i>&nbsp;LoB业务线</font></p>
+
+                <form class="ui-filterable">
+                    <input id="autocomplete-input2" data-type="search" placeholder="业务线搜索...">
+                </form>
+                <ul data-role="listview" data-filter="true" class="ui-nodisc-icon ui-alt-icon"
+                    data-filter-reveal="true" data-input="#autocomplete-input2" data-inset="true">
+                    <li data-icon="check"><a href="#">物流<span class="ui-li-count">运营中心</span></a></li>
+                    <li data-icon="check"><a href="#">生产<span class="ui-li-count">运营中心</span></a></li>
+                    <li data-icon="check"><a href="#">软件<span class="ui-li-count">信息中心</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-sm-12 col-xs-12 col-md-8" style="padding:3px 3px;">
+                <legend style="margin-bottom:3px;"><font size="-1" color="#9e9e9e"><i class="fa fa-sitemap"></i>&nbsp;汇报关系图</font>
+                </legend>
+                <ul data-role="listview" class="ui-nodisc-icon ui-alt-icon" data-inset="true">
+                    <li data-icon="user"><a href="#">
+                        <p><b>汇报人</b></p>
+
+                        <p>邵剑秋</p>
+                        <span class="ui-li-count">123456</span></a></li>
+                    <li data-icon="user"><a href="#">
+                        <p><b>汇报对象</b></p>
+
+                        <p>是蓉珠</p>
+                        <span class="ui-li-count">776556</span></a></li>
+                    <li data-icon="gear"><a href="#">
+                        <p><b>LoB业务线</b></p>
+
+                        <p>生产管理</p>
+                        <span class="ui-li-count">运营中心</span></a></li>
+                </ul>
+                <div class="jqm-block-content"
+                     style=" margin:0 0; padding:0 0; background-image: url(images/orgdemo.PNG); background-size: cover; border-color:#E4E4E4; min-height: 600px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div role="tabpanel" class="tab-pane" id="attachment" aria-labelledBy="attachment-tab">
+    <div class="ui-body ui-body-b ui-content"
+         style="background-image: url(images/works-bg.jpg); border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 500px; margin: 0 2px; padding: 6px 6px">
+        <div class="row">
+            <h4 style="font-weight:400">查询汇报关系</h4>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-sm-12 col-xs-12 col-md-8"
+                 style="margin-bottom: 4px; padding: 3px 3px; font-size:medium">
+                <legend style="margin-bottom:3px;"><font size="-1" color="#9e9e9e"><i class="fa fa-search"></i>&nbsp;按汇报人查询</font>
+                </legend>
+                <form class="ui-filterable">
+                    <input id="autocomplete-input5" data-type="search" placeholder="人员搜索...">
+                </form>
+                <ul data-role="listview" data-filter="true" class="ui-nodisc-icon ui-alt-icon"
+                    data-filter-reveal="true" data-input="#autocomplete-input5" data-inset="true">
+                    <li data-icon="check"><a href="#">邵剑秋<span class="ui-li-count">123456</span></a></li>
+                    <li data-icon="check"><a href="#">王晓新<span class="ui-li-count">776556</span></a></li>
+                    <li data-icon="check"><a href="#">陈俊<span class="ui-li-count">987654</span></a></li>
+                </ul>
+            </div>
+            <div class="col-lg-8 col-sm-12 col-xs-12 col-md-8"
+                 style="margin-bottom: 4px; padding: 3px 3px; font-size:medium">
+                <legend style="margin-bottom:3px;"><font size="-1" color="#9e9e9e"><i class="fa fa-search"></i>&nbsp;按汇报对象查询</font>
+                </legend>
+                <form class="ui-filterable">
+                    <input id="autocomplete-input6" data-type="search" placeholder="人员搜索...">
+                </form>
+                <ul data-role="listview" data-filter="true" class="ui-nodisc-icon ui-alt-icon"
+                    data-filter-reveal="true" data-input="#autocomplete-input6" data-inset="true">
+                    <li data-icon="check"><a href="#">邵剑秋<span class="ui-li-count">123456</span></a></li>
+                    <li data-icon="check"><a href="#">王晓新<span class="ui-li-count">776556</span></a></li>
+                    <li data-icon="check"><a href="#">陈俊<span class="ui-li-count">987654</span></a></li>
+                </ul>
+            </div>
+            <div class="col-lg-8 col-sm-12 col-xs-12 col-md-8"
+                 style="margin-bottom: 4px; padding: 3px 3px; font-size:medium">
+                <legend style="margin-bottom:3px;"><font size="-1" color="#9e9e9e"><i
+                        class="fa fa-chain-broken"></i>&nbsp;未分配组织关系</font></legend>
+                <a href="#" class="ui-btn ui-corner-all ui-icon-search ui-btn-icon-left">查询</a></div>
+            <div class="col-lg-8 col-sm-12 col-xs-12 col-md-8"
+                 style="margin-bottom: 4px; padding: 3px 3px; font-size:medium">
+                <legend style="margin-bottom:3px;"><font size="-1" color="#9e9e9e"><i
+                        class="fa fa-chain-broken"></i>&nbsp;未分配业务关系</font></legend>
+                <a href="#" class="ui-btn ui-corner-all ui-icon-search ui-btn-icon-left">查询</a></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-sm-12 col-xs-12 col-md-8" style="padding:3px 3px;">
+                <legend style="margin-bottom:3px;"><font size="-1" color="#9e9e9e"><i class="fa fa-table"></i>&nbsp;汇报关系表</font>
+                </legend>
+                <form class="ui-filterable" style="text-shadow: 0 0 0;">
+                    <input data-theme="b" id="rich-autocomplete-input2" data-type="search" placeholder="关键字查询...">
+                </form>
+                <ul data-role="listview" data-filter="true" data-split-icon="edit" data-split-theme="b"
+                    data-inset="true" data-input="#rich-autocomplete-input2">
+                    <li><a href="#">
+                        <p><font color="#9e9e9e">汇报人员</font>&nbsp;<b>邵剑秋&nbsp;123456</b></p>
+
+                        <p><font color="#9e9e9e">汇报对象</font>&nbsp;<b>是蓉珠&nbsp;654321</b></p>
+                        <span class="ui-li-count">OPC-PUR 采购</span></a><a href="#popupedit" data-rel="popup"
+                                                                          data-position-to="window"
+                                                                          data-transition="pop">edit</a></li>
+                    <li><a href="#">
+                        <p><font color="#9e9e9e">汇报人员</font>&nbsp;<b>邵剑秋&nbsp;123456</b></p>
+
+                        <p><font color="#9e9e9e">汇报对象</font>&nbsp;<b>N/A&nbsp;N/A</b></p>
+                        <span class="ui-li-count">N/A</span></a><a href="#popupedit" data-rel="popup"
+                                                                   data-position-to="window"
+                                                                   data-transition="pop">edit</a>
+                    </li>
+                    <li><a href="#">
+                        <p><font color="#9e9e9e">汇报人员</font>&nbsp;<b>陈骏&nbsp;123456</b></p>
+
+                        <p><font color="#9e9e9e">汇报对象</font>&nbsp;<b>N/A&nbsp;N/A</b></p>
+                        <span class="ui-li-count">N/A</span></a><a href="#popupedit" data-rel="popup"
+                                                                   data-position-to="window"
+                                                                   data-transition="pop">edit</a>
+                    </li>
+                </ul>
+                <div data-role="popup" id="popupedit" data-theme="b" data-overlay-theme="a"
+                     style="border-width: 0px">
+                    <ul data-role="listview" class="ui-nodisc-icon ui-alt-icon" data-inset="true"
+                        style="min-width:230px; border-radius: 0em;">
+                        <li data-role="list-divider"
+                            style="border-width: 0px;  background-color: #424242; border-radius: 0em; text-shadow:0 0 0">
+                            <i class="fa fa-ellipsis-h"></i></li>
+                        <li data-icon="eye"><a href="#">记录明细</a></li>
+                        <li data-icon="delete"><a href="#">删除记录</a></li>
+                        <li data-icon="edit"><a href="#" data-rel="back">更新记录</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div role="tabpanel" class="tab-pane" id="hislog" aria-labelledBy="hislog-tab">
+    <div class="ui-body ui-body-b ui-content"
+         style="background-image: url(images/works-bg.jpg); border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 500px; margin: 0 2px; padding: 6px 6px">
+        <div class="row">
+            <h4 style="font-weight:400">日志查询</h4>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-sm-12 col-xs-12 col-md-4"
+                 style="margin-bottom: 4px; padding: 3px 3px; font-size:medium">
+                <p style="color:#9E9E9E;"><font size="-1"><i class="fa fa-user"></i>&nbsp;汇报人</font></p>
+
+                <form class="ui-filterable">
+                    <input id="autocomplete-input1" data-type="search" placeholder="人员搜索...">
+                </form>
+                <ul data-role="listview" data-filter="true" class="ui-nodisc-icon ui-alt-icon"
+                    data-filter-reveal="true" data-input="#autocomplete-input1" data-inset="true">
+                    <li data-icon="check"><a href="#">邵剑秋<span class="ui-li-count">123456</span></a></li>
+                    <li data-icon="check"><a href="#">王晓新<span class="ui-li-count">776556</span></a></li>
+                    <li data-icon="check"><a href="#">陈俊<span class="ui-li-count">987654</span></a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-12 col-xs-12 col-md-4"
+                 style="margin-bottom: 4px; padding: 3px 3px; font-size:medium">
+                <p style="color:#9E9E9E;"><font size="-1"><i class="fa fa-user-md"></i>&nbsp;汇报对象</font></p>
+
+                <form class="ui-filterable">
+                    <input id="autocomplete-input" data-type="search" placeholder="人员搜索...">
+                </form>
+                <ul data-role="listview" data-filter="true" class="ui-nodisc-icon ui-alt-icon"
+                    data-filter-reveal="true" data-input="#autocomplete-input" data-inset="true">
+                    <li data-icon="check"><a href="#">邵剑秋<span class="ui-li-count">123456</span></a></li>
+                    <li data-icon="check"><a href="#">王晓新<span class="ui-li-count">776556</span></a></li>
+                    <li data-icon="check"><a href="#">陈俊<span class="ui-li-count">987654</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-sm-12 col-xs-12 col-md-4"
+                 style="margin-bottom: 4px; padding: 3px 3px; font-size:medium">
+                <p style="color:#9E9E9E;"><font size="-1"><i class="fa fa-calendar"></i>&nbsp;从</font></p>
+                <input type="date" data-clear-btn="true" name="date-2" id="date-1" value="">
+            </div>
+            <div class="col-lg-4 col-sm-12 col-xs-12 col-md-4"
+                 style="margin-bottom: 4px; padding: 3px 3px; font-size:medium">
+                <p style="color:#9E9E9E;"><font size="-1"><i class="fa fa-calendar"></i>&nbsp;至</font></p>
+                <input type="date" data-clear-btn="true" name="date-2" id="date-2" value="">
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-lg-8 col-sm-12 col-xs-12 col-md-8" style="padding:3px 3px;">
+                <legend style="margin-bottom:3px;"><font size="-1" color="#9e9e9e"><i class="fa fa-file-code-o"></i>&nbsp;日志信息</font>
+                </legend>
+                <textarea cols="40" rows="8" name="textarea-18" id="textarea-18" disabled="ture">log text
+                    here!</textarea>
+                <ul data-role="listview" data-inset="true" style="margin-top:0px;">
+                    <li data-icon="arrow-d"><a href="#"><font color="#03a9f4"><i
+                            class="fa fa-file-code-o"></i></font> filename
+                        <p style="margin-bottom:0px;"><font color="gray">20K</font></p>
+                    </a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<div data-role="panel" id="panelgrid" data-position-fixed="true" data-position="right" data-display="overlay"
+     data-theme="a">
+    <div class="jqm-block-content"
+         style="margin: -14px -14px; margin-bottom: 14px; padding: 9px 9px; padding-top: 30px; background-color: #424242; border:none; min-height: 0px; border-radius: 0em;">
+        <p align="center" style="margin-bottom:10px;"><i class="material-icons md-56 md-light">memory</i></p>
+
+        <div class="ui-grid-a" style="text-shadow: 0 0 0; color:#FFFFFF">
+            <div class="ui-block-a">
+                <p align="left"><font size="+1">邵剑秋</font><br>
+                    <font color="#BDBDBD">ITMGT<br>
+                        121123</font></p>
+            </div>
+            <div class="ui-block-b">
+                <p align="right" style="margin-top: 8px;"><a href="#"><i class="fa fa-2x fa-sign-out"></i></a></p>
+            </div>
+        </div>
+    </div>
+     <ul data-role="listview" data-theme="b" class="ui-nodisc-icon ui-alt-icon">
+        <li data-role="collapsible" data-iconpos="right" data-inset="false"
+            style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) " data-collapsed-icon="bars"
+            data-expanded-icon="carat-u">
+            <h2 style="padding:0px 0px; margin:0px 0px;">我的BPMS</h2>
+            <ul data-role="listview" data-theme="a" style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+                <li><a rel="external" href="index.html" style="font-weight:200; background-color:transparent"><img
+                        src="images/Glyphish/icons/81-dashboard@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                        style="top: 11px;">工作台</a></li>
+                <li><a rel="external" href="assign.html" style="font-weight:200; background-color:transparent"><img
+                        src="images/Glyphish/icons/112-group@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                        style="top: 11px;">授权管理</a></li>
+                <li><a rel="external" href="report_list.html" style="font-weight:200; background-color:transparent"><img
+                        src="images/Glyphish/icons/16-line-chart@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                        style="top: 11px;">报表</a></li>
+            </ul>
+        </li>
+        <li data-role="collapsible" data-iconpos="right" data-inset="false"
+            style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) " data-collapsed-icon="bars"
+            data-expanded-icon="carat-u">
+            <h2 style="padding:0px 0px; margin:0px 0px;">我的任务</h2>
+            <ul data-role="listview" data-theme="a" style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+                <li><a rel="external" href="task_list.html" style="font-weight:200; background-color:transparent"><img
+                        src="images/Glyphish/icons/09-chat-2@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                        style="top: 11px;">待处理任务</a></li>
+                <li><a rel="external" href="history_list.html" style="font-weight:200; background-color:transparent"><img
+                        src="images/Glyphish/icons/11-clock@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                        style="top: 11px;">任务历史</a></li>
+            </ul>
+        </li>
+        <li data-role="collapsible" data-iconpos="right" data-inset="false"
+            style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) " data-collapsed-icon="bars"
+            data-expanded-icon="carat-u">
+            <h2 style="padding:0px 0px; margin:0px 0px;">我的流程</h2>
+            <ul data-role="listview" data-theme="a" style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+                <li><a rel="external" href="process_list.html" style="font-weight:200; background-color:transparent"><img
+                        src="images/Glyphish/icons/10-medical@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                        style="top: 11px;">启动流程</a></li>
+                <li><a rel="external" href="instance_list.html" style="font-weight:200; background-color:transparent"><img
+                        src="images/Glyphish/icons/15-tags@2x.png" alt="" class="ui-li-icon ui-corner-none"
+                        style="top: 11px;">流程历史</a></li>
+            </ul>
+        </li>
+    </ul>
+    <p align="center" style="margin-top: 30px;"><img src="images/bpmslogoxsn1.png" height="21px"></p>
+</div>
+<p style="margin-top: 5em; margin-bottom: 5em;"><br>
+</p>
+
+<div data-role="footer" data-fullscreen="true" data-position="fixed" style=" border-bottom-width: 0px;">
+    <div data-role="navbar" data-theme="b">
+        <ul>
+            <li><a href="#popsave" data-rel="popup" data-position-to="window" data-transition="fade" lass="ui-btn-b"
+                   style="font-weight:300;"><i class="fa fa-2x fa-plus-square-o"></i><br>
+                创建</a></li>
+            <li><a href="#popsave" data-rel="popup" data-position-to="window" data-transition="fade" class="ui-btn-b"
+                   style="font-weight:300;"><i class="fa fa-2x fa-refresh"></i><br>
+                刷新</a></li>
+            <li><a href="#" data-rel="popup" class="ui-btn-b" style="font-weight:300"><i
+                    class="fa fa-2x fa-chevron-left"></i><br>
+                上一页</a></li>
+            <li><a href="#" data-rel="popup" class="ui-btn-b" style="font-weight:300"><i
+                    class="fa fa-2x fa-chevron-right"></i><br>
+                下一页</a></li>
+            <li><a href="#popaction" data-rel="popup" data-transition="fade" class="ui-btn-b" style="font-weight:300"><i
+                    class="fa fa-2x fa-ellipsis-h"></i><br>
+                更多</a></li>
+        </ul>
+    </div>
+    <div data-role="popup" id="popsave" data-dismissible="false" data-theme="b" data-overlay-theme="a"
+         class="ui-corner-all"
+         style="min-width:300px; max-width:300px; background-image:url(images/tweets-bg.jpg)">
+        <div data-role="content" style="padding: 4px 4px;">
+            <p align="center" style="margin:8px 8px;"><font color="#607D8B"><i class="fa fa-2x fa-comments"></i></font>
+            </p>
+            <hr style="border-color: #607D8B; margin-bottom: 0px; margin-top:11px;">
+            <p align="left" style="padding: 0px 3px; margin-bottom: 32px;"><strong>PID112333</strong><br>
+                Success messages give feedback to the user that an action has been executed. The user needs to
+                acknowledge the message.</p>
+
+            <p style="padding: 0px 0px;"><a href="#" data-rel="back" class="ui-btn  ui-corner-all ui-btn-b"
+                                            style="background-color: #424242; color:#fff; text-shadow: 0 1px 0 #111; margin: 0px 0px">确认</a>
+            </p>
+        </div>
+    </div>
+    <div data-role="popup" id="popaction" data-theme="b" data-overlay-theme="a" style="border-width: 0px">
+        <ul data-role="listview" class="ui-nodisc-icon ui-alt-icon" data-inset="true"
+            style="min-width:230px; border-radius: 0em;">
+            <li data-role="list-divider" style="border-width: 0px;  background-color: #424242; border-radius: 0em;"><i
+                    class="fa fa-ellipsis-h"></i></li>
+            <li data-icon="search"><a href="#">全局视图</a></li>
+            <li data-icon="arrow-d"><a href="#">导出</a></li>
+        </ul>
+    </div>
+</div>
+</div>
+<script>
+    $('#myTabs a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+</script>
+</body>
+</html>

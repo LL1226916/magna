@@ -1,0 +1,734 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>BPMS流程设计器</title>
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.css" />
+<link rel="stylesheet" type="text/css" href="css/color.css" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.rateyo.min.css">
+<link rel="stylesheet" type="text/css" href="css/jqm-demos.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure.css">
+<link rel="stylesheet" type="text/css" href="css/all.min.css">
+<link rel="stylesheet" type="text/css" href="css/google-icon.css">
+<link rel="stylesheet" type="text/css" href="css/site.css" />
+<link rel="stylesheet" href="libs/bpmn-js/assets/diagram-js.css" />
+<link rel="stylesheet" href="libs/bpmn-js/assets/bpmn-font/css/bpmn-embedded.css" />
+ 
+<!-- <script src="libs/jquery.js?v=20210120"></script> -->
+<script src="libs/form-builder/vendor.js?v=1598853811990"></script>
+<script src="libs/jquery.form.js?v=1598853811990"></script>
+<script src="libs/jquery.mobile.js?v=1598853811990"></script>
+<script src="libs/jquery.rateyo.min.js?v=1598853811990"></script>
+<script src="libs/knockout.jquery.mobile.js?v=1598853811990"></script>
+<script src="libs/bootstrap.js?v=1598853811990"></script>
+<script src="libs/knockout.js?v=1598853811990"></script>
+<script src="libs/knockout.mapping.js?v=1598853811990"></script>
+<script src="libs/koExternalTemplateEngine_all.js?v=1598853811990"></script>
+<script src="libs/ko.extension.js?v=1598853811990"></script>
+<script src="libs/moment/moment.js?v=1598853811990"></script>
+<script src="libs/moment/locale/zh-cn.js?v=1598853811990"></script>
+<script src="libs/bootstrap-datetimepicker.js?v=1598853811990"></script>
+
+<script src="libs/events.js?v=1598853811990"></script>
+<script src="libs/bpmn-js/CmdHelper.js?v=1598853811990"></script>
+<script src="libs/bpmn-js/propertiesProvider.js?v=1598853811990"></script>
+<script src="libs/bpmn-js/bpmn-modeler.development.js?v=1598853811990"></script>
+<script src="libs/bpmn-js/bpmn-properties-panel.development.js?v=1598853811990"></script>
+<script src="libs/oex/utils.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-checked.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-datetime.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-selected.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-number.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-money.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-tel.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-email.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-switch.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-auto.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-id.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-join.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-auto-multi.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-join.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-auto-multi.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-upload.js?v=1598853811990"></script>
+<script src="libs/oex/jqm-ctr.js?v=1598853811990"></script>
+
+<script src="common/config.js?v=1598853811990"></script>
+<script src="common/util.js?v=1598853811990"></script>
+<script src="common/service.js?v=1598853811990"></script>
+<script src="common/baseViewModel.js?v=1598853811990"></script>
+
+<script src="processBuilder.js?v=1598853811990"></script>
+<script src="processBuilderViewModel.js?v=1598853811990"></script>
+<script src="processBuilderViewModel.js?v=1598853811990"></script>
+
+
+<script src="libs/form-builder/form-builder.min.js?v=1598853811990"></script>
+<script src="libs/form-builder/form-render.min.js?v=1598853811990"></script>
+<script src="libs/form-builder/remotecomplete.js?v=1598853811990"></script>
+<script src="libs/form-builder/auto.js?v=1598853811990"></script>
+<script src="libs/form-builder/flipswitch.js?v=1598853811990"></script>
+<link rel="shortcut icon" href="favicon.ico">
+<style>
+@media screen and (min-width:0px) {
+.row {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 16px;
+	margin-bottom: 16px;
+}
+}
+
+@media screen and (min-width:667px) {
+.row {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 16px;
+	margin-bottom: 16px;
+}
+}
+
+@media screen and (min-width:992px) {
+.row {
+	margin-left: 80px;
+	margin-right: 0px;
+	margin-top: 16px;
+}
+}
+ @media screen and (min-width:1200px) {
+.row {
+	margin-left: 80px;
+	margin-right: 80px;
+	margin-top: 32px;
+}
+ }
+ @media screen and (min-width:1600px) {
+.row {
+ margin-left: 80px;
+ margin-right: 80px;
+ margin-top: 32px;
+}
+}
+
+
+.build-wrap label {
+      display: inline-block;
+    }
+    
+   div.fb-join{
+    visibility: hidden;
+    }
+
+    span.control-icon {
+      -webkit-filter: grayscale(100%);
+      -moz-filter: grayscale(100%);
+      -ms-filter: grayscale(100%);
+      -o-filter: grayscale(100%);
+      filter: grayscale(100%);
+      filter: gray;
+    } 
+    #formTable fieldset{
+      margin:0;
+    }
+</style>
+</head>
+<body>
+<div data-role="page" id="main" data-theme="b" style="background-color: #f0f0f0">
+<div data-role="header" data-theme="b" style=" background-color:#FFFFFF; box-shadow:0 4px 5px 0 rgba(0, 0, 0, 0.14)">
+    <div class="ui-grid-b">
+      <div class="ui-block-a">
+        <h3 style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom:8px; text-shadow: 0 0px; color:#bdbdbd; text-align:left"><a href="#popupde" data-rel="popup" data-position-to="window" data-transition="fade" style="color:#009688; font-weight:100"> <img src="images/cube.svg" height="26px" style="margin-top:-3px;"></a></h3>
+      </div>
+		<div class="ui-block-b">
+        <h3 style="margin-left: 10px; margin-right: 10px; margin-top: 7px; margin-bottom:8px; text-shadow: 0 0px; color:#bdbdbd; text-align:center"><a href="javascript:void(0);" style="text-decoration: none; font-weight:100; font-size:16px; color:#455a64"><i class="fal fa-fw fa-draw-polygon" style="margin-right:6px; color:#4caf50"></i>表单流程设计器</a></h3>
+      </div>
+      <div class="ui-block-c">
+        <h3 style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom:8px; text-shadow: 0 0px; color:#bdbdbd; text-align:right"><a href="#panelgrid" style="color: #03a9f4"><i class="fal fa-bars"></i></a></h3>
+      </div>
+    </div>
+    <!-- /grid-a --> 
+  </div>
+  <div data-role="content" style="padding: 2px 2px;">
+    <div data-role="popup" id="popupsearch"  data-dismissible="false" data-theme="b" data-overlay-theme="a" class="ui-corner-all" style="min-width:300px; max-width:300px;"><a href="#" data-rel="back" class="ui-btn ui-nodisc-icon ui-alt-icon ui-corner-all ui-shadow ui-btn-b ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+      <div data-role="content" style="padding: 4px 4px;">
+        <p align="center" style="margin:8px 8px;"><font color="#EC407A"><i class="fa fa-3x fa-search-plus"></i></font></p>
+        <p align="center" style="padding: 8px 8px; padding-bottom:0px;">
+          <input type="text" data-theme="b" data-clear-btn="true" name="email" id="email"  placeholder="Process名称" >
+          <input type="text" data-theme="b" data-clear-btn="true" name="password" id="password"  placeholder="Process ID">
+          <input type="text" data-theme="b" data-clear-btn="true" name="area" id="area"  placeholder="应用领域">
+        </p>
+        <p align="center" style="padding: 8px 8px; padding-bottom:0px;">
+          <button type="submit" class="ui-btn ui-corner-all ui-btn-b" style="background-color:#424242; color:#fff; text-shadow: 0 1px 0 #111">查询</button>
+        </p>
+      </div>
+    </div>
+   <ul class="nav nav-tabs" id="myTabs" role="tablist" style="margin-left: 2px; margin-right: 2px; margin-top: 4px; border-bottom-width: 0px;">
+      <li style="min-width: 80px;" role="presentation" class="active" data-bind="css: {'ui-disabled': false && tab()!=='form' }"><a href="#form" data-bind="click:switchTab" role="tab" id="form-tab" data-toggle="tab" aria-controls="form">
+        <p align="center" style="margin: 0px 0px; font-weight:300"  title="表单设计"><i class="fal fa-fw fa-comment-alt-smile" style="color: #03a9f4; margin-right:6px"></i>表单设计</p>
+        </a></li>
+      <li style="min-width: 80px;" role="presentation" data-bind="css: { 'ui-disabled':tab()!=='process' }"><a href="#process" role="tab"  data-bind="click:switchTab" id="process-tab" data-toggle="tab" aria-controls="process">
+        <p align="center" style="margin: 0px 0px; font-weight:300"  title="流程设计"><i class="fal fa-fw fa-draw-polygon" style="color: #03a9f4; margin-right:6px"></i>流程设计</p>
+        </a></li>
+      <li style="min-width: 80px;" role="presentation" data-bind="css: { 'ui-disabled':false && tab()!=='deploy' }"><a href="#deploy" id="deploy-tab"  data-bind="click:switchTab" role="tab" data-toggle="tab" aria-controls="deploy" aria-expanded="true">
+        <p align="center" style="margin: 0px 0px; font-weight:300" title="流程部署"><i class="fal fa-fw fa-list" style="color: #03a9f4;  margin-right:6px"></i>流程部署</p>
+        </a></li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+     
+      <div role="tabpanel" class="tab-pane fade in active" id="form" aria-labelledBy="form-tab">
+        <div class="ui-body ui-body-b ui-content" style="border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 200px; margin: 0 2px; padding: 2px 2px">
+          <div class="row" style="margin: 12px 12px">
+            <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6" style="padding: 3px 3px; ">
+              <p align="left" style="height: 20px; padding: 0px 0px; margin:0px 0px; margin-top:4px; color:#90a4ae; font-size:20px">
+                <span data-bind="visible:displayingForm.id">
+                  <span data-bind="text:displayingForm.id" style="font-weight:300"></span><span>: </span>
+                  <span data-bind="text:displayingForm.name" style="font-weight:600"></span>
+                </span>
+              </p>
+            </div>
+           <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6" style="padding: 3px 3px; ">
+              <p align="right" style="padding:3px 3px; margin-bottom:0px; font-size: 16px; ">
+                <a href="javascript:void(0);" data-bind="click:resetForm" style="margin-left:20px;font-weight:300"  data-toggle="tooltip" data-placement="bottom" title="新建"><i class="far fa-fw fa-plus" style="margin-right:6px"></i>新建</a>
+                <!-- <a href="javascript:void(0);" data-bind="click:" style="margin-left:20px;"  data-toggle="tooltip" data-placement="bottom" title="编辑"><i class="far fa-fw fa-pen"></i></a> -->
+                <a href="javascript:void(0);" data-bind="click:startSave"  style="margin-left:20px;font-weight:300"  data-toggle="tooltip" data-placement="bottom" title="保存"><i class="far fa-fw fa-check-double" style="margin-right:6px"></i>保存</a>
+                <a href="javascript:void(0);" data-bind="click:resetForm" style="margin-left:20px;font-weight:300"  data-toggle="tooltip" data-placement="bottom" title="重置"><i class="far fa-fw fa-redo" style="margin-right:6px"></i>重置</a>
+				<a href="javascript:void(0);" data-bind="click:deleteForm"  style="margin-left:20px; color:#f44336;font-weight:300"  data-toggle="tooltip" data-placement="bottom" title="删除"><i class="far fa-fw fa-trash-alt" style="margin-right:6px; "></i>删除</a>
+                <a href="javascript:void(0);" data-bind="css: { 'ui-disabled': !($root.displayingForm.id()) },click:nextToProcess"  style="margin-left:48px; margin-right: 16px; color: #4caf50; font-weight: 300;text-decoration:none;"  data-toggle="tooltip" data-placement="bottom" title="下一步"><i class="fas fa-fw fa-forward"></i>&nbsp;下一步</a></p>
+            </div>
+          </div>
+          <div class="row" style="margin: 12px 12px">
+            <div class="col-sm-6 col-xs-6 col-md-9 col-lg-9" style="padding: 0px 0px; ">
+              <div class="ui-body ui-body-b ui-content main-content" style="background-image: url(images/works-bg2.jpg); border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 200px;
+              overflow-x: hidden; overflow-y: auto;
+                margin: 0 2px; padding: 2px 2px;">
+                <!-- <p align="center"><font size="+3" color="#BDBDBD">Form Builder Area</font></p> -->
+
+                <div class="build-wrap"></div>
+                <form class="render-wrap"></form>
+                <div style="display:none;" class="action-buttons">
+                  <h2>操作</h2>
+                  <button id="edit-form">编辑表单</button>
+                  <button id="showData" type="button">显示数据</button>
+                  <button id="clearFields" type="button">清除所有字段</button>
+                  <button id="getData" type="button">取数据</button>
+                  <button id="getXML" type="button">取XML数据</button>
+                  <button id="getJSON" type="button">取JSON数据</button>
+                  <button id="getJS" type="button">取JS数据</button>
+                  <button id="setData" type="button">设置数据</button>
+                  <button id="addField" type="button">添加字段</button>
+                  <button id="removeField" type="button">删除字段</button>
+                  <button id="testSubmit" type="submit">提交</button>
+                  <button id="resetDemo" type="button">重置</button>
+                  <h2>i18n</h2>
+                  <select id="setLanguage">
+                    <option value="zh-CN">简体中文</option>
+                    <option value="en-US">English</option>
+                  </select>
+                </div>
+
+              </div>
+            </div>
+            <div class="col-sm-6 col-xs-6 col-md-3 col-lg-3" style="padding: 0px 0px; ">
+              <div class="ui-body ui-body-b ui-content main-content" style="border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 200px;
+                 overflow-x: hidden; overflow-y:auto;
+                 margin: 0 2px; padding: 2px 2px;">
+                <p align="center" style="margin: 6px 6px; font-weight: 300">
+                  <a href="javascript:void(0);" 
+                   style="font-weight: 300;text-decoration:none;"><i class="fas fa-fw fa-search"></i><br>
+                  搜索</a>
+                </p>
+                <ul data-role="listview" class="ui-alt-icon ui-nodisc-icon" data-theme="b"
+                data-bind="jqmTemplate: { name: 'formItem', foreach: form.items }, jqmRefreshList: form.items"
+                 style="margin: 2px 2px;">
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane fade" id="process" aria-labelledBy="process-tab">
+        <div class="ui-body ui-body-b ui-content" style="border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 400px; margin: 0 2px; padding: 2px 2px">
+          <div class="row" style="margin: 12px 12px">
+            <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6" style="padding: 3px 3px; ">
+              <p align="left" style="height: 20px; padding: 0px 0px; margin:0px 0px; color:#bdbdbd">
+                <span data-bind="visible:displayingProcess.id">
+                  <span data-bind="text:displayingProcess.id"></span><span>: </span>
+                  <span data-bind="text:displayingProcess.name"></span>
+                </span>
+              </p>
+            </div>
+           <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6" style="padding: 3px 3px; ">
+              <p align="right" style="padding:3px 3px; margin-bottom:0px; font-size: 16px">
+                <a href="javascript:void(0);" data-bind="click:initBpmn" style="margin-left:20px; font-weight:300"  data-toggle="tooltip" data-placement="bottom" title="新建"><i class="far fa-fw fa-plus" style="margin-right:6px"></i>新建</a>
+                <!-- <a href="javascript:void(0);" data-bind="" style="margin-left:20px;"  data-toggle="tooltip" data-placement="bottom" title="编辑"><i class="far fa-fw fa-pen"></i></a> -->
+                <a href="javascript:void(0);" data-bind="click:exportDiagram" style="margin-left:20px; font-weight:300"  data-toggle="tooltip" data-placement="bottom" title="保存"><i class="far fa-fw fa-check-double" style="margin-right:6px"></i>保存</a>
+                <a href="javascript:void(0);" data-bind="click:initBpmn" style="margin-left:20px; font-weight:300"  data-toggle="tooltip" data-placement="bottom" title="重置"><i class="far fa-fw fa-redo" style="margin-right:6px"></i>重置</a>
+                <a href="javascript:void(0);" data-bind="click:deployProcess" style="margin-left:48px; margin-right: 16px; font-weight: 300; color: #4caf50;text-decoration:none;"  data-toggle="tooltip" data-placement="bottom" title="部署流程"><i class="fas fa-fw fa-cloud-upload"></i>&nbsp;部署流程</a>
+              </p>
+            </div>
+          </div>
+          <div class="row" style="margin: 12px 12px">
+            <div class="col-sm-6 col-xs-6 col-md-8 col-lg-8" style="padding: 0px 0px; ">
+              <div class=" ui-body ui-body-b ui-content main-content" style="background-image: url(images/works-bg2.jpg); border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 200px; overflow-x:hidden;overflow-y: auto; margin: 0 2px; padding: 2px 2px;">
+               <p align="center" style="height:100%;" class="canvas">
+                  <!-- <font size="+3" color="#BDBDBD">Drawing Area</font> -->
+                </p>
+            
+              </div>
+            </div>
+            <div class="col-sm-6 col-xs-6 col-md-4 col-lg-4" style="padding: 0px 0px; ">
+              <div class="ui-body ui-body-b ui-content main-content" style="border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 200px;  overflow-x:hidden;overflow-y: auto; margin: 0 2px; padding: 2px 2px;">
+                <ul class="nav nav-tabs" id="settingTab" role="tablist" style="margin-left: 2px; margin-right: 2px; margin-top: 4px; border-bottom-width: 0px;">
+                  <li style="min-width: 80px;" class="active" role="presentation">
+                    <a href="#processsetting" role="tab" data-bind="click:switchSettingTab" id="processsetting-tab" data-toggle="tab" aria-controls="processsetting">
+                      <p align="center" style="margin: 0px 0px; font-weight:300"  title="流程属性"><i class="fal fa-fw fa-draw-polygon" style="color: #03a9f4; margin-right:6px"></i>流程设置</p>
+                    </a>
+                  </li>
+                  <li style="min-width: 80px;" data-bind="css: { 'ui-disabled':editingProcess.form().length === 0 }"  role="presentation">
+                    <a href="#formsetting" role="tab" data-bind="click:switchSettingTab" id="formsetting-tab" data-toggle="tab" aria-controls="formsetting">
+                      <p align="center" style="margin: 0px 0px; font-weight:300"  title="FORM设置"><i class="fal fa-fw fa-comment-alt-edit" style="color: #03a9f4; margin-right:6px"></i> 表单属性</p>
+                    </a>
+                  </li>
+                </ul>
+                <div id="settingTabContent"  class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="processsetting" aria-labelledBy="processsetting-tab">
+                  <div class="ui-body ui-body-b ui-content" style="border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em;  margin: 0 2px; padding: 2px 2px">
+                    <p align="left" style="margin:8px 0 24px 8px;"><font size="+2" color="#607d8b" style="font-weight: 600"  data-bind="text:displayingForm.name"></font><br>
+                      <font size="-1" color="#bdbdbd" data-bind="text:displayingForm.id"></font>
+                    </p>
+                    <!-- <input type="file" id="file"> -->
+
+                    <form method="post" id="upload" name="upload" accept-charset="UTF-8" 
+                    enctype="multipart/form-data"
+                    style="display:none;">
+                    <div id="output"></div>
+                    </form>
+                    <!-- <div>
+                        <p align="left"  style="margin:24px 0 8px 8px;"><font size="+1" color="#607d8b" style="font-weight: 400" >节点属性设置</font><br>
+                        </p>
+                    </div> -->
+
+                    <div class="row" style="margin:0;padding:0;">
+                      <!-- ko basicForm: editingProcess.properties -->
+                      <!-- /ko -->
+                    </div>
+                  </div>
+                </div>
+
+                <div role="tabpanel" class="tab-pane fade" id="formsetting" aria-labelledBy="formsetting-tab">
+                  <div class="ui-body ui-body-b ui-content" style="border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em;  margin: 0 2px; padding: 2px 2px">
+                    <div>
+                        <p align="left" style="margin:24px 0 8px 8px;"><font size="+1" color="#607d8b" style="font-weight: 400" >节点表单设置</font><br>
+                        </p>
+                    </div>
+                    <table data-bind="visible:editingProcess.form().length" id="formTable" class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>字段</th>
+                          <th>属性</th>
+                        </tr>
+                      </thead>
+                      <tbody data-bind="jqmTemplate: { name: 'formFieldItem', foreach: editingProcess.form }, jqmRefreshList:editingProcess.form">
+                      </tbody>
+                    </table> 
+                  
+                    <div id="js-properties-panel" style="display:none;">
+                    </div>
+    
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane fade" id="deploy" aria-labelledBy="deploy-tab">
+        <div class="col-sm-12 col-xs-12 col-md-3 col-lg-3" style="padding: 0px 0px; ">
+          <div class="ui-body ui-body-b ui-content" style="border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 640px; max-height:800px; margin: 0 2px; padding: 2px 2px; overflow: auto; overflow-style:auto; ">
+            <form class="ui-filterable" style="margin: -4px 2px; margin-bottom:-3px; text-shadow: 0 0 0;">
+              <input id="deploy-input" data-type="search" placeholder="输入关键字搜索流程部署...">
+            </form>
+            <ul data-role="listview" data-theme="b" data-filter="true" 
+            data-bind="jqmTemplate: { name: 'deployItem', foreach: deploy.items }, jqmRefreshList: deploy.items"
+            data-inset="true" data-input="#deploy-input" style="margin: 2px 2px;">
+              <!-- <li data-icon="forbidden"><a href="task_action.html">
+                <h2 style="margin-bottom:3px">process.bpmn20.xml</h2>
+                <p style="margin-top:0px; margin-bottom:0px; font-weight:200; color:#9E9E9E">Process ID: Process Name</p>
+                <p style="margin-top:0px; font-weight:200; color:#9E9E9E"><strong>2016-4-1</strong> 14:00</p>
+                <span class="ui-li-count">81231:4</span> </a></li>
+              <li data-icon="check"><a href="task_action.html">
+                <h2 style="margin-bottom:3px">process.bpmn20.xml</h2>
+                <p style="margin-top:0px; margin-bottom:0px; font-weight:200; color:#9E9E9E">Process ID: Process Name</p>
+                <p style="margin-top:0px; font-weight:200; color:#9E9E9E"><strong>2016-4-1</strong> 14:00</p>
+                <span class="ui-li-count">81231:4</span> </a></li> -->
+           
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-12 col-xs-12 col-md-9 col-lg-9" style="padding: 0px 0px; ">
+          <div data-bind="visible:deployDetail.id" class="ui-body ui-body-b ui-content" style="border-width:1px; border-bottom-right-radius: 0.31em; border-bottom-left-radius:0.31em; min-height: 640px; max-height:800px; overflow:scroll; overflow-style:auto; margin: 0 2px; padding: 2px 2px;">
+            <div class="row" style="margin:0px 0px; padding:3px 3px">
+              <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6" style="padding: 3px 3px; ">
+                <p align="left" style="padding: 0px 0px; margin-bottom:0px; font-weight:600; color:#333333"><font size="+2" data-bind="text:deployDetail.name"></font></p>
+                <p align="left" style="padding: 0px 0px; margin:0px 0px; color:#bdbdbd"><span data-bind="text:deployDetail.id"></span>: <span data-bind="text:deployDetail.name"></span>&nbsp;<font color="#03a9f4"><i class="fa fa-fw fa-dot-circle-o"></i></font>&nbsp;<b data-bind="text: BPMS.Services.Utils.formatDateTime(deployDetail.deploymentTime(),'t3')"></b>&nbsp;<span data-bind="text: BPMS.Services.Utils.formatDateTime(deployDetail.deploymentTime(),'t4')"></span></p>
+                <p align="left" style="padding: 0px 0px; margin:0px 0px; color:#bdbdbd"><b></b></p>
+              </div>
+              <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6" style="padding: 3px 3px; ">
+                <p align="right" style="padding:3px 3px; margin-bottom:0px;">
+                  <a href="javascript:void(0);" data-bind="" style="margin-left:20px; font-size:x-large;" data-toggle="tooltip" data-placement="bottom" title="挂起"><i class="material-icons">pause_circle_filled</i></a>
+                  <a href="javascript:void(0);" data-bind="" style="margin-left:20px; font-size:x-large;"  data-toggle="tooltip" data-placement="bottom" title="激活"><i class="material-icons">play_circle_outline</i></a>
+                  <a href="javascript:void(0);" data-bind="click:convertToDesign,css: { 'ui-disabled': !(deployDetail.xml.xmlData()) }" style="margin-left:20px; font-size:x-large;"  data-toggle="tooltip" data-placement="bottom" title="转设计"><i class="material-icons">transform</i></a>
+                  <a href="javascript:void(0);" data-bind="click:deleteDeploy" style="font-weight:300;  margin-left:20px; margin-right:3px; font-size: x-large;" data-toggle="tooltip" data-placement="bottom" title="删除"><i class="material-icons">delete</i></a></p>
+              </div>
+            </div>
+            <div class="row" style="margin:0px 0px; padding:3px 3px">
+              <div class="col-sm-6 col-xs-12 col-md-4 col-lg-4" style="padding: 6px 6px; ">
+                <legend style="margin-bottom: 16px;"><font size="-1" color="#bdbdbd" style="font-weight:600"><i class="fa fa-fw fa-info-circle"></i> 流程说明</font></legend>
+                <p data-bind="visible:false">There are three types of business processes (citation by August-Wilhelm Scheer and Mark von Rosing)</p>
+              </div>
+              <div class="col-sm-6 col-xs-12 col-md-8 col-lg-8" style="padding: 6px 6px; ">
+                <legend style="margin-bottom: 16px;"><font size="-1" color="#bdbdbd" style="font-weight:600"><i class="fa fa-fw fa-picture-o"></i> 流程图</font></legend>
+                <img data-bind="attr:{src:deployDetail.image.imageData}" width="100%"> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-role="panel" id="panelgrid" data-position-fixed="true" data-position="right" data-display="overlay" data-theme="a">
+    <div class="jqm-block-content" style="margin: -14px -14px;
+              margin-bottom: 14px; padding: 9px 9px; padding-top: 30px;
+              background-color: #0d47a1; border:none; min-height: 0px;
+              border-radius: 0em;">
+      <p align="center" style="margin-bottom:10px;">
+        <i class="material-icons
+                  md-56 md-light">face</i>
+      </p>
+      <div class="ui-grid-a" style="text-shadow: 0 0 0; color:#FFFFFF">
+        <div class="ui-block-a">
+          <p align="left">
+            <font size="+1" data-bind="text:user.name"></font>
+            <br>
+            <font color="#BDBDBD">
+              <span data-bind="text:user.Roles"></span>
+              <br>
+              <span data-bind="text:user.sub"></span>
+            </font>
+          </p>
+        </div>
+        <div class="ui-block-b">
+          <p align="right" style="margin-top: 8px;">
+            <a href="javascript:void(0);" data-bind="click:logout">
+              <i class="fa fa-2x fa-sign-out"></i>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <ul data-role="listview" data-theme="b" class="ui-nodisc-icon
+              ui-alt-icon">
+      <li data-role="collapsible" data-iconpos="right" data-inset="false" style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) "
+        data-collapsed-icon="bars" data-expanded-icon="carat-u">
+        <h2 style="padding:0px 0px; margin:0px 0px;">我的首页</h2>
+        <ul data-role="listview" data-theme="a" style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+          <li>
+            <a rel="external" href="index.html" style="font-weight:200; background-color:transparent">
+              <img src="images/Glyphish/icons/81-dashboard@2x.png" alt="" class="ui-li-icon ui-corner-none" style="top: 11px;">首页</a>
+          </li>
+        </ul>
+      </li>
+      <li data-role="collapsible" data-iconpos="right" data-inset="false" style="padding:0px 0px; border-width:0px; background-color:rgba(0,0,0,1.00) "
+        data-collapsed-icon="bars" data-expanded-icon="carat-u">
+        <h2 style="padding:0px 0px; margin:0px 0px;">我的流程</h2>
+        <ul data-role="listview" data-theme="a" style="padding:0px 0px; margin:0px 0px; border-bottom-width:0px;">
+          <li>
+            <a rel="external" href="process_builder2.html" style="font-weight:200; background-color:transparent">
+              <img src="images/Glyphish/icons/10-medical@2x.png" alt="" class="ui-li-icon ui-corner-none" style="top: 11px;">设计流程</a>
+          </li>
+          <li>
+            <a rel="external" href="form_builder.html" style="font-weight:200; background-color:transparent">
+              <img src="images/Glyphish/icons/15-tags@2x.png" alt="" class="ui-li-icon ui-corner-none" style="top: 11px;">设计表单</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <p align="center" style="margin-top: 30px;">
+      <img src="images/bpmslogoxsn1.png" height="21px">
+    </p>
+  </div>
+  <div data-role="footer"  data-fullscreen="true" data-position="fixed" style=" border-bottom-width: 0px; opacity: 1">
+    <div data-role="navbar" >
+      <ul data-bind="visible:tab()==='form'">
+        <li><a href="javascript:void(0);"  class="ui-btn-b" style="font-weight:300"><i class="far fa-2x fa-fw fa-home-heart" style="margin-bottom: 4px;"></i><br>
+          主页</a></li>
+        <li><a href="javascript:void(0);" data-bind="click: startSave"  class="ui-btn-b" style="font-weight:300"><i class="far fa-2x fa-fw fa-check-double" style="margin-bottom: 4px;"></i><br>
+          保存</a></li>
+        <li data-bind="css: { 'ui-disabled': !($root.form.hasPrev()) }"><a href="javascript:void(0);" data-bind="click: getPrev" data-position-to="window"  class="ui-btn-b" style="font-weight:300"><i class="far fa-2x fa-fw fa-chevron-double-left" style="margin-bottom: 4px;"></i><br>
+          上一页</a></li>
+        <li data-bind="css: { 'ui-disabled': !($root.form.hasNext()) }"><a href="javascript:void(0);" data-bind="click: getNext"  class="ui-btn-b" style="font-weight:300"><i class="far fa-2x fa-fw fa-chevron-double-right" style="margin-bottom: 4px;"></i><br>
+          下一页</a></li>
+      </ul>
+
+      <!-- <a id="downloadLink" href title="下载流程图">
+        下载流程图
+      </a> -->
+      <ul data-bind="visible:tab()==='process'">
+        <li><a href="javascript:void(0);"  class="ui-btn-b" style="font-weight:300"><i class="far fa-2x fa-fw fa-home-heart" style="margin-bottom: 4px;"></i><br>
+          主页</a></li>
+        <li><a href="javascript:void(0);" data-bind="click: exportDiagram"  class="ui-btn-b" style="font-weight:300"><i class="far fa-2x fa-fw fa-check-double" style="margin-bottom: 4px;"></i><br>
+          保存</a></li>
+        
+      </ul>
+
+
+      <ul data-bind="visible:tab()==='deploy'">
+        <li><a href="javascript:void(0);"  class="ui-btn-b" style="font-weight:300"><i class="far fa-2x fa-fw fa-home-heart" style="margin-bottom: 4px;"></i><br>
+          主页</a></li>
+        <li data-bind="css: { 'ui-disabled': !($root.deploy.hasPrev()) }"><a href="javascript:void(0);" data-bind="click: getPrev" data-position-to="window"  class="ui-btn-b" style="font-weight:300"><i class="far fa-2x fa-fw fa-chevron-double-left" style="margin-bottom: 4px;"></i><br>
+          上一页</a></li>
+        <li data-bind="css: { 'ui-disabled': !($root.deploy.hasNext()) }"><a href="javascript:void(0);" data-bind="click: getNext"  class="ui-btn-b" style="font-weight:300"><i class="far fa-2x fa-fw fa-chevron-double-right" style="margin-bottom: 4px;"></i><br>
+          下一页</a></li>
+      </ul>
+
+    </div>
+    <!-- /navbar -->
+    <div data-role="popup" id="popDelete" data-dismissible="false" data-theme="b" data-overlay-theme="a" class="ui-corner-all"
+    style="min-width:300px; max-width:300px;
+            background-image:url(images/tweets-bg.jpg)">
+    <div data-role="content" style="padding: 4px 4px;">
+      <p align="center" style="margin:8px 8px;">
+        <font color="#FF9800">
+          <i class="fa fa-2x fa-warning"></i>
+        </font>
+      </p>
+      <hr style="border-color: #FF9800; margin-bottom: 0px;
+                margin-top:11px;">
+      <p align="left" style="padding: 0px 3px; margin-bottom:
+                32px;">删除form将导致流程定义中的form指派失效。是否确认删除操作?</p>
+      <div class="ui-grid-a">
+        <div class="ui-block-a">
+          <p style="padding: 3px 3px;">
+            <a href="javascript:void(0);" data-bind="click:doDeleteForm" class="ui-btn ui-corner-all
+                      ui-icon-delete ui-btn-icon-left" style="background-color: #424242; color:#fff;
+                      text-shadow: 0 1px 0 #111; margin: 0px 0px">确认删除</a>
+          </p>
+        </div>
+        <div class="ui-block-b">
+          <p style="padding: 3px 3px;">
+            <a href="#" data-rel="back" class="ui-btn ui-corner-all
+                      ui-btn-b" style="margin: 0px 0px">取消</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div data-role="popup" id="popaction" data-theme="b" data-overlay-theme="a" style="border-width: 0px">
+      <ul data-role="listview" class="ui-nodisc-icon ui-alt-icon" data-inset="true" style="min-width:200px; border-radius: 0em;">
+        <li data-role="list-divider" style="border-width: 0px;  background-color: #424242; border-radius: 0em;"><i class="fa fa-ellipsis-h"></i></li>
+        <li data-icon="forward"><a href="#" style="font-weight:400">导入</a></li>
+        <li data-icon="plus"><a href="#" style="font-weight:400">新建</a></li>
+      </ul>
+    </div>
+    <div data-role="popup" id="popfilter" data-theme="b" data-overlay-theme="a" style="border-width: 0px">
+      <ul data-role="listview" class="ui-nodisc-icon ui-alt-icon" data-inset="true" style="min-width:240px; border-radius: 0em;">
+        <li data-role="list-divider" style="border-width: 0px;  background-color: #424242; border-radius: 0em;"><i class="fa fa-ellipsis-h"></i></li>
+        <li data-icon="forbidden" ><a href="#">挂起的流程</a></li>
+        <li data-icon="check" ><a href="#">活动的流程</a></li>
+        <li data-icon="bars" ><a href="#">全部的流程</a></li>
+      </ul>
+    </div>
+    <div data-role="popup" id="popSaveProcess" data-dismissible="false" data-theme="b" data-overlay-theme="a" class="ui-corner-all"
+    style="min-width:300px; max-width:300px;
+            background-image:url(images/tweets-bg.jpg)">
+    <a href="javascript:void(0);" data-bind="click:cancel" class="ui-btn ui-nodisc-icon ui-alt-icon
+              ui-corner-all ui-shadow ui-btn-b ui-icon-delete ui-btn-icon-notext
+              ui-btn-right">Close</a>
+    <div data-role="content" style="padding: 4px 4px;">
+      <p align="center" style="margin:8px 8px;">
+        <font color="#4caf50">
+          <i class="fa fa-3x fa-save"></i>
+        </font>
+      </p>
+      <p align="center" style="padding:0px 8px 0px 8px;">
+        <input type="text" data-theme="b" data-clear-btn="true" data-bind="value:deployName" 
+        name="deployName" id="deployName" placeholder="部署名称">
+      </p>
+      <div style="padding: 0px 8px 0px 8px;" class="ui-grid-a">
+        <div class="ui-block-a"><a href="javascript:void(0);" data-bind="click:doDeployProcess,css: { 'ui-disabled':false}" class="ui-btn ui-corner-all ui-shadow  ui-btn-b ui-btn-icon-left ui-icon-check"  style="background-color: #4caf50; color:#fff; text-shadow: 0 1px 0 #616161; margin-left:2px">保存</a></div>
+        <div class="ui-block-b"><a href="javascript:void(0);" data-bind="click:cancel" class="ui-btn ui-corner-all ui-shadow  ui-btn-b ui-btn-icon-left ui-icon-delete"  style="margin-right:2px;">取消</a></div>
+      </div>
+    </div>
+  </div>
+    <div data-role="popup" id="popSave" data-dismissible="false" data-theme="b" data-overlay-theme="a" class="ui-corner-all"
+    style="min-width:300px; max-width:300px;
+            background-image:url(images/tweets-bg.jpg)">
+    <a href="javascript:void(0);" data-bind="click:cancel" class="ui-btn ui-nodisc-icon ui-alt-icon
+              ui-corner-all ui-shadow ui-btn-b ui-icon-delete ui-btn-icon-notext
+              ui-btn-right">Close</a>
+    <div data-role="content" style="padding: 4px 4px;">
+      <p align="center" style="margin:8px 8px;">
+        <font color="#4caf50">
+          <i class="fa fa-3x fa-save"></i>
+        </font>
+      </p>
+      <p align="center" style="padding:0px 8px 0px 8px;">
+        <input type="text" data-theme="b" data-clear-btn="true" data-bind="value:editingForm.id,css: { 'ui-disabled':true || displayingForm.id}" name="formId" id="formId" placeholder="ID">
+        <input type="text" data-theme="b" data-clear-btn="true" data-bind="value:editingForm.name" name="formName" id="formName" placeholder="名称">
+        <!-- <select data-native-menu="false" control-type="sbs" name="formAccessibility" id="formAccessibility" data-bind="selected:editingForm.accessibility" data-overlay-theme="a">
+            <option value="read">显示类</option>
+            <option value="write">输入类</option>
+        </select> -->
+        <textarea rows="4" style="overflow-y: scroll;" data-bind="value:editingForm.remark" name="formRemark" placeholder="备注" id="formRemark"></textarea>
+      </p>
+      <div style="padding: 0px 8px 0px 8px;" class="ui-grid-a">
+        <div class="ui-block-a"><a href="javascript:void(0);" data-bind="click:doSave" class="ui-btn ui-corner-all ui-shadow  ui-btn-b ui-btn-icon-left ui-icon-check"  style="background-color: #4caf50; color:#fff; text-shadow: 0 1px 0 #616161; margin-left:2px">保存</a></div>
+        <div class="ui-block-b"><a href="javascript:void(0);" data-bind="click:cancel" class="ui-btn ui-corner-all ui-shadow  ui-btn-b ui-btn-icon-left ui-icon-delete"  style="margin-right:2px;">取消</a></div>
+      </div>
+    </div>
+  </div>
+  <div data-role="popup" id="popFormula" data-theme="b" data-overlay-theme="a" style=" min-width: 600px; border-width: 0px">
+    <div data-role="content" style="padding: 4px 4px;">
+
+
+      <div class="row" style="margin: 0px 0px; padding: 0px 0px;">
+        <div class="col-sm-12 col-xs-12 col-md-5 col-lg-4" style="padding: 0px 0px;">
+          <ul data-role="listview" class="ui-nodisc-icon ui-alt-icon" data-inset="true" 
+          data-bind="jqmTemplate: { name: 'formulaField', foreach:formula.fields}, jqmRefreshList:formula.fields"
+          style=" border-radius: 0em;">
+          </ul>
+        </div>
+        <div class="col-sm-12 col-xs-12 col-md-3 col-lg-2" style="padding: 0px 0px;">
+          <ul data-role="listview" class="ui-nodisc-icon ui-alt-icon" data-inset="true"
+          data-bind="jqmTemplate: { name: 'formulaOperation', foreach:formula.operations}, jqmRefreshList:formula.operations"
+          style=" border-radius: 0em;">
+         
+          </ul>
+        </div>
+        <div class="col-sm-12 col-xs-12 col-md-4 col-lg-6" style="padding: 0px 0px; ">
+          <ul data-role="listview" class="ui-nodisc-icon ui-alt-icon" data-inset="true" style=" border-radius: 0em;">
+            <li data-role="list-divider" style="border-width: 0px; font-size:10px;  background-color: #455a64; border-radius: 0em;"><i class="fa fa-fw fa-edit" style="margin-right: 6px"></i>公式编辑区域</li>
+            <form onsubmit="return false;" style="margin: 6px 6px">
+              <textarea name="editCalculate" id="editCalculate" rows="5" style="overflow: auto;" data-bind="value:formula.calculate"></textarea>
+            </form>
+          </ul>
+        </div>
+      </div>
+      <div style="padding: 0px 8px 0px 8px;" class="ui-grid-a">
+        <div class="ui-block-a"><a href="javascript:void(0);" data-bind="click:setFormula" class="ui-btn ui-corner-all ui-shadow  ui-btn-b ui-btn-icon-left ui-icon-check"  style="background-color: #4caf50; color:#fff; text-shadow: 0 1px 0 #616161; margin-left:2px">确定</a></div>
+        <div class="ui-block-b"><a href="javascript:void(0);" data-bind="click:cancel" class="ui-btn ui-corner-all ui-shadow  ui-btn-b ui-btn-icon-left ui-icon-delete"  style="margin-right:2px;">取消</a></div>
+      </div>
+    </div>
+
+  </div>
+  <div data-role="popup" id="popConvertForm" data-dismissible="false" data-theme="b" data-overlay-theme="a" class="ui-corner-all"
+  style="min-width:500px; max-width:500px;
+          background-image:url(images/tweets-bg.jpg)">
+  <a href="javascript:void(0);" data-bind="click:cancel" class="ui-btn ui-nodisc-icon ui-alt-icon
+            ui-corner-all ui-shadow ui-btn-b ui-icon-delete ui-btn-icon-notext
+            ui-btn-right">Close</a>
+  <div data-role="content" style="padding: 4px 4px;">
+    <p align="center" style="margin:8px 8px;">
+      <font color="#4caf50">
+        <!-- <i class="fa fa-3x fa-save"></i> -->
+
+        <i class="material-icons">transform</i></a>
+      </font>
+    </p>
+    <p align="center" style="padding:0px 8px 0px 8px;">
+      <form  autocomplete="off" onsubmit="return false;">
+      <input  controlType="auto" data-bind="auto:sourceForm" name="convertFormId" id="convertFormId" data-type="search" data-inline="false" placeholder="输入关键字查找表单" data-theme="b" style="font-weight:600; font-size: large">
+      <ul  data-role="listview" class="ui-nodisc-icon ui-alt-icon ui-listview ui-listview-inset ui-corner-all ui-shadow" data-inset="true">
+      </ul> 
+      </form>
+    </p>
+    <div style="padding: 0px 8px 0px 8px;" class="ui-grid-a">
+      <div class="ui-block-a"><a href="javascript:void(0);" data-bind="click:confirmConvert" class="ui-btn ui-corner-all ui-shadow  ui-btn-b ui-btn-icon-left ui-icon-check"  style="background-color: #4caf50; color:#fff; text-shadow: 0 1px 0 #616161; margin-left:2px">转设计</a></div>
+      <div class="ui-block-b"><a href="javascript:void(0);" data-bind="click:cancel" class="ui-btn ui-corner-all ui-shadow  ui-btn-b ui-btn-icon-left ui-icon-delete"  style="margin-right:2px;">取消</a></div>
+    </div>
+  </div>
+</div>
+
+  </div>
+  <!-- /footer --> 
+</div>
+<script type="text/html" id="formItem">
+    <li data-bind="click:$root.selectFormItem" >
+      <a href="javascript:void(0);" style="padding:6px 6px" class="ui-btn ui-btn-icon-right ui-icon-eye" data-bind="css: { 'ui-icon-eye':createdBy!==$root.user.userId,'ui-icon-user':createdBy===$root.user.userId }">
+      <h2 style="margin-bottom:8px; font-weight:600"><span data-bind="text:id"></span><span data-bind="visible:name">: </span><span data-bind="text:name"></span></h2>
+      <!-- <p style="margin-top:0px; margin-bottom:0px; font-weight:200; color:#9E9E9E" data-bind="text:BPMS.Services.Utils.getSimpleText(remark)"></p>
+      -->
+      <p data-bind="visible:createdAt" style="margin-top:0px; margin-bottom:0px; font-weight:200; color:#9E9E9E">
+      <span>
+          <strong data-bind="text: BPMS.Services.Utils.formatDateTime(createdAt,'t3')"></strong>
+        &nbsp;<span data-bind="text: BPMS.Services.Utils.formatDateTime(createdAt,'t4')"></span>
+      </span>&nbsp;
+      <i class="fal fa-fw fa-user"></i>&nbsp;<span data-bind="text:createdName"></span> 
+      </p>
+      <p data-bind="visible:updatedAt" style="margin-top:0px; font-weight:200; color:#9E9E9E">
+          <span>
+              <strong data-bind="text: BPMS.Services.Utils.formatDateTime(updatedAt,'t3')"></strong>
+            &nbsp;<span  data-bind="text: BPMS.Services.Utils.formatDateTime(updatedAt,'t4')"></span>
+          </span>&nbsp;
+          <i class="fal fa-fw fa-sync-alt"></i>&nbsp;<span data-bind="text:updatedName"></span> 
+      </p>
+      </a>
+    </li>
+</script>
+
+<script type="text/html" id="deployItem">
+  <li data-bind="click:$root.selectDeployItem" >
+    <a href="javascript:void(0);" class="ui-btn ui-btn-icon-right" data-bind="css: { 'ui-icon-forbidden':false,'ui-icon-check':true}">
+      <h2 style="margin-bottom:3px" data-bind="text:name"></h2>
+      <p style="margin-top:0px; margin-bottom:0px; font-weight:200; color:#9E9E9E">
+        <span data-bind="text:id"></span>:  <span data-bind="text:name"></span></p>
+      <p style="margin-top:0px; font-weight:200; color:#9E9E9E">
+        <strong data-bind="text: BPMS.Services.Utils.formatDateTime(deploymentTime,'t3')"></strong>&nbsp;
+        <span data-bind="text: BPMS.Services.Utils.formatDateTime(deploymentTime,'t4')"></span>
+      </p>
+      <span class="ui-li-count" data-bind="visible:false,text:category||''"></span>
+    </a>
+  </li>
+</script>
+
+
+
+<script type="text/html" id="formFieldItem">
+  <tr>
+      <th scope="row" style="padding-top: 14px;" data-bind="text:$index()+1"></th>
+      <td style="padding-top: 14px;" data-bind="text:name"></td>
+      <td>
+         <div class="ui-mini" data-bind="basicField:$data,visible:$root.isField($data)"></div>
+      </td>
+    </tr>
+</script>
+
+<script type="text/html" id="basicField">
+    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" style="padding:3px 3px;" data-bind="basicField: $data">
+    </div>
+</script>
+
+<script type="text/html" id="formulaOperation">
+  <!-- ko if: $index() === 0-->
+  <li data-role="list-divider" style="border-width: 0px; font-size:10px;  background-color: #546e7a; border-radius: 0em;"><i class="fa fa-fw fa-function" style="margin-right: 6px"></i>函数列表</li>
+  <!-- /ko -->
+   <!-- ko if: $index() > 0-->
+  <li><a href="javascript:void(0);" data-bind="text:name,click:$root.insertFormulaText.bind($root)" style="font-weight:900; font-size: 10px"></a></li>
+  <!-- /ko -->
+</script>
+
+<script type="text/html" id="formulaField">
+  <!-- ko if: $index() === 0-->
+  <li data-role="list-divider" style="border-width: 0px; font-size:10px; background-color: #607d8b; border-radius: 0em;"><i class="fa fa-fw fa-sort-numeric-down-alt" style="margin-right: 6px"></i>字段列表</li>
+  <!-- /ko -->
+   <!-- ko if: $index() > 0-->
+   <li><a href="javascript:void(0);" data-bind="text:name+' ('+id+')',click:$root.insertFormulaText.bind($root)" style="font-weight:600; font-size: 10px"></a></li>
+  <!-- /ko -->
+</script>
+</body>
+</html>

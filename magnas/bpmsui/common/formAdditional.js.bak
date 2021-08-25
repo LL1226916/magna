@@ -1,0 +1,58 @@
+(function (BPMS) {
+
+    BPMS.formAdditional = {
+        setRules: function (processDefinitionId, taskId, fields) {
+
+            if (processDefinitionId.match(/^[A-Za-z0-9]+/)[0] === "executeJs" && !taskId) {
+
+                //1.设置字段是否必填
+                var field = fields.filter(function (tempField) {
+                    return tempField.id === "coreaction_审批_1_enum_rbv_$$A";
+                })[0];
+                if (field) {
+                    var updateRequired = function (value) {
+                        var targetField = fields.filter(function (tempField) {
+                            return tempField.id === "corecomments_审批意见（同意时无需必填，驳回时此处做必填校验）_2_string_t2_$$A";
+                        })[0];
+                        targetField.required(value !== "同意");
+                    }
+                    field.value.subscribe(updateRequired);
+                }
+
+                //2.设置字段允许填写的范围
+                var field = fields.filter(function (tempField) {
+                    return tempField.id === "days_t6控件大于0校验_1_string_t6_$$B";
+                })[0];
+                if (field) {
+                    field.min = 0.01;
+                }
+
+                //3.设置自动计算的规则
+                var field = fields.filter(function (tempField) {
+                    return tempField.id === "tbhdexpense_小计（当填写完未税金额和税额时，自动相加计算小计）_amount_13_string_cny_$$A"
+
+
+                })[0];
+                if (field) {
+                    var targetFields = fields.filter(function (tempField) {
+                        return tempField.id === "tbhdexpense_未税金额_untaxedamount_11_string_cny_$$A"
+                            || tempField.id === "tbhdexpense_税额_tax_12_string_cny_$$A";
+                    });
+                    targetFields.forEach(function (tempField) {
+                        tempField.value.subscribe(function () {
+                            var untax = Number(targetFields[0].value());
+                            var tax = Number(targetFields[1].value());
+                            var total = (untax + tax).toString();
+                            field.value(total);
+                        });
+                    });
+
+                }
+
+
+            }
+
+            // console.log(processDefinitionId + " " + taskId + " " + fields.length);
+        }
+    }
+})(window.BPMS = window.BPMS || {})
